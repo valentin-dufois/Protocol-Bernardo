@@ -1,0 +1,121 @@
+//
+//  Advertiser.cpp
+//  CommunicationEngine
+//
+//  Created by Valentin Dufois on 2019-09-09.
+//  Copyright © 2019 Prisme. All rights reserved.
+//
+
+#include <boost/bind.hpp>
+#include <iostream>
+#include <string>
+
+#include "Advertiser.hpp"
+
+#include "../CommunicationEngine.hpp"
+#include "../../Messages/messages.hpp"
+#include "../Endpoint.hpp"
+
+Advertiser::Advertiser() {
+	_broadcastEndpoint = asio::ip::udp::endpoint(asio::ip::address_v4::broadcast(), _port);
+
+	Endpoint thisMachine = CommunicationEngine::thisMachine();
+
+	// Prepare the message
+	messages::Endpoint * message = thisMachine;
+
+	// Build and store the message buffer
+	std::ostream os(&_outputBuffer);
+	message->SerializeToOstream(&os);
+}
+
+void Advertiser::startAdvertising() {
+	if(_isRunning)
+		return;
+
+	// Open the network connection (Broadcast)
+	_socket = new asio::ip::udp::socket(CommunicationEngine::instance()->getContext());
+	_socket->open(asio::ip::udp::v4());
+
+	asio::ip::address outboundAddress = getOutboundInterfaceIP();
+
+	_socket->set_option(asio::ip::multicast::outbound_interface(outboundAddress.to_v4()));
+	_socket->set_option(asio::ip::udp::socket::reuse_address(true));
+	_socket->set_option(asio::socket_base::broadcast(true));
+
+	// Set up the timer
+	setTimer();
+
+	// Run the context
+	CommunicationEngine::instance()->runContext();
+
+	_isRunning = true;
+}
+
+void Advertiser::advertise(const boost::system::error_code &e) {
+	if(!_isRunning)
+		return;
+	
+	// Broadcast
+	LOG_DEBUG("Advertising on network");
+	_socket->send_to(_outputBuffer.data(), _broadcastEndpoint);
+
+	// Reset the timer
+	setTimer();
+}
+
+void Advertiser::stopAdvertising() {
+	if(!_isRunning)
+		return;
+
+	// Stop and erase timer
+	_timer->cancel();
+	delete _timer;
+	_timer = nullptr;
+
+	// Close the socket
+	_socket->close();
+
+	_isRunning = false;
+}
+
+void Advertiser::setTimer() {
+	if(!_isRunning) {
+		// Create the timer
+		_timer = new asio::deadline_timer(CommunicationEngine::instance()->getContext());
+	}
+
+	// Set up the timer
+	_timer->expires_from_now(boost::posix_time::seconds(1));
+	_timer->async_wait(boost::bind(&Advertiser::advertise, this, boost::asio::placeholders::error));
+}
+
+asio::ip::address Advertiser::getOutboundInterfaceIP() {
+	// Find the outbound interfaces
+	asio::ip::udp::resolver resolver(CommunicationEngine::instance()->getContext());
+	asio::ip::udp::resolver::query query(asio::ip::host_name(), "");
+	asio::ip::udp::resolver::iterator it = resolver.resolve(query);
+
+	asio::ip::address interfaceIPAdress;
+
+	// Select the first IPv4 interface and use it
+	while(it != boost::asio::ip::udp::resolver::iterator()) {
+		asio::ip::address interface = (it++)->endpoint().address();
+		if(interface.is_v4()) {
+			return interface;
+		}
+	}
+
+	// No IPv4 interface could be found
+	LOG_WARN("Could not found an IPv4 outbound interface");
+
+	return asio::ip::address::from_string("0.0.0.0");
+}
+
+Advertiser::~Advertiser() {
+	// Properly close everything if needed
+	stopAdvertising();
+
+	// Free used memory
+	delete _socket;
+}

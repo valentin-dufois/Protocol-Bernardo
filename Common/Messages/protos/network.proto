@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+import "google/protobuf/any.proto";
+
+package messages;
+
+message Endpoint {
+	enum Type {
+		UNDEFINED = 0;  		// Machine gathering users positions
+		ACQUISITOR = 1;  	// Machine gathering users positions
+		BROADCASTER = 2;		// Machine generating and displaying visuals
+		MASTER = 3;			// The main machine, making everything works
+		TERMINAL = 4;		// Terminal used to control the master
+	}
+
+	string name = 1;
+	Type type = 2;
+}
+
+message Ping {
+	uint64 time = 1;
+}
+
+message Datagram {
+	enum Type {
+		// (0)XX: Common and special types -
+		UNDEFINED 			= 0;		// Compatibility purposes
+		CLOSE 				= 5;		// Tell other side to close the connection
+
+		HEARTBEAT 			= 7;		// Check connection is still active
+
+		PING 				= 10;	// Ping command
+		PONG 				= 11;	// Pong response
+
+		// 1XX: Acquisitor types -
+		ACQ_GET_BODY_STREAM = 110;	// Request stream of bodies
+		ACQ_END_BODY_STREAM = 111;	// Requests end of bodies stream
+		ACQ_BODY			= 115;	// A Body sent through the stream
+
+		// 2XX: Master types -
+		// Layout
+		LAYOUT_LIST 		= 210;
+		LAYOUT_CREATE 		= 211;
+		LAYOUT_OPEN 		= 212;
+		LAYOUT_RENAME 		= 213;
+		LAYOUT_UPDATE 		= 214;
+		LAYOUT_CLOSE 		= 215;
+		LAYOUT_DELETE 		= 216;
+
+		// 3XX: Broadcaster types -
+	}
+
+	Type type = 1;
+
+	google.protobuf.Any data = 100;
+}

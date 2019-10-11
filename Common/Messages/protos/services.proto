@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+import "network.proto";
+import "maths.proto";
+import "body.proto";
+import "layout.proto";
+
+// MARK: - Acquisitor Service
+service Acquisitor {
+	rpc sayHello(messages.Endpoint) returns (messages.Empty);
+
+	rpc getBodyStream(messages.Empty) returns (stream messages.Body);
+}
+
+
+// MARK: - Master Service
+service Master {
+	// MARK: Layout related rpc
+
+	/// Retrieve the list of already created layouts from the server
+	rpc getLayoutsList(messages.Empty) returns (messages.LayoutList);
+
+	/// Returns the requested layout but does not open it on the master
+	rpc peekLayout(messages.LayoutName) returns (messages.Layout);
+
+	/// Asks the master to create a new layout with the provided name.
+	/// The newly craated layout is returned
+	rpc createLayout(messages.LayoutName) returns (messages.Layout);
+
+	/// Asks the master to open the specified layout
+	rpc openLayout(messages.LayoutName) returns (messages.Layout);
+
+	/// Tell the master to close the currently opened layout
+	rpc closeLayout(messages.Empty) returns (messages.Empty);
+
+	/// Tell the master to updated the currenlty opened layout with the given ones
+	rpc updateLayout(messages.Layout) returns (messages.Empty);
+
+	/// Removes the specified layout and returns the updated list of layouts
+	rpc removeLayout(messages.LayoutName) returns (messages.LayoutList);
+}
