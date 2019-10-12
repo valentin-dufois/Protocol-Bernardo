@@ -8,7 +8,8 @@
 #ifndef Device_h
 #define Device_h
 
-#include <string>
+#include "../../libraries.hpp"
+#include <thread>
 
 /// Represent a physical acquisition device
 class Device {
@@ -70,6 +71,9 @@ public:
 	/// The driver used by this device
 	const Driver driver;
 
+	/// If liveview is enabled and a frame is available, it will be displayed in a window
+	void presentView();
+
 protected:
 	/// The name of the device
 	std::string _name;
@@ -82,6 +86,8 @@ protected:
 
 	/// Current state of the device
 	State _state = starting;
+
+private:
 };
 
 #include "OpenNIDevice.hpp"

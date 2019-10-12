@@ -9,6 +9,9 @@
 
 #include <regex>
 
+#include "../../../Common/Utils/flags.hpp"
+
+
 OpenNIDevice::OpenNIDevice(const openni::DeviceInfo * deviceInfos):
 Device(Device::Driver::openni,
 	   deviceInfos->getName(),
@@ -97,8 +100,6 @@ OpenNIDevice::~OpenNIDevice() {
 
 	_device.close();
 }
-
-
 
 // MARK: Misc
 

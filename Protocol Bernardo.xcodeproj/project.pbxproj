@@ -65,6 +65,17 @@
 		3978A8082336D96E00AF409D /* libgrpc++.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 395A79D52335BECA00499894 /* libgrpc++.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		3978A80A2336F7BC00AF409D /* LayoutEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3978A8032336D62A00AF409D /* LayoutEngine.cpp */; };
 		3978A80B2336F7C300AF409D /* Core.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3978A7F42336BFCD00AF409D /* Core.cpp */; };
+		399D167A23521E7600CEC2F0 /* flags.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 399D167823521E7600CEC2F0 /* flags.cpp */; };
+		399D167B23521E7600CEC2F0 /* flags.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 399D167923521E7600CEC2F0 /* flags.hpp */; };
+		399D167D23521EB700CEC2F0 /* libgflags.2.2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 399D167C23521EB700CEC2F0 /* libgflags.2.2.2.dylib */; };
+		399D167F2352228900CEC2F0 /* libgflags.2.2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 399D167C23521EB700CEC2F0 /* libgflags.2.2.2.dylib */; };
+		399D16802352228900CEC2F0 /* libgflags.2.2.2.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 399D167C23521EB700CEC2F0 /* libgflags.2.2.2.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		399D16842352243100CEC2F0 /* libopencv_highgui.4.1.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 399D16812352243100CEC2F0 /* libopencv_highgui.4.1.0.dylib */; };
+		399D16852352243100CEC2F0 /* libopencv_highgui.4.1.0.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 399D16812352243100CEC2F0 /* libopencv_highgui.4.1.0.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		399D16862352243100CEC2F0 /* libopencv_core.4.1.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 399D16822352243100CEC2F0 /* libopencv_core.4.1.0.dylib */; };
+		399D16872352243100CEC2F0 /* libopencv_core.4.1.0.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 399D16822352243100CEC2F0 /* libopencv_core.4.1.0.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		399D16882352243100CEC2F0 /* libopencv_imgproc.4.1.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 399D16832352243100CEC2F0 /* libopencv_imgproc.4.1.0.dylib */; };
+		399D16892352243100CEC2F0 /* libopencv_imgproc.4.1.0.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 399D16832352243100CEC2F0 /* libopencv_imgproc.4.1.0.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		39ABB55B2337087900C5D147 /* NetworkManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39ABB5572336FE1200C5D147 /* NetworkManager.cpp */; };
 		39CA4A84233140BE00E528CD /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39CA4A83233140BE00E528CD /* main.cpp */; };
 		39CA4A8F233140E100E528CD /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39CA4A8E233140E100E528CD /* main.cpp */; };
@@ -144,8 +155,12 @@
 			dstSubfolderSpec = 10;
 			files = (
 				395A79712332D5E900499894 /* libpb-common.dylib in Embed Libraries */,
+				399D16802352228900CEC2F0 /* libgflags.2.2.2.dylib in Embed Libraries */,
 				395A79872335508E00499894 /* libNiTE2.dylib in Embed Libraries */,
 				3978A8082336D96E00AF409D /* libgrpc++.dylib in Embed Libraries */,
+				399D16852352243100CEC2F0 /* libopencv_highgui.4.1.0.dylib in Embed Libraries */,
+				399D16872352243100CEC2F0 /* libopencv_core.4.1.0.dylib in Embed Libraries */,
+				399D16892352243100CEC2F0 /* libopencv_imgproc.4.1.0.dylib in Embed Libraries */,
 				3978A8062336D96800AF409D /* libprotobuf.20.dylib in Embed Libraries */,
 				3978A7EA2336BD1E00AF409D /* libgpr.dylib in Embed Libraries */,
 				3978A8072336D96B00AF409D /* libOpenNI2.dylib in Embed Libraries */,
@@ -278,6 +293,12 @@
 		3978A7FF2336CAAD00AF409D /* Screen.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Screen.hpp; sourceTree = "<group>"; };
 		3978A8032336D62A00AF409D /* LayoutEngine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LayoutEngine.cpp; sourceTree = "<group>"; };
 		3978A8042336D62A00AF409D /* LayoutEngine.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = LayoutEngine.hpp; sourceTree = "<group>"; };
+		399D167823521E7600CEC2F0 /* flags.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = flags.cpp; sourceTree = "<group>"; };
+		399D167923521E7600CEC2F0 /* flags.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = flags.hpp; sourceTree = "<group>"; };
+		399D167C23521EB700CEC2F0 /* libgflags.2.2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libgflags.2.2.2.dylib; path = ../../../../../usr/local/Cellar/gflags/2.2.2/lib/libgflags.2.2.2.dylib; sourceTree = "<group>"; };
+		399D16812352243100CEC2F0 /* libopencv_highgui.4.1.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_highgui.4.1.0.dylib; path = ../../../../../usr/local/Cellar/opencv/4.1.0_2/lib/libopencv_highgui.4.1.0.dylib; sourceTree = "<group>"; };
+		399D16822352243100CEC2F0 /* libopencv_core.4.1.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_core.4.1.0.dylib; path = ../../../../../usr/local/Cellar/opencv/4.1.0_2/lib/libopencv_core.4.1.0.dylib; sourceTree = "<group>"; };
+		399D16832352243100CEC2F0 /* libopencv_imgproc.4.1.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_imgproc.4.1.0.dylib; path = ../../../../../usr/local/Cellar/opencv/4.1.0_2/lib/libopencv_imgproc.4.1.0.dylib; sourceTree = "<group>"; };
 		39ABB5572336FE1200C5D147 /* NetworkManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NetworkManager.cpp; sourceTree = "<group>"; };
 		39ABB5582336FE1200C5D147 /* NetworkManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NetworkManager.hpp; sourceTree = "<group>"; };
 		39CA4A772331407A00E528CD /* libpb-common.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = "libpb-common.dylib"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -323,6 +344,7 @@
 			files = (
 				39CA4AE423314ADC00E528CD /* libprotobuf.20.dylib in Frameworks */,
 				39CA4AC02331470200E528CD /* libboost_system.dylib in Frameworks */,
+				399D167D23521EB700CEC2F0 /* libgflags.2.2.2.dylib in Frameworks */,
 				395A79DB2335DED800499894 /* libgrpc++.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -332,8 +354,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				3978A7E92336BD1E00AF409D /* libgpr.dylib in Frameworks */,
+				399D167F2352228900CEC2F0 /* libgflags.2.2.2.dylib in Frameworks */,
 				39089E962335DF4C00D03D24 /* libprotobuf.20.dylib in Frameworks */,
 				395A79682332C04D00499894 /* libOpenNI2.dylib in Frameworks */,
+				399D16842352243100CEC2F0 /* libopencv_highgui.4.1.0.dylib in Frameworks */,
+				399D16862352243100CEC2F0 /* libopencv_core.4.1.0.dylib in Frameworks */,
+				399D16882352243100CEC2F0 /* libopencv_imgproc.4.1.0.dylib in Frameworks */,
 				395A79702332D5E900499894 /* libpb-common.dylib in Frameworks */,
 				395A79D92335DE7700499894 /* libgrpc++.dylib in Frameworks */,
 				395A79862335508E00499894 /* libNiTE2.dylib in Frameworks */,
@@ -645,6 +671,10 @@
 		39CA4ABA233145A200E528CD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				399D16822352243100CEC2F0 /* libopencv_core.4.1.0.dylib */,
+				399D16812352243100CEC2F0 /* libopencv_highgui.4.1.0.dylib */,
+				399D16832352243100CEC2F0 /* libopencv_imgproc.4.1.0.dylib */,
+				399D167C23521EB700CEC2F0 /* libgflags.2.2.2.dylib */,
 				3978A7E82336BD1E00AF409D /* libgpr.dylib */,
 				395A79D52335BECA00499894 /* libgrpc++.dylib */,
 				395A79CF2335BE3B00499894 /* Protocol Bernardo.xcodeproj */,
@@ -710,6 +740,8 @@
 				39CA4AFC2332BDAB00E528CD /* Log.hpp */,
 				395A796E2332D2B300499894 /* Log.cpp */,
 				395A79822333323500499894 /* maths.hpp */,
+				399D167823521E7600CEC2F0 /* flags.cpp */,
+				399D167923521E7600CEC2F0 /* flags.hpp */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -754,6 +786,7 @@
 				39CA4AFD2332BDAB00E528CD /* Log.hpp in Headers */,
 				395A79C12335BB2000499894 /* maths.pb.h in Headers */,
 				3950170C2341689000E7F6BD /* Socket.hpp in Headers */,
+				399D167B23521E7600CEC2F0 /* flags.hpp in Headers */,
 				396C6A51233C5643008FD842 /* Server.hpp in Headers */,
 				395A797F2333321600499894 /* Skeleton.hpp in Headers */,
 				39CA4AD72331486D00E528CD /* Advertiser.hpp in Headers */,
@@ -986,6 +1019,7 @@
 				395017072341667D00E7F6BD /* Receiver.cpp in Sources */,
 				395A79BE2335BB2000499894 /* maths.pb.cc in Sources */,
 				395A79C52335BB2000499894 /* services.pb.cc in Sources */,
+				399D167A23521E7600CEC2F0 /* flags.cpp in Sources */,
 				39CA4AD62331486D00E528CD /* Browser.cpp in Sources */,
 				39CA4ADA2331486D00E528CD /* Advertiser.cpp in Sources */,
 				395A79C92335BB2000499894 /* network.pb.cc in Sources */,
@@ -1107,7 +1141,7 @@
 				SYSTEM_HEADER_SEARCH_PATHS = (
 					/usr/local/include/,
 					/usr/local/include/ni2/,
-					/usr/locale/include/opencv4/,
+					/usr/local/include/opencv4/,
 				);
 			};
 			name = Debug;
@@ -1125,7 +1159,7 @@
 				SYSTEM_HEADER_SEARCH_PATHS = (
 					/usr/local/include/,
 					/usr/local/include/ni2/,
-					/usr/locale/include/opencv4/,
+					/usr/local/include/opencv4/,
 				);
 			};
 			name = Release;
@@ -1188,6 +1222,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/usr/local/Cellar/grpc/1.23.0_2/lib,
+					/usr/local/Cellar/gflags/2.2.2/lib,
 				);
 				MACH_O_TYPE = mh_dylib;
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
@@ -1252,6 +1287,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/usr/local/Cellar/grpc/1.23.0_2/lib,
+					/usr/local/Cellar/gflags/2.2.2/lib,
 				);
 				MACH_O_TYPE = mh_dylib;
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
@@ -1322,6 +1358,8 @@
 					"/usr/local/Cellar/openni2/2.2.0-debian/lib/ni2",
 					/usr/local/lib/NiTE2,
 					/usr/local/Cellar/grpc/1.23.0_2/lib,
+					/usr/local/Cellar/gflags/2.2.2/lib,
+					/usr/local/Cellar/opencv/4.1.0_2/lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -1385,6 +1423,8 @@
 					"/usr/local/Cellar/openni2/2.2.0-debian/lib/ni2",
 					/usr/local/lib/NiTE2,
 					/usr/local/Cellar/grpc/1.23.0_2/lib,
+					/usr/local/Cellar/gflags/2.2.2/lib,
+					/usr/local/Cellar/opencv/4.1.0_2/lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = NO;

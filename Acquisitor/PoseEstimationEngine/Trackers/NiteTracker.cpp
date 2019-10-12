@@ -24,7 +24,7 @@ _device(aDevice)
 
 void NiteTracker::onNewFrame(nite::UserTracker &) {
 	// Retrieve the frame
-	nite::UserTrackerFrameRef * userFrame = new nite::UserTrackerFrameRef;
+	nite::UserTrackerFrameRef * userFrame = new nite::UserTrackerFrameRef();
 	_tracker.readFrame(userFrame);
 
 	// Ignore the frame if it is not valid

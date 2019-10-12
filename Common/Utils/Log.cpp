@@ -6,51 +6,32 @@
 //
 
 #include "Log.hpp"
+#include "flags.hpp"
 
 #include <filesystem>
 
 namespace Log {
 
-Level level = Level::DEV;
+Level level = static_cast<Level>(FLAGS_loglevel);
 
-void info(const std::string &log) {
-	if(level >= 1)
-		raw("📢 " + log);
+void debug(const std::string &log, const std::string &file, const int &line) {
+	if(level <= 1)
+		raw("➡️" + locat(file, line) + log);
 }
 
 void info(const std::string &log, const std::string &file, const int &line) {
-	if(level >= 1)
+	if(level <= 2)
 		raw("📢" + locat(file, line) + log);
 }
 
-void warning(const std::string &log) {
-	if(level >= 2)
-		raw("⚠️ " + log);
-}
-
 void warning(const std::string &log, const std::string &file, const int &line) {
-	if(level >= 2)
+	if(level <= 3)
 		raw("⚠️" + locat(file, line) + log);
 }
 
-void error(const std::string &log) {
-	if(level >= 3)
-		raw("❌ " + log);
-}
-
 void error(const std::string &log, const std::string &file, const int &line) {
-	if(level >= 3)
+	if(level <= 4)
 		raw("❌" + locat(file, line) + log);
-}
-
-void debug(const std::string &log) {
-	if(level >= 4)
-		raw("➡️ " + log);
-}
-
-void debug(const std::string &log, const std::string &file, const int &line) {
-	if(level >= 4)
-		raw("➡️" + locat(file, line) + log);
 }
 
 template<typename T>

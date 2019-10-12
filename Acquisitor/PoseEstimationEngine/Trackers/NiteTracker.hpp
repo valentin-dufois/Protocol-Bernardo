@@ -22,6 +22,8 @@ class NiteTracker:
 {
 public:
 	NiteTracker(OpenNIDevice *);
+
+	inline OpenNIDevice * getDevice() override { return _device; }
 	
 	~NiteTracker();
 

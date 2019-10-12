@@ -7,11 +7,18 @@
 
 #include "Core.hpp"
 
-#include <boost/asio.hpp>
+#include "../../Common/Utils/Log.hpp"
+
+#include "Network/AcquisitorClient.hpp"
+#include "../../Common/Structs/Body.hpp"
 
 void Core::init() {
-	_networkManager.startActivities();
 	_networkManager.setLayoutEngine(&_layoutEngine);
+	_networkManager.onAcquisitor = [&] (AcquisitorClient * acquisitor) {
+		onAcquisitor(acquisitor);
+	};
+
+	_networkManager.startActivities();
 }
 
 void Core::run() {
@@ -19,4 +26,14 @@ void Core::run() {
 	while(_isRunning) { }
 }
 
+void Core::onAcquisitor(AcquisitorClient * acquisitor) {
+	acquisitor->onBody = [&] (const Body * body) {
+		onBody(body);
+	};
+}
 
+void Core::onBody(const Body * body) {
+	LOG_DEBUG("Received body with ID " + std::to_string(body->uid) + " on device " + body->deviceUID);
+
+	delete body;
+}

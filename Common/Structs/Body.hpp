@@ -82,22 +82,28 @@ struct Body {
 	// MARK: - Operators
 
 	/// Casts the current body as a message for sending on the network
-	operator messages::Body * () const {
-		messages::Body * message = new messages::Body();
+	operator messages::Body () const {
+		messages::Body message;
 
-		message->set_uid(uid);
-		message->set_allocated_skeleton(skeleton);
+		message.set_uid(uid);
+		message.set_allocated_skeleton(skeleton);
 
 		switch(state) {
-			case State::error: message->set_state(messages::Body_State_error); break;
-			case State::noSkeleton: message->set_state(messages::Body_State_noSkeleton); break;
-			case State::calibrating: message->set_state(messages::Body_State_calibrating); break;
-			case State::tracked: message->set_state(messages::Body_State_tracked); break;
-			case State::missing: message->set_state(messages::Body_State_missing); break;
-			case State::lost: message->set_state(messages::Body_State_lost); break;
+			case State::error:
+				message.set_state(messages::Body_State_error); break;
+			case State::noSkeleton:
+				message.set_state(messages::Body_State_noSkeleton); break;
+			case State::calibrating:
+				message.set_state(messages::Body_State_calibrating); break;
+			case State::tracked:
+				message.set_state(messages::Body_State_tracked); break;
+			case State::missing:
+				message.set_state(messages::Body_State_missing); break;
+			case State::lost:
+				message.set_state(messages::Body_State_lost); break;
 		}
 
-		message->set_deviceuid(deviceUID);
+		message.set_deviceuid(deviceUID);
 
 		return message;
 	}

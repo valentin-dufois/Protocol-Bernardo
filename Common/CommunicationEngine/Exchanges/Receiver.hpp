@@ -8,7 +8,7 @@
 #ifndef Receiver_hpp
 #define Receiver_hpp
 
-#define RECEPTION_BUFFER_SIZE 1024
+#define RECEPTION_BUFFER_SIZE 8192
 
 #include <boost/array.hpp>
 #include <boost/asio.hpp>
@@ -52,7 +52,6 @@ private:
 
 	/// The reception buffer holding incoming informations
 	boost::array<char, RECEPTION_BUFFER_SIZE> _receptionBuffer;
-
 };
 
 #endif /* Receiver_hpp */

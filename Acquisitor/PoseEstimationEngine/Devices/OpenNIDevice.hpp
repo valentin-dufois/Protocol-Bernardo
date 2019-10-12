@@ -8,9 +8,8 @@
 #ifndef OpenNIDevice_hpp
 #define OpenNIDevice_hpp
 
-#include "../../libraries.hpp"
-
 #include "Device.hpp"
+
 
 /// Represent a device using OpenNI for its connection
 class OpenNIDevice:
@@ -25,11 +24,11 @@ public:
 
 	void init();
 
-	~OpenNIDevice();
-
 	/// Called everytime the color or depth streams receive a new frame
 	/// @param stream The stream emitting the new frame
-	virtual void onNewFrame(openni::VideoStream &stream) {}
+	virtual void onNewFrame(openni::VideoStream &stream) {};
+
+	~OpenNIDevice();
 
 	// MARK: - Accessors
 

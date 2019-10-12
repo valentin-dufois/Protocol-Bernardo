@@ -7,6 +7,7 @@
 
 #include "PoseEstimationEngine.hpp"
 
+
 void PoseEstimationEngine::start() {
 	// Create the parsers
 	OpenNIParser * openNIParser = OpenNIParser::getInstance();
@@ -20,6 +21,16 @@ void PoseEstimationEngine::start() {
 	for(Parser * p: _parsers) {
 		p->start();
 	}
+}
+
+std::vector<Device *> PoseEstimationEngine::getDevices() {
+	std::vector<Device *> devices;
+
+	for(Tracker * tracker: _trackers) {
+		devices.push_back(tracker->getDevice());
+	}
+
+	return devices;
 }
 
 void PoseEstimationEngine::onNewDevice(const Device * device) {

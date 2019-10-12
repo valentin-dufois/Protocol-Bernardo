@@ -10,6 +10,8 @@
 
 #include "../../libraries.hpp"
 
+class Device;
+
 /// A tracker takes an acquisition device and do Human Pose Estimation on the
 /// device's stream
 class Tracker {
@@ -17,6 +19,8 @@ public:
 	/// This method is called everytime a body as been parsed by the tracker.
 	/// It is the handler responsabiliy to free the memory used by the memory
 	std::function<void(Body *)> bodyHandler;
+
+	virtual Device * getDevice() = 0;
 };
 
 #include "NiteTracker.hpp"

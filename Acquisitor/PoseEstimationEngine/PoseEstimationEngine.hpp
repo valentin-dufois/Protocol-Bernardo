@@ -40,6 +40,8 @@ public:
 	/// Called everytime a body is received from a connected device
 	std::function<void(const Body * body)> onBody;
 
+	std::vector<Device *> getDevices();
+
 private:
 
 	/// Internal method handling newly connected devices

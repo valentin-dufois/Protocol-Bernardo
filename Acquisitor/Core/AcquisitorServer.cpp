@@ -13,6 +13,20 @@
 
 using messages::Datagram_Type;
 
+void AcquisitorServer::sendBody(const Body * body) {
+	protobuf::Any * data = new protobuf::Any();
+	data->PackFrom(*body);
+
+	messages::Datagram * datagram = new messages::Datagram();
+	datagram->set_type(::messages::Datagram_Type_ACQ_BODY);
+	datagram->set_allocated_data(data);
+
+	for(Socket * socket: _socketsForBodyStream) {
+		socket->send(datagram);
+	}
+	delete datagram;
+}
+
 void AcquisitorServer::onClient(Socket * newSocket) {
 	// Stop advertising once we have one connection
 	endAdvertising();
@@ -26,7 +40,6 @@ void AcquisitorServer::onClient(Socket * newSocket) {
 }
 
 void AcquisitorServer::onSocketClosed(Socket * closedSocket) {
-
 	// Make sure the socket is removed from the body stream
 	onEndBodyStreamRequest(closedSocket);
 

@@ -76,7 +76,7 @@ void AcquisitorClient::onDatagram(messages::Datagram * datagram) {
 
 		// Acquisitor
 		case messages::Datagram_Type_ACQ_BODY:
-			onBodyStream(datagram->mutable_data());
+			onBodyStream(datagram->mutable_data()); break;
 
 		//
 		default:
@@ -92,9 +92,18 @@ void AcquisitorClient::onBodyStream(const protobuf::Any * data) {
 	messages::Body messageBody;
 	data->UnpackTo(&messageBody);
 
-	Body * body = new Body(messageBody);
-	
-	LOG_DEBUG("Received a body from the stream");
+	Body * body;
+
+	try {
+		body = new Body(messageBody);
+	} catch (protobuf::FatalException e) {
+		LOG_ERROR("Error while deserializing a body. Ignoring...");
+		LOG_DEBUG(e.message());
+
+		return;
+	}
+
+	LOG_INFO("Received a body from the stream");
 
 	if(onBody)
 		onBody(body);

@@ -5,11 +5,15 @@
 //  Created by Valentin Dufois on 2019-09-17.
 //
 
-#include "Core/Core.hpp"
+#include <gflags/gflags.h>
 
+#include "Core/Core.hpp"
 #include "../Common/CommunicationEngine/CommunicationEngine.hpp"
 
-int main(int argc, const char * argv[]) {
+int main(int argc, char * argv[]) {
+	// Init the flags
+	gflags::ParseCommandLineFlags(&argc, &argv, true);
+
 	CommunicationEngine::thisMachineType = Endpoint::Type::acquisitor;
 
 	// Init the app

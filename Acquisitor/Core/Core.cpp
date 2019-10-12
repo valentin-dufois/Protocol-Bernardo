@@ -43,7 +43,9 @@ void Core::run() {
 }
 
 void Core::onBody(const Body * body) {
-	
+	_server->sendBody(body);
+
+	delete body;
 }
 
 Core::~Core() {
