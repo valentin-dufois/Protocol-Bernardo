@@ -3,11 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		39089E962335DF4C00D03D24 /* libprotobuf.20.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 39CA4ABB233145A200E528CD /* libprotobuf.20.dylib */; };
+		3900756323567A39007A0982 /* libprotobuf.21.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3937AE0223566528009E6021 /* libprotobuf.21.dylib */; };
+		3900756423567A39007A0982 /* libprotobuf.21.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 3937AE0223566528009E6021 /* libprotobuf.21.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		3900756523567C50007A0982 /* libprotobuf.21.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3937AE0223566528009E6021 /* libprotobuf.21.dylib */; };
+		3900756623567C50007A0982 /* libprotobuf.21.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 3937AE0223566528009E6021 /* libprotobuf.21.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		391A1FFF2342872600F00517 /* OpenNIParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39CA4AF62332BAEA00E528CD /* OpenNIParser.cpp */; };
 		391A20082342B6D300F00517 /* Ping.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 391A20062342B6D300F00517 /* Ping.cpp */; };
 		391A20092342B6D300F00517 /* Ping.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 391A20072342B6D300F00517 /* Ping.hpp */; };
@@ -15,8 +18,16 @@
 		391A20132343F16100F00517 /* NiTE2 in Copy OpenNI + NiTE Support Files */ = {isa = PBXBuildFile; fileRef = 391A20122343F15E00F00517 /* NiTE2 */; };
 		392DCCB423453D8300885C84 /* MasterServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 392DCCB023453B7700885C84 /* MasterServer.cpp */; };
 		392DCCB923455D6E00885C84 /* TimeoutHandling.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 392DCCB823455D6E00885C84 /* TimeoutHandling.hpp */; };
-		393A7D9A23394CE30073028E /* libgrpc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 395A79D52335BECA00499894 /* libgrpc++.dylib */; };
-		393A7D9B23394CE30073028E /* libgrpc++.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 395A79D52335BECA00499894 /* libgrpc++.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		3937ADF923565C6C009E6021 /* MainWindowContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3937ADF823565C6C009E6021 /* MainWindowContoller.swift */; };
+		3937ADFC23565E2F009E6021 /* NetworkEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3937ADFB23565E2F009E6021 /* NetworkEngine.swift */; };
+		3937ADFE23565E70009E6021 /* Browser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3937ADFD23565E70009E6021 /* Browser.swift */; };
+		3937AE0023565F0A009E6021 /* BrowserDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3937ADFF23565F0A009E6021 /* BrowserDelegate.swift */; };
+		3937AE0323566528009E6021 /* libprotobuf.21.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3937AE0223566528009E6021 /* libprotobuf.21.dylib */; };
+		3937AE0923566634009E6021 /* body.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3937AE0523566634009E6021 /* body.pb.swift */; };
+		3937AE0A23566634009E6021 /* layout.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3937AE0623566634009E6021 /* layout.pb.swift */; };
+		3937AE0B23566634009E6021 /* network.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3937AE0723566634009E6021 /* network.pb.swift */; };
+		3937AE0C23566634009E6021 /* maths.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3937AE0823566634009E6021 /* maths.pb.swift */; };
+		393AD3EA23523D5600ECE95C /* DiskIO.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 392DCCB52345471E00885C84 /* DiskIO.hpp */; };
 		395017022341646900E7F6BD /* Emitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 395017002341646900E7F6BD /* Emitter.cpp */; };
 		395017032341646900E7F6BD /* Emitter.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 395017012341646900E7F6BD /* Emitter.hpp */; };
 		395017072341667D00E7F6BD /* Receiver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 395017052341667D00E7F6BD /* Receiver.cpp */; };
@@ -25,6 +36,10 @@
 		3950170C2341689000E7F6BD /* Socket.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3950170A2341689000E7F6BD /* Socket.hpp */; };
 		3950170E23416C9C00E7F6BD /* SocketStatus.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3950170D23416C9C00E7F6BD /* SocketStatus.hpp */; };
 		3950170F2341792D00E7F6BD /* AcquisitorClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3962B348233EE6AB00AEAD8B /* AcquisitorClient.cpp */; };
+		39512F8A235537DF00A88539 /* SwiftProtobuf in Frameworks */ = {isa = PBXBuildFile; productRef = 39512F89235537DF00A88539 /* SwiftProtobuf */; };
+		39580E882358E43800CD3CEC /* Socket in Frameworks */ = {isa = PBXBuildFile; productRef = 39580E872358E43800CD3CEC /* Socket */; };
+		39580E8A23591B0800CD3CEC /* MasterClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39580E8923591B0800CD3CEC /* MasterClient.swift */; };
+		39580E8D23591F7500CD3CEC /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39580E8C23591F7500CD3CEC /* Log.swift */; };
 		395A79682332C04D00499894 /* libOpenNI2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 395A79672332C04D00499894 /* libOpenNI2.dylib */; };
 		395A796B2332C4F800499894 /* OpenNIDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 395A79692332C4F800499894 /* OpenNIDevice.cpp */; };
 		395A796F2332D2B300499894 /* Log.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 395A796E2332D2B300499894 /* Log.cpp */; };
@@ -42,14 +57,10 @@
 		395A79C12335BB2000499894 /* maths.pb.h in Headers */ = {isa = PBXBuildFile; fileRef = 395A79B12335BB2000499894 /* maths.pb.h */; };
 		395A79C22335BB2000499894 /* body.pb.h in Headers */ = {isa = PBXBuildFile; fileRef = 395A79B22335BB2000499894 /* body.pb.h */; };
 		395A79C42335BB2000499894 /* body.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = 395A79B42335BB2000499894 /* body.pb.cc */; };
-		395A79C52335BB2000499894 /* services.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = 395A79B52335BB2000499894 /* services.pb.cc */; };
 		395A79C82335BB2000499894 /* network.pb.h in Headers */ = {isa = PBXBuildFile; fileRef = 395A79B82335BB2000499894 /* network.pb.h */; };
 		395A79C92335BB2000499894 /* network.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = 395A79B92335BB2000499894 /* network.pb.cc */; };
-		395A79CB2335BB2000499894 /* services.pb.h in Headers */ = {isa = PBXBuildFile; fileRef = 395A79BB2335BB2000499894 /* services.pb.h */; };
 		395A79CE2335BB3400499894 /* messages.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 395A79CD2335BB3400499894 /* messages.hpp */; };
 		395A79D82335DE1C00499894 /* Core.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 395A798B23358F1600499894 /* Core.cpp */; };
-		395A79D92335DE7700499894 /* libgrpc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 395A79D52335BECA00499894 /* libgrpc++.dylib */; };
-		395A79DB2335DED800499894 /* libgrpc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 395A79D52335BECA00499894 /* libgrpc++.dylib */; };
 		3960B8482337DFB20094A2E9 /* Core.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3960B8462337DFB20094A2E9 /* Core.hpp */; };
 		3962B346233ECFF700AEAD8B /* AcquisitorServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3962B342233ECFF200AEAD8B /* AcquisitorServer.cpp */; };
 		3966E41C2338018800710DD4 /* layout.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = 3966E4182338018800710DD4 /* layout.pb.cc */; };
@@ -60,9 +71,7 @@
 		3978A7EA2336BD1E00AF409D /* libgpr.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 3978A7E82336BD1E00AF409D /* libgpr.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		3978A7ED2336BF7D00AF409D /* libpb-common.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 39CA4A772331407A00E528CD /* libpb-common.dylib */; };
 		3978A7EE2336BF7D00AF409D /* libpb-common.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 39CA4A772331407A00E528CD /* libpb-common.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		3978A8062336D96800AF409D /* libprotobuf.20.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 39CA4ABB233145A200E528CD /* libprotobuf.20.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		3978A8072336D96B00AF409D /* libOpenNI2.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 395A79672332C04D00499894 /* libOpenNI2.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		3978A8082336D96E00AF409D /* libgrpc++.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 395A79D52335BECA00499894 /* libgrpc++.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		3978A80A2336F7BC00AF409D /* LayoutEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3978A8032336D62A00AF409D /* LayoutEngine.cpp */; };
 		3978A80B2336F7C300AF409D /* Core.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3978A7F42336BFCD00AF409D /* Core.cpp */; };
 		399D167A23521E7600CEC2F0 /* flags.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 399D167823521E7600CEC2F0 /* flags.cpp */; };
@@ -94,10 +103,7 @@
 		39CA4ADA2331486D00E528CD /* Advertiser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39CA4AC82331486D00E528CD /* Advertiser.cpp */; };
 		39CA4ADB2331486D00E528CD /* Endpoint.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 39CA4ACA2331486D00E528CD /* Endpoint.hpp */; };
 		39CA4ADD2331486D00E528CD /* Browser.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 39CA4ACC2331486D00E528CD /* Browser.hpp */; };
-		39CA4AE423314ADC00E528CD /* libprotobuf.20.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 39CA4ABB233145A200E528CD /* libprotobuf.20.dylib */; };
 		39CA4AFD2332BDAB00E528CD /* Log.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 39CA4AFC2332BDAB00E528CD /* Log.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
-		39CE6FA823397787000EE010 /* libprotobuf.20.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 39CA4ABB233145A200E528CD /* libprotobuf.20.dylib */; };
-		39CE6FA923397787000EE010 /* libprotobuf.20.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 39CA4ABB233145A200E528CD /* libprotobuf.20.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		39EBB7C32350E1630057D474 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39EBB79A2350E0EC0057D474 /* main.cpp */; };
 		39EBB7C42350E3A30057D474 /* Log.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 395A796E2332D2B300499894 /* Log.cpp */; };
 /* End PBXBuildFile section */
@@ -157,12 +163,11 @@
 				395A79712332D5E900499894 /* libpb-common.dylib in Embed Libraries */,
 				399D16802352228900CEC2F0 /* libgflags.2.2.2.dylib in Embed Libraries */,
 				395A79872335508E00499894 /* libNiTE2.dylib in Embed Libraries */,
-				3978A8082336D96E00AF409D /* libgrpc++.dylib in Embed Libraries */,
 				399D16852352243100CEC2F0 /* libopencv_highgui.4.1.0.dylib in Embed Libraries */,
 				399D16872352243100CEC2F0 /* libopencv_core.4.1.0.dylib in Embed Libraries */,
 				399D16892352243100CEC2F0 /* libopencv_imgproc.4.1.0.dylib in Embed Libraries */,
-				3978A8062336D96800AF409D /* libprotobuf.20.dylib in Embed Libraries */,
 				3978A7EA2336BD1E00AF409D /* libgpr.dylib in Embed Libraries */,
+				3900756623567C50007A0982 /* libprotobuf.21.dylib in Embed Libraries */,
 				3978A8072336D96B00AF409D /* libOpenNI2.dylib in Embed Libraries */,
 			);
 			name = "Embed Libraries";
@@ -174,9 +179,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				393A7D9B23394CE30073028E /* libgrpc++.dylib in Embed Libraries */,
+				3900756423567A39007A0982 /* libprotobuf.21.dylib in Embed Libraries */,
 				3978A7EE2336BF7D00AF409D /* libpb-common.dylib in Embed Libraries */,
-				39CE6FA923397787000EE010 /* libprotobuf.20.dylib in Embed Libraries */,
 			);
 			name = "Embed Libraries";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -235,6 +239,15 @@
 		392DCCB52345471E00885C84 /* DiskIO.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DiskIO.hpp; sourceTree = "<group>"; };
 		392DCCB823455D6E00885C84 /* TimeoutHandling.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TimeoutHandling.hpp; sourceTree = "<group>"; };
 		393447FC2339533C00EB3B03 /* pb-broadcaster.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "pb-broadcaster.entitlements"; sourceTree = "<group>"; };
+		3937ADF823565C6C009E6021 /* MainWindowContoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowContoller.swift; sourceTree = "<group>"; };
+		3937ADFB23565E2F009E6021 /* NetworkEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkEngine.swift; sourceTree = "<group>"; };
+		3937ADFD23565E70009E6021 /* Browser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Browser.swift; sourceTree = "<group>"; };
+		3937ADFF23565F0A009E6021 /* BrowserDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserDelegate.swift; sourceTree = "<group>"; };
+		3937AE0223566528009E6021 /* libprotobuf.21.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libprotobuf.21.dylib; path = ../../../../../usr/local/Cellar/protobuf/3.10.0/lib/libprotobuf.21.dylib; sourceTree = "<group>"; };
+		3937AE0523566634009E6021 /* body.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = body.pb.swift; sourceTree = "<group>"; };
+		3937AE0623566634009E6021 /* layout.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = layout.pb.swift; sourceTree = "<group>"; };
+		3937AE0723566634009E6021 /* network.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = network.pb.swift; sourceTree = "<group>"; };
+		3937AE0823566634009E6021 /* maths.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = maths.pb.swift; sourceTree = "<group>"; };
 		395017002341646900E7F6BD /* Emitter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Emitter.cpp; sourceTree = "<group>"; };
 		395017012341646900E7F6BD /* Emitter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Emitter.hpp; sourceTree = "<group>"; };
 		395017052341667D00E7F6BD /* Receiver.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Receiver.cpp; sourceTree = "<group>"; };
@@ -242,6 +255,8 @@
 		395017092341689000E7F6BD /* Socket.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Socket.cpp; sourceTree = "<group>"; };
 		3950170A2341689000E7F6BD /* Socket.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Socket.hpp; sourceTree = "<group>"; };
 		3950170D23416C9C00E7F6BD /* SocketStatus.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SocketStatus.hpp; sourceTree = "<group>"; };
+		39580E8923591B0800CD3CEC /* MasterClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterClient.swift; sourceTree = "<group>"; };
+		39580E8C23591F7500CD3CEC /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		395A79672332C04D00499894 /* libOpenNI2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libOpenNI2.dylib; path = "../../../../../usr/local/Cellar/openni2/2.2.0-debian/lib/ni2/libOpenNI2.dylib"; sourceTree = "<group>"; };
 		395A79692332C4F800499894 /* OpenNIDevice.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = OpenNIDevice.cpp; sourceTree = "<group>"; };
 		395A796A2332C4F800499894 /* OpenNIDevice.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = OpenNIDevice.hpp; sourceTree = "<group>"; };
@@ -262,15 +277,12 @@
 		395A79952335952000499894 /* Parser.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Parser.hpp; sourceTree = "<group>"; };
 		395A799723359DCC00499894 /* body.proto */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.protobuf; path = body.proto; sourceTree = "<group>"; };
 		395A79A02335A1AA00499894 /* maths.proto */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.protobuf; path = maths.proto; sourceTree = "<group>"; };
-		395A79AA2335B9C000499894 /* services.proto */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.protobuf; path = services.proto; sourceTree = "<group>"; };
 		395A79AE2335BB2000499894 /* maths.pb.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = maths.pb.cc; sourceTree = "<group>"; };
 		395A79B12335BB2000499894 /* maths.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = maths.pb.h; sourceTree = "<group>"; };
 		395A79B22335BB2000499894 /* body.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = body.pb.h; sourceTree = "<group>"; };
 		395A79B42335BB2000499894 /* body.pb.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = body.pb.cc; sourceTree = "<group>"; };
-		395A79B52335BB2000499894 /* services.pb.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = services.pb.cc; sourceTree = "<group>"; };
 		395A79B82335BB2000499894 /* network.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = network.pb.h; sourceTree = "<group>"; };
 		395A79B92335BB2000499894 /* network.pb.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = network.pb.cc; sourceTree = "<group>"; };
-		395A79BB2335BB2000499894 /* services.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = services.pb.h; sourceTree = "<group>"; };
 		395A79CD2335BB3400499894 /* messages.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = messages.hpp; sourceTree = "<group>"; };
 		395A79CF2335BE3B00499894 /* Protocol Bernardo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = "Protocol Bernardo.xcodeproj"; sourceTree = "<group>"; };
 		395A79D52335BECA00499894 /* libgrpc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libgrpc++.dylib"; path = "../../../../../usr/local/Cellar/grpc/1.23.0_2/lib/libgrpc++.dylib"; sourceTree = "<group>"; };
@@ -342,10 +354,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				39CA4AE423314ADC00E528CD /* libprotobuf.20.dylib in Frameworks */,
 				39CA4AC02331470200E528CD /* libboost_system.dylib in Frameworks */,
 				399D167D23521EB700CEC2F0 /* libgflags.2.2.2.dylib in Frameworks */,
-				395A79DB2335DED800499894 /* libgrpc++.dylib in Frameworks */,
+				3937AE0323566528009E6021 /* libprotobuf.21.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -355,13 +366,12 @@
 			files = (
 				3978A7E92336BD1E00AF409D /* libgpr.dylib in Frameworks */,
 				399D167F2352228900CEC2F0 /* libgflags.2.2.2.dylib in Frameworks */,
-				39089E962335DF4C00D03D24 /* libprotobuf.20.dylib in Frameworks */,
 				395A79682332C04D00499894 /* libOpenNI2.dylib in Frameworks */,
 				399D16842352243100CEC2F0 /* libopencv_highgui.4.1.0.dylib in Frameworks */,
 				399D16862352243100CEC2F0 /* libopencv_core.4.1.0.dylib in Frameworks */,
 				399D16882352243100CEC2F0 /* libopencv_imgproc.4.1.0.dylib in Frameworks */,
 				395A79702332D5E900499894 /* libpb-common.dylib in Frameworks */,
-				395A79D92335DE7700499894 /* libgrpc++.dylib in Frameworks */,
+				3900756523567C50007A0982 /* libprotobuf.21.dylib in Frameworks */,
 				395A79862335508E00499894 /* libNiTE2.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -370,9 +380,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				393A7D9A23394CE30073028E /* libgrpc++.dylib in Frameworks */,
+				3900756323567A39007A0982 /* libprotobuf.21.dylib in Frameworks */,
 				3978A7ED2336BF7D00AF409D /* libpb-common.dylib in Frameworks */,
-				39CE6FA823397787000EE010 /* libprotobuf.20.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -387,6 +396,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39512F8A235537DF00A88539 /* SwiftProtobuf in Frameworks */,
+				39580E882358E43800CD3CEC /* Socket in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,6 +433,7 @@
 		392DCCB62345475C00885C84 /* Messages */ = {
 			isa = PBXGroup;
 			children = (
+				3937AE0123566499009E6021 /* Swift */,
 				392DCCB72345476F00885C84 /* protos */,
 				3966E4182338018800710DD4 /* layout.pb.cc */,
 				3966E41B2338018800710DD4 /* layout.pb.h */,
@@ -431,8 +443,6 @@
 				395A79B12335BB2000499894 /* maths.pb.h */,
 				395A79B92335BB2000499894 /* network.pb.cc */,
 				395A79B82335BB2000499894 /* network.pb.h */,
-				395A79B52335BB2000499894 /* services.pb.cc */,
-				395A79BB2335BB2000499894 /* services.pb.h */,
 				395A79CD2335BB3400499894 /* messages.hpp */,
 			);
 			path = Messages;
@@ -444,10 +454,31 @@
 				39CA4AD32331486D00E528CD /* network.proto */,
 				395A79A02335A1AA00499894 /* maths.proto */,
 				395A799723359DCC00499894 /* body.proto */,
-				395A79AA2335B9C000499894 /* services.proto */,
 				3960B8512337EC870094A2E9 /* layout.proto */,
 			);
 			path = protos;
+			sourceTree = "<group>";
+		};
+		3937ADFA23565E13009E6021 /* NetworkEngine */ = {
+			isa = PBXGroup;
+			children = (
+				3937ADFB23565E2F009E6021 /* NetworkEngine.swift */,
+				3937ADFD23565E70009E6021 /* Browser.swift */,
+				3937ADFF23565F0A009E6021 /* BrowserDelegate.swift */,
+				39580E8923591B0800CD3CEC /* MasterClient.swift */,
+			);
+			path = NetworkEngine;
+			sourceTree = "<group>";
+		};
+		3937AE0123566499009E6021 /* Swift */ = {
+			isa = PBXGroup;
+			children = (
+				3937AE0523566634009E6021 /* body.pb.swift */,
+				3937AE0623566634009E6021 /* layout.pb.swift */,
+				3937AE0823566634009E6021 /* maths.pb.swift */,
+				3937AE0723566634009E6021 /* network.pb.swift */,
+			);
+			path = Swift;
 			sourceTree = "<group>";
 		};
 		395017042341665C00E7F6BD /* Exchanges */ = {
@@ -464,6 +495,14 @@
 				392DCCB823455D6E00885C84 /* TimeoutHandling.hpp */,
 			);
 			path = Exchanges;
+			sourceTree = "<group>";
+		};
+		39580E8B23591F6900CD3CEC /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				39580E8C23591F7500CD3CEC /* Log.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		395A79752332D74000499894 /* Trackers */ = {
@@ -658,12 +697,15 @@
 		39CA4AA32331413A00E528CD /* Terminal */ = {
 			isa = PBXGroup;
 			children = (
+				39580E8B23591F6900CD3CEC /* Utils */,
+				3937ADFA23565E13009E6021 /* NetworkEngine */,
 				39CA4AA42331413A00E528CD /* AppDelegate.swift */,
 				39CA4AA62331413A00E528CD /* ViewController.swift */,
 				39CA4AA82331413D00E528CD /* Assets.xcassets */,
 				39CA4AAA2331413D00E528CD /* Main.storyboard */,
 				39CA4AAD2331413D00E528CD /* Info.plist */,
 				39CA4AAE2331413D00E528CD /* pb_terminal.entitlements */,
+				3937ADF823565C6C009E6021 /* MainWindowContoller.swift */,
 			);
 			path = Terminal;
 			sourceTree = "<group>";
@@ -671,6 +713,7 @@
 		39CA4ABA233145A200E528CD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3937AE0223566528009E6021 /* libprotobuf.21.dylib */,
 				399D16822352243100CEC2F0 /* libopencv_core.4.1.0.dylib */,
 				399D16812352243100CEC2F0 /* libopencv_highgui.4.1.0.dylib */,
 				399D16832352243100CEC2F0 /* libopencv_imgproc.4.1.0.dylib */,
@@ -782,7 +825,6 @@
 				395A79802333321600499894 /* Body.hpp in Headers */,
 				395A79C82335BB2000499894 /* network.pb.h in Headers */,
 				391A20092342B6D300F00517 /* Ping.hpp in Headers */,
-				395A79CB2335BB2000499894 /* services.pb.h in Headers */,
 				39CA4AFD2332BDAB00E528CD /* Log.hpp in Headers */,
 				395A79C12335BB2000499894 /* maths.pb.h in Headers */,
 				3950170C2341689000E7F6BD /* Socket.hpp in Headers */,
@@ -792,6 +834,7 @@
 				39CA4AD72331486D00E528CD /* Advertiser.hpp in Headers */,
 				395017032341646900E7F6BD /* Emitter.hpp in Headers */,
 				395A79CE2335BB3400499894 /* messages.hpp in Headers */,
+				393AD3EA23523D5600ECE95C /* DiskIO.hpp in Headers */,
 				395A79812333321600499894 /* Joint.hpp in Headers */,
 				39CA4ADD2331486D00E528CD /* Browser.hpp in Headers */,
 				3950170E23416C9C00E7F6BD /* SocketStatus.hpp in Headers */,
@@ -812,7 +855,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 39CA4A792331407A00E528CD /* Build configuration list for PBXNativeTarget "pb-common" */;
 			buildPhases = (
-				395A79AC2335B9D600499894 /* ShellScript */,
+				395A79AC2335B9D600499894 /* Protobuf Compilation */,
 				39CA4A732331407A00E528CD /* Headers */,
 				39CA4A742331407A00E528CD /* Sources */,
 				39CA4A752331407A00E528CD /* Frameworks */,
@@ -898,6 +941,10 @@
 			dependencies = (
 			);
 			name = "pb-terminal";
+			packageProductDependencies = (
+				39512F89235537DF00A88539 /* SwiftProtobuf */,
+				39580E872358E43800CD3CEC /* Socket */,
+			);
 			productName = "pb-terminal";
 			productReference = 39CA4AA22331413A00E528CD /* pb-terminal.app */;
 			productType = "com.apple.product-type.application";
@@ -941,6 +988,7 @@
 					};
 					39CA4AA12331413A00E528CD = {
 						CreatedOnToolsVersion = 11.0;
+						LastSwiftMigration = 1100;
 					};
 				};
 			};
@@ -953,6 +1001,10 @@
 				Base,
 			);
 			mainGroup = 39CA4A6C23313F1E00E528CD;
+			packageReferences = (
+				39512F88235537DF00A88539 /* XCRemoteSwiftPackageReference "swift-protobuf" */,
+				39580E862358E43800CD3CEC /* XCRemoteSwiftPackageReference "BlueSocket" */,
+			);
 			productRefGroup = 39CA4A782331407A00E528CD /* Products */;
 			projectDirPath = "";
 			projectReferences = (
@@ -986,7 +1038,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		395A79AC2335B9D600499894 /* ShellScript */ = {
+		395A79AC2335B9D600499894 /* Protobuf Compilation */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -995,13 +1047,14 @@
 			);
 			inputPaths = (
 			);
+			name = "Protobuf Compilation";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "workdir=Common/Messages\n#protoc -I=$workdir --grpc_out=$workdir --plugin=protoc-gen-grpc=`which grpc_cpp_plugin` $workdir/*.proto\nprotoc -I=$workdir/protos --cpp_out=$workdir $workdir/protos/*.proto\n";
+			shellScript = "workdir=Common/Messages\nprotoc -I=$workdir --swift_out=$workdir/Swift $workdir/protos/*.proto\nprotoc -I=$workdir/protos --cpp_out=$workdir $workdir/protos/*.proto\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1018,7 +1071,6 @@
 				3966E41C2338018800710DD4 /* layout.pb.cc in Sources */,
 				395017072341667D00E7F6BD /* Receiver.cpp in Sources */,
 				395A79BE2335BB2000499894 /* maths.pb.cc in Sources */,
-				395A79C52335BB2000499894 /* services.pb.cc in Sources */,
 				399D167A23521E7600CEC2F0 /* flags.cpp in Sources */,
 				39CA4AD62331486D00E528CD /* Browser.cpp in Sources */,
 				39CA4ADA2331486D00E528CD /* Advertiser.cpp in Sources */,
@@ -1067,7 +1119,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3937AE0923566634009E6021 /* body.pb.swift in Sources */,
+				3937ADF923565C6C009E6021 /* MainWindowContoller.swift in Sources */,
+				39580E8D23591F7500CD3CEC /* Log.swift in Sources */,
+				3937AE0B23566634009E6021 /* network.pb.swift in Sources */,
+				3937AE0C23566634009E6021 /* maths.pb.swift in Sources */,
+				3937AE0A23566634009E6021 /* layout.pb.swift in Sources */,
+				3937ADFC23565E2F009E6021 /* NetworkEngine.swift in Sources */,
+				3937AE0023565F0A009E6021 /* BrowserDelegate.swift in Sources */,
+				39580E8A23591B0800CD3CEC /* MasterClient.swift in Sources */,
 				39CA4AA72331413A00E528CD /* ViewController.swift in Sources */,
+				3937ADFE23565E70009E6021 /* Browser.swift in Sources */,
 				39CA4AA52331413A00E528CD /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1223,6 +1285,7 @@
 					"$(inherited)",
 					/usr/local/Cellar/grpc/1.23.0_2/lib,
 					/usr/local/Cellar/gflags/2.2.2/lib,
+					/usr/local/Cellar/protobuf/3.10.0/lib,
 				);
 				MACH_O_TYPE = mh_dylib;
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
@@ -1288,6 +1351,7 @@
 					"$(inherited)",
 					/usr/local/Cellar/grpc/1.23.0_2/lib,
 					/usr/local/Cellar/gflags/2.2.2/lib,
+					/usr/local/Cellar/protobuf/3.10.0/lib,
 				);
 				MACH_O_TYPE = mh_dylib;
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
@@ -1360,6 +1424,7 @@
 					/usr/local/Cellar/grpc/1.23.0_2/lib,
 					/usr/local/Cellar/gflags/2.2.2/lib,
 					/usr/local/Cellar/opencv/4.1.0_2/lib,
+					/usr/local/Cellar/protobuf/3.10.0/lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -1425,6 +1490,7 @@
 					/usr/local/Cellar/grpc/1.23.0_2/lib,
 					/usr/local/Cellar/gflags/2.2.2/lib,
 					/usr/local/Cellar/opencv/4.1.0_2/lib,
+					/usr/local/Cellar/protobuf/3.10.0/lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -1492,6 +1558,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/usr/local/Cellar/grpc/1.23.0_2/lib,
+					/usr/local/Cellar/protobuf/3.10.0/lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -1555,6 +1622,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/usr/local/Cellar/grpc/1.23.0_2/lib,
+					/usr/local/Cellar/protobuf/3.10.0/lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -1740,7 +1808,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "pb-terminal/Info.plist";
+				INFOPLIST_FILE = Terminal/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -1808,7 +1876,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "pb-terminal/Info.plist";
+				INFOPLIST_FILE = Terminal/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -2023,6 +2091,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		39512F88235537DF00A88539 /* XCRemoteSwiftPackageReference "swift-protobuf" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-protobuf.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.7.0;
+			};
+		};
+		39580E862358E43800CD3CEC /* XCRemoteSwiftPackageReference "BlueSocket" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/IBM-Swift/BlueSocket.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.50;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		39512F89235537DF00A88539 /* SwiftProtobuf */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39512F88235537DF00A88539 /* XCRemoteSwiftPackageReference "swift-protobuf" */;
+			productName = SwiftProtobuf;
+		};
+		39580E872358E43800CD3CEC /* Socket */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39580E862358E43800CD3CEC /* XCRemoteSwiftPackageReference "BlueSocket" */;
+			productName = Socket;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 39CA4A6D23313F1E00E528CD /* Project object */;
 }

@@ -10,6 +10,7 @@
 
 #include <string>
 #include "../../../Common/Utils/maths.hpp"
+#include "../../../Common/Messages/messages.hpp"
 
 namespace layout {
 
@@ -53,6 +54,30 @@ struct Device {
 		d.minDistance = 50.0;
 		d.maxDistance = 450.0;
 		return d;
+	}
+
+	Device(const messages::Device & message) {
+		name = message.name();
+		uid = message.uid();
+		horizontalFOV = message.horizontalfov();
+		minDistance = message.mindistance();
+		maxDistance = message.maxdistance();
+		position = maths::fromMessage(message.position());
+		orientation = maths::fromMessage(message.orientation());
+	}
+
+
+	operator messages::Device () const {
+		messages::Device message;
+		message.set_name(name);
+		message.set_uid(uid);
+		message.set_horizontalfov(horizontalFOV);
+		message.set_mindistance(minDistance);
+		message.set_maxdistance(maxDistance);
+		message.set_allocated_position(maths::asMessage(position));
+		message.set_allocated_orientation(maths::asMessage(orientation));
+
+		return message;
 	}
 };
 }

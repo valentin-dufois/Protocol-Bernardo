@@ -20,8 +20,7 @@ class Socket;
 class MasterServer: Server, Ping {
 public:
 
-	MasterServer(const Endpoint::Type &aType):
-		Server(aType) {
+	MasterServer(const Endpoint::Type &aType): Server(aType) {
 		open();
 		advertise();
 	}
@@ -37,6 +36,22 @@ protected:
 private:
 
 	void onDatagram(messages::Datagram * datagram, Socket * socket);
+
+	// MARK: - Layout methods
+
+	void onLayoutList(Socket * socket);
+
+	void onLayoutCreate(google::protobuf::Any * data, Socket * socket);
+
+	void onLayoutOpen(google::protobuf::Any * data, Socket * socket);
+
+	void onLayoutClose(Socket * socket);
+
+	void onLayoutRename(google::protobuf::Any * data, Socket * socket);
+
+	void onLayoutUpdate(google::protobuf::Any * data, Socket * socket);
+
+	void onLayoutDelete(google::protobuf::Any * data, Socket * socket);
 };
 
 #endif /* MasterServer_hpp */

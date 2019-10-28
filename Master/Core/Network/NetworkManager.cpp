@@ -9,17 +9,24 @@
 
 #include "AcquisitorClient.hpp"
 
-NetworkManager::NetworkManager()
-//:_masterServer(CommunicationEngine::thisMachineType)
+NetworkManager::NetworkManager():
+_masterServer(CommunicationEngine::thisMachineType),
+_acquisitorBrowser(Endpoint::acquisitor),
+_broadcasterBrowser(Endpoint::broadcaster)
 {
-	// Set up the browser
-	_browser.onReceive = [&] (const Endpoint &endpoint) {
+	// Set up the browsers
+	_acquisitorBrowser.onReceive = [&] (const Endpoint &endpoint) {
+		connectTo(endpoint);
+	};
+
+	_broadcasterBrowser.onReceive = [&] (const Endpoint &endpoint) {
 		connectTo(endpoint);
 	};
 }
 
 void NetworkManager::startActivities() {
-	_browser.startBrowsing();
+	_acquisitorBrowser.startBrowsing();
+	_broadcasterBrowser.startBrowsing();
 }
 
 void NetworkManager::connectTo(const Endpoint &endpoint) {

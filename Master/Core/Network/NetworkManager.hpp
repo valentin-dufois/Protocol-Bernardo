@@ -41,17 +41,20 @@ public:
 //	std::function<void()> onBroadcaster;
 
 	/// Called everytime a new Terminal is connected
-//	std::function<void()> onTerminal;
+	std::function<void()> onTerminal;
 
 
 	inline void setLayoutEngine(LayoutEngine * layoutEngine) {
-//		_masterServer.layoutEngine = layoutEngine;
+		_masterServer.layoutEngine = layoutEngine;
 	}
 
 private:
 
-	/// Used to find Acquisitors and broadcasters on the network
-	Browser _browser;
+	/// Used to find Acquisitors on the network
+	Browser _acquisitorBrowser;
+
+	/// Used to find Broadcasters on the network
+	Browser _broadcasterBrowser;
 
 	/// The list of endpoints we are connected to
 	std::vector<Endpoint> _connectedEndpoints;
@@ -63,7 +66,7 @@ private:
 //	void connectToBroadcaster(const Endpoint &endpoint);
 
 	/// The master server
-//	MasterServer _masterServer;
+	MasterServer _masterServer;
 
 };
 

@@ -14,6 +14,7 @@
 #include <boost/asio.hpp>
 
 #include "../NetworkParameters.h"
+#include "../Endpoint.hpp"
 
 namespace asio = boost::asio;
 
@@ -22,7 +23,7 @@ namespace asio = boost::asio;
 class Advertiser {
 public:
 
-	Advertiser();
+	Advertiser(const Endpoint::Type &endpointType);
 
 	/// Start advertising on the network
 	virtual void startAdvertising() final;
@@ -50,8 +51,6 @@ private:
 	asio::streambuf _outputBuffer;
 
 	// MARK: - Network
-	/// The port toward wich we are broadcasting
-	const int _port = ADVERTISER_PORT;
 
 	/// The broadcast endpoint
 	asio::ip::udp::endpoint _broadcastEndpoint;

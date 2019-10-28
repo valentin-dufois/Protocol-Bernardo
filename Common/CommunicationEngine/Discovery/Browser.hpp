@@ -26,7 +26,7 @@ namespace protobuf = google::protobuf;
 class Browser {
 public:
 
-	Browser();
+	Browser(const Endpoint::Type &serverType);
 
 	/// Called everytime a message is received from the network
 	/// This is where you set up your callback method
@@ -48,9 +48,6 @@ private:
 
 	/// Called eeverytime a message is received from the network
 	void handleReceive(const boost::system::error_code& error, std::size_t bytes_transferred);
-
-	/// The port on which we are listening
-	const int _port = BROWSER_PORT;
 
 	/// The socket listning on the network
 	asio::ip::udp::socket * _socket = nullptr;

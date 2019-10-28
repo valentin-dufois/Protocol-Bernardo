@@ -14,11 +14,10 @@
 
 #include "../CommunicationEngine.hpp"
 #include "../../Messages/messages.hpp"
-#include "../Endpoint.hpp"
 
-Advertiser::Advertiser() {
-	_broadcastEndpoint = asio::ip::udp::endpoint(asio::ip::address_v4::broadcast(), _port);
-
+Advertiser::Advertiser(const Endpoint::Type &endpointType):
+_broadcastEndpoint(asio::ip::udp::endpoint(asio::ip::address_v4::broadcast(),
+										   Endpoint(endpointType).getDiscoveryPort())) {
 	Endpoint thisMachine = CommunicationEngine::thisMachine();
 
 	// Prepare the message

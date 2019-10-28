@@ -25,6 +25,7 @@ void CommunicationEngine::runContext() {
 	_executionThread = new std::thread([&] () {
 		pthread_setname_np("pb.communication-engine.context");
 
+		_ioContext.restart();
 		_ioContext.run();
 
 		_executionThread->detach();

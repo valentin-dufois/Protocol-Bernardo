@@ -14,7 +14,10 @@
 #include "../../Messages/messages.hpp"
 #include "../../Utils/Log.hpp"
 
-Browser::Browser(): _anyEndpoint(asio::ip::udp::endpoint(asio::ip::address_v4::any(), _port)) { }
+Browser::Browser(const Endpoint::Type &serverType):
+_anyEndpoint(asio::ip::udp::endpoint(asio::ip::address_v4::any(),
+									 Endpoint(serverType).getDiscoveryPort()))
+{}
 
 void Browser::startBrowsing() {
 	if(_isRunning)

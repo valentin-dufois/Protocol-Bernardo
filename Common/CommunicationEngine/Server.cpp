@@ -13,21 +13,12 @@
 #include "../Utils/Log.hpp"
 #include "NetworkParameters.h"
 #include "Exchanges/Socket.hpp"
+#include "Endpoint.hpp"
 
-Server::Server(const Endpoint::Type &aType): _type(aType) {
-	// Set our port
-	switch (_type) {
-		case Endpoint::acquisitor: _port = ACQUISITOR_SERVER_PORT; break;
-		case Endpoint::broadcaster: _port = BROADCASTER_SERVER_PORT; break;
-		case Endpoint::master: _port = MASTER_SERVER_PORT; break;
-		case Endpoint::terminal:
-			LOG_ERROR("Could not build a server with a `Terminal` type");
-			throw std::runtime_error("SERVER::CONSTRUCT - INVALID_TYPE");
-		default:
-			LOG_ERROR("Could not build a server with an undefined type");
-			throw std::runtime_error("SERVER::CONSTRUCT - INVALID_TYPE");
-	}
-
+Server::Server(const Endpoint::Type &aType):
+_type(aType),
+_port(Endpoint(_type).getPort()),
+_advertiser(aType) {
 	// Build the acceptor
 	_acceptor = new asio::ip::tcp::acceptor(CommunicationEngine::instance()->getContext(), asio::ip::tcp::endpoint(asio::ip::tcp::v4(), _port));
 }

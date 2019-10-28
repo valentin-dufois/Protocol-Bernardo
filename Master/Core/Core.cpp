@@ -5,6 +5,8 @@
 //  Created by Valentin Dufois on 2019-09-21.
 //
 
+#include <iostream>
+
 #include "Core.hpp"
 
 #include "../../Common/Utils/Log.hpp"
@@ -23,7 +25,10 @@ void Core::init() {
 
 void Core::run() {
 	// Main loop
-	while(_isRunning) { }
+	while(_isRunning) {
+		std::string input;
+		std::cin >> input;
+	}
 }
 
 void Core::onAcquisitor(AcquisitorClient * acquisitor) {

@@ -41,6 +41,10 @@ struct Endpoint {
 		name(aName),
 		type(aType) {};
 
+	/// Construct an endpoint using the given information
+	Endpoint(const Type &aType):
+		type(aType) {};
+
 	/// Construct an endpoint from the given message.
 	/// There will not be any IP on this endpoint
 	Endpoint(const messages::Endpoint message) {
@@ -93,23 +97,36 @@ struct Endpoint {
 
 	// MARK: - Methods
 
-	int getPort() const {
+	/// Gives the port on which to listen to find this endpoint
+	unsigned short int getDiscoveryPort() const {
 		switch (type) {
-			case acquisitor: return ACQUISITOR_SERVER_PORT; break;
-			case broadcaster: return BROADCASTER_SERVER_PORT; break;
-			case master: return MASTER_SERVER_PORT; break;
+			case acquisitor: 	 return DISCOVERY_PORT_ACQUISITOR; 	break;
+			case broadcaster: return DISCOVERY_PORT_BROADCASTER; 	break;
+			case master: 	 return DISCOVERY_PORT_MASTER; 	   	break;
 			default:
-				LOG_WARN("Building URI for non supported endpoint");
+				LOG_WARN("Could not found port for non supported endpoint");
+				return 0;
+		}
+	}
+
+	/// Gives the default port to connect to this endpoint
+	unsigned short int getPort() const {
+		switch (type) {
+			case acquisitor: 	 return SERVER_PORT_ACQUISITOR; 	break;
+			case broadcaster: return SERVER_PORT_BROADCASTER; 	break;
+			case master: 	 return SERVER_PORT_MASTER; 	   	break;
+			default:
+				LOG_WARN("Could not found port for non supported endpoint");
 				return 0;
 		}
 	}
 
 	std::string typeLabel() const {
 		switch (type) {
-			case Type::acquisitor: return "Acquisitor"; break;
-			case Type::broadcaster: return "Broadcaster"; break;
-			case Type::master: return "Master"; break;
-			case Type::terminal: return "Terminal"; break;
+			case Type::acquisitor: 	return "Acquisitor"; break;
+			case Type::broadcaster: 	return "Broadcaster"; break;
+			case Type::master: 		return "Master"; break;
+			case Type::terminal: 	return "Terminal"; break;
 			default: return "Unknown"; break;
 		}
 	}
