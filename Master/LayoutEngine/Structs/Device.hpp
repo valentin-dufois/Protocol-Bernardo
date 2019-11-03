@@ -21,7 +21,7 @@ struct Device {
 	std::string name = "Device";
 
 	/// The UID of the device this device correcponds to. If null, it means this layout device corresponds to no physical device.
-	std::string uid = NULL;
+	std::string uid = "";
 
 	/// The horizontal FOV of the device.
 	/// This is used for representations on the layout but does not affect any calculations

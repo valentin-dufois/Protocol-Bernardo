@@ -50,6 +50,4 @@ void Ping::onPong(google::protobuf::Any * data, Socket * socket) {
 	data->UnpackTo(&pong);
 
 	std::string duration = std::to_string((now - pong.time()));
-
-	LOG_INFO("Ping-pong with " + socket->getRemote().ip + " in " + duration + " milliseconds");
 }

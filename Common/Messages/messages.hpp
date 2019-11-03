@@ -8,13 +8,13 @@
 #ifndef messages_h
 #define messages_h
 
-#include "body.pb.h"
+#include "cpp/body.pb.h"
 
-#include "layout.pb.h"
+#include "cpp/layout.pb.h"
 
-#include "maths.pb.h"
+#include "cpp/maths.pb.h"
 
-#include "network.pb.h"
+#include "cpp/network.pb.h"
 
 /// Convenient namespace alias
 namespace protobuf = google::protobuf;

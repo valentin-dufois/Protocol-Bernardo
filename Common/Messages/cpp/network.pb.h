@@ -49,7 +49,7 @@ struct TableStruct_network_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxillaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[3]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[4]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -63,6 +63,9 @@ extern DatagramDefaultTypeInternal _Datagram_default_instance_;
 class Endpoint;
 class EndpointDefaultTypeInternal;
 extern EndpointDefaultTypeInternal _Endpoint_default_instance_;
+class MasterStatus;
+class MasterStatusDefaultTypeInternal;
+extern MasterStatusDefaultTypeInternal _MasterStatus_default_instance_;
 class Ping;
 class PingDefaultTypeInternal;
 extern PingDefaultTypeInternal _Ping_default_instance_;
@@ -70,6 +73,7 @@ extern PingDefaultTypeInternal _Ping_default_instance_;
 PROTOBUF_NAMESPACE_OPEN
 template<> ::messages::Datagram* Arena::CreateMaybeMessage<::messages::Datagram>(Arena*);
 template<> ::messages::Endpoint* Arena::CreateMaybeMessage<::messages::Endpoint>(Arena*);
+template<> ::messages::MasterStatus* Arena::CreateMaybeMessage<::messages::MasterStatus>(Arena*);
 template<> ::messages::Ping* Arena::CreateMaybeMessage<::messages::Ping>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace messages {
@@ -108,9 +112,11 @@ enum Datagram_Type : int {
   Datagram_Type_HEARTBEAT = 7,
   Datagram_Type_PING = 10,
   Datagram_Type_PONG = 11,
+  Datagram_Type_STATUS = 50,
   Datagram_Type_ACQ_GET_BODY_STREAM = 110,
   Datagram_Type_ACQ_END_BODY_STREAM = 111,
   Datagram_Type_ACQ_BODY = 115,
+  Datagram_Type_LAYOUT_LAYOUT = 205,
   Datagram_Type_LAYOUT_LIST = 210,
   Datagram_Type_LAYOUT_CREATE = 211,
   Datagram_Type_LAYOUT_OPEN = 212,
@@ -452,6 +458,141 @@ class Ping :
 };
 // -------------------------------------------------------------------
 
+class MasterStatus :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:messages.MasterStatus) */ {
+ public:
+  MasterStatus();
+  virtual ~MasterStatus();
+
+  MasterStatus(const MasterStatus& from);
+  MasterStatus(MasterStatus&& from) noexcept
+    : MasterStatus() {
+    *this = ::std::move(from);
+  }
+
+  inline MasterStatus& operator=(const MasterStatus& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline MasterStatus& operator=(MasterStatus&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const MasterStatus& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const MasterStatus* internal_default_instance() {
+    return reinterpret_cast<const MasterStatus*>(
+               &_MasterStatus_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    2;
+
+  friend void swap(MasterStatus& a, MasterStatus& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(MasterStatus* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline MasterStatus* New() const final {
+    return CreateMaybeMessage<MasterStatus>(nullptr);
+  }
+
+  MasterStatus* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<MasterStatus>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const MasterStatus& from);
+  void MergeFrom(const MasterStatus& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* InternalSerializeWithCachedSizesToArray(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(MasterStatus* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "messages.MasterStatus";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_network_2eproto);
+    return ::descriptor_table_network_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kActiveLayoutFieldNumber = 10,
+  };
+  // string activeLayout = 10;
+  void clear_activelayout();
+  const std::string& activelayout() const;
+  void set_activelayout(const std::string& value);
+  void set_activelayout(std::string&& value);
+  void set_activelayout(const char* value);
+  void set_activelayout(const char* value, size_t size);
+  std::string* mutable_activelayout();
+  std::string* release_activelayout();
+  void set_allocated_activelayout(std::string* activelayout);
+  private:
+  const std::string& _internal_activelayout() const;
+  void _internal_set_activelayout(const std::string& value);
+  std::string* _internal_mutable_activelayout();
+  public:
+
+  // @@protoc_insertion_point(class_scope:messages.MasterStatus)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr activelayout_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_network_2eproto;
+};
+// -------------------------------------------------------------------
+
 class Datagram :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:messages.Datagram) */ {
  public:
@@ -494,7 +635,7 @@ class Datagram :
                &_Datagram_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    2;
+    3;
 
   friend void swap(Datagram& a, Datagram& b) {
     a.Swap(&b);
@@ -566,12 +707,16 @@ class Datagram :
     Datagram_Type_PING;
   static constexpr Type PONG =
     Datagram_Type_PONG;
+  static constexpr Type STATUS =
+    Datagram_Type_STATUS;
   static constexpr Type ACQ_GET_BODY_STREAM =
     Datagram_Type_ACQ_GET_BODY_STREAM;
   static constexpr Type ACQ_END_BODY_STREAM =
     Datagram_Type_ACQ_END_BODY_STREAM;
   static constexpr Type ACQ_BODY =
     Datagram_Type_ACQ_BODY;
+  static constexpr Type LAYOUT_LAYOUT =
+    Datagram_Type_LAYOUT_LAYOUT;
   static constexpr Type LAYOUT_LIST =
     Datagram_Type_LAYOUT_LIST;
   static constexpr Type LAYOUT_CREATE =
@@ -768,6 +913,70 @@ inline void Ping::set_time(::PROTOBUF_NAMESPACE_ID::uint64 value) {
 
 // -------------------------------------------------------------------
 
+// MasterStatus
+
+// string activeLayout = 10;
+inline void MasterStatus::clear_activelayout() {
+  activelayout_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline const std::string& MasterStatus::activelayout() const {
+  // @@protoc_insertion_point(field_get:messages.MasterStatus.activeLayout)
+  return _internal_activelayout();
+}
+inline void MasterStatus::set_activelayout(const std::string& value) {
+  _internal_set_activelayout(value);
+  // @@protoc_insertion_point(field_set:messages.MasterStatus.activeLayout)
+}
+inline std::string* MasterStatus::mutable_activelayout() {
+  // @@protoc_insertion_point(field_mutable:messages.MasterStatus.activeLayout)
+  return _internal_mutable_activelayout();
+}
+inline const std::string& MasterStatus::_internal_activelayout() const {
+  return activelayout_.GetNoArena();
+}
+inline void MasterStatus::_internal_set_activelayout(const std::string& value) {
+  
+  activelayout_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void MasterStatus::set_activelayout(std::string&& value) {
+  
+  activelayout_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:messages.MasterStatus.activeLayout)
+}
+inline void MasterStatus::set_activelayout(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  activelayout_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:messages.MasterStatus.activeLayout)
+}
+inline void MasterStatus::set_activelayout(const char* value, size_t size) {
+  
+  activelayout_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:messages.MasterStatus.activeLayout)
+}
+inline std::string* MasterStatus::_internal_mutable_activelayout() {
+  
+  return activelayout_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* MasterStatus::release_activelayout() {
+  // @@protoc_insertion_point(field_release:messages.MasterStatus.activeLayout)
+  
+  return activelayout_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void MasterStatus::set_allocated_activelayout(std::string* activelayout) {
+  if (activelayout != nullptr) {
+    
+  } else {
+    
+  }
+  activelayout_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), activelayout);
+  // @@protoc_insertion_point(field_set_allocated:messages.MasterStatus.activeLayout)
+}
+
+// -------------------------------------------------------------------
+
 // Datagram
 
 // .messages.Datagram.Type type = 1;
@@ -847,6 +1056,8 @@ inline void Datagram::set_allocated_data(PROTOBUF_NAMESPACE_ID::Any* data) {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

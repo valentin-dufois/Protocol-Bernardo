@@ -24,6 +24,10 @@ class PingDefaultTypeInternal {
  public:
   ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Ping> _instance;
 } _Ping_default_instance_;
+class MasterStatusDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<MasterStatus> _instance;
+} _MasterStatus_default_instance_;
 class DatagramDefaultTypeInternal {
  public:
   ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Datagram> _instance;
@@ -58,6 +62,20 @@ static void InitDefaultsscc_info_Endpoint_network_2eproto() {
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Endpoint_network_2eproto =
     {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_Endpoint_network_2eproto}, {}};
 
+static void InitDefaultsscc_info_MasterStatus_network_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::messages::_MasterStatus_default_instance_;
+    new (ptr) ::messages::MasterStatus();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::messages::MasterStatus::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_MasterStatus_network_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_MasterStatus_network_2eproto}, {}};
+
 static void InitDefaultsscc_info_Ping_network_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
@@ -72,7 +90,7 @@ static void InitDefaultsscc_info_Ping_network_2eproto() {
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Ping_network_2eproto =
     {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_Ping_network_2eproto}, {}};
 
-static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_network_2eproto[3];
+static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_network_2eproto[4];
 static const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* file_level_enum_descriptors_network_2eproto[2];
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_network_2eproto = nullptr;
 
@@ -91,6 +109,12 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_network_2eproto::offsets[] PRO
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::messages::Ping, time_),
   ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::messages::MasterStatus, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::messages::MasterStatus, activelayout_),
+  ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::messages::Datagram, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
@@ -101,12 +125,14 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_network_2eproto::offsets[] PRO
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(::messages::Endpoint)},
   { 7, -1, sizeof(::messages::Ping)},
-  { 13, -1, sizeof(::messages::Datagram)},
+  { 13, -1, sizeof(::messages::MasterStatus)},
+  { 19, -1, sizeof(::messages::Datagram)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::messages::_Endpoint_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::messages::_Ping_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::messages::_MasterStatus_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::messages::_Datagram_default_instance_),
 };
 
@@ -116,32 +142,35 @@ const char descriptor_table_protodef_network_2eproto[] PROTOBUF_SECTION_VARIABLE
   "%\n\004type\030\002 \001(\0162\027.messages.Endpoint.Type\"P"
   "\n\004Type\022\r\n\tUNDEFINED\020\000\022\016\n\nACQUISITOR\020\001\022\017\n"
   "\013BROADCASTER\020\002\022\n\n\006MASTER\020\003\022\014\n\010TERMINAL\020\004"
-  "\"\024\n\004Ping\022\014\n\004time\030\001 \001(\004\"\342\002\n\010Datagram\022%\n\004t"
-  "ype\030\001 \001(\0162\027.messages.Datagram.Type\022\"\n\004da"
-  "ta\030d \001(\0132\024.google.protobuf.Any\"\212\002\n\004Type\022"
-  "\r\n\tUNDEFINED\020\000\022\t\n\005CLOSE\020\005\022\r\n\tHEARTBEAT\020\007"
-  "\022\010\n\004PING\020\n\022\010\n\004PONG\020\013\022\027\n\023ACQ_GET_BODY_STR"
-  "EAM\020n\022\027\n\023ACQ_END_BODY_STREAM\020o\022\014\n\010ACQ_BO"
-  "DY\020s\022\020\n\013LAYOUT_LIST\020\322\001\022\022\n\rLAYOUT_CREATE\020"
-  "\323\001\022\020\n\013LAYOUT_OPEN\020\324\001\022\022\n\rLAYOUT_RENAME\020\325\001"
-  "\022\022\n\rLAYOUT_UPDATE\020\326\001\022\021\n\014LAYOUT_CLOSE\020\327\001\022"
-  "\022\n\rLAYOUT_DELETE\020\330\001b\006proto3"
+  "\"\024\n\004Ping\022\014\n\004time\030\001 \001(\004\"$\n\014MasterStatus\022\024"
+  "\n\014activeLayout\030\n \001(\t\"\202\003\n\010Datagram\022%\n\004typ"
+  "e\030\001 \001(\0162\027.messages.Datagram.Type\022\"\n\004data"
+  "\030d \001(\0132\024.google.protobuf.Any\"\252\002\n\004Type\022\r\n"
+  "\tUNDEFINED\020\000\022\t\n\005CLOSE\020\005\022\r\n\tHEARTBEAT\020\007\022\010"
+  "\n\004PING\020\n\022\010\n\004PONG\020\013\022\n\n\006STATUS\0202\022\027\n\023ACQ_GE"
+  "T_BODY_STREAM\020n\022\027\n\023ACQ_END_BODY_STREAM\020o"
+  "\022\014\n\010ACQ_BODY\020s\022\022\n\rLAYOUT_LAYOUT\020\315\001\022\020\n\013LA"
+  "YOUT_LIST\020\322\001\022\022\n\rLAYOUT_CREATE\020\323\001\022\020\n\013LAYO"
+  "UT_OPEN\020\324\001\022\022\n\rLAYOUT_RENAME\020\325\001\022\022\n\rLAYOUT"
+  "_UPDATE\020\326\001\022\021\n\014LAYOUT_CLOSE\020\327\001\022\022\n\rLAYOUT_"
+  "DELETE\020\330\001b\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_network_2eproto_deps[1] = {
   &::descriptor_table_google_2fprotobuf_2fany_2eproto,
 };
-static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_network_2eproto_sccs[3] = {
+static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_network_2eproto_sccs[4] = {
   &scc_info_Datagram_network_2eproto.base,
   &scc_info_Endpoint_network_2eproto.base,
+  &scc_info_MasterStatus_network_2eproto.base,
   &scc_info_Ping_network_2eproto.base,
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_network_2eproto_once;
 static bool descriptor_table_network_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_network_2eproto = {
-  &descriptor_table_network_2eproto_initialized, descriptor_table_protodef_network_2eproto, "network.proto", 587,
-  &descriptor_table_network_2eproto_once, descriptor_table_network_2eproto_sccs, descriptor_table_network_2eproto_deps, 3, 1,
+  &descriptor_table_network_2eproto_initialized, descriptor_table_protodef_network_2eproto, "network.proto", 657,
+  &descriptor_table_network_2eproto_once, descriptor_table_network_2eproto_sccs, descriptor_table_network_2eproto_deps, 4, 1,
   schemas, file_default_instances, TableStruct_network_2eproto::offsets,
-  file_level_metadata_network_2eproto, 3, file_level_enum_descriptors_network_2eproto, file_level_service_descriptors_network_2eproto,
+  file_level_metadata_network_2eproto, 4, file_level_enum_descriptors_network_2eproto, file_level_service_descriptors_network_2eproto,
 };
 
 // Force running AddDescriptors() at dynamic initialization time.
@@ -185,9 +214,11 @@ bool Datagram_Type_IsValid(int value) {
     case 7:
     case 10:
     case 11:
+    case 50:
     case 110:
     case 111:
     case 115:
+    case 205:
     case 210:
     case 211:
     case 212:
@@ -207,9 +238,11 @@ constexpr Datagram_Type Datagram::CLOSE;
 constexpr Datagram_Type Datagram::HEARTBEAT;
 constexpr Datagram_Type Datagram::PING;
 constexpr Datagram_Type Datagram::PONG;
+constexpr Datagram_Type Datagram::STATUS;
 constexpr Datagram_Type Datagram::ACQ_GET_BODY_STREAM;
 constexpr Datagram_Type Datagram::ACQ_END_BODY_STREAM;
 constexpr Datagram_Type Datagram::ACQ_BODY;
+constexpr Datagram_Type Datagram::LAYOUT_LAYOUT;
 constexpr Datagram_Type Datagram::LAYOUT_LIST;
 constexpr Datagram_Type Datagram::LAYOUT_CREATE;
 constexpr Datagram_Type Datagram::LAYOUT_OPEN;
@@ -635,6 +668,203 @@ void Ping::InternalSwap(Ping* other) {
 
 // ===================================================================
 
+void MasterStatus::InitAsDefaultInstance() {
+}
+class MasterStatus::_Internal {
+ public:
+};
+
+MasterStatus::MasterStatus()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:messages.MasterStatus)
+}
+MasterStatus::MasterStatus(const MasterStatus& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  activelayout_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_activelayout().empty()) {
+    activelayout_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.activelayout_);
+  }
+  // @@protoc_insertion_point(copy_constructor:messages.MasterStatus)
+}
+
+void MasterStatus::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_MasterStatus_network_2eproto.base);
+  activelayout_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+MasterStatus::~MasterStatus() {
+  // @@protoc_insertion_point(destructor:messages.MasterStatus)
+  SharedDtor();
+}
+
+void MasterStatus::SharedDtor() {
+  activelayout_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void MasterStatus::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const MasterStatus& MasterStatus::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_MasterStatus_network_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void MasterStatus::Clear() {
+// @@protoc_insertion_point(message_clear_start:messages.MasterStatus)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  activelayout_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  _internal_metadata_.Clear();
+}
+
+const char* MasterStatus::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // string activeLayout = 10;
+      case 10:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 82)) {
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParserUTF8(_internal_mutable_activelayout(), ptr, ctx, "messages.MasterStatus.activeLayout");
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* MasterStatus::InternalSerializeWithCachedSizesToArray(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:messages.MasterStatus)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string activeLayout = 10;
+  if (this->activelayout().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_activelayout().data(), static_cast<int>(this->_internal_activelayout().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "messages.MasterStatus.activeLayout");
+    target = stream->WriteStringMaybeAliased(
+        10, this->_internal_activelayout(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:messages.MasterStatus)
+  return target;
+}
+
+size_t MasterStatus::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:messages.MasterStatus)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string activeLayout = 10;
+  if (this->activelayout().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_activelayout());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void MasterStatus::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:messages.MasterStatus)
+  GOOGLE_DCHECK_NE(&from, this);
+  const MasterStatus* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<MasterStatus>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:messages.MasterStatus)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:messages.MasterStatus)
+    MergeFrom(*source);
+  }
+}
+
+void MasterStatus::MergeFrom(const MasterStatus& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:messages.MasterStatus)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.activelayout().size() > 0) {
+
+    activelayout_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.activelayout_);
+  }
+}
+
+void MasterStatus::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:messages.MasterStatus)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void MasterStatus::CopyFrom(const MasterStatus& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:messages.MasterStatus)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool MasterStatus::IsInitialized() const {
+  return true;
+}
+
+void MasterStatus::InternalSwap(MasterStatus* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  activelayout_.Swap(&other->activelayout_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata MasterStatus::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
 void Datagram::InitAsDefaultInstance() {
   ::messages::_Datagram_default_instance_._instance.get_mutable()->data_ = const_cast< PROTOBUF_NAMESPACE_ID::Any*>(
       PROTOBUF_NAMESPACE_ID::Any::internal_default_instance());
@@ -880,6 +1110,9 @@ template<> PROTOBUF_NOINLINE ::messages::Endpoint* Arena::CreateMaybeMessage< ::
 }
 template<> PROTOBUF_NOINLINE ::messages::Ping* Arena::CreateMaybeMessage< ::messages::Ping >(Arena* arena) {
   return Arena::CreateInternal< ::messages::Ping >(arena);
+}
+template<> PROTOBUF_NOINLINE ::messages::MasterStatus* Arena::CreateMaybeMessage< ::messages::MasterStatus >(Arena* arena) {
+  return Arena::CreateInternal< ::messages::MasterStatus >(arena);
 }
 template<> PROTOBUF_NOINLINE ::messages::Datagram* Arena::CreateMaybeMessage< ::messages::Datagram >(Arena* arena) {
   return Arena::CreateInternal< ::messages::Datagram >(arena);

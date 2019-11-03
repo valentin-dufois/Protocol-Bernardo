@@ -50,6 +50,12 @@ public:
 	/// @param layout The new version of the current layout
 	void updateLayout(layout::Layout * layout);
 
+	/// Tell if there is a layout open
+	inline bool hasActiveLayout() { return _activeLayout != nullptr; }
+
+	/// Gives the currently active layout, Returns nullptr if no layou is open
+	inline layout::Layout * activeLayout() { return _activeLayout; }
+
 	/// Close the currently opened layout
 	void closeLayout();
 
@@ -65,7 +71,7 @@ private:
 	fs::path _savePath;
 
 	/// The currently opened layout, nullptr if no layout is opened
-	layout::Layout * _openedLayout = nullptr;
+	layout::Layout * _activeLayout = nullptr;
 
 	inline std::string layoutPathFromName(const std::string &name) {
 		return _savePath.string() + name + LAYOUT_EXT;

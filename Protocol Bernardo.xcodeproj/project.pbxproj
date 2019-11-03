@@ -11,11 +11,15 @@
 		3900756423567A39007A0982 /* libprotobuf.21.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 3937AE0223566528009E6021 /* libprotobuf.21.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		3900756523567C50007A0982 /* libprotobuf.21.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3937AE0223566528009E6021 /* libprotobuf.21.dylib */; };
 		3900756623567C50007A0982 /* libprotobuf.21.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 3937AE0223566528009E6021 /* libprotobuf.21.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		391159092369E9BE00ED75C5 /* NewLayoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391159082369E9BE00ED75C5 /* NewLayoutViewController.swift */; };
+		3911590D2369E9F100ED75C5 /* LayoutEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3911590C2369E9F100ED75C5 /* LayoutEngine.swift */; };
 		391A1FFF2342872600F00517 /* OpenNIParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39CA4AF62332BAEA00E528CD /* OpenNIParser.cpp */; };
 		391A20082342B6D300F00517 /* Ping.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 391A20062342B6D300F00517 /* Ping.cpp */; };
 		391A20092342B6D300F00517 /* Ping.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 391A20072342B6D300F00517 /* Ping.hpp */; };
 		391A20112343F0E900F00517 /* OpenNI2 in Copy OpenNI + NiTE Support Files */ = {isa = PBXBuildFile; fileRef = 391A20102343F0E100F00517 /* OpenNI2 */; };
 		391A20132343F16100F00517 /* NiTE2 in Copy OpenNI + NiTE Support Files */ = {isa = PBXBuildFile; fileRef = 391A20122343F15E00F00517 /* NiTE2 */; };
+		3928CC232367A084006E8D9F /* MasterClientDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CC222367A084006E8D9F /* MasterClientDelegate.swift */; };
+		3928CC272367AA2A006E8D9F /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CC262367AA2A006E8D9F /* App.swift */; };
 		392DCCB423453D8300885C84 /* MasterServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 392DCCB023453B7700885C84 /* MasterServer.cpp */; };
 		392DCCB923455D6E00885C84 /* TimeoutHandling.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 392DCCB823455D6E00885C84 /* TimeoutHandling.hpp */; };
 		3937ADF923565C6C009E6021 /* MainWindowContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3937ADF823565C6C009E6021 /* MainWindowContoller.swift */; };
@@ -27,6 +31,9 @@
 		3937AE0A23566634009E6021 /* layout.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3937AE0623566634009E6021 /* layout.pb.swift */; };
 		3937AE0B23566634009E6021 /* network.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3937AE0723566634009E6021 /* network.pb.swift */; };
 		3937AE0C23566634009E6021 /* maths.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3937AE0823566634009E6021 /* maths.pb.swift */; };
+		393AB5862368D7EE00F4F087 /* EventsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393AB5852368D7EE00F4F087 /* EventsDelegate.swift */; };
+		393AB5882368DAED00F4F087 /* NetworkEngineDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393AB5872368DAED00F4F087 /* NetworkEngineDelegate.swift */; };
+		393AB58A2368E14400F4F087 /* LayoutManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393AB5892368E14400F4F087 /* LayoutManagerViewController.swift */; };
 		393AD3EA23523D5600ECE95C /* DiskIO.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 392DCCB52345471E00885C84 /* DiskIO.hpp */; };
 		395017022341646900E7F6BD /* Emitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 395017002341646900E7F6BD /* Emitter.cpp */; };
 		395017032341646900E7F6BD /* Emitter.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 395017012341646900E7F6BD /* Emitter.hpp */; };
@@ -86,11 +93,15 @@
 		399D16882352243100CEC2F0 /* libopencv_imgproc.4.1.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 399D16832352243100CEC2F0 /* libopencv_imgproc.4.1.0.dylib */; };
 		399D16892352243100CEC2F0 /* libopencv_imgproc.4.1.0.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 399D16832352243100CEC2F0 /* libopencv_imgproc.4.1.0.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		39ABB55B2337087900C5D147 /* NetworkManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39ABB5572336FE1200C5D147 /* NetworkManager.cpp */; };
+		39C9795B2369FCE900ABED6E /* DeleteLayoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C9795A2369FCE900ABED6E /* DeleteLayoutViewController.swift */; };
+		39C9795E236A203900ABED6E /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C9795D236A203900ABED6E /* Layout.swift */; };
+		39C97960236A208600ABED6E /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C9795F236A208600ABED6E /* Device.swift */; };
+		39C97963236A28F900ABED6E /* LayoutCanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C97962236A28F900ABED6E /* LayoutCanvasViewController.swift */; };
 		39CA4A84233140BE00E528CD /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39CA4A83233140BE00E528CD /* main.cpp */; };
 		39CA4A8F233140E100E528CD /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39CA4A8E233140E100E528CD /* main.cpp */; };
 		39CA4A9A233140F800E528CD /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39CA4A99233140F800E528CD /* main.cpp */; };
 		39CA4AA52331413A00E528CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CA4AA42331413A00E528CD /* AppDelegate.swift */; };
-		39CA4AA72331413A00E528CD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CA4AA62331413A00E528CD /* ViewController.swift */; };
+		39CA4AA72331413A00E528CD /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CA4AA62331413A00E528CD /* MainViewController.swift */; };
 		39CA4AA92331413D00E528CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39CA4AA82331413D00E528CD /* Assets.xcassets */; };
 		39CA4AAC2331413D00E528CD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39CA4AAA2331413D00E528CD /* Main.storyboard */; };
 		39CA4AC02331470200E528CD /* libboost_system.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 39CA4ABF2331470200E528CD /* libboost_system.dylib */; };
@@ -104,6 +115,16 @@
 		39CA4ADB2331486D00E528CD /* Endpoint.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 39CA4ACA2331486D00E528CD /* Endpoint.hpp */; };
 		39CA4ADD2331486D00E528CD /* Browser.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 39CA4ACC2331486D00E528CD /* Browser.hpp */; };
 		39CA4AFD2332BDAB00E528CD /* Log.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 39CA4AFC2332BDAB00E528CD /* Log.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
+		39E37BF7236E2BB9007C78EA /* LayoutCanvasScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 39E37BF6236E2BB9007C78EA /* LayoutCanvasScene.sks */; };
+		39E37BFF236E31E4007C78EA /* LayoutCanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E37BFE236E31E4007C78EA /* LayoutCanvasView.swift */; };
+		39E37C01236E3DF0007C78EA /* Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E37C00236E3DF0007C78EA /* Comparable.swift */; };
+		39E37C04236E4417007C78EA /* CanvasElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E37C03236E4417007C78EA /* CanvasElement.swift */; };
+		39E37C06236E4497007C78EA /* CanvasElementDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E37C05236E4497007C78EA /* CanvasElementDelegate.swift */; };
+		39E37C08236E46F0007C78EA /* CanvasElementAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E37C07236E46F0007C78EA /* CanvasElementAppearance.swift */; };
+		39E37C0A236E47AE007C78EA /* CanvasDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E37C09236E47AE007C78EA /* CanvasDevice.swift */; };
+		39E37C0C236E4C69007C78EA /* maths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E37C0B236E4C69007C78EA /* maths.swift */; };
+		39E37C0E236E4DED007C78EA /* NSColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E37C0D236E4DED007C78EA /* NSColor.swift */; };
+		39E37C10236E611B007C78EA /* Keycode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E37C0F236E611B007C78EA /* Keycode.swift */; };
 		39EBB7C32350E1630057D474 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39EBB79A2350E0EC0057D474 /* main.cpp */; };
 		39EBB7C42350E3A30057D474 /* Log.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 395A796E2332D2B300499894 /* Log.cpp */; };
 /* End PBXBuildFile section */
@@ -230,10 +251,14 @@
 
 /* Begin PBXFileReference section */
 		39089E982335E24600D03D24 /* pb-acquisitor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "pb-acquisitor.entitlements"; sourceTree = "<group>"; };
+		391159082369E9BE00ED75C5 /* NewLayoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewLayoutViewController.swift; sourceTree = "<group>"; };
+		3911590C2369E9F100ED75C5 /* LayoutEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutEngine.swift; sourceTree = "<group>"; };
 		391A20062342B6D300F00517 /* Ping.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Ping.cpp; sourceTree = "<group>"; };
 		391A20072342B6D300F00517 /* Ping.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Ping.hpp; sourceTree = "<group>"; };
 		391A20102343F0E100F00517 /* OpenNI2 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = OpenNI2; sourceTree = "<group>"; };
 		391A20122343F15E00F00517 /* NiTE2 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = NiTE2; sourceTree = "<group>"; };
+		3928CC222367A084006E8D9F /* MasterClientDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterClientDelegate.swift; sourceTree = "<group>"; };
+		3928CC262367AA2A006E8D9F /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		392DCCB023453B7700885C84 /* MasterServer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MasterServer.cpp; sourceTree = "<group>"; };
 		392DCCB123453B7700885C84 /* MasterServer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MasterServer.hpp; sourceTree = "<group>"; };
 		392DCCB52345471E00885C84 /* DiskIO.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DiskIO.hpp; sourceTree = "<group>"; };
@@ -248,6 +273,9 @@
 		3937AE0623566634009E6021 /* layout.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = layout.pb.swift; sourceTree = "<group>"; };
 		3937AE0723566634009E6021 /* network.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = network.pb.swift; sourceTree = "<group>"; };
 		3937AE0823566634009E6021 /* maths.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = maths.pb.swift; sourceTree = "<group>"; };
+		393AB5852368D7EE00F4F087 /* EventsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsDelegate.swift; sourceTree = "<group>"; };
+		393AB5872368DAED00F4F087 /* NetworkEngineDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkEngineDelegate.swift; sourceTree = "<group>"; };
+		393AB5892368E14400F4F087 /* LayoutManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutManagerViewController.swift; sourceTree = "<group>"; };
 		395017002341646900E7F6BD /* Emitter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Emitter.cpp; sourceTree = "<group>"; };
 		395017012341646900E7F6BD /* Emitter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Emitter.hpp; sourceTree = "<group>"; };
 		395017052341667D00E7F6BD /* Receiver.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Receiver.cpp; sourceTree = "<group>"; };
@@ -313,6 +341,11 @@
 		399D16832352243100CEC2F0 /* libopencv_imgproc.4.1.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_imgproc.4.1.0.dylib; path = ../../../../../usr/local/Cellar/opencv/4.1.0_2/lib/libopencv_imgproc.4.1.0.dylib; sourceTree = "<group>"; };
 		39ABB5572336FE1200C5D147 /* NetworkManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NetworkManager.cpp; sourceTree = "<group>"; };
 		39ABB5582336FE1200C5D147 /* NetworkManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NetworkManager.hpp; sourceTree = "<group>"; };
+		39C9795A2369FCE900ABED6E /* DeleteLayoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteLayoutViewController.swift; sourceTree = "<group>"; };
+		39C9795D236A203900ABED6E /* Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layout.swift; sourceTree = "<group>"; };
+		39C9795F236A208600ABED6E /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
+		39C97962236A28F900ABED6E /* LayoutCanvasViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutCanvasViewController.swift; sourceTree = "<group>"; };
+		39C97964236A2BA400ABED6E /* pb-master.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "pb-master.entitlements"; sourceTree = "<group>"; };
 		39CA4A772331407A00E528CD /* libpb-common.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = "libpb-common.dylib"; sourceTree = BUILT_PRODUCTS_DIR; };
 		39CA4A81233140BE00E528CD /* pb-acquisitor */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "pb-acquisitor"; sourceTree = BUILT_PRODUCTS_DIR; };
 		39CA4A83233140BE00E528CD /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
@@ -322,7 +355,7 @@
 		39CA4A99233140F800E528CD /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		39CA4AA22331413A00E528CD /* pb-terminal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "pb-terminal.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		39CA4AA42331413A00E528CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		39CA4AA62331413A00E528CD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		39CA4AA62331413A00E528CD /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		39CA4AA82331413D00E528CD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		39CA4AAB2331413D00E528CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		39CA4AAD2331413D00E528CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -345,6 +378,16 @@
 		39CA4AFA2332BB6700E528CD /* libraries.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = libraries.hpp; sourceTree = "<group>"; };
 		39CA4AFC2332BDAB00E528CD /* Log.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Log.hpp; sourceTree = "<group>"; };
 		39D95AC42346B83C00130C39 /* Acquisitor.doxygen */ = {isa = PBXFileReference; lastKnownFileType = text; path = Acquisitor.doxygen; sourceTree = "<group>"; };
+		39E37BF6236E2BB9007C78EA /* LayoutCanvasScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LayoutCanvasScene.sks; sourceTree = "<group>"; };
+		39E37BFE236E31E4007C78EA /* LayoutCanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutCanvasView.swift; sourceTree = "<group>"; };
+		39E37C00236E3DF0007C78EA /* Comparable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comparable.swift; sourceTree = "<group>"; };
+		39E37C03236E4417007C78EA /* CanvasElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasElement.swift; sourceTree = "<group>"; };
+		39E37C05236E4497007C78EA /* CanvasElementDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasElementDelegate.swift; sourceTree = "<group>"; };
+		39E37C07236E46F0007C78EA /* CanvasElementAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasElementAppearance.swift; sourceTree = "<group>"; };
+		39E37C09236E47AE007C78EA /* CanvasDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasDevice.swift; sourceTree = "<group>"; };
+		39E37C0B236E4C69007C78EA /* maths.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = maths.swift; sourceTree = "<group>"; };
+		39E37C0D236E4DED007C78EA /* NSColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSColor.swift; sourceTree = "<group>"; };
+		39E37C0F236E611B007C78EA /* Keycode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keycode.swift; sourceTree = "<group>"; };
 		39EBB79A2350E0EC0057D474 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		39EBB7C02350E13F0057D474 /* pb-acquisitor-launcher */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "pb-acquisitor-launcher"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -404,6 +447,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		391159072369E99C00ED75C5 /* LayoutsManager */ = {
+			isa = PBXGroup;
+			children = (
+				393AB5892368E14400F4F087 /* LayoutManagerViewController.swift */,
+				391159082369E9BE00ED75C5 /* NewLayoutViewController.swift */,
+				39C9795A2369FCE900ABED6E /* DeleteLayoutViewController.swift */,
+			);
+			path = LayoutsManager;
+			sourceTree = "<group>";
+		};
+		3911590A2369E9D000ED75C5 /* LayoutEngine */ = {
+			isa = PBXGroup;
+			children = (
+				39C9795C236A200200ABED6E /* Structs */,
+				3911590C2369E9F100ED75C5 /* LayoutEngine.swift */,
+			);
+			path = LayoutEngine;
+			sourceTree = "<group>";
+		};
+		3911590B2369E9DE00ED75C5 /* Engines */ = {
+			isa = PBXGroup;
+			children = (
+				3937ADFA23565E13009E6021 /* NetworkEngine */,
+				3911590A2369E9D000ED75C5 /* LayoutEngine */,
+			);
+			path = Engines;
+			sourceTree = "<group>";
+		};
 		391A20052342B6B700F00517 /* Datagrams */ = {
 			isa = PBXGroup;
 			children = (
@@ -430,20 +501,35 @@
 			path = MacOS;
 			sourceTree = "<group>";
 		};
+		3928CC242367AA0A006E8D9F /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				39CA4AA42331413A00E528CD /* AppDelegate.swift */,
+				3928CC262367AA2A006E8D9F /* App.swift */,
+				393AB5852368D7EE00F4F087 /* EventsDelegate.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		3928CC252367AA11006E8D9F /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				39C97961236A28D400ABED6E /* LayoutInterface */,
+				391159072369E99C00ED75C5 /* LayoutsManager */,
+				39CA4AAA2331413D00E528CD /* Main.storyboard */,
+				39CA4AA62331413A00E528CD /* MainViewController.swift */,
+				3937ADF823565C6C009E6021 /* MainWindowContoller.swift */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
 		392DCCB62345475C00885C84 /* Messages */ = {
 			isa = PBXGroup;
 			children = (
+				395A79CD2335BB3400499894 /* messages.hpp */,
+				393AB5842368C6E300F4F087 /* cpp */,
 				3937AE0123566499009E6021 /* Swift */,
 				392DCCB72345476F00885C84 /* protos */,
-				3966E4182338018800710DD4 /* layout.pb.cc */,
-				3966E41B2338018800710DD4 /* layout.pb.h */,
-				395A79B42335BB2000499894 /* body.pb.cc */,
-				395A79B22335BB2000499894 /* body.pb.h */,
-				395A79AE2335BB2000499894 /* maths.pb.cc */,
-				395A79B12335BB2000499894 /* maths.pb.h */,
-				395A79B92335BB2000499894 /* network.pb.cc */,
-				395A79B82335BB2000499894 /* network.pb.h */,
-				395A79CD2335BB3400499894 /* messages.hpp */,
 			);
 			path = Messages;
 			sourceTree = "<group>";
@@ -463,9 +549,11 @@
 			isa = PBXGroup;
 			children = (
 				3937ADFB23565E2F009E6021 /* NetworkEngine.swift */,
+				393AB5872368DAED00F4F087 /* NetworkEngineDelegate.swift */,
 				3937ADFD23565E70009E6021 /* Browser.swift */,
 				3937ADFF23565F0A009E6021 /* BrowserDelegate.swift */,
 				39580E8923591B0800CD3CEC /* MasterClient.swift */,
+				3928CC222367A084006E8D9F /* MasterClientDelegate.swift */,
 			);
 			path = NetworkEngine;
 			sourceTree = "<group>";
@@ -479,6 +567,21 @@
 				3937AE0723566634009E6021 /* network.pb.swift */,
 			);
 			path = Swift;
+			sourceTree = "<group>";
+		};
+		393AB5842368C6E300F4F087 /* cpp */ = {
+			isa = PBXGroup;
+			children = (
+				3966E4182338018800710DD4 /* layout.pb.cc */,
+				3966E41B2338018800710DD4 /* layout.pb.h */,
+				395A79B42335BB2000499894 /* body.pb.cc */,
+				395A79B22335BB2000499894 /* body.pb.h */,
+				395A79AE2335BB2000499894 /* maths.pb.cc */,
+				395A79B12335BB2000499894 /* maths.pb.h */,
+				395A79B92335BB2000499894 /* network.pb.cc */,
+				395A79B82335BB2000499894 /* network.pb.h */,
+			);
+			path = cpp;
 			sourceTree = "<group>";
 		};
 		395017042341665C00E7F6BD /* Exchanges */ = {
@@ -500,6 +603,10 @@
 		39580E8B23591F6900CD3CEC /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				39E37C0F236E611B007C78EA /* Keycode.swift */,
+				39E37C0D236E4DED007C78EA /* NSColor.swift */,
+				39E37C0B236E4C69007C78EA /* maths.swift */,
+				39E37C00236E3DF0007C78EA /* Comparable.swift */,
 				39580E8C23591F7500CD3CEC /* Log.swift */,
 			);
 			path = Utils;
@@ -618,11 +725,30 @@
 			path = Structs;
 			sourceTree = "<group>";
 		};
+		39C9795C236A200200ABED6E /* Structs */ = {
+			isa = PBXGroup;
+			children = (
+				39C9795D236A203900ABED6E /* Layout.swift */,
+				39C9795F236A208600ABED6E /* Device.swift */,
+			);
+			path = Structs;
+			sourceTree = "<group>";
+		};
+		39C97961236A28D400ABED6E /* LayoutInterface */ = {
+			isa = PBXGroup;
+			children = (
+				39E37C02236E4407007C78EA /* Elements */,
+				39C97962236A28F900ABED6E /* LayoutCanvasViewController.swift */,
+				39E37BF6236E2BB9007C78EA /* LayoutCanvasScene.sks */,
+				39E37BFE236E31E4007C78EA /* LayoutCanvasView.swift */,
+			);
+			path = LayoutInterface;
+			sourceTree = "<group>";
+		};
 		39CA4A6C23313F1E00E528CD = {
 			isa = PBXGroup;
 			children = (
 				39D95AC22346B80300130C39 /* docs */,
-				393447FC2339533C00EB3B03 /* pb-broadcaster.entitlements */,
 				39CA4A7C2331408100E528CD /* Common */,
 				39CA4A82233140BE00E528CD /* Acquisitor */,
 				39EBB7992350E0EC0057D474 /* Acquisitor-Launcher */,
@@ -677,6 +803,7 @@
 		39CA4A8D233140E100E528CD /* Master */ = {
 			isa = PBXGroup;
 			children = (
+				39C97964236A2BA400ABED6E /* pb-master.entitlements */,
 				3978A7F82336C00400AF409D /* LayoutEngine */,
 				3978A7EC2336BF6B00AF409D /* Core */,
 				39CA4A8E233140E100E528CD /* main.cpp */,
@@ -687,6 +814,7 @@
 		39CA4A98233140F800E528CD /* Broadcaster */ = {
 			isa = PBXGroup;
 			children = (
+				393447FC2339533C00EB3B03 /* pb-broadcaster.entitlements */,
 				3960B8492337E31B0094A2E9 /* RenderEngine */,
 				3960B8442337DFA50094A2E9 /* Core */,
 				39CA4A99233140F800E528CD /* main.cpp */,
@@ -697,15 +825,13 @@
 		39CA4AA32331413A00E528CD /* Terminal */ = {
 			isa = PBXGroup;
 			children = (
+				3911590B2369E9DE00ED75C5 /* Engines */,
+				3928CC252367AA11006E8D9F /* Scenes */,
+				3928CC242367AA0A006E8D9F /* Core */,
 				39580E8B23591F6900CD3CEC /* Utils */,
-				3937ADFA23565E13009E6021 /* NetworkEngine */,
-				39CA4AA42331413A00E528CD /* AppDelegate.swift */,
-				39CA4AA62331413A00E528CD /* ViewController.swift */,
 				39CA4AA82331413D00E528CD /* Assets.xcassets */,
-				39CA4AAA2331413D00E528CD /* Main.storyboard */,
 				39CA4AAD2331413D00E528CD /* Info.plist */,
 				39CA4AAE2331413D00E528CD /* pb_terminal.entitlements */,
-				3937ADF823565C6C009E6021 /* MainWindowContoller.swift */,
 			);
 			path = Terminal;
 			sourceTree = "<group>";
@@ -803,6 +929,17 @@
 			children = (
 			);
 			path = Acquisitor;
+			sourceTree = "<group>";
+		};
+		39E37C02236E4407007C78EA /* Elements */ = {
+			isa = PBXGroup;
+			children = (
+				39E37C03236E4417007C78EA /* CanvasElement.swift */,
+				39E37C05236E4497007C78EA /* CanvasElementDelegate.swift */,
+				39E37C07236E46F0007C78EA /* CanvasElementAppearance.swift */,
+				39E37C09236E47AE007C78EA /* CanvasDevice.swift */,
+			);
+			path = Elements;
 			sourceTree = "<group>";
 		};
 		39EBB7992350E0EC0057D474 /* Acquisitor-Launcher */ = {
@@ -935,6 +1072,7 @@
 				39CA4A9E2331413A00E528CD /* Sources */,
 				39CA4A9F2331413A00E528CD /* Frameworks */,
 				39CA4AA02331413A00E528CD /* Resources */,
+				3928CC282367B043006E8D9F /* Update Build Number */,
 			);
 			buildRules = (
 			);
@@ -1032,12 +1170,31 @@
 			files = (
 				39CA4AA92331413D00E528CD /* Assets.xcassets in Resources */,
 				39CA4AAC2331413D00E528CD /* Main.storyboard in Resources */,
+				39E37BF7236E2BB9007C78EA /* LayoutCanvasScene.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		3928CC282367B043006E8D9F /* Update Build Number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Update Build Number";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\n";
+		};
 		395A79AC2335B9D600499894 /* Protobuf Compilation */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1054,7 +1211,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "workdir=Common/Messages\nprotoc -I=$workdir --swift_out=$workdir/Swift $workdir/protos/*.proto\nprotoc -I=$workdir/protos --cpp_out=$workdir $workdir/protos/*.proto\n";
+			shellScript = "workdir=Common/Messages\nprotoc -I=$workdir/protos --swift_out=$workdir/Swift $workdir/protos/*.proto  \nprotoc -I=$workdir/protos --cpp_out=$workdir/cpp $workdir/protos/*.proto\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1120,17 +1277,37 @@
 			buildActionMask = 2147483647;
 			files = (
 				3937AE0923566634009E6021 /* body.pb.swift in Sources */,
+				393AB5882368DAED00F4F087 /* NetworkEngineDelegate.swift in Sources */,
 				3937ADF923565C6C009E6021 /* MainWindowContoller.swift in Sources */,
 				39580E8D23591F7500CD3CEC /* Log.swift in Sources */,
 				3937AE0B23566634009E6021 /* network.pb.swift in Sources */,
 				3937AE0C23566634009E6021 /* maths.pb.swift in Sources */,
+				39E37C04236E4417007C78EA /* CanvasElement.swift in Sources */,
+				3928CC272367AA2A006E8D9F /* App.swift in Sources */,
+				39C97963236A28F900ABED6E /* LayoutCanvasViewController.swift in Sources */,
+				39E37C01236E3DF0007C78EA /* Comparable.swift in Sources */,
+				39E37C06236E4497007C78EA /* CanvasElementDelegate.swift in Sources */,
 				3937AE0A23566634009E6021 /* layout.pb.swift in Sources */,
+				39E37C10236E611B007C78EA /* Keycode.swift in Sources */,
+				3928CC232367A084006E8D9F /* MasterClientDelegate.swift in Sources */,
 				3937ADFC23565E2F009E6021 /* NetworkEngine.swift in Sources */,
 				3937AE0023565F0A009E6021 /* BrowserDelegate.swift in Sources */,
+				39C97960236A208600ABED6E /* Device.swift in Sources */,
+				39C9795E236A203900ABED6E /* Layout.swift in Sources */,
 				39580E8A23591B0800CD3CEC /* MasterClient.swift in Sources */,
-				39CA4AA72331413A00E528CD /* ViewController.swift in Sources */,
+				39E37C08236E46F0007C78EA /* CanvasElementAppearance.swift in Sources */,
+				39CA4AA72331413A00E528CD /* MainViewController.swift in Sources */,
+				391159092369E9BE00ED75C5 /* NewLayoutViewController.swift in Sources */,
+				39E37C0A236E47AE007C78EA /* CanvasDevice.swift in Sources */,
+				39C9795B2369FCE900ABED6E /* DeleteLayoutViewController.swift in Sources */,
+				39E37C0C236E4C69007C78EA /* maths.swift in Sources */,
 				3937ADFE23565E70009E6021 /* Browser.swift in Sources */,
 				39CA4AA52331413A00E528CD /* AppDelegate.swift in Sources */,
+				393AB58A2368E14400F4F087 /* LayoutManagerViewController.swift in Sources */,
+				3911590D2369E9F100ED75C5 /* LayoutEngine.swift in Sources */,
+				39E37BFF236E31E4007C78EA /* LayoutCanvasView.swift in Sources */,
+				39E37C0E236E4DED007C78EA /* NSColor.swift in Sources */,
+				393AB5862368D7EE00F4F087 /* EventsDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1197,7 +1374,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					/usr/local/lib/,
 					/usr/local/lib/ni2/,
-					/usr/local/Cellar/protobuf/3.9.1_1/lib,
+					/usr/local/Cellar/protobuf/3.10.0/lib,
 					/usr/local/Cellar/boost/1.71.0/lib,
 				);
 				SYSTEM_HEADER_SEARCH_PATHS = (
@@ -1215,7 +1392,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					/usr/local/lib/,
 					/usr/local/lib/ni2/,
-					/usr/local/Cellar/protobuf/3.9.1_1/lib,
+					/usr/local/Cellar/protobuf/3.10.0/lib,
 					/usr/local/Cellar/boost/1.71.0/lib,
 				);
 				SYSTEM_HEADER_SEARCH_PATHS = (
@@ -1665,7 +1842,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_ENTITLEMENTS = "pb-broadcaster.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -1728,7 +1905,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_ENTITLEMENTS = "pb-broadcaster.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";

@@ -10,6 +10,7 @@
 
 #include "../../../Common/Messages/messages.hpp"
 #include <vector>
+#include <string>
 
 #include "Device.hpp"
 #include "Screen.hpp"

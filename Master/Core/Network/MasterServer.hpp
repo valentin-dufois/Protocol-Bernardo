@@ -37,6 +37,8 @@ private:
 
 	void onDatagram(messages::Datagram * datagram, Socket * socket);
 
+	void onStatusRequest(Socket * socket);
+
 	// MARK: - Layout methods
 
 	void onLayoutList(Socket * socket);

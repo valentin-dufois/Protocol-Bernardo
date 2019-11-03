@@ -49,9 +49,14 @@ void MasterServer::onDatagram(messages::Datagram * datagram, Socket * socket) {
 		case messages::Datagram_Type_CLOSE:
 			socket->close(true); break;
 		case messages::Datagram_Type_PING:
-			onPing(datagram->mutable_data(), socket); break;
+			onPing(datagram->mutable_data(), socket);
+			break;
 		case messages::Datagram_Type_PONG:
-			onPong(datagram->mutable_data(), socket); break;
+			onPong(datagram->mutable_data(), socket);
+			break;
+		case messages::Datagram_Type_STATUS:
+			onStatusRequest(socket);
+			break;
 			// Layout
 		case messages::Datagram_Type_LAYOUT_LIST:
 			onLayoutList(socket);
@@ -77,6 +82,27 @@ void MasterServer::onDatagram(messages::Datagram * datagram, Socket * socket) {
 		default:
 			LOG_WARN("Unimplemented datagram type : " + std::to_string(datagramType));
 	}
+}
+
+void MasterServer::onStatusRequest(Socket * socket) {
+	// Build the status
+	messages::MasterStatus status;
+
+	std::string layoutName = layoutEngine->activeLayout() == nullptr ? "" : layoutEngine->activeLayout()->name;
+
+	// Fill in the status
+	status.set_activelayout(layoutName);
+
+	Log::debug(layoutName);
+	
+	// Build the datagram
+	protobuf::Message * datagram = messages::makeDatagram(messages::Datagram_Type_STATUS, status);
+
+	socket->send(datagram);
+
+	// Release
+	datagram->Clear();
+	delete datagram;
 }
 
 // MARK: - Layout methods
@@ -115,7 +141,7 @@ void MasterServer::onLayoutCreate(google::protobuf::Any *data, Socket *socket) {
 	layout::Layout * layout = layoutEngine->createLayout(layoutNameMessage.name());
 
 	// Build the datagram for the response
-	protobuf::Message * datagram = messages::makeDatagram(messages::Datagram_Type_LAYOUT_CREATE, *layout);
+	protobuf::Message * datagram = messages::makeDatagram(messages::Datagram_Type_LAYOUT_OPEN, *layout);
 
 	socket->send(datagram);
 
