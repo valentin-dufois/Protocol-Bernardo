@@ -59,6 +59,9 @@ private:
 	/// The list of endpoints we are connected to
 	std::vector<Endpoint> _connectedEndpoints;
 
+	/// The list of connected Acquisitors
+	std::vector<AcquisitorClient *> _connectedAcquisitors;
+
 	/// Establishes a connection to the given Acquisitor
 	void connectToAcquisitor(const Endpoint &endpoint);
 

@@ -7,11 +7,11 @@
 
 import AppKit
 
-class CPSeparator: NSView, CanvasParameter {
+class CPSeparator: NSView, CanvasProperty {
 	var displayHeight: Float = 7
 
 	static func make() -> CPSeparator {
-		let view:CPSeparator = NSNib.make(fromNib: "CanvasParametersViews", owner: nil);
+		let view:CPSeparator = NSNib.make(fromNib: "CanvasPropertiesViews", owner: nil);
 
 		return view;
 	}

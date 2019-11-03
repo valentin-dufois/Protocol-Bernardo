@@ -40,5 +40,7 @@ void Core::onAcquisitor(AcquisitorClient * acquisitor) {
 void Core::onBody(const Body * body) {
 	LOG_DEBUG("Received body with ID " + std::to_string(body->uid) + " on device " + body->deviceUID);
 
+	// Relay the body
+
 	delete body;
 }

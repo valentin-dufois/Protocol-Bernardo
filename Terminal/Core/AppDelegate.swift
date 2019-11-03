@@ -43,7 +43,7 @@ extension AppDelegate {
 	}
 
 	@IBAction func onMenuRevertToSave(_ sender: Any) {
-
+		
 	}
 
 	@IBAction func onMenuResetLayoutCanvasViewport(_ sender: Any) {

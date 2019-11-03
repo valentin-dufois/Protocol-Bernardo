@@ -20,6 +20,9 @@ message Device {
 	double maxDistance 		= 50;
 	vec3 position 			= 60;
 	vec3 orientation 		= 70;
+	string physicaluid		= 80;
+	vec3 positionDelta		= 90;
+	vec3 orientationDelta	= 100;
 }
 
 message Screen {

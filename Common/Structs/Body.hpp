@@ -58,6 +58,7 @@ struct Body {
 	/** The state of this user */
 	State state;
 
+	/** The device from which this body is coming from */
 	std::string deviceUID;
 
 	Body() = default;

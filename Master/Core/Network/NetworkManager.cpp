@@ -56,21 +56,22 @@ void NetworkManager::connectToAcquisitor(const Endpoint &endpoint) {
 	LOG_DEBUG("Building Acquisitor client for " + endpoint.name);
 
 	AcquisitorClient * acquisitor = new AcquisitorClient();
-	// TODO: 
-//	acquisitor->onBody = _masterServer.layoutEngine->onBody;
 
 	// On connection successful, store the endpoint in our list of connected ones to
 	// prevent multiple connection on the same endpoint for the same service
 	acquisitor->onConnected = [&, acquisitor] (const Endpoint &server) {
 		_connectedEndpoints.push_back(server);
+		_connectedAcquisitors.push_back(acquisitor);
 
 		// Start the body stream
 		acquisitor->requestBodyStream();
 	};
 
 	// On close, remove the acquisitor fromn the acquisitor array
-	acquisitor->onClose = [&, endpoint] {
+	acquisitor->onClose = [&, acquisitor, endpoint] {
 		_connectedEndpoints.erase(std::find(_connectedEndpoints.begin(), _connectedEndpoints.end(), endpoint));
+
+		_connectedAcquisitors.erase(std::find(_connectedAcquisitors.begin(), _connectedAcquisitors.end(), acquisitor));
 	};
 
 	// Open the connection

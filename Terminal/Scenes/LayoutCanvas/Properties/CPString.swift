@@ -7,7 +7,7 @@
 
 import AppKit
 
-class CPString: NSView, CanvasParameter {
+class CPString: NSView, CanvasProperty {
 	var displayHeight: Float = 27
 
 	@IBOutlet weak var label: NSTextField!
@@ -16,7 +16,7 @@ class CPString: NSView, CanvasParameter {
 	weak var delegate: CPDelegate?
 
 	static func make(label aLabel: String, defaultValue value: String, delegate aDelegate: CPDelegate?) -> CPString {
-		let view:CPString = NSNib.make(fromNib: "CanvasParametersViews", owner: nil);
+		let view:CPString = NSNib.make(fromNib: "CanvasPropertiesViews", owner: nil);
 		view.label.stringValue = aLabel;
 		view.field.stringValue = value;
 

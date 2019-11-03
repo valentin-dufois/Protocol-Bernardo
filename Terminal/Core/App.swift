@@ -23,4 +23,6 @@ struct App {
 	static weak var mainWindow: MainWindowController?
 
 	static var layoutEngine = LayoutEngine()
+
+	static var masterStatus = Messages_MasterStatus()
 }

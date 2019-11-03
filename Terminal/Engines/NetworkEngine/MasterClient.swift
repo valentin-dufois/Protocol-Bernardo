@@ -85,7 +85,7 @@ class MasterClient {
 }
 
 extension MasterClient {
-	func requestStatus() {
+	@objc func requestStatus() {
 		var datagram = Messages_Datagram();
 		datagram.type = .status;
 

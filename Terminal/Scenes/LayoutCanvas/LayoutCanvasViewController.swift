@@ -13,7 +13,7 @@ class LayoutCanvasViewController: NSViewController {
 		return view as! LayoutCanvasView
 	}
 
-	var parametersView: CanvasParametersViewController!
+	var parametersView: CanvasPropertiesViewController!
 
 	@IBOutlet weak var parametersLeadingConstraint: NSLayoutConstraint!
 
@@ -32,7 +32,7 @@ class LayoutCanvasViewController: NSViewController {
 
 	override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
 		if segue.identifier == "canvasParametersSegue" {
-			parametersView = segue.destinationController as? CanvasParametersViewController
+			parametersView = segue.destinationController as? CanvasPropertiesViewController
 			parametersView.viewLeadingConstraint = parametersLeadingConstraint
 		}
 	}

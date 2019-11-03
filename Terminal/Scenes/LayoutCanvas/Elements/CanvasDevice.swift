@@ -94,8 +94,8 @@ extension CanvasDevice {
 
 // MARK: - CanvasElement
 extension CanvasDevice: CanvasElement {
-	func getParametersViews() -> [CanvasParameter] {
-		var views = [CanvasParameter]()
+	func getParametersViews() -> [CanvasProperty] {
+		var views = [CanvasProperty]()
 
 		views.append(CPSection.make(title: "Device"))
 		views.append(CPString.make(label: "Name",

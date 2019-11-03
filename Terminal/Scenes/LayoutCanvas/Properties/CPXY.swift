@@ -7,7 +7,7 @@
 
 import AppKit
 
-class CPXY: NSView, CanvasParameter {
+class CPXY: NSView, CanvasProperty {
 	var displayHeight: Float = 44
 
 	@IBOutlet weak var XField: NSTextField!
@@ -23,7 +23,7 @@ class CPXY: NSView, CanvasParameter {
 	weak var delegate: CPDelegate?
 
 	static func make(prefix aPrefix: String, defaultX: Double, defaultY: Double, unit aUnit: String, delegate aDelegate: CPDelegate?) -> CPXY {
-		let view:CPXY = NSNib.make(fromNib: "CanvasParametersViews", owner: nil);
+		let view:CPXY = NSNib.make(fromNib: "CanvasPropertiesViews", owner: nil);
 		view.prefix = aPrefix
 
 		view.set(XValue: defaultX);

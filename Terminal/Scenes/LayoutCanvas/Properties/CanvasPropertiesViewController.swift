@@ -7,15 +7,15 @@
 
 import AppKit
 
-class CanvasParametersViewController: NSViewController {
+class CanvasPropertiesViewController: NSViewController {
 
 	@IBOutlet weak var parametersTable: NSTableView!
 
 	weak var viewLeadingConstraint: NSLayoutConstraint!
 
-	var parametersViews = [CanvasParameter]()
+	var parametersViews = [CanvasProperty]()
 
-	func showParameters(_ views: [CanvasParameter]) {
+	func showParameters(_ views: [CanvasProperty]) {
 		view.isHidden = false
 		NSAnimationContext.runAnimationGroup({ _ in
 			NSAnimationContext.current.duration = 0.15
@@ -40,7 +40,7 @@ class CanvasParametersViewController: NSViewController {
 	}
 }
 
-extension CanvasParametersViewController: NSTableViewDataSource {
+extension CanvasPropertiesViewController: NSTableViewDataSource {
 	func numberOfRows(in tableView: NSTableView) -> Int {
 		return parametersViews.count
 	}
@@ -50,7 +50,7 @@ extension CanvasParametersViewController: NSTableViewDataSource {
 	}
 }
 
-extension CanvasParametersViewController: NSTableViewDelegate {
+extension CanvasPropertiesViewController: NSTableViewDelegate {
 	func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
 		return parametersViews[row];
 	}

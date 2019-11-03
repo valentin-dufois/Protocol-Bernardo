@@ -17,6 +17,8 @@ class NetworkEngine {
 
 	private var _master = MasterClient();
 
+	private var _masterStatusTimer: Timer?
+
 	var master: MasterClient {
 		return _master;
 	}
@@ -68,8 +70,13 @@ extension NetworkEngine: MasterClientDelegate {
 		// Upon opening, send a ping
 		_master.ping();
 
-		// Request the status
-		_master.requestStatus();
+		DispatchQueue.main.async {
+			self._masterStatusTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.requestMasterStatus), userInfo: nil, repeats: true)
+		}
+	}
+
+	@objc private func requestMasterStatus() {
+		_master.requestStatus()
 	}
 
 	func master(_: MasterClient, receivedDatagram datagram: Messages_Datagram) {
@@ -91,7 +98,10 @@ extension NetworkEngine: MasterClientDelegate {
 		// Decode the status
 		let status = try! Messages_MasterStatus(unpackingAny: data)
 
-		// Pass along
+		// Store the status until the next one for everyone to access
+		App.masterStatus = status
+
+		// Pass along to the delegate
 		delegate?.onReceive(status: status);
 	}
 

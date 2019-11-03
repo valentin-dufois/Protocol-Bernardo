@@ -31,6 +31,12 @@ class Device {
 	/// The device's orientation (in degrees)
 	var orientation = simd_double3(0, 0, 0)
 
+	var physicalUID: String = ""
+
+	var positionDelta = simd_double3(0, 0, 0);
+
+	var orientationDelta = simd_double3(0, 0, 0);
+
 	/// Fill in the device using the given message
 	/// - Parameter message: -
 	convenience init(fromMessage message: Messages_Device) {
@@ -76,6 +82,21 @@ class Device {
 
 		message.position = positionMessage
 		message.orientation = orientationMessage
+
+		message.physicaluid = physicalUID
+
+		var positionDeltaMessage = Messages_vec3()
+		positionDeltaMessage.x = positionDelta.x
+		positionDeltaMessage.y = positionDelta.y
+		positionDeltaMessage.z = positionDelta.z
+
+		var orientationDeltaMessage = Messages_vec3()
+		orientationDeltaMessage.x = orientationDelta.x
+		orientationDeltaMessage.y = orientationDelta.y
+		orientationDeltaMessage.z = orientationDelta.z
+
+		message.positionDelta = positionDeltaMessage
+		message.orientationDelta = orientationDeltaMessage
 
 		return message
 	}

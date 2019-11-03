@@ -469,8 +469,11 @@ class Device :
   enum : int {
     kNameFieldNumber = 10,
     kUidFieldNumber = 20,
+    kPhysicaluidFieldNumber = 80,
     kPositionFieldNumber = 60,
     kOrientationFieldNumber = 70,
+    kPositionDeltaFieldNumber = 90,
+    kOrientationDeltaFieldNumber = 100,
     kHorizontalFOVFieldNumber = 30,
     kMinDistanceFieldNumber = 40,
     kMaxDistanceFieldNumber = 50,
@@ -507,6 +510,22 @@ class Device :
   std::string* _internal_mutable_uid();
   public:
 
+  // string physicaluid = 80;
+  void clear_physicaluid();
+  const std::string& physicaluid() const;
+  void set_physicaluid(const std::string& value);
+  void set_physicaluid(std::string&& value);
+  void set_physicaluid(const char* value);
+  void set_physicaluid(const char* value, size_t size);
+  std::string* mutable_physicaluid();
+  std::string* release_physicaluid();
+  void set_allocated_physicaluid(std::string* physicaluid);
+  private:
+  const std::string& _internal_physicaluid() const;
+  void _internal_set_physicaluid(const std::string& value);
+  std::string* _internal_mutable_physicaluid();
+  public:
+
   // .messages.vec3 position = 60;
   bool has_position() const;
   private:
@@ -535,6 +554,36 @@ class Device :
   private:
   const ::messages::vec3& _internal_orientation() const;
   ::messages::vec3* _internal_mutable_orientation();
+  public:
+
+  // .messages.vec3 positionDelta = 90;
+  bool has_positiondelta() const;
+  private:
+  bool _internal_has_positiondelta() const;
+  public:
+  void clear_positiondelta();
+  const ::messages::vec3& positiondelta() const;
+  ::messages::vec3* release_positiondelta();
+  ::messages::vec3* mutable_positiondelta();
+  void set_allocated_positiondelta(::messages::vec3* positiondelta);
+  private:
+  const ::messages::vec3& _internal_positiondelta() const;
+  ::messages::vec3* _internal_mutable_positiondelta();
+  public:
+
+  // .messages.vec3 orientationDelta = 100;
+  bool has_orientationdelta() const;
+  private:
+  bool _internal_has_orientationdelta() const;
+  public:
+  void clear_orientationdelta();
+  const ::messages::vec3& orientationdelta() const;
+  ::messages::vec3* release_orientationdelta();
+  ::messages::vec3* mutable_orientationdelta();
+  void set_allocated_orientationdelta(::messages::vec3* orientationdelta);
+  private:
+  const ::messages::vec3& _internal_orientationdelta() const;
+  ::messages::vec3* _internal_mutable_orientationdelta();
   public:
 
   // double horizontalFOV = 30;
@@ -571,8 +620,11 @@ class Device :
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr uid_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr physicaluid_;
   ::messages::vec3* position_;
   ::messages::vec3* orientation_;
+  ::messages::vec3* positiondelta_;
+  ::messages::vec3* orientationdelta_;
   double horizontalfov_;
   double mindistance_;
   double maxdistance_;
@@ -1397,6 +1449,174 @@ inline void Device::set_allocated_orientation(::messages::vec3* orientation) {
   }
   orientation_ = orientation;
   // @@protoc_insertion_point(field_set_allocated:messages.Device.orientation)
+}
+
+// string physicaluid = 80;
+inline void Device::clear_physicaluid() {
+  physicaluid_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline const std::string& Device::physicaluid() const {
+  // @@protoc_insertion_point(field_get:messages.Device.physicaluid)
+  return _internal_physicaluid();
+}
+inline void Device::set_physicaluid(const std::string& value) {
+  _internal_set_physicaluid(value);
+  // @@protoc_insertion_point(field_set:messages.Device.physicaluid)
+}
+inline std::string* Device::mutable_physicaluid() {
+  // @@protoc_insertion_point(field_mutable:messages.Device.physicaluid)
+  return _internal_mutable_physicaluid();
+}
+inline const std::string& Device::_internal_physicaluid() const {
+  return physicaluid_.GetNoArena();
+}
+inline void Device::_internal_set_physicaluid(const std::string& value) {
+  
+  physicaluid_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void Device::set_physicaluid(std::string&& value) {
+  
+  physicaluid_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:messages.Device.physicaluid)
+}
+inline void Device::set_physicaluid(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  physicaluid_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:messages.Device.physicaluid)
+}
+inline void Device::set_physicaluid(const char* value, size_t size) {
+  
+  physicaluid_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:messages.Device.physicaluid)
+}
+inline std::string* Device::_internal_mutable_physicaluid() {
+  
+  return physicaluid_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* Device::release_physicaluid() {
+  // @@protoc_insertion_point(field_release:messages.Device.physicaluid)
+  
+  return physicaluid_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void Device::set_allocated_physicaluid(std::string* physicaluid) {
+  if (physicaluid != nullptr) {
+    
+  } else {
+    
+  }
+  physicaluid_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), physicaluid);
+  // @@protoc_insertion_point(field_set_allocated:messages.Device.physicaluid)
+}
+
+// .messages.vec3 positionDelta = 90;
+inline bool Device::_internal_has_positiondelta() const {
+  return this != internal_default_instance() && positiondelta_ != nullptr;
+}
+inline bool Device::has_positiondelta() const {
+  return _internal_has_positiondelta();
+}
+inline const ::messages::vec3& Device::_internal_positiondelta() const {
+  const ::messages::vec3* p = positiondelta_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::messages::vec3*>(
+      &::messages::_vec3_default_instance_);
+}
+inline const ::messages::vec3& Device::positiondelta() const {
+  // @@protoc_insertion_point(field_get:messages.Device.positionDelta)
+  return _internal_positiondelta();
+}
+inline ::messages::vec3* Device::release_positiondelta() {
+  // @@protoc_insertion_point(field_release:messages.Device.positionDelta)
+  
+  ::messages::vec3* temp = positiondelta_;
+  positiondelta_ = nullptr;
+  return temp;
+}
+inline ::messages::vec3* Device::_internal_mutable_positiondelta() {
+  
+  if (positiondelta_ == nullptr) {
+    auto* p = CreateMaybeMessage<::messages::vec3>(GetArenaNoVirtual());
+    positiondelta_ = p;
+  }
+  return positiondelta_;
+}
+inline ::messages::vec3* Device::mutable_positiondelta() {
+  // @@protoc_insertion_point(field_mutable:messages.Device.positionDelta)
+  return _internal_mutable_positiondelta();
+}
+inline void Device::set_allocated_positiondelta(::messages::vec3* positiondelta) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(positiondelta_);
+  }
+  if (positiondelta) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      positiondelta = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, positiondelta, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  positiondelta_ = positiondelta;
+  // @@protoc_insertion_point(field_set_allocated:messages.Device.positionDelta)
+}
+
+// .messages.vec3 orientationDelta = 100;
+inline bool Device::_internal_has_orientationdelta() const {
+  return this != internal_default_instance() && orientationdelta_ != nullptr;
+}
+inline bool Device::has_orientationdelta() const {
+  return _internal_has_orientationdelta();
+}
+inline const ::messages::vec3& Device::_internal_orientationdelta() const {
+  const ::messages::vec3* p = orientationdelta_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::messages::vec3*>(
+      &::messages::_vec3_default_instance_);
+}
+inline const ::messages::vec3& Device::orientationdelta() const {
+  // @@protoc_insertion_point(field_get:messages.Device.orientationDelta)
+  return _internal_orientationdelta();
+}
+inline ::messages::vec3* Device::release_orientationdelta() {
+  // @@protoc_insertion_point(field_release:messages.Device.orientationDelta)
+  
+  ::messages::vec3* temp = orientationdelta_;
+  orientationdelta_ = nullptr;
+  return temp;
+}
+inline ::messages::vec3* Device::_internal_mutable_orientationdelta() {
+  
+  if (orientationdelta_ == nullptr) {
+    auto* p = CreateMaybeMessage<::messages::vec3>(GetArenaNoVirtual());
+    orientationdelta_ = p;
+  }
+  return orientationdelta_;
+}
+inline ::messages::vec3* Device::mutable_orientationdelta() {
+  // @@protoc_insertion_point(field_mutable:messages.Device.orientationDelta)
+  return _internal_mutable_orientationdelta();
+}
+inline void Device::set_allocated_orientationdelta(::messages::vec3* orientationdelta) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(orientationdelta_);
+  }
+  if (orientationdelta) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      orientationdelta = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, orientationdelta, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  orientationdelta_ = orientationdelta;
+  // @@protoc_insertion_point(field_set_allocated:messages.Device.orientationDelta)
 }
 
 // -------------------------------------------------------------------

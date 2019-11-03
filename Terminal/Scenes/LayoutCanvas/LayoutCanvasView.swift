@@ -84,13 +84,13 @@ extension LayoutCanvasView {
 	}
 
 	override func scrollWheel(with event: NSEvent) {
-		rootNode.position.x += event.scrollingDeltaX
-		rootNode.position.y -= event.scrollingDeltaY
+		rootNode.position.x = (rootNode.position.x + event.scrollingDeltaX).clamped(to: -1000...1000);
+		rootNode.position.y = (rootNode.position.y - event.scrollingDeltaY).clamped(to: -1000...1000);
 	}
 
 	override func magnify(with event: NSEvent) {
 		// Scale the scene
-		let scale = (rootNode.xScale + event.magnification).clamped(to: 0.15...1.25)
+		let scale = (rootNode.xScale + event.magnification).clamped(to: 0.35...1.25)
 		rootNode.xScale = scale
 		rootNode.yScale = scale
 	}

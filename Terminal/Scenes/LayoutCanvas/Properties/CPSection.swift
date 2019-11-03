@@ -7,13 +7,13 @@
 
 import AppKit
 
-class CPSection: NSView, CanvasParameter {
+class CPSection: NSView, CanvasProperty {
 	var displayHeight: Float = 16
 	
 	@IBOutlet weak var title: NSTextField!
 
 	static func make(title aTitle: String) -> CPSection {
-		let view:CPSection = NSNib.make(fromNib: "CanvasParametersViews", owner: nil);
+		let view:CPSection = NSNib.make(fromNib: "CanvasPropertiesViews", owner: nil);
 		view.title.stringValue = aTitle;
 	
 		return view;

@@ -7,7 +7,7 @@
 
 import AppKit
 
-class ParametersTable: NSTableView {
+class PropertiesTable: NSTableView {
 	override func validateProposedFirstResponder(_ responder: NSResponder, for event: NSEvent?) -> Bool {
 		if responder is NSControl {
 			return true

@@ -144,6 +144,9 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_layout_2eproto::offsets[] PROT
   PROTOBUF_FIELD_OFFSET(::messages::Device, maxdistance_),
   PROTOBUF_FIELD_OFFSET(::messages::Device, position_),
   PROTOBUF_FIELD_OFFSET(::messages::Device, orientation_),
+  PROTOBUF_FIELD_OFFSET(::messages::Device, physicaluid_),
+  PROTOBUF_FIELD_OFFSET(::messages::Device, positiondelta_),
+  PROTOBUF_FIELD_OFFSET(::messages::Device, orientationdelta_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::messages::Screen, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -167,8 +170,8 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOB
   { 0, -1, sizeof(::messages::LayoutList)},
   { 6, -1, sizeof(::messages::LayoutName)},
   { 12, -1, sizeof(::messages::Device)},
-  { 24, -1, sizeof(::messages::Screen)},
-  { 34, -1, sizeof(::messages::Layout)},
+  { 27, -1, sizeof(::messages::Screen)},
+  { 37, -1, sizeof(::messages::Layout)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -182,17 +185,20 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
 const char descriptor_table_protodef_layout_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\014layout.proto\022\010messages\032\013maths.proto\" \n"
   "\nLayoutList\022\022\n\nlayoutName\030\n \003(\t\"\032\n\nLayou"
-  "tName\022\014\n\004name\030\n \001(\t\"\253\001\n\006Device\022\014\n\004name\030\n"
+  "tName\022\014\n\004name\030\n \001(\t\"\221\002\n\006Device\022\014\n\004name\030\n"
   " \001(\t\022\013\n\003uid\030\024 \001(\t\022\025\n\rhorizontalFOV\030\036 \001(\001"
   "\022\023\n\013minDistance\030( \001(\001\022\023\n\013maxDistance\0302 \001"
   "(\001\022 \n\010position\030< \001(\0132\016.messages.vec3\022#\n\013"
-  "orientation\030F \001(\0132\016.messages.vec3\"\210\001\n\006Sc"
-  "reen\022\014\n\004name\030\n \001(\t\022\013\n\003uid\030\024 \001(\t\022 \n\010posit"
-  "ion\030\036 \001(\0132\016.messages.vec3\022#\n\013orientation"
-  "\030( \001(\0132\016.messages.vec3\022\034\n\004size\0302 \001(\0132\016.m"
-  "essages.vec2\"\\\n\006Layout\022\014\n\004name\030\n \001(\t\022!\n\007"
-  "devices\030\024 \003(\0132\020.messages.Device\022!\n\007scree"
-  "ns\030\036 \003(\0132\020.messages.Screenb\006proto3"
+  "orientation\030F \001(\0132\016.messages.vec3\022\023\n\013phy"
+  "sicaluid\030P \001(\t\022%\n\rpositionDelta\030Z \001(\0132\016."
+  "messages.vec3\022(\n\020orientationDelta\030d \001(\0132"
+  "\016.messages.vec3\"\210\001\n\006Screen\022\014\n\004name\030\n \001(\t"
+  "\022\013\n\003uid\030\024 \001(\t\022 \n\010position\030\036 \001(\0132\016.messag"
+  "es.vec3\022#\n\013orientation\030( \001(\0132\016.messages."
+  "vec3\022\034\n\004size\0302 \001(\0132\016.messages.vec2\"\\\n\006La"
+  "yout\022\014\n\004name\030\n \001(\t\022!\n\007devices\030\024 \003(\0132\020.me"
+  "ssages.Device\022!\n\007screens\030\036 \003(\0132\020.message"
+  "s.Screenb\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_layout_2eproto_deps[1] = {
   &::descriptor_table_maths_2eproto,
@@ -207,7 +213,7 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_lay
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_layout_2eproto_once;
 static bool descriptor_table_layout_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_layout_2eproto = {
-  &descriptor_table_layout_2eproto_initialized, descriptor_table_protodef_layout_2eproto, "layout.proto", 514,
+  &descriptor_table_layout_2eproto_initialized, descriptor_table_protodef_layout_2eproto, "layout.proto", 616,
   &descriptor_table_layout_2eproto_once, descriptor_table_layout_2eproto_sccs, descriptor_table_layout_2eproto_deps, 5, 1,
   schemas, file_default_instances, TableStruct_layout_2eproto::offsets,
   file_level_metadata_layout_2eproto, 5, file_level_enum_descriptors_layout_2eproto, file_level_service_descriptors_layout_2eproto,
@@ -615,11 +621,17 @@ void Device::InitAsDefaultInstance() {
       ::messages::vec3::internal_default_instance());
   ::messages::_Device_default_instance_._instance.get_mutable()->orientation_ = const_cast< ::messages::vec3*>(
       ::messages::vec3::internal_default_instance());
+  ::messages::_Device_default_instance_._instance.get_mutable()->positiondelta_ = const_cast< ::messages::vec3*>(
+      ::messages::vec3::internal_default_instance());
+  ::messages::_Device_default_instance_._instance.get_mutable()->orientationdelta_ = const_cast< ::messages::vec3*>(
+      ::messages::vec3::internal_default_instance());
 }
 class Device::_Internal {
  public:
   static const ::messages::vec3& position(const Device* msg);
   static const ::messages::vec3& orientation(const Device* msg);
+  static const ::messages::vec3& positiondelta(const Device* msg);
+  static const ::messages::vec3& orientationdelta(const Device* msg);
 };
 
 const ::messages::vec3&
@@ -629,6 +641,14 @@ Device::_Internal::position(const Device* msg) {
 const ::messages::vec3&
 Device::_Internal::orientation(const Device* msg) {
   return *msg->orientation_;
+}
+const ::messages::vec3&
+Device::_Internal::positiondelta(const Device* msg) {
+  return *msg->positiondelta_;
+}
+const ::messages::vec3&
+Device::_Internal::orientationdelta(const Device* msg) {
+  return *msg->orientationdelta_;
 }
 void Device::clear_position() {
   if (GetArenaNoVirtual() == nullptr && position_ != nullptr) {
@@ -641,6 +661,18 @@ void Device::clear_orientation() {
     delete orientation_;
   }
   orientation_ = nullptr;
+}
+void Device::clear_positiondelta() {
+  if (GetArenaNoVirtual() == nullptr && positiondelta_ != nullptr) {
+    delete positiondelta_;
+  }
+  positiondelta_ = nullptr;
+}
+void Device::clear_orientationdelta() {
+  if (GetArenaNoVirtual() == nullptr && orientationdelta_ != nullptr) {
+    delete orientationdelta_;
+  }
+  orientationdelta_ = nullptr;
 }
 Device::Device()
   : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
@@ -659,6 +691,10 @@ Device::Device(const Device& from)
   if (!from._internal_uid().empty()) {
     uid_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.uid_);
   }
+  physicaluid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_physicaluid().empty()) {
+    physicaluid_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.physicaluid_);
+  }
   if (from._internal_has_position()) {
     position_ = new ::messages::vec3(*from.position_);
   } else {
@@ -668,6 +704,16 @@ Device::Device(const Device& from)
     orientation_ = new ::messages::vec3(*from.orientation_);
   } else {
     orientation_ = nullptr;
+  }
+  if (from._internal_has_positiondelta()) {
+    positiondelta_ = new ::messages::vec3(*from.positiondelta_);
+  } else {
+    positiondelta_ = nullptr;
+  }
+  if (from._internal_has_orientationdelta()) {
+    orientationdelta_ = new ::messages::vec3(*from.orientationdelta_);
+  } else {
+    orientationdelta_ = nullptr;
   }
   ::memcpy(&horizontalfov_, &from.horizontalfov_,
     static_cast<size_t>(reinterpret_cast<char*>(&maxdistance_) -
@@ -679,6 +725,7 @@ void Device::SharedCtor() {
   ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_Device_layout_2eproto.base);
   name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   uid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  physicaluid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   ::memset(&position_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&maxdistance_) -
       reinterpret_cast<char*>(&position_)) + sizeof(maxdistance_));
@@ -692,8 +739,11 @@ Device::~Device() {
 void Device::SharedDtor() {
   name_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   uid_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  physicaluid_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (this != internal_default_instance()) delete position_;
   if (this != internal_default_instance()) delete orientation_;
+  if (this != internal_default_instance()) delete positiondelta_;
+  if (this != internal_default_instance()) delete orientationdelta_;
 }
 
 void Device::SetCachedSize(int size) const {
@@ -713,6 +763,7 @@ void Device::Clear() {
 
   name_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   uid_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  physicaluid_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (GetArenaNoVirtual() == nullptr && position_ != nullptr) {
     delete position_;
   }
@@ -721,6 +772,14 @@ void Device::Clear() {
     delete orientation_;
   }
   orientation_ = nullptr;
+  if (GetArenaNoVirtual() == nullptr && positiondelta_ != nullptr) {
+    delete positiondelta_;
+  }
+  positiondelta_ = nullptr;
+  if (GetArenaNoVirtual() == nullptr && orientationdelta_ != nullptr) {
+    delete orientationdelta_;
+  }
+  orientationdelta_ = nullptr;
   ::memset(&horizontalfov_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&maxdistance_) -
       reinterpret_cast<char*>(&horizontalfov_)) + sizeof(maxdistance_));
@@ -780,6 +839,27 @@ const char* Device::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::int
       case 70:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 50)) {
           ptr = ctx->ParseMessage(_internal_mutable_orientation(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string physicaluid = 80;
+      case 80:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 130)) {
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParserUTF8(_internal_mutable_physicaluid(), ptr, ctx, "messages.Device.physicaluid");
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .messages.vec3 positionDelta = 90;
+      case 90:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 210)) {
+          ptr = ctx->ParseMessage(_internal_mutable_positiondelta(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .messages.vec3 orientationDelta = 100;
+      case 100:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
+          ptr = ctx->ParseMessage(_internal_mutable_orientationdelta(), ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -863,6 +943,32 @@ failure:
         70, _Internal::orientation(this), target, stream);
   }
 
+  // string physicaluid = 80;
+  if (this->physicaluid().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_physicaluid().data(), static_cast<int>(this->_internal_physicaluid().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "messages.Device.physicaluid");
+    target = stream->WriteStringMaybeAliased(
+        80, this->_internal_physicaluid(), target);
+  }
+
+  // .messages.vec3 positionDelta = 90;
+  if (this->has_positiondelta()) {
+    stream->EnsureSpace(&target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessageToArray(
+        90, _Internal::positiondelta(this), target, stream);
+  }
+
+  // .messages.vec3 orientationDelta = 100;
+  if (this->has_orientationdelta()) {
+    stream->EnsureSpace(&target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessageToArray(
+        100, _Internal::orientationdelta(this), target, stream);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
@@ -893,6 +999,13 @@ size_t Device::ByteSizeLong() const {
         this->_internal_uid());
   }
 
+  // string physicaluid = 80;
+  if (this->physicaluid().size() > 0) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_physicaluid());
+  }
+
   // .messages.vec3 position = 60;
   if (this->has_position()) {
     total_size += 2 +
@@ -905,6 +1018,20 @@ size_t Device::ByteSizeLong() const {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *orientation_);
+  }
+
+  // .messages.vec3 positionDelta = 90;
+  if (this->has_positiondelta()) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *positiondelta_);
+  }
+
+  // .messages.vec3 orientationDelta = 100;
+  if (this->has_orientationdelta()) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *orientationdelta_);
   }
 
   // double horizontalFOV = 30;
@@ -961,11 +1088,21 @@ void Device::MergeFrom(const Device& from) {
 
     uid_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.uid_);
   }
+  if (from.physicaluid().size() > 0) {
+
+    physicaluid_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.physicaluid_);
+  }
   if (from.has_position()) {
     _internal_mutable_position()->::messages::vec3::MergeFrom(from._internal_position());
   }
   if (from.has_orientation()) {
     _internal_mutable_orientation()->::messages::vec3::MergeFrom(from._internal_orientation());
+  }
+  if (from.has_positiondelta()) {
+    _internal_mutable_positiondelta()->::messages::vec3::MergeFrom(from._internal_positiondelta());
+  }
+  if (from.has_orientationdelta()) {
+    _internal_mutable_orientationdelta()->::messages::vec3::MergeFrom(from._internal_orientationdelta());
   }
   if (!(from.horizontalfov() <= 0 && from.horizontalfov() >= 0)) {
     _internal_set_horizontalfov(from._internal_horizontalfov());
@@ -1003,8 +1140,12 @@ void Device::InternalSwap(Device* other) {
     GetArenaNoVirtual());
   uid_.Swap(&other->uid_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
     GetArenaNoVirtual());
+  physicaluid_.Swap(&other->physicaluid_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
   swap(position_, other->position_);
   swap(orientation_, other->orientation_);
+  swap(positiondelta_, other->positiondelta_);
+  swap(orientationdelta_, other->orientationdelta_);
   swap(horizontalfov_, other->horizontalfov_);
   swap(mindistance_, other->mindistance_);
   swap(maxdistance_, other->maxdistance_);
