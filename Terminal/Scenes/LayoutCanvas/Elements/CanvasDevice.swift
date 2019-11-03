@@ -16,10 +16,15 @@ class CanvasDevice: SKNode {
 
 	override var position: CGPoint {
 		didSet {
-			device?.position.x = Double(position.x)
-			device?.position.y = Double(position.y)
+			device.position.x = Double(position.x)
+			device.position.y = Double(position.y)
+
+			positionParameters?.set(XValue: device.position.x, sendUpdate: false)
+			positionParameters?.set(YValue: device.position.y, sendUpdate: false)
 		}
 	}
+
+	var positionParameters: CPXY?
 
 	/// A device is an interactive element
 	var isInteractive = true
@@ -89,8 +94,76 @@ extension CanvasDevice {
 
 // MARK: - CanvasElement
 extension CanvasDevice: CanvasElement {
-	func getParametersViewController() -> NSViewController {
-		return NSViewController()
+	func getParametersViews() -> [CanvasParameter] {
+		var views = [CanvasParameter]()
+
+		views.append(CPSection.make(title: "Device"))
+		views.append(CPString.make(label: "Name",
+								   defaultValue: device.name,
+								   delegate: self))
+
+		views.append(CPSeparator.make())
+		views.append(CPSection.make(title: "Position"))
+
+		positionParameters = CPXY.make(prefix: "pos",
+									   defaultX: device.position.x,
+									   defaultY: device.position.y,
+									   unit: "cm",
+									   delegate: self)
+		views.append(positionParameters!)
+
+		views.append(CPDouble.make(label: "Orientation",
+								   unit: "º",
+								   defaultValue: device.orientation.z,
+								   delegate: self))
+		views.append(CPDouble.make(label: "height",
+								  unit: "cm",
+								  defaultValue: device.position.z,
+								  delegate: self))
+
+		views.append(CPSeparator.make())
+		views.append(CPSection.make(title: "Captation"))
+		views.append(CPDouble.make(label: "Field of View",
+								   unit: "º",
+								   defaultValue: device.horizontalFOV,
+								   delegate: self))
+		views.append(CPDouble.make(label: "Min. Dist.",
+								   unit: "cm",
+								   defaultValue: device.minDistance,
+								   delegate: self))
+		views.append(CPDouble.make(label: "Max. Dist.",
+								   unit: "cm",
+								   defaultValue: device.maxDistance,
+								   delegate: self))
+
+		return views
+	}
+}
+
+extension CanvasDevice: CPDelegate {
+	func property(_ pName: String, didUpdate newValue: Double) {
+		switch pName {
+		case "posX": position.x = CGFloat(newValue)
+		case "posY": position.y = CGFloat(newValue)
+		case "Orientation": device.orientation.z = newValue
+		case "Height": device.position.z = newValue
+		case "Field of View": device.horizontalFOV = newValue
+		case "Min. Dist.": device.minDistance = newValue
+		case "Max. Dist.": device.maxDistance = newValue
+		default: return
+		}
+
+		refreshAppearance()
+	}
+
+	func property(_ pName: String, didUpdate newValue: String) {
+		switch pName {
+		case "Name":
+			device.name = newValue
+		default: return
+		}
+
+		refreshAppearance()
 	}
 }
 
@@ -123,6 +196,15 @@ extension CanvasDevice {
 
 		captationAreaNode.fillColor = NSColor(highlightColor, alpha: 0.5)
 		captationAreaNode.strokeColor = NSColor(highlightColor, alpha: 0.8)
+	}
+
+	private func refreshAppearance() {
+		deviceLabel.text = device.name
+
+		captationAreaNode.zRotation = CGFloat(device.orientation.z)
+
+		captationAreaNode.path = captationArea()
+		captationAreaNode.zRotation = CGFloat(deg2rad(device.horizontalFOV / -2 + device.orientation.z + 90))
 	}
 }
 

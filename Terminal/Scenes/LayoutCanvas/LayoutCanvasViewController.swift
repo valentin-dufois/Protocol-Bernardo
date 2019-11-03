@@ -13,6 +13,10 @@ class LayoutCanvasViewController: NSViewController {
 		return view as! LayoutCanvasView
 	}
 
+	var parametersView: CanvasParametersViewController!
+
+	@IBOutlet weak var parametersLeadingConstraint: NSLayoutConstraint!
+
 	override func viewDidLoad() {
 		super.viewDidAppear()
 
@@ -24,6 +28,13 @@ class LayoutCanvasViewController: NSViewController {
 		canvas.allowsTransparency = true
 		canvas.presentScene(SKScene(fileNamed: "LayoutCanvasScene"));
 		canvas.scene?.delegate = self
+	}
+
+	override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
+		if segue.identifier == "canvasParametersSegue" {
+			parametersView = segue.destinationController as? CanvasParametersViewController
+			parametersView.viewLeadingConstraint = parametersLeadingConstraint
+		}
 	}
 }
 

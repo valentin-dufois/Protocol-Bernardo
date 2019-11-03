@@ -32,6 +32,15 @@ class LayoutCanvasView: SKView {
 		// Update the selected element
 		selectedElement = element;
 		selectedElement?.set(appearance: .selected)
+
+		guard selectedElement != nil else {
+			// Hide the parameters
+			controller.parametersView.hideParameters()
+			return
+		}
+
+		// Display the element parameters
+		controller.parametersView.showParameters(selectedElement!.getParametersViews())
 	}
 }
 

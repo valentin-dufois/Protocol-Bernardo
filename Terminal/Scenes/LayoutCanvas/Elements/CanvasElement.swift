@@ -28,7 +28,7 @@ protocol CanvasElement: SKNode {
 	func set(appearance: CanvasElementAppearance)
 
 	/// Gives the element parameters view controller
-	func getParametersViewController() -> NSViewController
+	func getParametersViews() -> [CanvasParameter]
 
 	// MARK: Events
 

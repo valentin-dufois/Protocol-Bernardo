@@ -44,6 +44,8 @@
 		3950170E23416C9C00E7F6BD /* SocketStatus.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3950170D23416C9C00E7F6BD /* SocketStatus.hpp */; };
 		3950170F2341792D00E7F6BD /* AcquisitorClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3962B348233EE6AB00AEAD8B /* AcquisitorClient.cpp */; };
 		39512F8A235537DF00A88539 /* SwiftProtobuf in Frameworks */ = {isa = PBXBuildFile; productRef = 39512F89235537DF00A88539 /* SwiftProtobuf */; };
+		3957A738236F6DAF00AB54D0 /* CanvasParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3957A737236F6DAF00AB54D0 /* CanvasParameter.swift */; };
+		3957A73A236F73EA00AB54D0 /* ParametersTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3957A739236F73EA00AB54D0 /* ParametersTable.swift */; };
 		39580E882358E43800CD3CEC /* Socket in Frameworks */ = {isa = PBXBuildFile; productRef = 39580E872358E43800CD3CEC /* Socket */; };
 		39580E8A23591B0800CD3CEC /* MasterClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39580E8923591B0800CD3CEC /* MasterClient.swift */; };
 		39580E8D23591F7500CD3CEC /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39580E8C23591F7500CD3CEC /* Log.swift */; };
@@ -115,6 +117,15 @@
 		39CA4ADB2331486D00E528CD /* Endpoint.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 39CA4ACA2331486D00E528CD /* Endpoint.hpp */; };
 		39CA4ADD2331486D00E528CD /* Browser.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 39CA4ACC2331486D00E528CD /* Browser.hpp */; };
 		39CA4AFD2332BDAB00E528CD /* Log.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 39CA4AFC2332BDAB00E528CD /* Log.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
+		39DE4D5F236F2EEB00F16CBD /* CanvasParametersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DE4D5E236F2EEB00F16CBD /* CanvasParametersViewController.swift */; };
+		39DE4D61236F318800F16CBD /* CanvasParametersViews.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39DE4D60236F318800F16CBD /* CanvasParametersViews.xib */; };
+		39DE4D63236F37BF00F16CBD /* CPSeparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DE4D62236F37BF00F16CBD /* CPSeparator.swift */; };
+		39DE4D65236F383C00F16CBD /* CPSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DE4D64236F383C00F16CBD /* CPSection.swift */; };
+		39DE4D67236F389100F16CBD /* CPString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DE4D66236F389100F16CBD /* CPString.swift */; };
+		39DE4D69236F3C1200F16CBD /* NSNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DE4D68236F3C1200F16CBD /* NSNib.swift */; };
+		39DE4D6B236F3CCE00F16CBD /* CPDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DE4D6A236F3CCE00F16CBD /* CPDelegate.swift */; };
+		39DE4D6D236F3DA900F16CBD /* CPDouble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DE4D6C236F3DA900F16CBD /* CPDouble.swift */; };
+		39DE4D6F236F3FF400F16CBD /* CPXY.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DE4D6E236F3FF400F16CBD /* CPXY.swift */; };
 		39E37BF7236E2BB9007C78EA /* LayoutCanvasScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 39E37BF6236E2BB9007C78EA /* LayoutCanvasScene.sks */; };
 		39E37BFF236E31E4007C78EA /* LayoutCanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E37BFE236E31E4007C78EA /* LayoutCanvasView.swift */; };
 		39E37C01236E3DF0007C78EA /* Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E37C00236E3DF0007C78EA /* Comparable.swift */; };
@@ -283,6 +294,8 @@
 		395017092341689000E7F6BD /* Socket.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Socket.cpp; sourceTree = "<group>"; };
 		3950170A2341689000E7F6BD /* Socket.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Socket.hpp; sourceTree = "<group>"; };
 		3950170D23416C9C00E7F6BD /* SocketStatus.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SocketStatus.hpp; sourceTree = "<group>"; };
+		3957A737236F6DAF00AB54D0 /* CanvasParameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasParameter.swift; sourceTree = "<group>"; };
+		3957A739236F73EA00AB54D0 /* ParametersTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParametersTable.swift; sourceTree = "<group>"; };
 		39580E8923591B0800CD3CEC /* MasterClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterClient.swift; sourceTree = "<group>"; };
 		39580E8C23591F7500CD3CEC /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		395A79672332C04D00499894 /* libOpenNI2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libOpenNI2.dylib; path = "../../../../../usr/local/Cellar/openni2/2.2.0-debian/lib/ni2/libOpenNI2.dylib"; sourceTree = "<group>"; };
@@ -378,6 +391,15 @@
 		39CA4AFA2332BB6700E528CD /* libraries.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = libraries.hpp; sourceTree = "<group>"; };
 		39CA4AFC2332BDAB00E528CD /* Log.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Log.hpp; sourceTree = "<group>"; };
 		39D95AC42346B83C00130C39 /* Acquisitor.doxygen */ = {isa = PBXFileReference; lastKnownFileType = text; path = Acquisitor.doxygen; sourceTree = "<group>"; };
+		39DE4D5E236F2EEB00F16CBD /* CanvasParametersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasParametersViewController.swift; sourceTree = "<group>"; };
+		39DE4D60236F318800F16CBD /* CanvasParametersViews.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CanvasParametersViews.xib; sourceTree = "<group>"; };
+		39DE4D62236F37BF00F16CBD /* CPSeparator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPSeparator.swift; sourceTree = "<group>"; };
+		39DE4D64236F383C00F16CBD /* CPSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPSection.swift; sourceTree = "<group>"; };
+		39DE4D66236F389100F16CBD /* CPString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPString.swift; sourceTree = "<group>"; };
+		39DE4D68236F3C1200F16CBD /* NSNib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSNib.swift; sourceTree = "<group>"; };
+		39DE4D6A236F3CCE00F16CBD /* CPDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPDelegate.swift; sourceTree = "<group>"; };
+		39DE4D6C236F3DA900F16CBD /* CPDouble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPDouble.swift; sourceTree = "<group>"; };
+		39DE4D6E236F3FF400F16CBD /* CPXY.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPXY.swift; sourceTree = "<group>"; };
 		39E37BF6236E2BB9007C78EA /* LayoutCanvasScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LayoutCanvasScene.sks; sourceTree = "<group>"; };
 		39E37BFE236E31E4007C78EA /* LayoutCanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutCanvasView.swift; sourceTree = "<group>"; };
 		39E37C00236E3DF0007C78EA /* Comparable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comparable.swift; sourceTree = "<group>"; };
@@ -514,7 +536,7 @@
 		3928CC252367AA11006E8D9F /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				39C97961236A28D400ABED6E /* LayoutInterface */,
+				39C97961236A28D400ABED6E /* LayoutCanvas */,
 				391159072369E99C00ED75C5 /* LayoutsManager */,
 				39CA4AAA2331413D00E528CD /* Main.storyboard */,
 				39CA4AA62331413A00E528CD /* MainViewController.swift */,
@@ -603,6 +625,7 @@
 		39580E8B23591F6900CD3CEC /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				39DE4D68236F3C1200F16CBD /* NSNib.swift */,
 				39E37C0F236E611B007C78EA /* Keycode.swift */,
 				39E37C0D236E4DED007C78EA /* NSColor.swift */,
 				39E37C0B236E4C69007C78EA /* maths.swift */,
@@ -734,15 +757,16 @@
 			path = Structs;
 			sourceTree = "<group>";
 		};
-		39C97961236A28D400ABED6E /* LayoutInterface */ = {
+		39C97961236A28D400ABED6E /* LayoutCanvas */ = {
 			isa = PBXGroup;
 			children = (
+				39DE4D5D236F2EBE00F16CBD /* Parameters */,
 				39E37C02236E4407007C78EA /* Elements */,
-				39C97962236A28F900ABED6E /* LayoutCanvasViewController.swift */,
 				39E37BF6236E2BB9007C78EA /* LayoutCanvasScene.sks */,
+				39C97962236A28F900ABED6E /* LayoutCanvasViewController.swift */,
 				39E37BFE236E31E4007C78EA /* LayoutCanvasView.swift */,
 			);
-			path = LayoutInterface;
+			path = LayoutCanvas;
 			sourceTree = "<group>";
 		};
 		39CA4A6C23313F1E00E528CD = {
@@ -929,6 +953,23 @@
 			children = (
 			);
 			path = Acquisitor;
+			sourceTree = "<group>";
+		};
+		39DE4D5D236F2EBE00F16CBD /* Parameters */ = {
+			isa = PBXGroup;
+			children = (
+				39DE4D5E236F2EEB00F16CBD /* CanvasParametersViewController.swift */,
+				39DE4D60236F318800F16CBD /* CanvasParametersViews.xib */,
+				39DE4D62236F37BF00F16CBD /* CPSeparator.swift */,
+				3957A737236F6DAF00AB54D0 /* CanvasParameter.swift */,
+				39DE4D64236F383C00F16CBD /* CPSection.swift */,
+				39DE4D66236F389100F16CBD /* CPString.swift */,
+				39DE4D6A236F3CCE00F16CBD /* CPDelegate.swift */,
+				39DE4D6C236F3DA900F16CBD /* CPDouble.swift */,
+				39DE4D6E236F3FF400F16CBD /* CPXY.swift */,
+				3957A739236F73EA00AB54D0 /* ParametersTable.swift */,
+			);
+			path = Parameters;
 			sourceTree = "<group>";
 		};
 		39E37C02236E4407007C78EA /* Elements */ = {
@@ -1169,6 +1210,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				39CA4AA92331413D00E528CD /* Assets.xcassets in Resources */,
+				39DE4D61236F318800F16CBD /* CanvasParametersViews.xib in Resources */,
 				39CA4AAC2331413D00E528CD /* Main.storyboard in Resources */,
 				39E37BF7236E2BB9007C78EA /* LayoutCanvasScene.sks in Resources */,
 			);
@@ -1277,13 +1319,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				3937AE0923566634009E6021 /* body.pb.swift in Sources */,
+				39DE4D6F236F3FF400F16CBD /* CPXY.swift in Sources */,
 				393AB5882368DAED00F4F087 /* NetworkEngineDelegate.swift in Sources */,
 				3937ADF923565C6C009E6021 /* MainWindowContoller.swift in Sources */,
 				39580E8D23591F7500CD3CEC /* Log.swift in Sources */,
 				3937AE0B23566634009E6021 /* network.pb.swift in Sources */,
+				39DE4D6B236F3CCE00F16CBD /* CPDelegate.swift in Sources */,
 				3937AE0C23566634009E6021 /* maths.pb.swift in Sources */,
+				39DE4D69236F3C1200F16CBD /* NSNib.swift in Sources */,
+				39DE4D67236F389100F16CBD /* CPString.swift in Sources */,
 				39E37C04236E4417007C78EA /* CanvasElement.swift in Sources */,
 				3928CC272367AA2A006E8D9F /* App.swift in Sources */,
+				3957A73A236F73EA00AB54D0 /* ParametersTable.swift in Sources */,
+				3957A738236F6DAF00AB54D0 /* CanvasParameter.swift in Sources */,
 				39C97963236A28F900ABED6E /* LayoutCanvasViewController.swift in Sources */,
 				39E37C01236E3DF0007C78EA /* Comparable.swift in Sources */,
 				39E37C06236E4497007C78EA /* CanvasElementDelegate.swift in Sources */,
@@ -1296,14 +1344,18 @@
 				39C9795E236A203900ABED6E /* Layout.swift in Sources */,
 				39580E8A23591B0800CD3CEC /* MasterClient.swift in Sources */,
 				39E37C08236E46F0007C78EA /* CanvasElementAppearance.swift in Sources */,
+				39DE4D5F236F2EEB00F16CBD /* CanvasParametersViewController.swift in Sources */,
 				39CA4AA72331413A00E528CD /* MainViewController.swift in Sources */,
+				39DE4D63236F37BF00F16CBD /* CPSeparator.swift in Sources */,
 				391159092369E9BE00ED75C5 /* NewLayoutViewController.swift in Sources */,
 				39E37C0A236E47AE007C78EA /* CanvasDevice.swift in Sources */,
+				39DE4D65236F383C00F16CBD /* CPSection.swift in Sources */,
 				39C9795B2369FCE900ABED6E /* DeleteLayoutViewController.swift in Sources */,
 				39E37C0C236E4C69007C78EA /* maths.swift in Sources */,
 				3937ADFE23565E70009E6021 /* Browser.swift in Sources */,
 				39CA4AA52331413A00E528CD /* AppDelegate.swift in Sources */,
 				393AB58A2368E14400F4F087 /* LayoutManagerViewController.swift in Sources */,
+				39DE4D6D236F3DA900F16CBD /* CPDouble.swift in Sources */,
 				3911590D2369E9F100ED75C5 /* LayoutEngine.swift in Sources */,
 				39E37BFF236E31E4007C78EA /* LayoutCanvasView.swift in Sources */,
 				39E37C0E236E4DED007C78EA /* NSColor.swift in Sources */,
