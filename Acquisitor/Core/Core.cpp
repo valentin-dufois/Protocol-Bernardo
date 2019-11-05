@@ -27,7 +27,7 @@ void Core::init() {
 	_server = new AcquisitorServer(Endpoint::Type::acquisitor);
 
 	// Setup the Pose estimation engine
-	_poseEngine.onBody = [&] (const Body * body) {
+	_poseEngine.onBody = [&] (const RawBody * body) {
 		onBody(body);
 	};
 	
@@ -42,7 +42,7 @@ void Core::run() {
 	}
 }
 
-void Core::onBody(const Body * body) {
+void Core::onBody(const RawBody * body) {
 	_server->sendBody(body);
 
 	delete body;

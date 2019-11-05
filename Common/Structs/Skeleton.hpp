@@ -56,6 +56,15 @@ struct Skeleton  {
 	/// Default constructor
 	Skeleton() = default;
 
+	/// Copy constructor
+	Skeleton(const Skeleton &skel) {
+		centerOfMass = skel.centerOfMass;
+
+		for(int i = 0; i < 15; ++i) {
+			joints[i] = skel.joints[i];
+		}
+	}
+
 	/// Build a skeleton from a message
 	Skeleton(const messages::Skeleton &message) {
 		centerOfMass = maths::fromMessage(message.centerofmass());

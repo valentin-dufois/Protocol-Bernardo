@@ -92,8 +92,6 @@ void MasterServer::onStatusRequest(Socket * socket) {
 
 	// Fill in the status
 	status.set_activelayout(layoutName);
-
-	Log::debug(layoutName);
 	
 	// Build the datagram
 	protobuf::Message * datagram = messages::makeDatagram(messages::Datagram_Type_STATUS, status);

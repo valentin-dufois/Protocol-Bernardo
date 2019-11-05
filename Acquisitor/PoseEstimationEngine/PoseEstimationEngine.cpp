@@ -43,7 +43,7 @@ void PoseEstimationEngine::onNewDevice(const Device * device) {
 			break;
 	}
 
-	tracker->bodyHandler = [&] (const Body * body) {
+	tracker->bodyHandler = [&] (const RawBody * body) {
 		if(onBody)
 			onBody(body);
 	};

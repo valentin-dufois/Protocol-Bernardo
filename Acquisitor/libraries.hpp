@@ -30,6 +30,6 @@
 #include "../Common/Utils/Log.hpp"
 #include "../Common/Utils/maths.hpp"
 
-#include "../Common/Structs/Body.hpp"
+#include "../Common/Structs/RawBody.hpp"
 
 #endif /* libraries_h */

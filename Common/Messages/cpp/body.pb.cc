@@ -28,26 +28,11 @@ class SkeletonDefaultTypeInternal {
  public:
   ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Skeleton> _instance;
 } _Skeleton_default_instance_;
-class BodyDefaultTypeInternal {
+class RawBodyDefaultTypeInternal {
  public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Body> _instance;
-} _Body_default_instance_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<RawBody> _instance;
+} _RawBody_default_instance_;
 }  // namespace messages
-static void InitDefaultsscc_info_Body_body_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::messages::_Body_default_instance_;
-    new (ptr) ::messages::Body();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::messages::Body::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_Body_body_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_Body_body_2eproto}, {
-      &scc_info_Skeleton_body_2eproto.base,}};
-
 static void InitDefaultsscc_info_Joint_body_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
@@ -64,6 +49,21 @@ static void InitDefaultsscc_info_Joint_body_2eproto() {
       &scc_info_vec4_maths_2eproto.base,
       &scc_info_vec3_maths_2eproto.base,
       &scc_info_vec2_maths_2eproto.base,}};
+
+static void InitDefaultsscc_info_RawBody_body_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::messages::_RawBody_default_instance_;
+    new (ptr) ::messages::RawBody();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::messages::RawBody::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_RawBody_body_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_RawBody_body_2eproto}, {
+      &scc_info_Skeleton_body_2eproto.base,}};
 
 static void InitDefaultsscc_info_Skeleton_body_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
@@ -104,25 +104,25 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_body_2eproto::offsets[] PROTOB
   PROTOBUF_FIELD_OFFSET(::messages::Skeleton, joints_),
   PROTOBUF_FIELD_OFFSET(::messages::Skeleton, centerofmass_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::messages::Body, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::messages::RawBody, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::messages::Body, uid_),
-  PROTOBUF_FIELD_OFFSET(::messages::Body, skeleton_),
-  PROTOBUF_FIELD_OFFSET(::messages::Body, state_),
-  PROTOBUF_FIELD_OFFSET(::messages::Body, deviceuid_),
+  PROTOBUF_FIELD_OFFSET(::messages::RawBody, uid_),
+  PROTOBUF_FIELD_OFFSET(::messages::RawBody, skeleton_),
+  PROTOBUF_FIELD_OFFSET(::messages::RawBody, state_),
+  PROTOBUF_FIELD_OFFSET(::messages::RawBody, deviceuid_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(::messages::Joint)},
   { 10, -1, sizeof(::messages::Skeleton)},
-  { 17, -1, sizeof(::messages::Body)},
+  { 17, -1, sizeof(::messages::RawBody)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::messages::_Joint_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::messages::_Skeleton_default_instance_),
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::messages::_Body_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::messages::_RawBody_default_instance_),
 };
 
 const char descriptor_table_protodef_body_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -133,25 +133,25 @@ const char descriptor_table_protodef_body_2eproto[] PROTOBUF_SECTION_VARIABLE(pr
   "D\030\004 \001(\0132\016.messages.vec2\022\032\n\022positionConfi"
   "dence\030\005 \001(\001\"Q\n\010Skeleton\022\037\n\006joints\030\001 \003(\0132"
   "\017.messages.Joint\022$\n\014centerOfMass\030\002 \001(\0132\016"
-  ".messages.vec3\"\312\001\n\004Body\022\013\n\003uid\030\001 \001(\005\022$\n\010"
-  "skeleton\030\002 \001(\0132\022.messages.Skeleton\022#\n\005st"
-  "ate\030\003 \001(\0162\024.messages.Body.State\022\021\n\tdevic"
-  "eUID\030\004 \001(\t\"W\n\005State\022\t\n\005error\020\000\022\016\n\nnoSkel"
-  "eton\020\001\022\017\n\013calibrating\020\002\022\013\n\007tracked\020\003\022\013\n\007"
-  "missing\020\004\022\010\n\004lost\020\005b\006proto3"
+  ".messages.vec3\"\320\001\n\007RawBody\022\013\n\003uid\030\001 \001(\005\022"
+  "$\n\010skeleton\030\002 \001(\0132\022.messages.Skeleton\022&\n"
+  "\005state\030\003 \001(\0162\027.messages.RawBody.State\022\021\n"
+  "\tdeviceUID\030\004 \001(\t\"W\n\005State\022\t\n\005error\020\000\022\016\n\n"
+  "noSkeleton\020\001\022\017\n\013calibrating\020\002\022\013\n\007tracked"
+  "\020\003\022\013\n\007missing\020\004\022\010\n\004lost\020\005b\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_body_2eproto_deps[1] = {
   &::descriptor_table_maths_2eproto,
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_body_2eproto_sccs[3] = {
-  &scc_info_Body_body_2eproto.base,
   &scc_info_Joint_body_2eproto.base,
+  &scc_info_RawBody_body_2eproto.base,
   &scc_info_Skeleton_body_2eproto.base,
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_body_2eproto_once;
 static bool descriptor_table_body_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_body_2eproto = {
-  &descriptor_table_body_2eproto_initialized, descriptor_table_protodef_body_2eproto, "body.proto", 507,
+  &descriptor_table_body_2eproto_initialized, descriptor_table_protodef_body_2eproto, "body.proto", 513,
   &descriptor_table_body_2eproto_once, descriptor_table_body_2eproto_sccs, descriptor_table_body_2eproto_deps, 3, 1,
   schemas, file_default_instances, TableStruct_body_2eproto::offsets,
   file_level_metadata_body_2eproto, 3, file_level_enum_descriptors_body_2eproto, file_level_service_descriptors_body_2eproto,
@@ -160,11 +160,11 @@ const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_body_2
 // Force running AddDescriptors() at dynamic initialization time.
 static bool dynamic_init_dummy_body_2eproto = (  ::PROTOBUF_NAMESPACE_ID::internal::AddDescriptors(&descriptor_table_body_2eproto), true);
 namespace messages {
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* Body_State_descriptor() {
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* RawBody_State_descriptor() {
   ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_body_2eproto);
   return file_level_enum_descriptors_body_2eproto[0];
 }
-bool Body_State_IsValid(int value) {
+bool RawBody_State_IsValid(int value) {
   switch (value) {
     case 0:
     case 1:
@@ -179,15 +179,15 @@ bool Body_State_IsValid(int value) {
 }
 
 #if (__cplusplus < 201703) && (!defined(_MSC_VER) || _MSC_VER >= 1900)
-constexpr Body_State Body::error;
-constexpr Body_State Body::noSkeleton;
-constexpr Body_State Body::calibrating;
-constexpr Body_State Body::tracked;
-constexpr Body_State Body::missing;
-constexpr Body_State Body::lost;
-constexpr Body_State Body::State_MIN;
-constexpr Body_State Body::State_MAX;
-constexpr int Body::State_ARRAYSIZE;
+constexpr RawBody_State RawBody::error;
+constexpr RawBody_State RawBody::noSkeleton;
+constexpr RawBody_State RawBody::calibrating;
+constexpr RawBody_State RawBody::tracked;
+constexpr RawBody_State RawBody::missing;
+constexpr RawBody_State RawBody::lost;
+constexpr RawBody_State RawBody::State_MIN;
+constexpr RawBody_State RawBody::State_MAX;
+constexpr int RawBody::State_ARRAYSIZE;
 #endif  // (__cplusplus < 201703) && (!defined(_MSC_VER) || _MSC_VER >= 1900)
 
 // ===================================================================
@@ -793,25 +793,25 @@ void Skeleton::InternalSwap(Skeleton* other) {
 
 // ===================================================================
 
-void Body::InitAsDefaultInstance() {
-  ::messages::_Body_default_instance_._instance.get_mutable()->skeleton_ = const_cast< ::messages::Skeleton*>(
+void RawBody::InitAsDefaultInstance() {
+  ::messages::_RawBody_default_instance_._instance.get_mutable()->skeleton_ = const_cast< ::messages::Skeleton*>(
       ::messages::Skeleton::internal_default_instance());
 }
-class Body::_Internal {
+class RawBody::_Internal {
  public:
-  static const ::messages::Skeleton& skeleton(const Body* msg);
+  static const ::messages::Skeleton& skeleton(const RawBody* msg);
 };
 
 const ::messages::Skeleton&
-Body::_Internal::skeleton(const Body* msg) {
+RawBody::_Internal::skeleton(const RawBody* msg) {
   return *msg->skeleton_;
 }
-Body::Body()
+RawBody::RawBody()
   : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:messages.Body)
+  // @@protoc_insertion_point(constructor:messages.RawBody)
 }
-Body::Body(const Body& from)
+RawBody::RawBody(const RawBody& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
       _internal_metadata_(nullptr) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
@@ -827,38 +827,38 @@ Body::Body(const Body& from)
   ::memcpy(&uid_, &from.uid_,
     static_cast<size_t>(reinterpret_cast<char*>(&state_) -
     reinterpret_cast<char*>(&uid_)) + sizeof(state_));
-  // @@protoc_insertion_point(copy_constructor:messages.Body)
+  // @@protoc_insertion_point(copy_constructor:messages.RawBody)
 }
 
-void Body::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_Body_body_2eproto.base);
+void RawBody::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_RawBody_body_2eproto.base);
   deviceuid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   ::memset(&skeleton_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&state_) -
       reinterpret_cast<char*>(&skeleton_)) + sizeof(state_));
 }
 
-Body::~Body() {
-  // @@protoc_insertion_point(destructor:messages.Body)
+RawBody::~RawBody() {
+  // @@protoc_insertion_point(destructor:messages.RawBody)
   SharedDtor();
 }
 
-void Body::SharedDtor() {
+void RawBody::SharedDtor() {
   deviceuid_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (this != internal_default_instance()) delete skeleton_;
 }
 
-void Body::SetCachedSize(int size) const {
+void RawBody::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const Body& Body::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_Body_body_2eproto.base);
+const RawBody& RawBody::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_RawBody_body_2eproto.base);
   return *internal_default_instance();
 }
 
 
-void Body::Clear() {
-// @@protoc_insertion_point(message_clear_start:messages.Body)
+void RawBody::Clear() {
+// @@protoc_insertion_point(message_clear_start:messages.RawBody)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -874,7 +874,7 @@ void Body::Clear() {
   _internal_metadata_.Clear();
 }
 
-const char* Body::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+const char* RawBody::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
     ::PROTOBUF_NAMESPACE_ID::uint32 tag;
@@ -895,18 +895,18 @@ const char* Body::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::inter
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // .messages.Body.State state = 3;
+      // .messages.RawBody.State state = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
           ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
           CHK_(ptr);
-          _internal_set_state(static_cast<::messages::Body_State>(val));
+          _internal_set_state(static_cast<::messages::RawBody_State>(val));
         } else goto handle_unusual;
         continue;
       // string deviceUID = 4;
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParserUTF8(_internal_mutable_deviceuid(), ptr, ctx, "messages.Body.deviceUID");
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParserUTF8(_internal_mutable_deviceuid(), ptr, ctx, "messages.RawBody.deviceUID");
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -930,9 +930,9 @@ failure:
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* Body::InternalSerializeWithCachedSizesToArray(
+::PROTOBUF_NAMESPACE_ID::uint8* RawBody::InternalSerializeWithCachedSizesToArray(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:messages.Body)
+  // @@protoc_insertion_point(serialize_to_array_start:messages.RawBody)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -950,7 +950,7 @@ failure:
         2, _Internal::skeleton(this), target, stream);
   }
 
-  // .messages.Body.State state = 3;
+  // .messages.RawBody.State state = 3;
   if (this->state() != 0) {
     stream->EnsureSpace(&target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
@@ -962,7 +962,7 @@ failure:
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_deviceuid().data(), static_cast<int>(this->_internal_deviceuid().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "messages.Body.deviceUID");
+      "messages.RawBody.deviceUID");
     target = stream->WriteStringMaybeAliased(
         4, this->_internal_deviceuid(), target);
   }
@@ -971,12 +971,12 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:messages.Body)
+  // @@protoc_insertion_point(serialize_to_array_end:messages.RawBody)
   return target;
 }
 
-size_t Body::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:messages.Body)
+size_t RawBody::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:messages.RawBody)
   size_t total_size = 0;
 
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -1004,7 +1004,7 @@ size_t Body::ByteSizeLong() const {
         this->_internal_uid());
   }
 
-  // .messages.Body.State state = 3;
+  // .messages.RawBody.State state = 3;
   if (this->state() != 0) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_state());
@@ -1019,23 +1019,23 @@ size_t Body::ByteSizeLong() const {
   return total_size;
 }
 
-void Body::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:messages.Body)
+void RawBody::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:messages.RawBody)
   GOOGLE_DCHECK_NE(&from, this);
-  const Body* source =
-      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<Body>(
+  const RawBody* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<RawBody>(
           &from);
   if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:messages.Body)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:messages.RawBody)
     ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:messages.Body)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:messages.RawBody)
     MergeFrom(*source);
   }
 }
 
-void Body::MergeFrom(const Body& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:messages.Body)
+void RawBody::MergeFrom(const RawBody& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:messages.RawBody)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -1056,25 +1056,25 @@ void Body::MergeFrom(const Body& from) {
   }
 }
 
-void Body::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:messages.Body)
+void RawBody::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:messages.RawBody)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-void Body::CopyFrom(const Body& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:messages.Body)
+void RawBody::CopyFrom(const RawBody& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:messages.RawBody)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool Body::IsInitialized() const {
+bool RawBody::IsInitialized() const {
   return true;
 }
 
-void Body::InternalSwap(Body* other) {
+void RawBody::InternalSwap(RawBody* other) {
   using std::swap;
   _internal_metadata_.Swap(&other->_internal_metadata_);
   deviceuid_.Swap(&other->deviceuid_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
@@ -1084,7 +1084,7 @@ void Body::InternalSwap(Body* other) {
   swap(state_, other->state_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata Body::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata RawBody::GetMetadata() const {
   return GetMetadataStatic();
 }
 
@@ -1098,8 +1098,8 @@ template<> PROTOBUF_NOINLINE ::messages::Joint* Arena::CreateMaybeMessage< ::mes
 template<> PROTOBUF_NOINLINE ::messages::Skeleton* Arena::CreateMaybeMessage< ::messages::Skeleton >(Arena* arena) {
   return Arena::CreateInternal< ::messages::Skeleton >(arena);
 }
-template<> PROTOBUF_NOINLINE ::messages::Body* Arena::CreateMaybeMessage< ::messages::Body >(Arena* arena) {
-  return Arena::CreateInternal< ::messages::Body >(arena);
+template<> PROTOBUF_NOINLINE ::messages::RawBody* Arena::CreateMaybeMessage< ::messages::RawBody >(Arena* arena) {
+  return Arena::CreateInternal< ::messages::RawBody >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

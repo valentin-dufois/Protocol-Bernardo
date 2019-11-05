@@ -17,7 +17,7 @@ message Skeleton {
 	vec3 centerOfMass = 2;
 }
 
-message Body {
+message RawBody {
 	int32 uid = 1;
 	Skeleton skeleton = 2;
 

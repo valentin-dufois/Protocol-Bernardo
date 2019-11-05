@@ -8,7 +8,7 @@
 #ifndef AcquisitorServer_hpp
 #define AcquisitorServer_hpp
 
-#include "../../Common/Structs/Body.hpp"
+#include "../../Common/Structs/RawBody.hpp"
 
 #include "../../Common/Messages/messages.hpp"
 #include "../../Common/CommunicationEngine/Server.hpp"
@@ -28,7 +28,7 @@ public:
 	}
 
 	/// Emits the given body to all the sockets registered on the body stream
-	void sendBody(const Body * body);
+	void sendBody(const RawBody * body);
 
 protected:
 	/// Called by the server when a new connections opens

@@ -57,7 +57,7 @@
 		395A79712332D5E900499894 /* libpb-common.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 39CA4A772331407A00E528CD /* libpb-common.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		395A79792332D75D00499894 /* NiteTracker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 395A79772332D75D00499894 /* NiteTracker.cpp */; };
 		395A797F2333321600499894 /* Skeleton.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 395A797C2333321600499894 /* Skeleton.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
-		395A79802333321600499894 /* Body.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 395A797D2333321600499894 /* Body.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
+		395A79802333321600499894 /* RawBody.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 395A797D2333321600499894 /* RawBody.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		395A79812333321600499894 /* Joint.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 395A797E2333321600499894 /* Joint.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		395A7983233332CB00499894 /* maths.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 395A79822333323500499894 /* maths.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		395A79862335508E00499894 /* libNiTE2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 395A79852335508E00499894 /* libNiTE2.dylib */; };
@@ -71,6 +71,8 @@
 		395A79C92335BB2000499894 /* network.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = 395A79B92335BB2000499894 /* network.pb.cc */; };
 		395A79CE2335BB3400499894 /* messages.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 395A79CD2335BB3400499894 /* messages.hpp */; };
 		395A79D82335DE1C00499894 /* Core.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 395A798B23358F1600499894 /* Core.cpp */; };
+		395E05122370C91900C58971 /* TrackingEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 395E05102370C91900C58971 /* TrackingEngine.cpp */; };
+		395E05142370CDD200C58971 /* Body.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 395E05132370CCD700C58971 /* Body.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		3960B8482337DFB20094A2E9 /* Core.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3960B8462337DFB20094A2E9 /* Core.hpp */; };
 		3962B346233ECFF700AEAD8B /* AcquisitorServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3962B342233ECFF200AEAD8B /* AcquisitorServer.cpp */; };
 		3966E41C2338018800710DD4 /* layout.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = 3966E4182338018800710DD4 /* layout.pb.cc */; };
@@ -308,7 +310,7 @@
 		395A79772332D75D00499894 /* NiteTracker.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NiteTracker.cpp; sourceTree = "<group>"; };
 		395A79782332D75D00499894 /* NiteTracker.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NiteTracker.hpp; sourceTree = "<group>"; };
 		395A797C2333321600499894 /* Skeleton.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Skeleton.hpp; sourceTree = "<group>"; };
-		395A797D2333321600499894 /* Body.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Body.hpp; sourceTree = "<group>"; };
+		395A797D2333321600499894 /* RawBody.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = RawBody.hpp; sourceTree = "<group>"; };
 		395A797E2333321600499894 /* Joint.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Joint.hpp; sourceTree = "<group>"; };
 		395A79822333323500499894 /* maths.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = maths.hpp; sourceTree = "<group>"; };
 		395A79852335508E00499894 /* libNiTE2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libNiTE2.dylib; path = ../../../../../usr/local/lib/NiTE2/libNiTE2.dylib; sourceTree = "<group>"; };
@@ -329,6 +331,9 @@
 		395A79CD2335BB3400499894 /* messages.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = messages.hpp; sourceTree = "<group>"; };
 		395A79CF2335BE3B00499894 /* Protocol Bernardo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = "Protocol Bernardo.xcodeproj"; sourceTree = "<group>"; };
 		395A79D52335BECA00499894 /* libgrpc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libgrpc++.dylib"; path = "../../../../../usr/local/Cellar/grpc/1.23.0_2/lib/libgrpc++.dylib"; sourceTree = "<group>"; };
+		395E05102370C91900C58971 /* TrackingEngine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TrackingEngine.cpp; sourceTree = "<group>"; };
+		395E05112370C91900C58971 /* TrackingEngine.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TrackingEngine.hpp; sourceTree = "<group>"; };
+		395E05132370CCD700C58971 /* Body.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Body.hpp; sourceTree = "<group>"; };
 		3960B8452337DFB20094A2E9 /* Core.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Core.cpp; sourceTree = "<group>"; };
 		3960B8462337DFB20094A2E9 /* Core.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Core.hpp; sourceTree = "<group>"; };
 		3960B8512337EC870094A2E9 /* layout.proto */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.protobuf; path = layout.proto; sourceTree = "<group>"; };
@@ -659,8 +664,9 @@
 		395A797B2333320800499894 /* Structs */ = {
 			isa = PBXGroup;
 			children = (
-				395A797D2333321600499894 /* Body.hpp */,
+				395E05132370CCD700C58971 /* Body.hpp */,
 				395A797E2333321600499894 /* Joint.hpp */,
+				395A797D2333321600499894 /* RawBody.hpp */,
 				395A797C2333321600499894 /* Skeleton.hpp */,
 			);
 			path = Structs;
@@ -680,6 +686,15 @@
 		395A79D02335BE3B00499894 /* Products */ = {
 			isa = PBXGroup;
 			name = Products;
+			sourceTree = "<group>";
+		};
+		395E050F2370C8F100C58971 /* TrackingEngine */ = {
+			isa = PBXGroup;
+			children = (
+				395E05102370C91900C58971 /* TrackingEngine.cpp */,
+				395E05112370C91900C58971 /* TrackingEngine.hpp */,
+			);
+			path = TrackingEngine;
 			sourceTree = "<group>";
 		};
 		3960B8442337DFA50094A2E9 /* Core */ = {
@@ -838,6 +853,7 @@
 		39CA4A8D233140E100E528CD /* Master */ = {
 			isa = PBXGroup;
 			children = (
+				395E050F2370C8F100C58971 /* TrackingEngine */,
 				39C97964236A2BA400ABED6E /* pb-master.entitlements */,
 				3978A7F82336C00400AF409D /* LayoutEngine */,
 				3978A7EC2336BF6B00AF409D /* Core */,
@@ -1011,12 +1027,13 @@
 			files = (
 				395A7983233332CB00499894 /* maths.hpp in Headers */,
 				3960B8482337DFB20094A2E9 /* Core.hpp in Headers */,
-				395A79802333321600499894 /* Body.hpp in Headers */,
+				395A79802333321600499894 /* RawBody.hpp in Headers */,
 				395A79C82335BB2000499894 /* network.pb.h in Headers */,
 				391A20092342B6D300F00517 /* Ping.hpp in Headers */,
 				39CA4AFD2332BDAB00E528CD /* Log.hpp in Headers */,
 				395A79C12335BB2000499894 /* maths.pb.h in Headers */,
 				3950170C2341689000E7F6BD /* Socket.hpp in Headers */,
+				395E05142370CDD200C58971 /* Body.hpp in Headers */,
 				399D167B23521E7600CEC2F0 /* flags.hpp in Headers */,
 				396C6A51233C5643008FD842 /* Server.hpp in Headers */,
 				395A797F2333321600499894 /* Skeleton.hpp in Headers */,
@@ -1314,6 +1331,7 @@
 				392DCCB423453D8300885C84 /* MasterServer.cpp in Sources */,
 				3978A80B2336F7C300AF409D /* Core.cpp in Sources */,
 				39CA4A8F233140E100E528CD /* main.cpp in Sources */,
+				395E05122370C91900C58971 /* TrackingEngine.cpp in Sources */,
 				3978A80A2336F7BC00AF409D /* LayoutEngine.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

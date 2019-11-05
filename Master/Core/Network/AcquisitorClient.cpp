@@ -8,7 +8,7 @@
 
 #include "AcquisitorClient.hpp"
 
-#include "../../../Common/Structs/Body.hpp"
+#include "../../../Common/Structs/RawBody.hpp"
 
 #include "../../../Common/CommunicationEngine/CommunicationEngine.hpp"
 #include "../../../Common/Messages/messages.hpp"
@@ -89,13 +89,13 @@ void AcquisitorClient::onDatagram(messages::Datagram * datagram) {
 
 void AcquisitorClient::onBodyStream(const protobuf::Any * data) {
 	// Decode the data
-	messages::Body messageBody;
+	messages::RawBody messageBody;
 	data->UnpackTo(&messageBody);
 
-	Body * body;
+	RawBody * body;
 
 	try {
-		body = new Body(messageBody);
+		body = new RawBody(messageBody);
 	} catch (protobuf::FatalException e) {
 		LOG_ERROR("Error while deserializing a body. Ignoring...");
 		LOG_DEBUG(e.message());

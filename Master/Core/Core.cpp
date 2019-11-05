@@ -12,7 +12,7 @@
 #include "../../Common/Utils/Log.hpp"
 
 #include "Network/AcquisitorClient.hpp"
-#include "../../Common/Structs/Body.hpp"
+#include "../../Common/Structs/RawBody.hpp"
 
 void Core::init() {
 	_networkManager.setLayoutEngine(&_layoutEngine);
@@ -21,6 +21,10 @@ void Core::init() {
 	};
 
 	_networkManager.startActivities();
+
+	// The tracking engine
+	_trackingEngine.setLayoutEngine(&_layoutEngine);
+	_trackingEngine.start();
 }
 
 void Core::run() {
@@ -32,12 +36,12 @@ void Core::run() {
 }
 
 void Core::onAcquisitor(AcquisitorClient * acquisitor) {
-	acquisitor->onBody = [&] (const Body * body) {
+	acquisitor->onBody = [&] (const RawBody * body) {
 		onBody(body);
 	};
 }
 
-void Core::onBody(const Body * body) {
+void Core::onBody(const RawBody * body) {
 	LOG_DEBUG("Received body with ID " + std::to_string(body->uid) + " on device " + body->deviceUID);
 
 	// Relay the body

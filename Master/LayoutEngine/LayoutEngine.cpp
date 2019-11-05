@@ -11,6 +11,7 @@
 
 #include "Structs/Layout.hpp"
 #include "../../Common/Utils/DiskIO.hpp"
+#include "../../Common/Utils/maths.hpp"
 
 LayoutEngine::LayoutEngine():
 _savePath(std::string(getenv("HOME")) + "/pb-layouts/") {
@@ -138,4 +139,54 @@ std::vector<std::string> LayoutEngine::deleteLayout(const std::string &name) {
 	return getLayouts();
 }
 
+// MARK: - Accessors
+
+layout::Device * LayoutEngine::getDeviceByPhysicalUID(const pb::deviceUID &uid) {
+	if(!hasActiveLayout()) {
+		LOG_ERROR("An active layout is required for this method");
+		return nullptr;
+	}
+	
+	std::vector<layout::Device *>::iterator it = std::find_if(_activeLayout->devices.begin(),
+													  _activeLayout->devices.end(),
+													  [uid] (const layout::Device * device) {
+		return device->physicalUID == uid;
+	});
+
+	return it == _activeLayout->devices.end() ? nullptr : *it;
+}
+
+
+// MARK: - Mathematics
+
+vec3 LayoutEngine::globalCoordinates(const vec3 &local, const pb::deviceUID deviceUID) {
+	if(!hasActiveLayout()) {
+		LOG_ERROR("An active layout is required for this method");
+		return vec3(0, 0, 0);
+	}
+
+	layout::Device * device = getDeviceByPhysicalUID(deviceUID);
+
+	if(device == nullptr) {
+		LOG_WARN("Cannot infer global coordinates for the device " + deviceUID);
+		LOG_WARN("Device " + deviceUID + " is not matched for the current layout");
+		return vec3(0, 0, 0);
+	}
+
+	vec3 global(0, 0, 0);
+	SCALAR orientation = maths::deg2rad(device->orientation.z);
+
+	// X and Z coordinates takes into account the angle of the device
+	global.x = local.x * cos(orientation) - local.z * sin(orientation);
+	global.z = local.x * sin(orientation) + local.z * cos(orientation);
+
+	// Take into account the device position
+	global.x -= device->position.x * 10.0; // cm to mm
+	global.z += device->position.y * 10.0; // cm to mm
+
+	// Y position (Height) is not affected by the angle of capture
+	global.y = local.y + device->position.z * 10.0; // cm to mm
+
+	return global;
+}
 

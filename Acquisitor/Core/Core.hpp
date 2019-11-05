@@ -12,7 +12,7 @@
 #include "../PoseEstimationEngine/PoseEstimationEngine.hpp"
 
 class AcquisitorServer;
-class Body;
+class RawBody;
 
 /// The Core class holds the initialization of the app and the main run loop.
 /// This should be one of the first thing created and called on the `main()`
@@ -41,7 +41,7 @@ private:
 	PoseEstimationEngine _poseEngine;
 
 	/// Called by the Pose Engine  everytime a new body has been received
-	void onBody(const Body * body);
+	void onBody(const RawBody * body);
 };
 
 #endif /* Core_hpp */

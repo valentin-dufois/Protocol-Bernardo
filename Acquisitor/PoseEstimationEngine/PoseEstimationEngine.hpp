@@ -38,7 +38,7 @@ public:
 	void start();
 
 	/// Called everytime a body is received from a connected device
-	std::function<void(const Body * body)> onBody;
+	std::function<void(const RawBody * body)> onBody;
 
 	std::vector<Device *> getDevices();
 

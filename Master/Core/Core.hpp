@@ -10,8 +10,9 @@
 
 #include "../LayoutEngine/LayoutEngine.hpp"
 #include "NetworkManager.hpp"
+#include "../TrackingEngine/TrackingEngine.hpp"
 
-struct Body;
+struct RawBody;
 
 class Core {
 public:
@@ -28,8 +29,10 @@ private:
 
 	LayoutEngine _layoutEngine;
 
+	TrackingEngine _trackingEngine;
+
 	// Events
-	void onBody(const Body * body);
+	void onBody(const RawBody * body);
 };
 
 #endif /* Core_hpp */

@@ -14,6 +14,8 @@
 /// easily switching the entire app to another scalar type.
 #define SCALAR double
 
+#define PI 3.14159265358979323846  /* pi */
+
 #define GLM_SWIZZLE_XYZW
 #include <glm/glm.hpp>
 #include "../Messages/messages.hpp"
@@ -28,6 +30,17 @@ using vec4 = glm::vec<4, SCALAR, glm::qualifier::defaultp>;
 namespace maths {
 
 // MARK: - Conversion
+
+template<typename T>
+inline T deg2rad(const T &deg) {
+	return deg * PI / 180.0;
+}
+
+template<typename T>
+inline T rad2deg(const T &rad) {
+	return rad * 180.0 / PI;
+}
+
 
 #ifdef MACHINE_ACQUISITOR
 

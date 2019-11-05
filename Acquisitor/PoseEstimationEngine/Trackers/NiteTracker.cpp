@@ -49,13 +49,13 @@ void NiteTracker::processFrame(nite::UserTrackerFrameRef * frame) {
 		const nite::UserData * userData = &users[i];
 
 		// Create the body
-		Body * body = new Body();
+		RawBody * body = new RawBody();
 		body->uid = userData->getId();
 		body->deviceUID = _device->getUID();
 
 		// Handle new users
 		if(userData->isNew()) {
-			body->state = Body::State::calibrating;
+			body->state = RawBody::State::calibrating;
 
 			// This is a new user, ask for skeleton tracking
 			_tracker.startSkeletonTracking(body->uid);
@@ -72,7 +72,7 @@ void NiteTracker::processFrame(nite::UserTrackerFrameRef * frame) {
 		if(userData->isLost()) {
 			// This user is not relevant anymore, stop tracking its skeleton and
 			// de reference it.
-			body->state = Body::State::lost;
+			body->state = RawBody::State::lost;
 			_tracker.stopSkeletonTracking(body->uid);
 
 			// Pass along the body and continue
@@ -86,7 +86,7 @@ void NiteTracker::processFrame(nite::UserTrackerFrameRef * frame) {
 		// Handle missing users
 		if(!userData->isVisible()) {
 			// User is not visible. Mark it as missing
-			body->state = Body::State::missing;
+			body->state = RawBody::State::missing;
 
 			// Pass along the body and continue
 			if(bodyHandler)
@@ -98,7 +98,7 @@ void NiteTracker::processFrame(nite::UserTrackerFrameRef * frame) {
 
 		// Is this user's skeleton still calibrating ?
 		if(userData->getSkeleton().getState() == nite::SkeletonState::SKELETON_CALIBRATING) {
-			body->state = Body::State::calibrating;
+			body->state = RawBody::State::calibrating;
 
 			// Pass along the body and continue
 			if(bodyHandler)
@@ -110,7 +110,7 @@ void NiteTracker::processFrame(nite::UserTrackerFrameRef * frame) {
 
 		// Is this user's skeleton errored ?
 		if(userData->getSkeleton().getState() != nite::SkeletonState::SKELETON_TRACKED) {
-			body->state = Body::State::error;
+			body->state = RawBody::State::error;
 
 			// Pass along the body and continue
 			if(bodyHandler)
@@ -121,7 +121,7 @@ void NiteTracker::processFrame(nite::UserTrackerFrameRef * frame) {
 		}
 
 		// User is ok, update its skeleton
-		body->state = Body::State::tracked;
+		body->state = RawBody::State::tracked;
 
 		// If we are here, it means the user is being actively tracked. Let's update its structure.
 		body->skeleton.centerOfMass = maths::P3FToVec3(userData->getCenterOfMass());

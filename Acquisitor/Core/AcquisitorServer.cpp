@@ -13,7 +13,7 @@
 
 using messages::Datagram_Type;
 
-void AcquisitorServer::sendBody(const Body * body) {
+void AcquisitorServer::sendBody(const RawBody * body) {
 	protobuf::Any * data = new protobuf::Any();
 	data->PackFrom(*body);
 

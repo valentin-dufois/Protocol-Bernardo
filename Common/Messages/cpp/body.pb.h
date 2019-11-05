@@ -57,51 +57,51 @@ struct TableStruct_body_2eproto {
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_body_2eproto;
 namespace messages {
-class Body;
-class BodyDefaultTypeInternal;
-extern BodyDefaultTypeInternal _Body_default_instance_;
 class Joint;
 class JointDefaultTypeInternal;
 extern JointDefaultTypeInternal _Joint_default_instance_;
+class RawBody;
+class RawBodyDefaultTypeInternal;
+extern RawBodyDefaultTypeInternal _RawBody_default_instance_;
 class Skeleton;
 class SkeletonDefaultTypeInternal;
 extern SkeletonDefaultTypeInternal _Skeleton_default_instance_;
 }  // namespace messages
 PROTOBUF_NAMESPACE_OPEN
-template<> ::messages::Body* Arena::CreateMaybeMessage<::messages::Body>(Arena*);
 template<> ::messages::Joint* Arena::CreateMaybeMessage<::messages::Joint>(Arena*);
+template<> ::messages::RawBody* Arena::CreateMaybeMessage<::messages::RawBody>(Arena*);
 template<> ::messages::Skeleton* Arena::CreateMaybeMessage<::messages::Skeleton>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace messages {
 
-enum Body_State : int {
-  Body_State_error = 0,
-  Body_State_noSkeleton = 1,
-  Body_State_calibrating = 2,
-  Body_State_tracked = 3,
-  Body_State_missing = 4,
-  Body_State_lost = 5,
-  Body_State_Body_State_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::min(),
-  Body_State_Body_State_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::max()
+enum RawBody_State : int {
+  RawBody_State_error = 0,
+  RawBody_State_noSkeleton = 1,
+  RawBody_State_calibrating = 2,
+  RawBody_State_tracked = 3,
+  RawBody_State_missing = 4,
+  RawBody_State_lost = 5,
+  RawBody_State_RawBody_State_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::min(),
+  RawBody_State_RawBody_State_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::max()
 };
-bool Body_State_IsValid(int value);
-constexpr Body_State Body_State_State_MIN = Body_State_error;
-constexpr Body_State Body_State_State_MAX = Body_State_lost;
-constexpr int Body_State_State_ARRAYSIZE = Body_State_State_MAX + 1;
+bool RawBody_State_IsValid(int value);
+constexpr RawBody_State RawBody_State_State_MIN = RawBody_State_error;
+constexpr RawBody_State RawBody_State_State_MAX = RawBody_State_lost;
+constexpr int RawBody_State_State_ARRAYSIZE = RawBody_State_State_MAX + 1;
 
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* Body_State_descriptor();
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* RawBody_State_descriptor();
 template<typename T>
-inline const std::string& Body_State_Name(T enum_t_value) {
-  static_assert(::std::is_same<T, Body_State>::value ||
+inline const std::string& RawBody_State_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, RawBody_State>::value ||
     ::std::is_integral<T>::value,
-    "Incorrect type passed to function Body_State_Name.");
+    "Incorrect type passed to function RawBody_State_Name.");
   return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
-    Body_State_descriptor(), enum_t_value);
+    RawBody_State_descriptor(), enum_t_value);
 }
-inline bool Body_State_Parse(
-    const std::string& name, Body_State* value) {
-  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<Body_State>(
-    Body_State_descriptor(), name, value);
+inline bool RawBody_State_Parse(
+    const std::string& name, RawBody_State* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<RawBody_State>(
+    RawBody_State_descriptor(), name, value);
 }
 // ===================================================================
 
@@ -449,23 +449,23 @@ class Skeleton :
 };
 // -------------------------------------------------------------------
 
-class Body :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:messages.Body) */ {
+class RawBody :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:messages.RawBody) */ {
  public:
-  Body();
-  virtual ~Body();
+  RawBody();
+  virtual ~RawBody();
 
-  Body(const Body& from);
-  Body(Body&& from) noexcept
-    : Body() {
+  RawBody(const RawBody& from);
+  RawBody(RawBody&& from) noexcept
+    : RawBody() {
     *this = ::std::move(from);
   }
 
-  inline Body& operator=(const Body& from) {
+  inline RawBody& operator=(const RawBody& from) {
     CopyFrom(from);
     return *this;
   }
-  inline Body& operator=(Body&& from) noexcept {
+  inline RawBody& operator=(RawBody&& from) noexcept {
     if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
       if (this != &from) InternalSwap(&from);
     } else {
@@ -483,37 +483,37 @@ class Body :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return GetMetadataStatic().reflection;
   }
-  static const Body& default_instance();
+  static const RawBody& default_instance();
 
   static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
-  static inline const Body* internal_default_instance() {
-    return reinterpret_cast<const Body*>(
-               &_Body_default_instance_);
+  static inline const RawBody* internal_default_instance() {
+    return reinterpret_cast<const RawBody*>(
+               &_RawBody_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     2;
 
-  friend void swap(Body& a, Body& b) {
+  friend void swap(RawBody& a, RawBody& b) {
     a.Swap(&b);
   }
-  inline void Swap(Body* other) {
+  inline void Swap(RawBody* other) {
     if (other == this) return;
     InternalSwap(other);
   }
 
   // implements Message ----------------------------------------------
 
-  inline Body* New() const final {
-    return CreateMaybeMessage<Body>(nullptr);
+  inline RawBody* New() const final {
+    return CreateMaybeMessage<RawBody>(nullptr);
   }
 
-  Body* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<Body>(arena);
+  RawBody* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<RawBody>(arena);
   }
   void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
   void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void CopyFrom(const Body& from);
-  void MergeFrom(const Body& from);
+  void CopyFrom(const RawBody& from);
+  void MergeFrom(const RawBody& from);
   PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
   bool IsInitialized() const final;
 
@@ -527,10 +527,10 @@ class Body :
   inline void SharedCtor();
   inline void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(Body* other);
+  void InternalSwap(RawBody* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "messages.Body";
+    return "messages.RawBody";
   }
   private:
   inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
@@ -552,42 +552,42 @@ class Body :
 
   // nested types ----------------------------------------------------
 
-  typedef Body_State State;
+  typedef RawBody_State State;
   static constexpr State error =
-    Body_State_error;
+    RawBody_State_error;
   static constexpr State noSkeleton =
-    Body_State_noSkeleton;
+    RawBody_State_noSkeleton;
   static constexpr State calibrating =
-    Body_State_calibrating;
+    RawBody_State_calibrating;
   static constexpr State tracked =
-    Body_State_tracked;
+    RawBody_State_tracked;
   static constexpr State missing =
-    Body_State_missing;
+    RawBody_State_missing;
   static constexpr State lost =
-    Body_State_lost;
+    RawBody_State_lost;
   static inline bool State_IsValid(int value) {
-    return Body_State_IsValid(value);
+    return RawBody_State_IsValid(value);
   }
   static constexpr State State_MIN =
-    Body_State_State_MIN;
+    RawBody_State_State_MIN;
   static constexpr State State_MAX =
-    Body_State_State_MAX;
+    RawBody_State_State_MAX;
   static constexpr int State_ARRAYSIZE =
-    Body_State_State_ARRAYSIZE;
+    RawBody_State_State_ARRAYSIZE;
   static inline const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor*
   State_descriptor() {
-    return Body_State_descriptor();
+    return RawBody_State_descriptor();
   }
   template<typename T>
   static inline const std::string& State_Name(T enum_t_value) {
     static_assert(::std::is_same<T, State>::value ||
       ::std::is_integral<T>::value,
       "Incorrect type passed to function State_Name.");
-    return Body_State_Name(enum_t_value);
+    return RawBody_State_Name(enum_t_value);
   }
   static inline bool State_Parse(const std::string& name,
       State* value) {
-    return Body_State_Parse(name, value);
+    return RawBody_State_Parse(name, value);
   }
 
   // accessors -------------------------------------------------------
@@ -638,16 +638,16 @@ class Body :
   void _internal_set_uid(::PROTOBUF_NAMESPACE_ID::int32 value);
   public:
 
-  // .messages.Body.State state = 3;
+  // .messages.RawBody.State state = 3;
   void clear_state();
-  ::messages::Body_State state() const;
-  void set_state(::messages::Body_State value);
+  ::messages::RawBody_State state() const;
+  void set_state(::messages::RawBody_State value);
   private:
-  ::messages::Body_State _internal_state() const;
-  void _internal_set_state(::messages::Body_State value);
+  ::messages::RawBody_State _internal_state() const;
+  void _internal_set_state(::messages::RawBody_State value);
   public:
 
-  // @@protoc_insertion_point(class_scope:messages.Body)
+  // @@protoc_insertion_point(class_scope:messages.RawBody)
  private:
   class _Internal;
 
@@ -971,58 +971,58 @@ inline void Skeleton::set_allocated_centerofmass(::messages::vec3* centerofmass)
 
 // -------------------------------------------------------------------
 
-// Body
+// RawBody
 
 // int32 uid = 1;
-inline void Body::clear_uid() {
+inline void RawBody::clear_uid() {
   uid_ = 0;
 }
-inline ::PROTOBUF_NAMESPACE_ID::int32 Body::_internal_uid() const {
+inline ::PROTOBUF_NAMESPACE_ID::int32 RawBody::_internal_uid() const {
   return uid_;
 }
-inline ::PROTOBUF_NAMESPACE_ID::int32 Body::uid() const {
-  // @@protoc_insertion_point(field_get:messages.Body.uid)
+inline ::PROTOBUF_NAMESPACE_ID::int32 RawBody::uid() const {
+  // @@protoc_insertion_point(field_get:messages.RawBody.uid)
   return _internal_uid();
 }
-inline void Body::_internal_set_uid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+inline void RawBody::_internal_set_uid(::PROTOBUF_NAMESPACE_ID::int32 value) {
   
   uid_ = value;
 }
-inline void Body::set_uid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+inline void RawBody::set_uid(::PROTOBUF_NAMESPACE_ID::int32 value) {
   _internal_set_uid(value);
-  // @@protoc_insertion_point(field_set:messages.Body.uid)
+  // @@protoc_insertion_point(field_set:messages.RawBody.uid)
 }
 
 // .messages.Skeleton skeleton = 2;
-inline bool Body::_internal_has_skeleton() const {
+inline bool RawBody::_internal_has_skeleton() const {
   return this != internal_default_instance() && skeleton_ != nullptr;
 }
-inline bool Body::has_skeleton() const {
+inline bool RawBody::has_skeleton() const {
   return _internal_has_skeleton();
 }
-inline void Body::clear_skeleton() {
+inline void RawBody::clear_skeleton() {
   if (GetArenaNoVirtual() == nullptr && skeleton_ != nullptr) {
     delete skeleton_;
   }
   skeleton_ = nullptr;
 }
-inline const ::messages::Skeleton& Body::_internal_skeleton() const {
+inline const ::messages::Skeleton& RawBody::_internal_skeleton() const {
   const ::messages::Skeleton* p = skeleton_;
   return p != nullptr ? *p : *reinterpret_cast<const ::messages::Skeleton*>(
       &::messages::_Skeleton_default_instance_);
 }
-inline const ::messages::Skeleton& Body::skeleton() const {
-  // @@protoc_insertion_point(field_get:messages.Body.skeleton)
+inline const ::messages::Skeleton& RawBody::skeleton() const {
+  // @@protoc_insertion_point(field_get:messages.RawBody.skeleton)
   return _internal_skeleton();
 }
-inline ::messages::Skeleton* Body::release_skeleton() {
-  // @@protoc_insertion_point(field_release:messages.Body.skeleton)
+inline ::messages::Skeleton* RawBody::release_skeleton() {
+  // @@protoc_insertion_point(field_release:messages.RawBody.skeleton)
   
   ::messages::Skeleton* temp = skeleton_;
   skeleton_ = nullptr;
   return temp;
 }
-inline ::messages::Skeleton* Body::_internal_mutable_skeleton() {
+inline ::messages::Skeleton* RawBody::_internal_mutable_skeleton() {
   
   if (skeleton_ == nullptr) {
     auto* p = CreateMaybeMessage<::messages::Skeleton>(GetArenaNoVirtual());
@@ -1030,11 +1030,11 @@ inline ::messages::Skeleton* Body::_internal_mutable_skeleton() {
   }
   return skeleton_;
 }
-inline ::messages::Skeleton* Body::mutable_skeleton() {
-  // @@protoc_insertion_point(field_mutable:messages.Body.skeleton)
+inline ::messages::Skeleton* RawBody::mutable_skeleton() {
+  // @@protoc_insertion_point(field_mutable:messages.RawBody.skeleton)
   return _internal_mutable_skeleton();
 }
-inline void Body::set_allocated_skeleton(::messages::Skeleton* skeleton) {
+inline void RawBody::set_allocated_skeleton(::messages::Skeleton* skeleton) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
   if (message_arena == nullptr) {
     delete skeleton_;
@@ -1050,87 +1050,87 @@ inline void Body::set_allocated_skeleton(::messages::Skeleton* skeleton) {
     
   }
   skeleton_ = skeleton;
-  // @@protoc_insertion_point(field_set_allocated:messages.Body.skeleton)
+  // @@protoc_insertion_point(field_set_allocated:messages.RawBody.skeleton)
 }
 
-// .messages.Body.State state = 3;
-inline void Body::clear_state() {
+// .messages.RawBody.State state = 3;
+inline void RawBody::clear_state() {
   state_ = 0;
 }
-inline ::messages::Body_State Body::_internal_state() const {
-  return static_cast< ::messages::Body_State >(state_);
+inline ::messages::RawBody_State RawBody::_internal_state() const {
+  return static_cast< ::messages::RawBody_State >(state_);
 }
-inline ::messages::Body_State Body::state() const {
-  // @@protoc_insertion_point(field_get:messages.Body.state)
+inline ::messages::RawBody_State RawBody::state() const {
+  // @@protoc_insertion_point(field_get:messages.RawBody.state)
   return _internal_state();
 }
-inline void Body::_internal_set_state(::messages::Body_State value) {
+inline void RawBody::_internal_set_state(::messages::RawBody_State value) {
   
   state_ = value;
 }
-inline void Body::set_state(::messages::Body_State value) {
+inline void RawBody::set_state(::messages::RawBody_State value) {
   _internal_set_state(value);
-  // @@protoc_insertion_point(field_set:messages.Body.state)
+  // @@protoc_insertion_point(field_set:messages.RawBody.state)
 }
 
 // string deviceUID = 4;
-inline void Body::clear_deviceuid() {
+inline void RawBody::clear_deviceuid() {
   deviceuid_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
-inline const std::string& Body::deviceuid() const {
-  // @@protoc_insertion_point(field_get:messages.Body.deviceUID)
+inline const std::string& RawBody::deviceuid() const {
+  // @@protoc_insertion_point(field_get:messages.RawBody.deviceUID)
   return _internal_deviceuid();
 }
-inline void Body::set_deviceuid(const std::string& value) {
+inline void RawBody::set_deviceuid(const std::string& value) {
   _internal_set_deviceuid(value);
-  // @@protoc_insertion_point(field_set:messages.Body.deviceUID)
+  // @@protoc_insertion_point(field_set:messages.RawBody.deviceUID)
 }
-inline std::string* Body::mutable_deviceuid() {
-  // @@protoc_insertion_point(field_mutable:messages.Body.deviceUID)
+inline std::string* RawBody::mutable_deviceuid() {
+  // @@protoc_insertion_point(field_mutable:messages.RawBody.deviceUID)
   return _internal_mutable_deviceuid();
 }
-inline const std::string& Body::_internal_deviceuid() const {
+inline const std::string& RawBody::_internal_deviceuid() const {
   return deviceuid_.GetNoArena();
 }
-inline void Body::_internal_set_deviceuid(const std::string& value) {
+inline void RawBody::_internal_set_deviceuid(const std::string& value) {
   
   deviceuid_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
 }
-inline void Body::set_deviceuid(std::string&& value) {
+inline void RawBody::set_deviceuid(std::string&& value) {
   
   deviceuid_.SetNoArena(
     &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:messages.Body.deviceUID)
+  // @@protoc_insertion_point(field_set_rvalue:messages.RawBody.deviceUID)
 }
-inline void Body::set_deviceuid(const char* value) {
+inline void RawBody::set_deviceuid(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   deviceuid_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:messages.Body.deviceUID)
+  // @@protoc_insertion_point(field_set_char:messages.RawBody.deviceUID)
 }
-inline void Body::set_deviceuid(const char* value, size_t size) {
+inline void RawBody::set_deviceuid(const char* value, size_t size) {
   
   deviceuid_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:messages.Body.deviceUID)
+  // @@protoc_insertion_point(field_set_pointer:messages.RawBody.deviceUID)
 }
-inline std::string* Body::_internal_mutable_deviceuid() {
+inline std::string* RawBody::_internal_mutable_deviceuid() {
   
   return deviceuid_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
-inline std::string* Body::release_deviceuid() {
-  // @@protoc_insertion_point(field_release:messages.Body.deviceUID)
+inline std::string* RawBody::release_deviceuid() {
+  // @@protoc_insertion_point(field_release:messages.RawBody.deviceUID)
   
   return deviceuid_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
-inline void Body::set_allocated_deviceuid(std::string* deviceuid) {
+inline void RawBody::set_allocated_deviceuid(std::string* deviceuid) {
   if (deviceuid != nullptr) {
     
   } else {
     
   }
   deviceuid_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), deviceuid);
-  // @@protoc_insertion_point(field_set_allocated:messages.Body.deviceUID)
+  // @@protoc_insertion_point(field_set_allocated:messages.RawBody.deviceUID)
 }
 
 #ifdef __GNUC__
@@ -1147,10 +1147,10 @@ inline void Body::set_allocated_deviceuid(std::string* deviceuid) {
 
 PROTOBUF_NAMESPACE_OPEN
 
-template <> struct is_proto_enum< ::messages::Body_State> : ::std::true_type {};
+template <> struct is_proto_enum< ::messages::RawBody_State> : ::std::true_type {};
 template <>
-inline const EnumDescriptor* GetEnumDescriptor< ::messages::Body_State>() {
-  return ::messages::Body_State_descriptor();
+inline const EnumDescriptor* GetEnumDescriptor< ::messages::RawBody_State>() {
+  return ::messages::RawBody_State_descriptor();
 }
 
 PROTOBUF_NAMESPACE_CLOSE

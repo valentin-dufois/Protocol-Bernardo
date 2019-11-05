@@ -18,7 +18,7 @@ class Tracker {
 public:
 	/// This method is called everytime a body as been parsed by the tracker.
 	/// It is the handler responsabiliy to free the memory used by the memory
-	std::function<void(Body *)> bodyHandler;
+	std::function<void(RawBody *)> bodyHandler;
 
 	virtual Device * getDevice() = 0;
 };
