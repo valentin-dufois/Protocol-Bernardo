@@ -564,8 +564,33 @@ class MasterStatus :
   // accessors -------------------------------------------------------
 
   enum : int {
+    kConnectedDevicesFieldNumber = 20,
     kActiveLayoutFieldNumber = 10,
   };
+  // repeated string connectedDevices = 20;
+  int connecteddevices_size() const;
+  private:
+  int _internal_connecteddevices_size() const;
+  public:
+  void clear_connecteddevices();
+  const std::string& connecteddevices(int index) const;
+  std::string* mutable_connecteddevices(int index);
+  void set_connecteddevices(int index, const std::string& value);
+  void set_connecteddevices(int index, std::string&& value);
+  void set_connecteddevices(int index, const char* value);
+  void set_connecteddevices(int index, const char* value, size_t size);
+  std::string* add_connecteddevices();
+  void add_connecteddevices(const std::string& value);
+  void add_connecteddevices(std::string&& value);
+  void add_connecteddevices(const char* value);
+  void add_connecteddevices(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& connecteddevices() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_connecteddevices();
+  private:
+  const std::string& _internal_connecteddevices(int index) const;
+  std::string* _internal_add_connecteddevices();
+  public:
+
   // string activeLayout = 10;
   void clear_activelayout();
   const std::string& activelayout() const;
@@ -587,6 +612,7 @@ class MasterStatus :
   class _Internal;
 
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> connecteddevices_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr activelayout_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_network_2eproto;
@@ -973,6 +999,80 @@ inline void MasterStatus::set_allocated_activelayout(std::string* activelayout) 
   }
   activelayout_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), activelayout);
   // @@protoc_insertion_point(field_set_allocated:messages.MasterStatus.activeLayout)
+}
+
+// repeated string connectedDevices = 20;
+inline int MasterStatus::_internal_connecteddevices_size() const {
+  return connecteddevices_.size();
+}
+inline int MasterStatus::connecteddevices_size() const {
+  return _internal_connecteddevices_size();
+}
+inline void MasterStatus::clear_connecteddevices() {
+  connecteddevices_.Clear();
+}
+inline std::string* MasterStatus::add_connecteddevices() {
+  // @@protoc_insertion_point(field_add_mutable:messages.MasterStatus.connectedDevices)
+  return _internal_add_connecteddevices();
+}
+inline const std::string& MasterStatus::_internal_connecteddevices(int index) const {
+  return connecteddevices_.Get(index);
+}
+inline const std::string& MasterStatus::connecteddevices(int index) const {
+  // @@protoc_insertion_point(field_get:messages.MasterStatus.connectedDevices)
+  return _internal_connecteddevices(index);
+}
+inline std::string* MasterStatus::mutable_connecteddevices(int index) {
+  // @@protoc_insertion_point(field_mutable:messages.MasterStatus.connectedDevices)
+  return connecteddevices_.Mutable(index);
+}
+inline void MasterStatus::set_connecteddevices(int index, const std::string& value) {
+  // @@protoc_insertion_point(field_set:messages.MasterStatus.connectedDevices)
+  connecteddevices_.Mutable(index)->assign(value);
+}
+inline void MasterStatus::set_connecteddevices(int index, std::string&& value) {
+  // @@protoc_insertion_point(field_set:messages.MasterStatus.connectedDevices)
+  connecteddevices_.Mutable(index)->assign(std::move(value));
+}
+inline void MasterStatus::set_connecteddevices(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  connecteddevices_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:messages.MasterStatus.connectedDevices)
+}
+inline void MasterStatus::set_connecteddevices(int index, const char* value, size_t size) {
+  connecteddevices_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:messages.MasterStatus.connectedDevices)
+}
+inline std::string* MasterStatus::_internal_add_connecteddevices() {
+  return connecteddevices_.Add();
+}
+inline void MasterStatus::add_connecteddevices(const std::string& value) {
+  connecteddevices_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:messages.MasterStatus.connectedDevices)
+}
+inline void MasterStatus::add_connecteddevices(std::string&& value) {
+  connecteddevices_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:messages.MasterStatus.connectedDevices)
+}
+inline void MasterStatus::add_connecteddevices(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  connecteddevices_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:messages.MasterStatus.connectedDevices)
+}
+inline void MasterStatus::add_connecteddevices(const char* value, size_t size) {
+  connecteddevices_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:messages.MasterStatus.connectedDevices)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+MasterStatus::connecteddevices() const {
+  // @@protoc_insertion_point(field_list:messages.MasterStatus.connectedDevices)
+  return connecteddevices_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+MasterStatus::mutable_connecteddevices() {
+  // @@protoc_insertion_point(field_mutable_list:messages.MasterStatus.connectedDevices)
+  return &connecteddevices_;
 }
 
 // -------------------------------------------------------------------

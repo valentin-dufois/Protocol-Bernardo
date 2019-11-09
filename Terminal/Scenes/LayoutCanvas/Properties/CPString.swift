@@ -8,7 +8,7 @@
 import AppKit
 
 class CPString: NSView, CanvasProperty {
-	var displayHeight: Float = 27
+	var displayHeight: Float = 25
 
 	@IBOutlet weak var label: NSTextField!
 	@IBOutlet weak var field: NSTextField!

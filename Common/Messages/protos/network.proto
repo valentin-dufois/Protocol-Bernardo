@@ -24,6 +24,7 @@ message Ping {
 
 message MasterStatus {
 	string activeLayout = 10;
+	repeated string connectedDevices = 20;
 }
 
 message Datagram {

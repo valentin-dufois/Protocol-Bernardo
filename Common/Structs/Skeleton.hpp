@@ -103,6 +103,34 @@ struct Skeleton  {
 
 		return message;
 	}
+
+	// MARK: Mathematics operator
+
+	Skeleton& operator += (const Skeleton &s2) {
+		// Sum all joints
+		for(int i = 0; i < joints.size(); ++i) {
+			joints[i] += s2.joints[i];
+		}
+
+		// Sum the center of mass
+		centerOfMass += s2.centerOfMass;
+
+		return *this;
+	}
+
+	Skeleton operator / (const SCALAR &div) {
+		Skeleton s;
+
+		// Divide each joints
+		for(int i = 0; i < joints.size(); ++i) {
+			s.joints[i] = joints[i] / div;
+		}
+
+		// Divide the center of mass
+		s.centerOfMass = centerOfMass / div;
+
+		return s;
+	}
 };
 
 #endif /* Skeleton_hpp */

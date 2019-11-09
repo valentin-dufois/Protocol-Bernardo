@@ -36,8 +36,9 @@ void Core::run() {
 }
 
 void Core::onAcquisitor(AcquisitorClient * acquisitor) {
-	acquisitor->onBody = [&] (const RawBody * body) {
-		onBody(body);
+	// Link the acquisitor clients to the tracking engine
+	acquisitor->onBody = [&] (RawBody * body) {
+		_trackingEngine.onRawBody(body);
 	};
 }
 

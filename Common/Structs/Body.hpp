@@ -16,14 +16,21 @@
 #include <boost/uuid/uuid_io.hpp>
 
 #include <string>
+#include <list>
 
 // A body is a collection of one or more rawbodies that have been merge by the Tracking Engine using a layout. A Body has a current position as well as an history of positions
 struct Body {
+
+	// MARK: Properties
+
 	/// Unique identifier for this body
 	pb::bodyUID uid;
 
+	/// The current frame of the user
+	unsigned int frame = 0;
+
 	/// The skeletons for this user in the global coordinates space. The first one being the oldest one, and the last one the actual one
-	std::vector<Skeleton *> skeletons;
+	std::list<Skeleton *> skeletons;
 
 	/// The list of device UID, RawBody uid pair from which this body is taking data from
 	std::map<pb::deviceUID, pb::rawBodyUID> rawBodiesUID;
@@ -32,6 +39,7 @@ struct Body {
 	/// This is used by the TrackingEngine.
 	std::map<pb::deviceUID, Skeleton *> rawSkeletons;
 
+	// MARK: - Constructors
 
 	// Default constructor
 	Body() = default;
@@ -50,6 +58,47 @@ struct Body {
 		for (auto& [deviceUID, skeleton]: rawSkeletons) {
 			delete skeleton;
 		}
+	}
+
+	// MARK: - Accessors
+
+	inline bool hasSkeleton() { return skeletons.size() > 0; }
+
+	inline Skeleton * skeleton() { return skeletons.back(); }
+
+	// MARK: - Manipulations
+
+	/// Calculate the weighted mean of all the raw skeletons matching the current body
+	void updatePosition() {
+		// Is there any rawSkeleton to work with ?
+		if(rawSkeletons.size() == 0)
+			return;
+
+		Skeleton skeleton;
+
+		// Add all the rawSkeletons
+		for(auto& [deviceUID, s]: rawSkeletons) {
+			// TODO: Make sure the skeletons are in the same direction (front back, check the hands)
+
+			skeleton += *s;
+		}
+
+		// Divide them (weighted mean)
+		skeletons.push_back(new Skeleton(skeleton / rawSkeletons.size()));
+
+		// Keep history size
+		if(skeletons.size() > TRACKING_ENGINE_BODY_HISTORY_SIZE) {
+			skeletons.erase(skeletons.begin());
+		}
+
+		// Increment the frame
+		frame++;
+
+		// Clear the rawSkeletons
+		for (auto& [deviceUID, skeleton]: rawSkeletons) {
+			delete skeleton;
+		}
+		rawSkeletons.clear();
 	}
 };
 

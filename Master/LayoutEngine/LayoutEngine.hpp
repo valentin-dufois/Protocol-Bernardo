@@ -17,6 +17,7 @@
 #include "../../Common/common.hpp"
 #include "../../Common/Utils/Log.hpp"
 #include "../../Common/Utils/maths.hpp"
+#include "../../Common/Structs/Skeleton.hpp"
 
 #define LAYOUT_EXT ".pblayout"
 
@@ -78,11 +79,25 @@ public:
 
 	// MARK: - Mathematics
 
+
+	/// Converts the given Skeleton from its local space to the global space.
+	/// A skeleton joints 2D coordinates are irrelevant once on the global space
+	/// @param s The skeleton to convert
+	/// @param deviceUID The device UID of the skeleton local space
+	Skeleton * inGlobalCoordinates(const Skeleton &s, const pb::deviceUID deviceUID);
+
+	/// Converts the given Joint from its local space to the global space.
+	/// The joint 2D position is irrelevant after calling this method as it cannot be
+	/// move in the global space.
+	/// @param j The joint to convert
+	/// @param deviceUID The device UID of the joint local space
+	Joint inGlobalCoordinates(const Joint &j, const pb::deviceUID deviceUID);
+
 	/// Convert the given vec3 from the local space of the specified device to the global space.
 	/// If no layout is loaded or if the specified device is associated with no logical device, this method will return a zero-value vec3
 	/// @param local The vec3 in local coordinates
 	/// @param deviceUID The device localizing the given vec3
-	vec3 globalCoordinates(const vec3 &local, const pb::deviceUID deviceUID);
+	vec3 inGlobalCoordinates(const vec3 &local, const pb::deviceUID deviceUID);
 
 private:
 

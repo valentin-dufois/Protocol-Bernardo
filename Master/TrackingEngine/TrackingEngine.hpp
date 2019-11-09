@@ -16,14 +16,11 @@
 #include "../../Common/common.hpp"
 #include "../../Common/Utils/maths.hpp"
 
-#define TRACKING_ENGINE_RUN_SPEED 30.0 // Times per seconds
-#define TRACKING_ENGINE_MERGE_DISTANCE 150.0 // mm
-#define TRACKING_ENGINE_BODY_HISTORY_SIZE 1
-
 // MARK: Forward declarations
+class LayoutEngine;
+class Skeleton;
 class RawBody;
 class Body;
-class LayoutEngine;
 
 // MARK: - Tracking Engine
 /// The tracking engine takes Raw Bodies from the tracking devices as input and
@@ -58,15 +55,20 @@ public:
 	/// @param rawbody The rawbody to use
 	Body * getBodyFor(const RawBody * rawbody);
 
-	/// Gives a tuple with the closest body from the given rawBody and the distance
+	/// Gives a list of tuples with a body and the distance from it to the given
+	/// target, ordered closest to farthest
+	///
+	/// The coordinates of the given target must be in the global global space
+	/// @param target The rawbody to use
+	std::vector<std::pair<Body *, SCALAR>> getClosestBodiesFrom(const Skeleton * target);
+
+	/// Gives a tuple with the closest body from the given Skeleton and the distance
 	/// in mm between the two. If no bodies are available, the returned body will be
 	/// `nullptr`
 	///
-	/// The coordinates of the given rawBody are converted to the glabel space for
-	/// the calculation, the device from which it is coming needs to be associated
-	/// with a layout device for this method to work.
-	/// @param rawBody The rawbody to use
-	std::pair<Body *, SCALAR> getClosestBodyFrom(const RawBody * rawBody);
+	/// The coordinates of the given target must be in the global global space
+	/// @param target The rawbody to use
+	std::pair<Body *, SCALAR> getClosestBodyFrom(const Skeleton * target);
 
 private:
 
@@ -84,6 +86,7 @@ private:
 	/// All the bodies received since the last cycle
 	std::vector<RawBody *> _bodiesBuffer;
 
+	/// All the bodies actively tracked by the tracking engine
 	std::vector<Body *> _bodies;
 
 	// MARK: - Private mecanisms
@@ -91,9 +94,23 @@ private:
 	/// The run loop handling the tracking engines cycles
 	void runLoop();
 
+	/// Execute all the operations neecessary for tracking properly the bodies
+	void trackBodies();
+
 	/// Parse the raw bodies buffer, prefill the bodies and clear the rawbodies
 	/// buffer. `parseBodies` locks the _bodiesBuffer while running
+	void parseBodiesBuffer();
+
+	/// Execute the updates script on all the users, convrting their local skeletons
+	/// to one unique global skeletons. Also update their history
+	void updateBodies();
+
+	/// Excute a new, different pass, on all the skeletons to make their is only only
+	/// one Body for one human.
 	void parseBodies();
+
+	/// Clear the `_bodiesBuffer`
+	void clearBuffer();
 
 	/// Used by the runLoop to cadence its running to the specified cadence
 	void cadenceLoop(const std::chrono::duration<double, std::milli> &workTime);
@@ -104,8 +121,10 @@ private:
 
 	// MARK: System
 
+	/// The thread on which the tracking engine run loop is running
 	std::thread * _executionThread = nullptr;
 
+	/// Mutex for the bodies buffer as it will be accessed from  multiple threads
 	std::mutex _bodiesBufferMutex;
 };
 

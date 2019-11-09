@@ -41,7 +41,7 @@ void raw(const T &log) {
 
 std::string locat(const std::string &file, const int &line) {
 	// Do not show the error location when not debugging
-	if(level < 4) {
+	if(level > 1) {
 		return "";
 	}
 

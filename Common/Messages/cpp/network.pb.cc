@@ -114,6 +114,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_network_2eproto::offsets[] PRO
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::messages::MasterStatus, activelayout_),
+  PROTOBUF_FIELD_OFFSET(::messages::MasterStatus, connecteddevices_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::messages::Datagram, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -126,7 +127,7 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOB
   { 0, -1, sizeof(::messages::Endpoint)},
   { 7, -1, sizeof(::messages::Ping)},
   { 13, -1, sizeof(::messages::MasterStatus)},
-  { 19, -1, sizeof(::messages::Datagram)},
+  { 20, -1, sizeof(::messages::Datagram)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -142,18 +143,19 @@ const char descriptor_table_protodef_network_2eproto[] PROTOBUF_SECTION_VARIABLE
   "%\n\004type\030\002 \001(\0162\027.messages.Endpoint.Type\"P"
   "\n\004Type\022\r\n\tUNDEFINED\020\000\022\016\n\nACQUISITOR\020\001\022\017\n"
   "\013BROADCASTER\020\002\022\n\n\006MASTER\020\003\022\014\n\010TERMINAL\020\004"
-  "\"\024\n\004Ping\022\014\n\004time\030\001 \001(\004\"$\n\014MasterStatus\022\024"
-  "\n\014activeLayout\030\n \001(\t\"\202\003\n\010Datagram\022%\n\004typ"
-  "e\030\001 \001(\0162\027.messages.Datagram.Type\022\"\n\004data"
-  "\030d \001(\0132\024.google.protobuf.Any\"\252\002\n\004Type\022\r\n"
-  "\tUNDEFINED\020\000\022\t\n\005CLOSE\020\005\022\r\n\tHEARTBEAT\020\007\022\010"
-  "\n\004PING\020\n\022\010\n\004PONG\020\013\022\n\n\006STATUS\0202\022\027\n\023ACQ_GE"
-  "T_BODY_STREAM\020n\022\027\n\023ACQ_END_BODY_STREAM\020o"
-  "\022\014\n\010ACQ_BODY\020s\022\022\n\rLAYOUT_LAYOUT\020\315\001\022\020\n\013LA"
-  "YOUT_LIST\020\322\001\022\022\n\rLAYOUT_CREATE\020\323\001\022\020\n\013LAYO"
-  "UT_OPEN\020\324\001\022\022\n\rLAYOUT_RENAME\020\325\001\022\022\n\rLAYOUT"
-  "_UPDATE\020\326\001\022\021\n\014LAYOUT_CLOSE\020\327\001\022\022\n\rLAYOUT_"
-  "DELETE\020\330\001b\006proto3"
+  "\"\024\n\004Ping\022\014\n\004time\030\001 \001(\004\">\n\014MasterStatus\022\024"
+  "\n\014activeLayout\030\n \001(\t\022\030\n\020connectedDevices"
+  "\030\024 \003(\t\"\202\003\n\010Datagram\022%\n\004type\030\001 \001(\0162\027.mess"
+  "ages.Datagram.Type\022\"\n\004data\030d \001(\0132\024.googl"
+  "e.protobuf.Any\"\252\002\n\004Type\022\r\n\tUNDEFINED\020\000\022\t"
+  "\n\005CLOSE\020\005\022\r\n\tHEARTBEAT\020\007\022\010\n\004PING\020\n\022\010\n\004PO"
+  "NG\020\013\022\n\n\006STATUS\0202\022\027\n\023ACQ_GET_BODY_STREAM\020"
+  "n\022\027\n\023ACQ_END_BODY_STREAM\020o\022\014\n\010ACQ_BODY\020s"
+  "\022\022\n\rLAYOUT_LAYOUT\020\315\001\022\020\n\013LAYOUT_LIST\020\322\001\022\022"
+  "\n\rLAYOUT_CREATE\020\323\001\022\020\n\013LAYOUT_OPEN\020\324\001\022\022\n\r"
+  "LAYOUT_RENAME\020\325\001\022\022\n\rLAYOUT_UPDATE\020\326\001\022\021\n\014"
+  "LAYOUT_CLOSE\020\327\001\022\022\n\rLAYOUT_DELETE\020\330\001b\006pro"
+  "to3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_network_2eproto_deps[1] = {
   &::descriptor_table_google_2fprotobuf_2fany_2eproto,
@@ -167,7 +169,7 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_net
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_network_2eproto_once;
 static bool descriptor_table_network_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_network_2eproto = {
-  &descriptor_table_network_2eproto_initialized, descriptor_table_protodef_network_2eproto, "network.proto", 657,
+  &descriptor_table_network_2eproto_initialized, descriptor_table_protodef_network_2eproto, "network.proto", 683,
   &descriptor_table_network_2eproto_once, descriptor_table_network_2eproto_sccs, descriptor_table_network_2eproto_deps, 4, 1,
   schemas, file_default_instances, TableStruct_network_2eproto::offsets,
   file_level_metadata_network_2eproto, 4, file_level_enum_descriptors_network_2eproto, file_level_service_descriptors_network_2eproto,
@@ -681,7 +683,8 @@ MasterStatus::MasterStatus()
 }
 MasterStatus::MasterStatus(const MasterStatus& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr) {
+      _internal_metadata_(nullptr),
+      connecteddevices_(from.connecteddevices_) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   activelayout_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_activelayout().empty()) {
@@ -719,6 +722,7 @@ void MasterStatus::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  connecteddevices_.Clear();
   activelayout_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   _internal_metadata_.Clear();
 }
@@ -735,6 +739,18 @@ const char* MasterStatus::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_I
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 82)) {
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParserUTF8(_internal_mutable_activelayout(), ptr, ctx, "messages.MasterStatus.activeLayout");
           CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // repeated string connectedDevices = 20;
+      case 20:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 162)) {
+          ptr -= 2;
+          do {
+            ptr += 2;
+            ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParserUTF8(_internal_add_connecteddevices(), ptr, ctx, "messages.MasterStatus.connectedDevices");
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<162>(ptr));
         } else goto handle_unusual;
         continue;
       default: {
@@ -773,6 +789,16 @@ failure:
         10, this->_internal_activelayout(), target);
   }
 
+  // repeated string connectedDevices = 20;
+  for (int i = 0, n = this->_internal_connecteddevices_size(); i < n; i++) {
+    const auto& s = this->_internal_connecteddevices(i);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      s.data(), static_cast<int>(s.length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "messages.MasterStatus.connectedDevices");
+    target = stream->WriteString(20, s, target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
@@ -788,6 +814,14 @@ size_t MasterStatus::ByteSizeLong() const {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
+
+  // repeated string connectedDevices = 20;
+  total_size += 2 *
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(connecteddevices_.size());
+  for (int i = 0, n = connecteddevices_.size(); i < n; i++) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+      connecteddevices_.Get(i));
+  }
 
   // string activeLayout = 10;
   if (this->activelayout().size() > 0) {
@@ -827,6 +861,7 @@ void MasterStatus::MergeFrom(const MasterStatus& from) {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
+  connecteddevices_.MergeFrom(from.connecteddevices_);
   if (from.activelayout().size() > 0) {
 
     activelayout_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.activelayout_);
@@ -854,6 +889,7 @@ bool MasterStatus::IsInitialized() const {
 void MasterStatus::InternalSwap(MasterStatus* other) {
   using std::swap;
   _internal_metadata_.Swap(&other->_internal_metadata_);
+  connecteddevices_.InternalSwap(&other->connecteddevices_);
   activelayout_.Swap(&other->activelayout_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
     GetArenaNoVirtual());
 }

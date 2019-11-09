@@ -25,7 +25,7 @@ public:
 	std::function<void(const Endpoint &)> onConnected;
 
 	/// Called everytime a body is received. The body memory has to be freed by you.
-	std::function<void(const RawBody * body)> onBody;
+	std::function<void(RawBody * body)> onBody;
 
 	/// Called when the connection has closed.
 	std::function<void()> onClose;

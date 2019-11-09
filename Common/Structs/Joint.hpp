@@ -72,7 +72,7 @@ struct Joint {
 		positionConfidence = message.positionconfidence();
 	}
 
-	// MARK: - Conversions
+	// MARK: - Operators
 
 	operator messages::Joint() const {
 		messages::Joint message;
@@ -85,6 +85,36 @@ struct Joint {
 		message.set_positionconfidence(positionConfidence);
 
 		return message;
+	}
+
+	/// Add the given joint to the current one, multypliying it by its confidence for
+	/// each value.
+	/// @warning: This method is made to be used when doing a weighted mean of
+	/// multiple skeletons
+	Joint& operator += (const Joint &j2) {
+		orientation += j2.orientation * j2.orientationConfidence;
+		orientationConfidence += j2.orientationConfidence;
+
+		position += j2.position * j2.positionConfidence;
+		position2D += j2.position2D * j2.positionConfidence;
+		positionConfidence += j2.positionConfidence;
+
+		return *this;
+	}
+
+	/// Divide the positions and the orientation by the corresponding confidence,
+	/// then divide each confidence by the given value.
+	/// @warning: This method is made to be used when doing a weighted mean of
+	/// multiple skeletons
+	Joint operator / (const SCALAR &div) {
+		Joint j;
+		j.orientation = orientation / orientationConfidence;
+		j.orientationConfidence = orientationConfidence / div;
+		j.position = position / positionConfidence;
+		j.position2D = position2D / positionConfidence;
+		j.positionConfidence = positionConfidence / div;
+
+		return j;
 	}
 
 };

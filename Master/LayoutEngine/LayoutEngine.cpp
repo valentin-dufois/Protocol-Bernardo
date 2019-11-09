@@ -159,7 +159,27 @@ layout::Device * LayoutEngine::getDeviceByPhysicalUID(const pb::deviceUID &uid) 
 
 // MARK: - Mathematics
 
-vec3 LayoutEngine::globalCoordinates(const vec3 &local, const pb::deviceUID deviceUID) {
+Skeleton * LayoutEngine::inGlobalCoordinates(const Skeleton &s, const pb::deviceUID deviceUID) {
+	Skeleton * skeleton = new Skeleton();
+
+	for(int i = 0; i < s.joints.size(); ++i) {
+		skeleton->joints[i] = inGlobalCoordinates(s.joints[i], deviceUID);
+	}
+
+	skeleton->centerOfMass = inGlobalCoordinates(s.centerOfMass, deviceUID);
+
+	return skeleton;
+}
+
+Joint LayoutEngine::inGlobalCoordinates(const Joint &j, const pb::deviceUID deviceUID) {
+	Joint joint = j;
+
+	joint.position = inGlobalCoordinates(j.position, deviceUID);
+
+	return joint;
+}
+
+vec3 LayoutEngine::inGlobalCoordinates(const vec3 &local, const pb::deviceUID deviceUID) {
 	if(!hasActiveLayout()) {
 		LOG_ERROR("An active layout is required for this method");
 		return vec3(0, 0, 0);
@@ -189,4 +209,3 @@ vec3 LayoutEngine::globalCoordinates(const vec3 &local, const pb::deviceUID devi
 
 	return global;
 }
-

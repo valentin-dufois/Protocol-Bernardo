@@ -95,6 +95,14 @@ extension CanvasDevice {
 // MARK: - CanvasElement
 extension CanvasDevice: CanvasElement {
 	func getParametersViews() -> [CanvasProperty] {
+		var devicesList = App.masterStatus.connectedDevices;
+
+		if !devicesList.contains(device.physicalUID) {
+			devicesList.append(device.physicalUID);
+		}
+
+		devicesList.sort()
+
 		var views = [CanvasProperty]()
 
 		views.append(CPSection.make(title: "Device"))
@@ -135,6 +143,12 @@ extension CanvasDevice: CanvasElement {
 								   unit: "cm",
 								   defaultValue: device.maxDistance,
 								   delegate: self))
+
+		views.append(CPSeparator.make())
+		views.append(CPSection.make(title: "Physical Device"))
+		views.append(CPComboBox.make(label: "UID",
+									 values: devicesList,
+									 delegate: self));
 
 		return views
 	}

@@ -41,8 +41,11 @@ void NiteTracker::onNewFrame(nite::UserTracker &) {
 void NiteTracker::processFrame(nite::UserTrackerFrameRef * frame) {
 	/// When Processing a frame, every detected nite users are parsed and formatted as a Body. Then, the body are passed on to an handler.
 
+
 	// Get all the users on the frame
 	const nite::Array<nite::UserData>& users = frame->getUsers();
+
+	LOG_DEBUG("Processing frame " + std::to_string(users.getSize()));
 
 	// Loop on all the users
 	for(int i = 0;  i < users.getSize(); ++i) {

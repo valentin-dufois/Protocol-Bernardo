@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14868" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14868"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -28,7 +28,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="EaN-4x-zQQ">
-                    <rect key="frame" x="0.0" y="0.0" width="35" height="14"/>
+                    <rect key="frame" x="-1" y="1" width="35" height="14"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="kxh-zj-Uox">
                         <font key="font" metaFont="smallSystemBold"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -37,8 +37,8 @@
                 </textField>
             </subviews>
             <constraints>
-                <constraint firstItem="EaN-4x-zQQ" firstAttribute="leading" secondItem="j6Y-cr-ezF" secondAttribute="leading" constant="2" id="7Eh-jO-QUJ"/>
-                <constraint firstItem="EaN-4x-zQQ" firstAttribute="top" secondItem="j6Y-cr-ezF" secondAttribute="top" constant="2" id="eCi-UZ-mqE"/>
+                <constraint firstItem="EaN-4x-zQQ" firstAttribute="leading" secondItem="j6Y-cr-ezF" secondAttribute="leading" constant="1" id="7Eh-jO-QUJ"/>
+                <constraint firstItem="EaN-4x-zQQ" firstAttribute="top" secondItem="j6Y-cr-ezF" secondAttribute="top" constant="1" id="eCi-UZ-mqE"/>
             </constraints>
             <connections>
                 <outlet property="title" destination="EaN-4x-zQQ" id="bXe-qh-wPv"/>
@@ -47,13 +47,13 @@
         </customView>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="c22-O7-iKe" customClass="CPString" customModule="pb_terminal" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="275" height="27"/>
+            <rect key="frame" x="0.0" y="0.0" width="275" height="25"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GCV-sO-OxI">
-                    <rect key="frame" x="90" y="3" width="180" height="21"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="Kq6-wz-Fq0">
-                        <font key="font" usesAppearanceFont="YES"/>
+                    <rect key="frame" x="90" y="3" width="180" height="19"/>
+                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="Kq6-wz-Fq0">
+                        <font key="font" metaFont="message" size="11"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -67,7 +67,7 @@
                         <constraint firstAttribute="width" constant="80" id="QCC-RA-X78"/>
                     </constraints>
                     <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Field Name" id="1lx-GA-kUt">
-                        <font key="font" metaFont="label" size="11"/>
+                        <font key="font" metaFont="message" size="11"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -88,13 +88,13 @@
             <point key="canvasLocation" x="136.5" y="-43.5"/>
         </customView>
         <customView id="Ean-jX-avP" customClass="CPDouble" customModule="pb_terminal" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="275" height="27"/>
+            <rect key="frame" x="0.0" y="0.0" width="275" height="25"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eWx-Pt-ZzQ">
-                    <rect key="frame" x="90" y="3" width="145" height="21"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="aYp-1l-vWb">
-                        <font key="font" usesAppearanceFont="YES"/>
+                    <rect key="frame" x="90" y="3" width="145" height="19"/>
+                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="aYp-1l-vWb">
+                        <font key="font" metaFont="message" size="11"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -108,13 +108,13 @@
                         <constraint firstAttribute="width" constant="80" id="pwP-9s-50R"/>
                     </constraints>
                     <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Field Name" id="p5s-JY-aSm">
-                        <font key="font" metaFont="label" size="11"/>
+                        <font key="font" metaFont="message" size="11"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
                 <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GTd-U9-fhw">
-                    <rect key="frame" x="235" y="2" width="15" height="22"/>
+                    <rect key="frame" x="235" y="1" width="15" height="22"/>
                     <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" minValue="-100000" maxValue="100000" id="LyZ-Xa-5N3"/>
                     <connections>
                         <action selector="stepperValueDidChange:" target="Ean-jX-avP" id="U27-RR-sZO"/>
@@ -126,7 +126,7 @@
                         <constraint firstAttribute="width" constant="20" id="4DG-K9-ISY"/>
                     </constraints>
                     <textFieldCell key="cell" controlSize="small" lineBreakMode="clipping" alignment="left" title="btu" id="ZlI-pX-hPR">
-                        <font key="font" metaFont="label" size="11"/>
+                        <font key="font" metaFont="message" size="11"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -153,7 +153,7 @@
             <point key="canvasLocation" x="137" y="39"/>
         </customView>
         <customView id="peg-17-vm8" customClass="CPXY" customModule="pb_terminal" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="275" height="44"/>
+            <rect key="frame" x="0.0" y="0.0" width="275" height="42"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="15Q-NW-8xB">
@@ -162,22 +162,22 @@
                         <constraint firstAttribute="width" constant="20" id="r4h-ui-GuV"/>
                     </constraints>
                     <textFieldCell key="cell" controlSize="small" lineBreakMode="clipping" alignment="left" title="btu" id="WQn-kW-0L1">
-                        <font key="font" metaFont="label" size="11"/>
+                        <font key="font" metaFont="message" size="11"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
                 <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qgP-I8-wuU">
-                    <rect key="frame" x="154" y="19" width="15" height="22"/>
+                    <rect key="frame" x="154" y="18" width="15" height="22"/>
                     <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" minValue="-100000" maxValue="100000" id="QQw-2S-auI"/>
                     <connections>
                         <action selector="XStepperValueDidChange:" target="peg-17-vm8" id="pup-d5-Bkr"/>
                     </connections>
                 </stepper>
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zJk-OK-Ezs">
-                    <rect key="frame" x="172" y="20" width="64" height="21"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="QAA-vG-3YH">
-                        <font key="font" usesAppearanceFont="YES"/>
+                    <rect key="frame" x="172" y="20" width="64" height="19"/>
+                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="QAA-vG-3YH">
+                        <font key="font" metaFont="message" size="11"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -186,7 +186,7 @@
                     </connections>
                 </textField>
                 <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="isn-bw-EGz">
-                    <rect key="frame" x="236" y="19" width="15" height="22"/>
+                    <rect key="frame" x="236" y="18" width="15" height="22"/>
                     <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" minValue="-100000" maxValue="100000" id="7C2-iV-3HY"/>
                     <connections>
                         <action selector="YStepperValueDidChange:" target="peg-17-vm8" id="841-Jj-gz5"/>
@@ -195,7 +195,7 @@
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RdR-9e-sh6">
                     <rect key="frame" x="116" y="3" width="12" height="14"/>
                     <textFieldCell key="cell" controlSize="small" lineBreakMode="clipping" title="X" id="htH-47-lM6">
-                        <font key="font" metaFont="label" size="11"/>
+                        <font key="font" metaFont="message" size="11"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -203,18 +203,18 @@
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1MW-Ip-xh9">
                     <rect key="frame" x="198" y="3" width="12" height="14"/>
                     <textFieldCell key="cell" controlSize="small" lineBreakMode="clipping" title="Y" id="k7k-HV-WfO">
-                        <font key="font" metaFont="label" size="11"/>
+                        <font key="font" metaFont="message" size="11"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gRF-5M-svS">
-                    <rect key="frame" x="90" y="20" width="64" height="21"/>
+                    <rect key="frame" x="90" y="20" width="64" height="19"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="64" id="2nb-qH-rlu"/>
                     </constraints>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="mZY-mN-jwG">
-                        <font key="font" usesAppearanceFont="YES"/>
+                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="mZY-mN-jwG">
+                        <font key="font" metaFont="message" size="11"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -252,46 +252,45 @@
             <point key="canvasLocation" x="136.5" y="129"/>
         </customView>
         <userDefaultsController representsSharedInstance="YES" id="oox-Qd-zcw"/>
-        <customView id="Bzx-Q1-UIJ">
-            <rect key="frame" x="0.0" y="0.0" width="275" height="27"/>
+        <customView id="Bzx-Q1-UIJ" customClass="CPComboBox" customModule="pb_terminal" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="275" height="25"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="j77-bS-Ycc">
-                    <rect key="frame" x="3" y="6" width="84" height="14"/>
+                    <rect key="frame" x="3" y="5" width="84" height="14"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="80" id="sBC-7X-H2z"/>
                     </constraints>
-                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Physical Device" id="C7N-gU-nvy">
-                        <font key="font" metaFont="label" size="11"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Field Name" id="C7N-gU-nvy">
+                        <font key="font" metaFont="message" size="11"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
                 <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="X6t-MD-1Mt">
-                    <rect key="frame" x="90" y="0.0" width="183" height="25"/>
-                    <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="yXz-6u-Qha">
-                        <font key="font" metaFont="system"/>
+                    <rect key="frame" x="89" y="0.0" width="184" height="22"/>
+                    <comboBoxCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" usesDataSource="YES" numberOfVisibleItems="5" id="yXz-6u-Qha">
+                        <font key="font" metaFont="message" size="11"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        <objectValues>
-                            <string>Item 1</string>
-                            <string>Item 2</string>
-                            <string>Item 3</string>
-                        </objectValues>
                     </comboBoxCell>
+                    <connections>
+                        <outlet property="dataSource" destination="Bzx-Q1-UIJ" id="wh1-Rb-6ET"/>
+                    </connections>
                 </comboBox>
             </subviews>
             <constraints>
                 <constraint firstItem="X6t-MD-1Mt" firstAttribute="centerY" secondItem="Bzx-Q1-UIJ" secondAttribute="centerY" id="Ble-Dg-R4J"/>
                 <constraint firstItem="X6t-MD-1Mt" firstAttribute="firstBaseline" secondItem="j77-bS-Ycc" secondAttribute="firstBaseline" id="DCY-Iu-Uaa"/>
                 <constraint firstAttribute="trailing" secondItem="X6t-MD-1Mt" secondAttribute="trailing" constant="5" id="Xad-e8-17Y"/>
-                <constraint firstItem="X6t-MD-1Mt" firstAttribute="leading" secondItem="j77-bS-Ycc" secondAttribute="trailing" constant="5" id="rpr-gv-jGC"/>
+                <constraint firstItem="X6t-MD-1Mt" firstAttribute="leading" secondItem="j77-bS-Ycc" secondAttribute="trailing" constant="4" id="rpr-gv-jGC"/>
                 <constraint firstItem="j77-bS-Ycc" firstAttribute="leading" secondItem="Bzx-Q1-UIJ" secondAttribute="leading" constant="5" id="vWD-ns-xwN"/>
             </constraints>
             <connections>
-                <outlet property="label" destination="j77-bS-Ycc" id="vnx-qC-mpQ"/>
+                <outlet property="field" destination="X6t-MD-1Mt" id="7qo-HJ-deK"/>
+                <outlet property="label" destination="j77-bS-Ycc" id="MZm-zU-YZx"/>
             </connections>
-            <point key="canvasLocation" x="136.5" y="231.5"/>
+            <point key="canvasLocation" x="136.5" y="229"/>
         </customView>
     </objects>
 </document>

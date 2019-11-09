@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14868"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -346,12 +346,12 @@ CA
         <scene sceneID="Ost-wh-Ztk">
             <objects>
                 <viewController id="fB0-hq-gnC" customClass="CanvasPropertiesViewController" customModule="pb_terminal" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" misplaced="YES" id="wPb-aa-Gap">
-                        <rect key="frame" x="0.0" y="0.0" width="288" height="300"/>
+                    <view key="view" id="wPb-aa-Gap">
+                        <rect key="frame" x="0.0" y="0.0" width="280" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <visualEffectView blendingMode="withinWindow" material="HUDWindow" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="WlH-Q9-Dlm">
-                                <rect key="frame" x="0.0" y="0.0" width="285" height="300"/>
+                                <rect key="frame" x="0.0" y="0.0" width="280" height="300"/>
                                 <subviews>
                                     <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="67" horizontalPageScroll="10" verticalLineScroll="67" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wtk-RU-gzD">
                                         <rect key="frame" x="5" y="5" width="275" height="290"/>
@@ -360,9 +360,8 @@ CA
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="67" rowSizeStyle="automatic" viewBased="YES" floatsGroupRows="NO" id="i60-20-uMt" customClass="PropertiesTable" customModule="pb_terminal" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="278" height="290"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="275" height="290"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                    <size key="intercellSpacing" width="3" height="0.0"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                     <tableColumns>
@@ -380,7 +379,7 @@ CA
                                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                             <prototypeCellViews>
                                                                 <tableCellView identifier="layoutCell" id="lgt-DR-WPs">
-                                                                    <rect key="frame" x="1" y="0.0" width="275" height="67"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="275" height="67"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="AC4-k4-Mln">
@@ -415,7 +414,7 @@ CA
                                             </subviews>
                                             <nil key="backgroundColor"/>
                                         </clipView>
-                                        <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="tJ1-3y-aHl">
+                                        <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="tJ1-3y-aHl">
                                             <rect key="frame" x="0.0" y="274" width="275" height="16"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
@@ -429,7 +428,7 @@ CA
                                     <constraint firstItem="Wtk-RU-gzD" firstAttribute="top" secondItem="WlH-Q9-Dlm" secondAttribute="top" constant="5" id="DEe-IX-y9L"/>
                                     <constraint firstAttribute="bottom" secondItem="Wtk-RU-gzD" secondAttribute="bottom" constant="5" id="NVo-Tw-2EQ"/>
                                     <constraint firstItem="Wtk-RU-gzD" firstAttribute="leading" secondItem="WlH-Q9-Dlm" secondAttribute="leading" constant="5" id="QJp-oH-8wv"/>
-                                    <constraint firstAttribute="trailing" secondItem="Wtk-RU-gzD" secondAttribute="trailing" constant="5" id="XJF-Ng-MGg"/>
+                                    <constraint firstAttribute="trailing" secondItem="Wtk-RU-gzD" secondAttribute="trailing" id="XJF-Ng-MGg"/>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="291" id="by3-YC-iMA"/>
                                 </constraints>
                             </visualEffectView>
@@ -443,8 +442,6 @@ CA
                     </view>
                     <connections>
                         <outlet property="parametersTable" destination="i60-20-uMt" id="KmT-yh-ZQE"/>
-                        <outlet property="tableLeadingConstraint" destination="QJp-oH-8wv" id="kbp-TA-Jpm"/>
-                        <outlet property="viewLeadingConstraint" destination="UP3-fF-u2h" id="U0J-t6-F46"/>
                     </connections>
                 </viewController>
                 <customObject id="4Df-xM-1Ak" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

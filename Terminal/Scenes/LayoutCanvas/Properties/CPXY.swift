@@ -8,7 +8,7 @@
 import AppKit
 
 class CPXY: NSView, CanvasProperty {
-	var displayHeight: Float = 44
+	var displayHeight: Float = 42
 
 	@IBOutlet weak var XField: NSTextField!
 	@IBOutlet weak var XStepper: NSStepper!
