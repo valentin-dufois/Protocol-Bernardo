@@ -8,6 +8,8 @@
 #ifndef Parser_h
 #define Parser_h
 
+#include <functional>
+
 // Forward declaration
 class Device;
 

@@ -20,7 +20,13 @@
 
 void Core::init() {
 	// Name our main thread
-	pthread_setname_np("pb.acquisitor.main");
+	
+	std::string threadName = "pb.acquisitor.main";
+#ifdef __APPLE__
+	pthread_setname_np(threadName.c_str());
+#else
+	pthread_setname_np(pthread_self(), threadName.c_str());
+#endif
 
 	// Set up the acquisitor server
 	LOG_INFO("Starting up the acquisitor server");

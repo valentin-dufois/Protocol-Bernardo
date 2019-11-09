@@ -78,11 +78,11 @@ protected:
 	/// The name of the device
 	std::string _name;
 
-	/// The UID of the device
-	std::string _uid;
-
 	/// The URI of the physical peripheral
 	std::string _uri;
+
+	/// The UID of the device
+	std::string _uid;
 
 	/// Current state of the device
 	State _state = starting;

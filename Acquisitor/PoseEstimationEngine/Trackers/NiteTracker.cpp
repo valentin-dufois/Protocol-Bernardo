@@ -27,6 +27,8 @@ void NiteTracker::onNewFrame(nite::UserTracker &) {
 	nite::UserTrackerFrameRef * userFrame = new nite::UserTrackerFrameRef();
 	_tracker.readFrame(userFrame);
 
+	LOG_DEBUG("OnNewNiTEFrame");
+
 	// Ignore the frame if it is not valid
 	if(!userFrame->isValid()) {
 		return;
@@ -45,7 +47,7 @@ void NiteTracker::processFrame(nite::UserTrackerFrameRef * frame) {
 	// Get all the users on the frame
 	const nite::Array<nite::UserData>& users = frame->getUsers();
 
-	LOG_DEBUG("Processing frame " + std::to_string(users.getSize()));
+	LOG_DEBUG("Processing NiTE Frame " + std::to_string(users.getSize()));
 
 	// Loop on all the users
 	for(int i = 0;  i < users.getSize(); ++i) {
@@ -133,8 +135,6 @@ void NiteTracker::processFrame(nite::UserTrackerFrameRef * frame) {
 		Skeleton * skeleton = &body->skeleton;
 		const nite::Skeleton * niteSkeleton = &(userData->getSkeleton());
 
-		auto truc = skeleton[Skeleton::Joint::head];
-
 		skeleton->set(Skeleton::Joint::head, Joint(niteSkeleton->getJoint(nite::JOINT_HEAD), _tracker));
 		skeleton->set(Skeleton::Joint::neck, Joint(niteSkeleton->getJoint(nite::JOINT_NECK), _tracker));
 		skeleton->set(Skeleton::Joint::leftShoulder, Joint(niteSkeleton->getJoint(nite::JOINT_LEFT_SHOULDER), _tracker));
@@ -150,6 +150,8 @@ void NiteTracker::processFrame(nite::UserTrackerFrameRef * frame) {
 		skeleton->set(Skeleton::Joint::rightKnee, Joint(niteSkeleton->getJoint(nite::JOINT_RIGHT_KNEE), _tracker));
 		skeleton->set(Skeleton::Joint::leftFoot, Joint(niteSkeleton->getJoint(nite::JOINT_LEFT_FOOT), _tracker));
 		skeleton->set(Skeleton::Joint::rightFoot, Joint(niteSkeleton->getJoint(nite::JOINT_RIGHT_FOOT), _tracker));
+		
+		LOG_DEBUG("Skeleton Tracked");
 
 		// Pass along the body
 		if(bodyHandler)

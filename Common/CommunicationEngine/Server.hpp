@@ -14,7 +14,7 @@
 
 #include "Endpoint.hpp"
 #include "Discovery/Advertiser.hpp"
-#include "messages.hpp"
+#include "../Messages/messages.hpp"
 
 class Socket;
 
