@@ -23,8 +23,12 @@ void CommunicationEngine::runContext() {
 
 	// No thread, create it and run it
 	_executionThread = new std::thread([&] () {
-		pthread_setname_np("pb.communication-engine.context");
-
+		std::string threadName = "pb.communication-engine.context";
+#ifdef __APPLE__
+		pthread_setname_np(threadName.c_str());
+#else
+		pthread_setname_np(pthread_self(), threadName.c_str());
+#endif
 		_ioContext.restart();
 		_ioContext.run();
 

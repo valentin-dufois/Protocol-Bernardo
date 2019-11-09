@@ -9,6 +9,7 @@
 #define Tracker_h
 
 #include "../../libraries.hpp"
+#include <functional>
 
 class Device;
 

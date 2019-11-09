@@ -15,7 +15,7 @@
 #include "../Utils/Log.hpp"
 
 #include "../CommunicationEngine/NetworkParameters.h"
-#include "messages.hpp"
+#include "../Messages/messages.hpp"
 
 /**
  An Endpoint represent a machine on the network

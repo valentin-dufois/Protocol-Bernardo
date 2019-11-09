@@ -130,8 +130,6 @@ void NiteTracker::processFrame(nite::UserTrackerFrameRef * frame) {
 		Skeleton * skeleton = &body->skeleton;
 		const nite::Skeleton * niteSkeleton = &(userData->getSkeleton());
 
-		auto truc = skeleton[Skeleton::Joint::head];
-
 		skeleton->set(Skeleton::Joint::head, Joint(niteSkeleton->getJoint(nite::JOINT_HEAD), _tracker));
 		skeleton->set(Skeleton::Joint::neck, Joint(niteSkeleton->getJoint(nite::JOINT_NECK), _tracker));
 		skeleton->set(Skeleton::Joint::leftShoulder, Joint(niteSkeleton->getJoint(nite::JOINT_LEFT_SHOULDER), _tracker));
