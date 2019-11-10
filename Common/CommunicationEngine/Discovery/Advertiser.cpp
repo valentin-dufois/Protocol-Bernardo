@@ -44,6 +44,7 @@ void Advertiser::startAdvertising() {
 	_socket->set_option(asio::ip::multicast::outbound_interface(outboundAddress.to_v4()));
 	_socket->set_option(asio::ip::udp::socket::reuse_address(true));
 	_socket->set_option(asio::socket_base::broadcast(true));
+	_socket->bind(asio::ip::udp::endpoint(outboundAddress, 0));
 
 	// Set up the timer
 	setTimer();
