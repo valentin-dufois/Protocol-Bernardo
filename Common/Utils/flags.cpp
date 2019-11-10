@@ -9,11 +9,11 @@
 
 /// loglevel
 DEFINE_int32(loglevel, 1, "Set the log level.\n1 = All logs; 2 = Informatives logs; 3 = Warnings; 4 = Errors only; 5 = No logs");
-
+DEFINE_string(interface, "", "The network interface to use when advertising on the network. If left empty, the user may be prompted to choose the interface at run-time.");
 
 #ifdef MACHINE_ACQUISITOR
 
 /// liveview
-DEFINE_bool(liveview, false, "Enable liveview from the connected devices. Liveview is useful for pl;acing captation devices but should not be used for live performances as it degrades the acquisitor performances.");
+DEFINE_bool(liveview, false, "Enable liveview from the connected devices. Liveview is useful for placing captation devices but should not be used for live performances as it degrades the acquisitor performances.");
 
 #endif /* MACHINE_ACQUISITOR */

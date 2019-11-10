@@ -14,6 +14,7 @@
 
 #include "../CommunicationEngine.hpp"
 #include "../../Messages/messages.hpp"
+#include "../../Utils/flags.hpp"
 
 Advertiser::Advertiser(const Endpoint::Type &endpointType):
 _broadcastEndpoint(asio::ip::udp::endpoint(asio::ip::address_v4::broadcast(),
@@ -92,6 +93,11 @@ void Advertiser::setTimer() {
 }
 
 asio::ip::address Advertiser::getOutboundInterfaceIP() {
+	// The user has specified a specific outbound interface
+	if(FLAGS_interface.size() > 0) {
+		return asio::ip::make_address_v4(FLAGS_interface);
+	}
+
 	// Find the outbound interfaces
 	asio::ip::udp::resolver resolver(CommunicationEngine::instance()->getContext());
 	asio::ip::udp::resolver::query query(asio::ip::host_name(), "");

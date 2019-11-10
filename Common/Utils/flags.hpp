@@ -12,6 +12,7 @@
 
 /// loglevel
 DECLARE_int32(loglevel);
+DECLARE_string(interface);
 
 
 #ifdef MACHINE_ACQUISITOR
