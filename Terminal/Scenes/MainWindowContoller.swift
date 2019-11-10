@@ -59,6 +59,11 @@ class MainWindowController: NSWindowController {
 			self.controller.closeLayoutInterface()
 		}
 	}
+
+	@IBAction func refreshMasterStatus(_ sender: Any) {
+		App.networkEngine.requestMasterStatus();
+	}
+
 }
 
 extension MainWindowController: EventsDelegate {

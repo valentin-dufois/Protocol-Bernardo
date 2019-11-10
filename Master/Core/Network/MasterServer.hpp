@@ -12,12 +12,12 @@
 #include "../../../Common/CommunicationEngine/Server.hpp"
 #include "../../../Common/CommunicationEngine/Exchanges/Datagrams/Ping.hpp"
 
-#include "../../LayoutEngine/LayoutEngine.hpp"
-
 
 class Socket;
+class TrackingEngine;
+class LayoutEngine;
 
-class MasterServer: Server, Ping {
+class MasterServer: public Server, Ping {
 public:
 
 	MasterServer(const Endpoint::Type &aType): Server(aType) {
@@ -27,6 +27,8 @@ public:
 
 	/// Handle to the layout engine
 	LayoutEngine * layoutEngine = nullptr;
+
+	TrackingEngine * trackingEngine = nullptr;
 
 protected:
 	void onClient(Socket * newSocket) override;

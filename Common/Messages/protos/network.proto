@@ -57,6 +57,8 @@ message Datagram {
 		LAYOUT_CLOSE 		= 215;  // Close the opened layout
 		LAYOUT_DELETE 		= 216;  // Delete the specified layout
 
+		TRACKED_BODIES		= 250;	// List of all tracked bodies
+
 		// 3XX: Broadcaster types -
 	}
 

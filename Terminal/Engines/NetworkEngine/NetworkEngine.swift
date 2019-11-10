@@ -75,7 +75,7 @@ extension NetworkEngine: MasterClientDelegate {
 		}
 	}
 
-	@objc private func requestMasterStatus() {
+	@objc public func requestMasterStatus() {
 		_master.requestStatus()
 	}
 
@@ -100,6 +100,8 @@ extension NetworkEngine: MasterClientDelegate {
 
 		// Store the status until the next one for everyone to access
 		App.masterStatus = status
+
+		Log.info("Master Status updated")
 
 		// Pass along to the delegate
 		delegate?.onReceive(status: status);

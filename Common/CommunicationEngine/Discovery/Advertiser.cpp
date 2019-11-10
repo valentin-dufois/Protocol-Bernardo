@@ -38,6 +38,8 @@ void Advertiser::startAdvertising() {
 
 	asio::ip::address outboundAddress = getOutboundInterfaceIP();
 
+	LOG_DEBUG("Advertising on interface " + outboundAddress.to_string());
+
 	_socket->set_option(asio::ip::multicast::outbound_interface(outboundAddress.to_v4()));
 	_socket->set_option(asio::ip::udp::socket::reuse_address(true));
 	_socket->set_option(asio::socket_base::broadcast(true));
@@ -97,18 +99,43 @@ asio::ip::address Advertiser::getOutboundInterfaceIP() {
 
 	asio::ip::address interfaceIPAdress;
 
+	std::vector<asio::ip::address> interfaces;
+
 	// Select the first IPv4 interface and use it
 	while(it != boost::asio::ip::udp::resolver::iterator()) {
 		asio::ip::address interface = (it++)->endpoint().address();
 		if(interface.is_v4()) {
-			return interface;
+			interfaces.push_back(interface);
 		}
 	}
 
-	// No IPv4 interface could be found
-	LOG_WARN("Could not found an IPv4 outbound interface");
 
-	return asio::ip::address::from_string("0.0.0.0");
+	if(interfaces.size() == 0) {
+		// No IPv4 interface could be found
+		LOG_WARN("Could not found an IPv4 outbound interface");
+
+		return asio::ip::address::from_string("0.0.0.0");
+	}
+
+	if(interfaces.size() == 1) {
+		return interfaces[0];
+	}
+
+	// Request user input for selecting the network interface to use
+	LOG_WARN("Found " + std::to_string(interfaces.size()) + " ipv4 network interface.s");
+	LOG_INFO("Please select interface to use for advertising on the network:");
+
+	std::string queryInteraces = "";
+	for(int i = 0; i < interfaces.size(); ++i) {
+		queryInteraces += "(" + std::to_string(i) + ") " + interfaces[i].to_string() + "; ";
+	}
+
+	LOG_INFO(queryInteraces);
+	std::cout << ">> ";
+	std::string selectedInterface;
+	std::cin >> selectedInterface;
+
+	return interfaces[std::atoi(selectedInterface.c_str())];
 }
 
 Advertiser::~Advertiser() {

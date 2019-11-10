@@ -80,3 +80,6 @@ void NetworkManager::connectToAcquisitor(const Endpoint &endpoint) {
 	if(onAcquisitor)
 		onAcquisitor(acquisitor);
 }
+void NetworkManager::sendToTerminal(protobuf::Message *message) {
+	_masterServer.sendToAll(message);
+}

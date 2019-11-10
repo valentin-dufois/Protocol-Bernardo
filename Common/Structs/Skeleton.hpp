@@ -87,7 +87,8 @@ struct Skeleton  {
 		joints[jointID] = joint;
 	}
 
-	operator messages::Skeleton * () const {
+	/// @deprecated
+	operator messages::Skeleton * () const __AVAILABILITY_INTERNAL_DEPRECATED {
 		messages::Skeleton * message = new messages::Skeleton();
 
 		// Converts the joints
@@ -100,6 +101,23 @@ struct Skeleton  {
 		// Fill in the message
 		*message->mutable_joints() = {jointsMessages.begin(), jointsMessages.end()};
 		message->set_allocated_centerofmass(maths::asMessage(centerOfMass));
+
+		return message;
+	}
+
+	operator messages::Skeleton () const {
+		messages::Skeleton message;
+
+		// Converts the joints
+		std::vector<messages::Joint> jointsMessages;
+
+		for(int i = 0; i < 15; ++i) {
+			jointsMessages.push_back(joints[i]);
+		}
+
+		// Fill in the message
+		*message.mutable_joints() = {jointsMessages.begin(), jointsMessages.end()};
+		message.set_allocated_centerofmass(maths::asMessage(centerOfMass));
 
 		return message;
 	}

@@ -9,6 +9,7 @@
 #define Body_h
 
 #include "../common.hpp"
+#include "../Messages/messages.hpp"
 #include "Skeleton.hpp"
 #include "RawBody.hpp"
 
@@ -99,6 +100,22 @@ struct Body {
 			delete skeleton;
 		}
 		rawSkeletons.clear();
+	}
+
+	// MARK: - Operators
+
+	operator messages::Body () const {
+		messages::Body message;
+		message.set_uid(uid);
+		message.set_frame(frame);
+
+		// Convert the skeletons
+		for(Skeleton * s: skeletons) {
+			messages::Skeleton * skeletonMessage = message.add_skeletons();
+			skeletonMessage->CopyFrom((messages::Skeleton)*s);
+		}
+
+		return message;
 	}
 };
 

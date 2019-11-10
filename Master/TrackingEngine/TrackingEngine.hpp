@@ -49,6 +49,10 @@ public:
 	/// This method is called every time the Tracking Engine finishes a cycle.
 	std::function<void(std::vector<Body *>)> onCycleEnd;
 
+	inline std::unordered_set<pb::deviceUID> getConnectedDevicesUID() {
+		return _devicesUID;
+	}
+
 	// MARK: Bodies accessors
 
 	/// Gives the matching body for the given rawBody if it exists
@@ -81,7 +85,7 @@ private:
 	std::atomic<bool> _isTracking = false;
 
 	/// List all the active captation devices UID sending bodies
-	std::vector<std::string> _devicesUID;
+	std::unordered_set<pb::deviceUID> _devicesUID;
 
 	/// All the bodies received since the last cycle
 	std::vector<RawBody *> _bodiesBuffer;

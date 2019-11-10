@@ -196,6 +196,9 @@ struct Messages_Datagram {
 
     /// Delete the specified layout
     case layoutDelete // = 216
+
+    /// List of all tracked bodies
+    case trackedBodies // = 250
     case UNRECOGNIZED(Int)
 
     init() {
@@ -221,6 +224,7 @@ struct Messages_Datagram {
       case 214: self = .layoutUpdate
       case 215: self = .layoutClose
       case 216: self = .layoutDelete
+      case 250: self = .trackedBodies
       default: self = .UNRECOGNIZED(rawValue)
       }
     }
@@ -244,6 +248,7 @@ struct Messages_Datagram {
       case .layoutUpdate: return 214
       case .layoutClose: return 215
       case .layoutDelete: return 216
+      case .trackedBodies: return 250
       case .UNRECOGNIZED(let i): return i
       }
     }
@@ -277,6 +282,7 @@ extension Messages_Datagram.TypeEnum: CaseIterable {
     .layoutUpdate,
     .layoutClose,
     .layoutDelete,
+    .trackedBodies,
   ]
 }
 
@@ -483,5 +489,6 @@ extension Messages_Datagram.TypeEnum: SwiftProtobuf._ProtoNameProviding {
     214: .same(proto: "LAYOUT_UPDATE"),
     215: .same(proto: "LAYOUT_CLOSE"),
     216: .same(proto: "LAYOUT_DELETE"),
+    250: .same(proto: "TRACKED_BODIES"),
   ]
 }

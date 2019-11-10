@@ -247,8 +247,25 @@ CA
                                         </segmentedCell>
                                     </segmentedControl>
                                 </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="038CAC43-D535-4EF7-BCA7-86FFA8ACFC81" label="Refresh Status" paletteLabel="Refresh Status" sizingBehavior="auto" id="Sxh-fy-Chs">
+                                    <nil key="toolTip"/>
+                                    <segmentedControl key="view" verticalHuggingPriority="750" id="blK-fz-DTg">
+                                        <rect key="frame" x="24" y="14" width="38" height="24"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <segmentedCell key="cell" borderStyle="border" alignment="left" style="texturedSquare" trackingMode="selectOne" id="oMp-zO-UcP">
+                                            <font key="font" metaFont="system"/>
+                                            <segments>
+                                                <segment image="NSRefreshTemplate" width="32"/>
+                                            </segments>
+                                        </segmentedCell>
+                                    </segmentedControl>
+                                    <connections>
+                                        <action selector="refreshMasterStatus:" target="B8D-0N-5wS" id="ldX-Mx-ytS"/>
+                                    </connections>
+                                </toolbarItem>
                             </allowedToolbarItems>
                             <defaultToolbarItems>
+                                <toolbarItem reference="Sxh-fy-Chs"/>
                                 <toolbarItem reference="6Id-oG-UVb"/>
                                 <toolbarItem reference="u5t-dl-ef4"/>
                                 <toolbarItem reference="6Id-oG-UVb"/>
@@ -367,7 +384,7 @@ CA
                                                     <tableColumns>
                                                         <tableColumn editable="NO" width="275" minWidth="275" maxWidth="275" id="pQU-1V-PWl">
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Layout">
-                                                                <font key="font" metaFont="message" size="11"/>
+                                                                <font key="font" metaFont="controlContent" size="11"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                             </tableHeaderCell>
@@ -570,7 +587,7 @@ DQ
                                                         <tableColumns>
                                                             <tableColumn width="499" minWidth="40" maxWidth="1000" id="ugE-vl-WPv">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Layout">
-                                                                    <font key="font" metaFont="message" size="11"/>
+                                                                    <font key="font" metaFont="controlContent" size="11"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                     <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                                 </tableHeaderCell>
@@ -850,6 +867,7 @@ Gw
     </scenes>
     <resources>
         <image name="NSAddTemplate" width="11" height="11"/>
+        <image name="NSRefreshTemplate" width="11" height="15"/>
         <image name="NSRemoveTemplate" width="11" height="11"/>
     </resources>
 </document>

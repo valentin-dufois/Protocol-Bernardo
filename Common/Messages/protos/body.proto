@@ -33,3 +33,13 @@ message RawBody {
 	State state = 3;
 	string deviceUID = 4;
 }
+
+message Body {
+	string uid = 1;
+	uint32 frame = 5;
+	repeated Skeleton skeletons = 10;
+}
+
+message TrackedBodies {
+	repeated Body bodies = 1;
+}

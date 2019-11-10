@@ -21,6 +21,7 @@
 
 class AcquisitorClient;
 class LayoutEngine;
+class TrackingEngine;
 
 class NetworkManager {
 public:
@@ -40,13 +41,16 @@ public:
 	/// Called everytime a new Broadcaster is connected
 //	std::function<void()> onBroadcaster;
 
-	/// Called everytime a new Terminal is connected
-	std::function<void()> onTerminal;
-
-
 	inline void setLayoutEngine(LayoutEngine * layoutEngine) {
 		_masterServer.layoutEngine = layoutEngine;
 	}
+
+
+	inline void setTrackingEngine(TrackingEngine * trackingEngine) {
+		_masterServer.trackingEngine = trackingEngine;
+	}
+
+	void sendToTerminal(protobuf::Message * message);
 
 private:
 

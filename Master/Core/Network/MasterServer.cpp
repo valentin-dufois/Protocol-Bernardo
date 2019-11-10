@@ -11,6 +11,8 @@
 
 #include "../../LayoutEngine/Structs/Layout.hpp"
 #include "../../../Common/CommunicationEngine/Exchanges/Socket.hpp"
+#include "../../LayoutEngine/LayoutEngine.hpp"
+#include "../../TrackingEngine/TrackingEngine.hpp"
 
 void MasterServer::onClient(Socket * newSocket) {
 	// Stop advertising once we have one connection
@@ -92,6 +94,10 @@ void MasterServer::onStatusRequest(Socket * socket) {
 
 	// Fill in the status
 	status.set_activelayout(layoutName);
+
+	for(pb::deviceUID uid: trackingEngine->getConnectedDevicesUID()) {
+		status.add_connecteddevices(uid);
+	}
 	
 	// Build the datagram
 	protobuf::Message * datagram = messages::makeDatagram(messages::Datagram_Type_STATUS, status);

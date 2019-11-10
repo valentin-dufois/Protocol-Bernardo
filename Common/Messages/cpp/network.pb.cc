@@ -145,17 +145,17 @@ const char descriptor_table_protodef_network_2eproto[] PROTOBUF_SECTION_VARIABLE
   "\013BROADCASTER\020\002\022\n\n\006MASTER\020\003\022\014\n\010TERMINAL\020\004"
   "\"\024\n\004Ping\022\014\n\004time\030\001 \001(\004\">\n\014MasterStatus\022\024"
   "\n\014activeLayout\030\n \001(\t\022\030\n\020connectedDevices"
-  "\030\024 \003(\t\"\202\003\n\010Datagram\022%\n\004type\030\001 \001(\0162\027.mess"
+  "\030\024 \003(\t\"\227\003\n\010Datagram\022%\n\004type\030\001 \001(\0162\027.mess"
   "ages.Datagram.Type\022\"\n\004data\030d \001(\0132\024.googl"
-  "e.protobuf.Any\"\252\002\n\004Type\022\r\n\tUNDEFINED\020\000\022\t"
+  "e.protobuf.Any\"\277\002\n\004Type\022\r\n\tUNDEFINED\020\000\022\t"
   "\n\005CLOSE\020\005\022\r\n\tHEARTBEAT\020\007\022\010\n\004PING\020\n\022\010\n\004PO"
   "NG\020\013\022\n\n\006STATUS\0202\022\027\n\023ACQ_GET_BODY_STREAM\020"
   "n\022\027\n\023ACQ_END_BODY_STREAM\020o\022\014\n\010ACQ_BODY\020s"
   "\022\022\n\rLAYOUT_LAYOUT\020\315\001\022\020\n\013LAYOUT_LIST\020\322\001\022\022"
   "\n\rLAYOUT_CREATE\020\323\001\022\020\n\013LAYOUT_OPEN\020\324\001\022\022\n\r"
   "LAYOUT_RENAME\020\325\001\022\022\n\rLAYOUT_UPDATE\020\326\001\022\021\n\014"
-  "LAYOUT_CLOSE\020\327\001\022\022\n\rLAYOUT_DELETE\020\330\001b\006pro"
-  "to3"
+  "LAYOUT_CLOSE\020\327\001\022\022\n\rLAYOUT_DELETE\020\330\001\022\023\n\016T"
+  "RACKED_BODIES\020\372\001b\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_network_2eproto_deps[1] = {
   &::descriptor_table_google_2fprotobuf_2fany_2eproto,
@@ -169,7 +169,7 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_net
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_network_2eproto_once;
 static bool descriptor_table_network_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_network_2eproto = {
-  &descriptor_table_network_2eproto_initialized, descriptor_table_protodef_network_2eproto, "network.proto", 683,
+  &descriptor_table_network_2eproto_initialized, descriptor_table_protodef_network_2eproto, "network.proto", 704,
   &descriptor_table_network_2eproto_once, descriptor_table_network_2eproto_sccs, descriptor_table_network_2eproto_deps, 4, 1,
   schemas, file_default_instances, TableStruct_network_2eproto::offsets,
   file_level_metadata_network_2eproto, 4, file_level_enum_descriptors_network_2eproto, file_level_service_descriptors_network_2eproto,
@@ -228,6 +228,7 @@ bool Datagram_Type_IsValid(int value) {
     case 214:
     case 215:
     case 216:
+    case 250:
       return true;
     default:
       return false;
@@ -252,6 +253,7 @@ constexpr Datagram_Type Datagram::LAYOUT_RENAME;
 constexpr Datagram_Type Datagram::LAYOUT_UPDATE;
 constexpr Datagram_Type Datagram::LAYOUT_CLOSE;
 constexpr Datagram_Type Datagram::LAYOUT_DELETE;
+constexpr Datagram_Type Datagram::TRACKED_BODIES;
 constexpr Datagram_Type Datagram::Type_MIN;
 constexpr Datagram_Type Datagram::Type_MAX;
 constexpr int Datagram::Type_ARRAYSIZE;

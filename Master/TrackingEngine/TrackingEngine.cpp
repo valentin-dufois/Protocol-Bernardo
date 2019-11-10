@@ -49,6 +49,8 @@ void TrackingEngine::onRawBody(RawBody * rawBody) {
 
 	_bodiesBuffer.push_back(rawBody);
 
+	_devicesUID.insert(rawBody->deviceUID);
+
 	_bodiesBufferMutex.unlock();
 }
 
@@ -63,7 +65,9 @@ void TrackingEngine::runLoop() {
 		if(_layoutEngine->hasActiveLayout()) {
 			trackBodies();
 		} else {
+			_bodiesBufferMutex.lock();
 			clearBuffer();
+			_bodiesBufferMutex.unlock();
 		}
 
 		// Cadence the loop

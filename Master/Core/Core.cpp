@@ -9,13 +9,16 @@
 
 #include "Core.hpp"
 
-#include "../../Common/Utils/Log.hpp"
-
 #include "Network/AcquisitorClient.hpp"
+
+#include "../../Common/Messages/messages.hpp"
+#include "../../Common/Utils/Log.hpp"
 #include "../../Common/Structs/RawBody.hpp"
+#include "../../Common/Structs/Body.hpp"
 
 void Core::init() {
 	_networkManager.setLayoutEngine(&_layoutEngine);
+	_networkManager.setTrackingEngine(&_trackingEngine);
 	_networkManager.onAcquisitor = [&] (AcquisitorClient * acquisitor) {
 		onAcquisitor(acquisitor);
 	};
@@ -42,10 +45,16 @@ void Core::onAcquisitor(AcquisitorClient * acquisitor) {
 	};
 }
 
-void Core::onBody(const RawBody * body) {
-	LOG_DEBUG("Received body with ID " + std::to_string(body->uid) + " on device " + body->deviceUID);
+void Core::onTrack(std::vector<Body *> bodies) {
+	// Send the bodies to the terminal
+	// Build the message
 
-	// Relay the body
+	messages::TrackedBodies * trackedBodies = new messages::TrackedBodies();
 
-	delete body;
+	for(Body * body: bodies) {
+		messages::Body * bodyMessage = trackedBodies->add_bodies();
+		bodyMessage->CopyFrom((messages::Body)*body);
+	}
+
+	_networkManager.sendToTerminal(trackedBodies);
 }

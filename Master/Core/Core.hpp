@@ -32,7 +32,7 @@ private:
 	TrackingEngine _trackingEngine;
 
 	// Events
-	void onBody(const RawBody * body);
+	void onTrack(std::vector<Body *> bodies);
 };
 
 #endif /* Core_hpp */

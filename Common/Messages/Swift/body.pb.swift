@@ -186,6 +186,34 @@ extension Messages_RawBody.State: CaseIterable {
 
 #endif  // swift(>=4.2)
 
+struct Messages_Body {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var uid: String = String()
+
+  var frame: UInt32 = 0
+
+  var skeletons: [Messages_Skeleton] = []
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Messages_TrackedBodies {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var bodies: [Messages_Body] = []
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 fileprivate let _protobuf_package = "messages"
@@ -446,4 +474,74 @@ extension Messages_RawBody.State: SwiftProtobuf._ProtoNameProviding {
     4: .same(proto: "missing"),
     5: .same(proto: "lost"),
   ]
+}
+
+extension Messages_Body: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".Body"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "uid"),
+    5: .same(proto: "frame"),
+    10: .same(proto: "skeletons"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.uid)
+      case 5: try decoder.decodeSingularUInt32Field(value: &self.frame)
+      case 10: try decoder.decodeRepeatedMessageField(value: &self.skeletons)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.uid.isEmpty {
+      try visitor.visitSingularStringField(value: self.uid, fieldNumber: 1)
+    }
+    if self.frame != 0 {
+      try visitor.visitSingularUInt32Field(value: self.frame, fieldNumber: 5)
+    }
+    if !self.skeletons.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.skeletons, fieldNumber: 10)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Messages_Body, rhs: Messages_Body) -> Bool {
+    if lhs.uid != rhs.uid {return false}
+    if lhs.frame != rhs.frame {return false}
+    if lhs.skeletons != rhs.skeletons {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Messages_TrackedBodies: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".TrackedBodies"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "bodies"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeRepeatedMessageField(value: &self.bodies)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.bodies.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.bodies, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Messages_TrackedBodies, rhs: Messages_TrackedBodies) -> Bool {
+    if lhs.bodies != rhs.bodies {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
 }
