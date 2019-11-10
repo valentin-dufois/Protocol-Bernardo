@@ -27,8 +27,6 @@ void NiteTracker::onNewFrame(nite::UserTracker &) {
 	nite::UserTrackerFrameRef * userFrame = new nite::UserTrackerFrameRef();
 	_tracker.readFrame(userFrame);
 
-	LOG_DEBUG("OnNewNiTEFrame");
-
 	// Ignore the frame if it is not valid
 	if(!userFrame->isValid()) {
 		return;
@@ -46,8 +44,6 @@ void NiteTracker::processFrame(nite::UserTrackerFrameRef * frame) {
 
 	// Get all the users on the frame
 	const nite::Array<nite::UserData>& users = frame->getUsers();
-
-	LOG_DEBUG("Processing NiTE Frame " + std::to_string(users.getSize()));
 
 	// Loop on all the users
 	for(int i = 0;  i < users.getSize(); ++i) {
