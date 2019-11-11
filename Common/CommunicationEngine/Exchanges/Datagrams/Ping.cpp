@@ -33,7 +33,7 @@ void Ping::ping(Socket * socket) {
 
 void Ping::onPing(google::protobuf::Any * data, Socket * socket) {
 	// Say we received a ping
-	LOG_INFO("Relaying a ping");
+//	LOG_DEBUG("Relaying a ping");
 
 	// Relay the ping to its sender directly
 	messages::Datagram * datagram = new messages::Datagram();

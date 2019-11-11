@@ -50,7 +50,7 @@ void AcquisitorServer::onSocketClosed(Socket * closedSocket) {
 }
 
 void AcquisitorServer::onDatagram(messages::Datagram * datagram, Socket * socket) {
-	LOG_DEBUG("Received a datagram");
+	// LOG_DEBUG("Received a datagram");
 
 	messages::Datagram_Type datagramType = datagram->type();
 
@@ -67,7 +67,7 @@ void AcquisitorServer::onDatagram(messages::Datagram * datagram, Socket * socket
 		case messages::Datagram_Type_CLOSE:
 			socket->close(true); break;
 		case messages::Datagram_Type_HEARTBEAT:
-			LOG_DEBUG("Received a heartbeat");
+			// LOG_DEBUG("Received a heartbeat");
 			break;
 		case messages::Datagram_Type_PING:
 			onPing(datagram->mutable_data(), socket);

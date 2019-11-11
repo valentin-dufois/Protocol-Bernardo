@@ -38,7 +38,7 @@ struct Body {
 
 	/// All the skeleton composing the current frame of the user
 	/// This is used by the TrackingEngine.
-	std::map<pb::deviceUID, Skeleton *> rawSkeletons;
+	std::vector<Skeleton *> rawSkeletons;
 
 	// MARK: - Constructors
 
@@ -48,7 +48,7 @@ struct Body {
 	Body(RawBody * rawBody) {
 		uid = boost::uuids::to_string(boost::uuids::random_generator()());
 		rawBodiesUID[rawBody->deviceUID] = rawBody->uid;
-		rawSkeletons[rawBody->deviceUID] = new Skeleton(rawBody->skeleton);
+		rawSkeletons.push_back(new Skeleton(rawBody->skeleton));
 	}
 
 	~Body() {
@@ -56,9 +56,7 @@ struct Body {
 			delete skeleton;
 		}
 
-		for (auto& [deviceUID, skeleton]: rawSkeletons) {
-			delete skeleton;
-		}
+		clearRawSkeletons();
 	}
 
 	// MARK: - Accessors
@@ -75,13 +73,15 @@ struct Body {
 		if(rawSkeletons.size() == 0)
 			return;
 
+		LOG_DEBUG(std::to_string(rawSkeletons.size()));
+
 		Skeleton skeleton;
 
 		// Add all the rawSkeletons
-		for(auto& [deviceUID, s]: rawSkeletons) {
+		for(int i = 0; i < rawSkeletons.size(); ++i) {
 			// TODO: Make sure the skeletons are in the same direction (front back, check the hands)
 
-			skeleton += *s;
+			skeleton += *rawSkeletons[i];
 		}
 
 		// Divide them (weighted mean)
@@ -93,12 +93,18 @@ struct Body {
 		}
 
 		// Increment the frame
-		frame++;
+		++frame;
 
+		// Clear the raw skeletons
+		clearRawSkeletons();
+	}
+
+	void clearRawSkeletons() {
 		// Clear the rawSkeletons
-		for (auto& [deviceUID, skeleton]: rawSkeletons) {
+		for (Skeleton * skeleton: rawSkeletons) {
 			delete skeleton;
 		}
+
 		rawSkeletons.clear();
 	}
 

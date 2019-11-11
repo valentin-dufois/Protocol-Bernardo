@@ -34,7 +34,7 @@ void MasterServer::onSocketClosed(Socket * closedSocket) {
 }
 
 void MasterServer::onDatagram(messages::Datagram * datagram, Socket * socket) {
-	LOG_DEBUG("Received a datagram");
+	// LOG_DEBUG("Received a datagram");
 
 	messages::Datagram_Type datagramType = datagram->type();
 

@@ -12,6 +12,7 @@
 #include <atomic>
 #include <thread>
 #include <mutex>
+#include <map>
 
 #include "../../Common/common.hpp"
 #include "../../Common/Utils/maths.hpp"
@@ -47,7 +48,7 @@ public:
 	void onRawBody(RawBody * body);
 
 	/// This method is called every time the Tracking Engine finishes a cycle.
-	std::function<void(std::vector<Body *>)> onCycleEnd;
+	std::function<void(std::map<pb::bodyUID, Body *>)> onCycleEnd;
 
 	inline std::unordered_set<pb::deviceUID> getConnectedDevicesUID() {
 		return _devicesUID;
@@ -91,7 +92,7 @@ private:
 	std::vector<RawBody *> _bodiesBuffer;
 
 	/// All the bodies actively tracked by the tracking engine
-	std::vector<Body *> _bodies;
+	std::map<pb::bodyUID, Body *> _bodies;
 
 	// MARK: - Private mecanisms
 

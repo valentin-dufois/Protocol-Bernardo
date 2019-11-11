@@ -20,5 +20,53 @@
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BC7E48D2-C14D-405B-B1E7-14E34CA39485"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Common/Structs/Body.hpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
+            landmarkName = "updatePosition()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "BC7E48D2-C14D-405B-B1E7-14E34CA39485 - 97036445bbd61e43"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Body::updatePosition()"
+                  moduleName = "pb-master"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/val/Cours/PRISME/Protocol%20Bernardo/Common/Structs/Body.hpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "79"
+                  endingLineNumber = "79"
+                  offsetFromSymbolStart = "75">
+               </Location>
+               <Location
+                  uuid = "BC7E48D2-C14D-405B-B1E7-14E34CA39485 - 97036445bbd61e43"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Body::updatePosition()"
+                  moduleName = "pb-master"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/val/Cours/PRISME/Protocol%20Bernardo/Common/Structs/Body.hpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "79"
+                  endingLineNumber = "79"
+                  offsetFromSymbolStart = "156">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

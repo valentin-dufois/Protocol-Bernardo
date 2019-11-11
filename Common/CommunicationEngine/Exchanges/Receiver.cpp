@@ -26,7 +26,7 @@ void Receiver::prepareReceive() {
 
 void Receiver::onReceive(const boost::system::error_code &error, std::size_t bytes_transferred) {
 
-	LOG_DEBUG("Received " + std::to_string(bytes_transferred) + " bytes of data");
+	// LOG_DEBUG("Received " + std::to_string(bytes_transferred) + " bytes of data");
 
 	// Check for any error during reception
 	if(error) {

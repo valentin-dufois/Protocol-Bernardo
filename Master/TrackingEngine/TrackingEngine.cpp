@@ -110,7 +110,7 @@ void TrackingEngine::parseBodiesBuffer() {
 
 		if(body != nullptr) {
 			// Yes, update it
-			body->rawSkeletons[rawBody->deviceUID] = skeleton;
+			body->rawSkeletons.push_back(skeleton);
 			continue;
 		}
 
@@ -119,13 +119,14 @@ void TrackingEngine::parseBodiesBuffer() {
 
 		if(closestBody.first == nullptr || closestBody.second > TRACKING_ENGINE_MERGE_DISTANCE) {
 			// Found no matching user, this is a new body
-			_bodies.push_back(new Body(rawBody));
+			Body * body = new Body(rawBody);
+			_bodies[body->uid] = body;
 
 			continue;
 		}
 
 		closestBody.first->rawBodiesUID[rawBody->deviceUID] = rawBody->uid;
-		closestBody.first->rawSkeletons[rawBody->deviceUID] = skeleton;
+		closestBody.first->rawSkeletons.push_back(skeleton);
 	}
 
 	// Empty the buffer
@@ -136,8 +137,8 @@ void TrackingEngine::parseBodiesBuffer() {
 }
 
 void TrackingEngine::updateBodies() {
-	for(Body * body: _bodies) {
-		body->updatePosition();
+	for(std::pair<pb::bodyUID, Body *> bodyPair: _bodies) {
+		bodyPair.second->updatePosition();
 	}
 }
 
@@ -145,7 +146,15 @@ void TrackingEngine::parseBodies() {
 	if(_bodies.size() < 2)
 		return; // Do nothing
 
-	for(Body * body: _bodies) {
+	for(std::pair<pb::bodyUID, Body *> bodyPair: _bodies) {
+		Body * body = bodyPair.second;
+		// Remove untracked bodies
+		if(body->rawSkeletons.size() == 0) {
+			_bodies.erase(bodyPair.first);
+			delete body;
+			continue;
+		}
+
 		std::vector<std::pair<Body *, SCALAR>> bodiesDistance =  getClosestBodiesFrom(body->skeleton());
 
 		// The closest body will usually be ourselves, so we should select the second one if this is the case
@@ -164,7 +173,8 @@ void TrackingEngine::parseBodies() {
 		}
 
 		// Finally, remove the youngest user
-		std::remove(_bodies.begin(), _bodies.end(), youngest);
+		_bodies.erase(youngest->uid);
+		delete youngest;
 	}
 }
 
@@ -188,14 +198,14 @@ void TrackingEngine::cadenceLoop(const std::chrono::duration<double, std::milli>
 }
 
 Body * TrackingEngine::getBodyFor(const RawBody * rawbody) {
-	std::vector<Body *>::iterator it = std::find_if(_bodies.begin(), _bodies.end(), [&] (Body * body) {
-		if(body->rawBodiesUID.count(rawbody->deviceUID) == 0)
+	std::map<pb::deviceUID, Body *>::iterator it = std::find_if(_bodies.begin(), _bodies.end(), [&] (std::pair<pb::deviceUID, Body *> bodyPair) {
+		if(bodyPair.second->rawBodiesUID.count(rawbody->deviceUID) == 0)
 			return false;
 
-		return body->rawBodiesUID[rawbody->deviceUID] == rawbody->uid;
+		return bodyPair.second->rawBodiesUID[rawbody->deviceUID] == rawbody->uid;
 	});
 
-	return it == _bodies.end() ? nullptr : *it;
+	return it == _bodies.end() ? nullptr : it->second;
 }
 
 
@@ -208,7 +218,9 @@ std::vector<std::pair<Body *, SCALAR>> TrackingEngine::getClosestBodiesFrom(cons
 	std::vector<std::pair<Body *, SCALAR>> bodiesDistance;
 
 	// Parse all the registered bodies and calculate the distance between them and the target
-	for(Body * body: _bodies) {
+	for(std::pair<pb::deviceUID, Body *> bodyPair: _bodies) {
+		Body * body = bodyPair.second;
+
 		if(!body->hasSkeleton())
 			continue;
 
@@ -249,7 +261,7 @@ void TrackingEngine::removeRawBodyReference(const RawBody * rawbody) {
 
 	// If the body has no more reference, we remove it completely
 	if(body->rawBodiesUID.size() == 0) {
-		std::remove(_bodies.begin(), _bodies.end(), body);
+		_bodies.erase(body->uid);
 		delete body;
 	}
 }

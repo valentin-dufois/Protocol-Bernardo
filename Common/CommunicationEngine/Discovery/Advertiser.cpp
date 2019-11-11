@@ -134,7 +134,7 @@ asio::ip::address Advertiser::getOutboundInterfaceIP() {
 
 	std::string queryInteraces = "";
 	for(int i = 0; i < interfaces.size(); ++i) {
-		queryInteraces += "(" + std::to_string(i) + ") " + interfaces[i].to_string() + "; ";
+		queryInteraces += "(" + std::to_string(i) + ") " + interfaces[i].to_string() + "  ";
 	}
 
 	LOG_INFO(queryInteraces);

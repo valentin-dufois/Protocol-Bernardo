@@ -48,7 +48,7 @@ void AcquisitorClient::onConnectionOpened() {
 }
 
 void AcquisitorClient::onDatagram(messages::Datagram * datagram) {
-	LOG_DEBUG("Received a datagram");
+	// LOG_DEBUG("Received a datagram");
 
 	messages::Datagram_Type datagramType = datagram->type();
 
@@ -66,7 +66,7 @@ void AcquisitorClient::onDatagram(messages::Datagram * datagram) {
 			_socket.close(true); break;
 
 		case messages::Datagram_Type_HEARTBEAT:
-			LOG_DEBUG("Received a heartbeat"); break;
+			// LOG_DEBUG("Received a heartbeat"); break;
 
 		case messages::Datagram_Type_PING:
 			onPing(datagram->mutable_data(), &_socket); break;
@@ -103,7 +103,7 @@ void AcquisitorClient::onBodyStream(const protobuf::Any * data) {
 		return;
 	}
 
-	LOG_INFO("Received a body from the stream");
+	// LOG_INFO("Received a body from the stream");
 
 	if(onBody)
 		onBody(body);
