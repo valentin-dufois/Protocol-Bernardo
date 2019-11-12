@@ -88,7 +88,7 @@ struct Skeleton  {
 	}
 
 	/// @deprecated
-	operator messages::Skeleton * () const __AVAILABILITY_INTERNAL_DEPRECATED {
+	operator messages::Skeleton * () const {
 		messages::Skeleton * message = new messages::Skeleton();
 
 		// Converts the joints
