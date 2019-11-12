@@ -45,7 +45,9 @@ public:
 	/// Opens the server, making it listen to connections from the network
 	void open();
 
-	void sendToAll(const google::protobuf::Message * aMessage, const bool &async = false);
+	/// Sends the given 
+	/// @param aMessage <#aMessage description#>
+	void sendToAll(google::protobuf::Message * aMessage, const bool &deleteAfterUser = true, const bool &async = true);
 
 	/// Start the advertiser, exposing explicitely the server on the network
 	inline void advertise() { _advertiser.startAdvertising(); }

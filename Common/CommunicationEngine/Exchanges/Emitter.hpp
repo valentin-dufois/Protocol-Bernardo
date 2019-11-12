@@ -31,7 +31,11 @@ public:
 	///
 	/// @param message The message to send
 	/// @param async Specify if the emission should be made asynchronously or not
-	void send(const google::protobuf::Message * message, const bool async = true);
+	void send(google::protobuf::Message * message, const bool deleteAfterUse = true, const bool async = true);
+
+
+
+	void sendAsJson(protobuf::Message * message);
 
 protected:
 
@@ -43,7 +47,7 @@ private:
 
 	/// Send a message to the server synchronously.
 	/// @param message The message to send
-	void sendSync(const google::protobuf::Message * message);
+	void sendSync(google::protobuf::Message * message, const bool deleteAfterUse);
 
 	/// Synchronous send output stream
 	std::ostream _outputStream;
@@ -52,7 +56,7 @@ private:
 	asio::streambuf _outputBuffer;
 
 	/// Send a message to the server asynchronously
-	void sendAsync(const google::protobuf::Message * message);
+	void sendAsync(google::protobuf::Message * message, const bool deleteAfterUse);
 };
 
 #endif /* Emitter_hpp */

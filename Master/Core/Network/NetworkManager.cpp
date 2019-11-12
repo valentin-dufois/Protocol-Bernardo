@@ -81,5 +81,5 @@ void NetworkManager::connectToAcquisitor(const Endpoint &endpoint) {
 		onAcquisitor(acquisitor);
 }
 void NetworkManager::sendToTerminal(protobuf::Message *message) {
-	_masterServer.sendToAll(message);
+	_masterServer.sendToAll(message, true, false);
 }

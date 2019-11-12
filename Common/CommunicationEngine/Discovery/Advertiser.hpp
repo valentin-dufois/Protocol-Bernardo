@@ -33,7 +33,7 @@ public:
 
 	~Advertiser();
 
-private:
+protected:
 
 	/// Tell if the advertiser is running
 	bool _isRunning = false;

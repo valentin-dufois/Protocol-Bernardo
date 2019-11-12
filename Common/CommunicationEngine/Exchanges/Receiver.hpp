@@ -8,7 +8,7 @@
 #ifndef Receiver_hpp
 #define Receiver_hpp
 
-#define RECEPTION_BUFFER_SIZE 8192
+#define RECEPTION_BUFFER_SIZE 32768
 
 #include <boost/array.hpp>
 #include <boost/asio.hpp>

@@ -146,9 +146,11 @@ extension CanvasDevice: CanvasElement {
 
 		views.append(CPSeparator.make())
 		views.append(CPSection.make(title: "Physical Device"))
-		views.append(CPComboBox.make(label: "UID",
-									 values: devicesList,
-									 delegate: self));
+		var physicalUIDField = CPComboBox.make(label: "UID",
+											   values: devicesList,
+											   delegate: self)
+		physicalUIDField.field.stringValue = device.physicalUID;
+		views.append(physicalUIDField);
 
 		return views
 	}
@@ -172,8 +174,8 @@ extension CanvasDevice: CPDelegate {
 
 	func property(_ pName: String, didUpdate newValue: String) {
 		switch pName {
-		case "Name":
-			device.name = newValue
+		case "Name": device.name = newValue
+		case "UID": device.physicalUID = newValue
 		default: return
 		}
 

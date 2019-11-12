@@ -22,8 +22,10 @@ void AcquisitorServer::sendBody(const RawBody * body) {
 	datagram->set_allocated_data(data);
 
 	for(Socket * socket: _socketsForBodyStream) {
-		socket->send(datagram);
+		socket->send(datagram, false);
 	}
+
+	datagram->Clear();
 	delete datagram;
 }
 

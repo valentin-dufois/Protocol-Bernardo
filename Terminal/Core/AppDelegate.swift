@@ -77,4 +77,8 @@ extension AppDelegate: NetworkEngineDelegate {
 
 		App.layoutEngine.setLayout(layout);
 	}
+
+	func onReceive(trackedBodies: Messages_TrackedBodies) {
+		App.mainWindow?.showTrackedBodies(trackedBodies);
+	}
 }

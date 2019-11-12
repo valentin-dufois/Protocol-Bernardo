@@ -27,6 +27,8 @@ _broadcastEndpoint(asio::ip::udp::endpoint(asio::ip::address_v4::broadcast(),
 	// Build and store the message buffer
 	std::ostream os(&_outputBuffer);
 	message->SerializeToOstream(&os);
+
+	delete message;
 }
 
 void Advertiser::startAdvertising() {

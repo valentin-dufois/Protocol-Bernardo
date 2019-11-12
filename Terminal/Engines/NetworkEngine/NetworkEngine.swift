@@ -88,8 +88,10 @@ extension NetworkEngine: MasterClientDelegate {
 			onLayoutList(datagram.data);
 		case .layoutOpen:
 			onLayout(datagram.data);
+		case .trackedBodies:
+			onTrackedBodies(datagram.data);
 		default:
-			Log.warning("Received unsupported datagram type: \(datagram.type)");
+			Log.warning("Received unsupported datagram type: \(datagram.type.rawValue)");
 		}
 	}
 
@@ -117,6 +119,12 @@ extension NetworkEngine: MasterClientDelegate {
 		let layout = try! Messages_Layout(unpackingAny: data);
 
 		delegate?.onReceive(layout: layout);
+	}
+
+	func onTrackedBodies(_ data: Google_Protobuf_Any) {
+		let trackedBodies = try! Messages_TrackedBodies(unpackingAny: data)
+
+		delegate?.onReceive(trackedBodies: trackedBodies);
 	}
 }
 

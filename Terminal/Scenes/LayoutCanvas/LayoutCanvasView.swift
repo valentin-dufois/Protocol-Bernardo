@@ -23,6 +23,8 @@ class LayoutCanvasView: SKView {
 	/// The node holding all the layout elements
 	weak var elementsNode: SKNode! { return rootNode?.childNode(withName: "Elements") }
 
+	weak var trackedBodiesNode: SKNode! { return rootNode?.childNode(withName: "TrackedBodies") }
+
 	weak var selectedElement: CanvasElement?
 
 	func set(selectedElement element: CanvasElement?) {
@@ -41,6 +43,14 @@ class LayoutCanvasView: SKView {
 
 		// Display the element parameters
 		controller.parametersView.showParameters(selectedElement!.getParametersViews())
+	}
+
+	func show(trackedBodies: Messages_TrackedBodies) {
+		trackedBodiesNode?.removeAllChildren();
+
+		trackedBodies.bodies.forEach { body in
+			trackedBodiesNode?.addChild(CanvasBody(forBody: body));
+		}
 	}
 }
 

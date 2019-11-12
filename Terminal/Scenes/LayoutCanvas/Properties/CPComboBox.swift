@@ -27,6 +27,10 @@ class CPComboBox: NSView, CanvasProperty {
 
 		return view;
 	}
+
+	@IBAction func comboBoxValueDidChange(_ sender: Any) {
+		delegate?.property(label.stringValue, didUpdate: field.stringValue);
+	}
 }
 
 extension CPComboBox: NSComboBoxDataSource {

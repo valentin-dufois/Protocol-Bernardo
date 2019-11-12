@@ -71,6 +71,9 @@ void Socket::close(bool silent) {
 	if(_status != ready)
 		return;
 
+	if(silent)
+		_status = closed;
+
 	// Stop the heartbeat timer
 	_heartbeatTimer.cancel();
 
@@ -84,7 +87,7 @@ void Socket::close(bool silent) {
 		// No data in a close message
 
 		// Send the close message
-		send(&datagram, false);
+		send(&datagram, true, false);
 	}
 	
 	_status = closed;
@@ -103,8 +106,8 @@ void Socket::onTimeout(const boost::system::error_code& error) {
 }
 
 void Socket::emitHeartbeat() {
-	LOG_DEBUG("Sending Heartbeat");
-	send(&_heartbeat, true);
+	// LOG_DEBUG("Sending Heartbeat");
+	send(&_heartbeat, false);
 
 	// Start a new timer
 	_heartbeatTimer.expires_from_now(boost::posix_time::seconds(30));

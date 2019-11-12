@@ -22,5 +22,10 @@ DECLARE_bool(liveview);
 
 #endif /* MACHINE_ACQUISITOR */
 
+//#ifdef MACHINE_MASTER
+
+DECLARE_string(layout);
+
+//#endif /* MACHINE_MASTER */
 
 #endif /* flags_hpp */

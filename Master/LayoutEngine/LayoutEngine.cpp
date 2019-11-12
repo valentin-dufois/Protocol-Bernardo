@@ -6,16 +6,22 @@
 //
 
 #include "LayoutEngine.hpp"
+#include "../main.hpp"
 
 #include <cstdio>
 
 #include "Structs/Layout.hpp"
 #include "../../Common/Utils/DiskIO.hpp"
 #include "../../Common/Utils/maths.hpp"
+#include "../../Common/Utils/flags.hpp"
 
 LayoutEngine::LayoutEngine():
 _savePath(std::string(getenv("HOME")) + "/pb-layouts/") {
 	LOG_DEBUG("Save path is " + std::string(_savePath));
+
+	if(FLAGS_layout.size() > 0) {
+		openLayout(FLAGS_layout);
+	}
 }
 
 std::vector<std::string> LayoutEngine::getLayouts() {

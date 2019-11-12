@@ -49,6 +49,7 @@ class Device {
 		maxDistance = message.maxDistance
 		position = simd_double3(message.position.x, message.position.y, message.position.z)
 		orientation = simd_double3(message.orientation.x, message.orientation.y, message.orientation.z)
+		physicalUID = message.physicaluid;
 	}
 
 	convenience init(copying device: Device) {
@@ -60,6 +61,7 @@ class Device {
 		maxDistance = device.maxDistance
 		position = simd_double3(device.position.x + 25, device.position.y + 25, device.position.z)
 		orientation = simd_double3(device.orientation.x, device.orientation.y, device.orientation.z)
+		physicalUID = device.physicalUID;
 	}
 
 	func asMessage() -> Messages_Device {

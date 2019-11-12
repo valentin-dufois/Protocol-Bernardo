@@ -13,6 +13,7 @@
 #include "../TrackingEngine/TrackingEngine.hpp"
 
 struct RawBody;
+class Socket;
 
 class Core {
 public:
@@ -31,8 +32,10 @@ private:
 
 	TrackingEngine _trackingEngine;
 
+	Socket * _outSocket;
+
 	// Events
-	void onTrack(std::vector<Body *> bodies);
+	void onTrack(const std::map<pb::bodyUID, Body *> &bodies);
 };
 
 #endif /* Core_hpp */

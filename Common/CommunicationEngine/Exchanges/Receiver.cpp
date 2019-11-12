@@ -33,7 +33,7 @@ void Receiver::onReceive(const boost::system::error_code &error, std::size_t byt
 		if(error == asio::error::eof) {
 			// We received an eof, the socket closed on the other side.
 			// Let's close on this side too
-			return close();
+			return close(true);
 		}
 
 		// Unknown error, ignore this

@@ -22,7 +22,7 @@ namespace protobuf = google::protobuf;
 namespace messages {
 
 /// Convenient datagram builder
-inline protobuf::Message * makeDatagram(const Datagram_Type &type, const protobuf::Message &data) {
+inline Datagram * makeDatagram(const Datagram_Type &type, const protobuf::Message &data) {
 	protobuf::Any * anyMessage = new protobuf::Any();
 	anyMessage->PackFrom(data);
 
@@ -34,7 +34,7 @@ inline protobuf::Message * makeDatagram(const Datagram_Type &type, const protobu
 }
 
 /// Convenient datagram builder
-inline protobuf::Message * makeDatagram(const Datagram_Type &type) {
+inline Datagram * makeDatagram(const Datagram_Type &type) {
 	Datagram * datagram = new Datagram();
 	datagram->set_type(type);
 

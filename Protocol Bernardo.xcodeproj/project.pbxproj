@@ -34,6 +34,8 @@
 		393AB5882368DAED00F4F087 /* NetworkEngineDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393AB5872368DAED00F4F087 /* NetworkEngineDelegate.swift */; };
 		393AB58A2368E14400F4F087 /* LayoutManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393AB5892368E14400F4F087 /* LayoutManagerViewController.swift */; };
 		393AD3EA23523D5600ECE95C /* DiskIO.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 392DCCB52345471E00885C84 /* DiskIO.hpp */; };
+		3944F6802379F4160052688C /* libgflags.2.2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 399D167C23521EB700CEC2F0 /* libgflags.2.2.2.dylib */; };
+		39469E8A2379E3A700E25030 /* CanvasBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39469E892379E3A700E25030 /* CanvasBody.swift */; };
 		395017022341646900E7F6BD /* Emitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 395017002341646900E7F6BD /* Emitter.cpp */; };
 		395017032341646900E7F6BD /* Emitter.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 395017012341646900E7F6BD /* Emitter.hpp */; };
 		395017072341667D00E7F6BD /* Receiver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 395017052341667D00E7F6BD /* Receiver.cpp */; };
@@ -283,6 +285,8 @@
 		393AB5852368D7EE00F4F087 /* EventsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsDelegate.swift; sourceTree = "<group>"; };
 		393AB5872368DAED00F4F087 /* NetworkEngineDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkEngineDelegate.swift; sourceTree = "<group>"; };
 		393AB5892368E14400F4F087 /* LayoutManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutManagerViewController.swift; sourceTree = "<group>"; };
+		3944F67F2379F2580052688C /* main.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = main.hpp; sourceTree = "<group>"; };
+		39469E892379E3A700E25030 /* CanvasBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasBody.swift; sourceTree = "<group>"; };
 		395017002341646900E7F6BD /* Emitter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Emitter.cpp; sourceTree = "<group>"; };
 		395017012341646900E7F6BD /* Emitter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Emitter.hpp; sourceTree = "<group>"; };
 		395017052341667D00E7F6BD /* Receiver.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Receiver.cpp; sourceTree = "<group>"; };
@@ -449,6 +453,7 @@
 			files = (
 				3900756323567A39007A0982 /* libprotobuf.21.dylib in Frameworks */,
 				3978A7ED2336BF7D00AF409D /* libpb-common.dylib in Frameworks */,
+				3944F6802379F4160052688C /* libgflags.2.2.2.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -855,6 +860,7 @@
 				3978A7F82336C00400AF409D /* LayoutEngine */,
 				3978A7EC2336BF6B00AF409D /* Core */,
 				39CA4A8E233140E100E528CD /* main.cpp */,
+				3944F67F2379F2580052688C /* main.hpp */,
 			);
 			path = Master;
 			sourceTree = "<group>";
@@ -1004,6 +1010,7 @@
 				39E37C05236E4497007C78EA /* CanvasElementDelegate.swift */,
 				39E37C07236E46F0007C78EA /* CanvasElementAppearance.swift */,
 				39E37C09236E47AE007C78EA /* CanvasDevice.swift */,
+				39469E892379E3A700E25030 /* CanvasBody.swift */,
 			);
 			path = Elements;
 			sourceTree = "<group>";
@@ -1350,6 +1357,7 @@
 				393AB5882368DAED00F4F087 /* NetworkEngineDelegate.swift in Sources */,
 				3937ADF923565C6C009E6021 /* MainWindowContoller.swift in Sources */,
 				39580E8D23591F7500CD3CEC /* Log.swift in Sources */,
+				39469E8A2379E3A700E25030 /* CanvasBody.swift in Sources */,
 				3937AE0B23566634009E6021 /* network.pb.swift in Sources */,
 				39DE4D6B236F3CCE00F16CBD /* CPDelegate.swift in Sources */,
 				3937AE0C23566634009E6021 /* maths.pb.swift in Sources */,
@@ -1866,6 +1874,7 @@
 					"$(inherited)",
 					/usr/local/Cellar/grpc/1.23.0_2/lib,
 					/usr/local/Cellar/protobuf/3.10.0/lib,
+					/usr/local/Cellar/gflags/2.2.2/lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -1930,6 +1939,7 @@
 					"$(inherited)",
 					/usr/local/Cellar/grpc/1.23.0_2/lib,
 					/usr/local/Cellar/protobuf/3.10.0/lib,
+					/usr/local/Cellar/gflags/2.2.2/lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = NO;

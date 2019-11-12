@@ -37,14 +37,18 @@ void Server::open() {
 	prepareAccept();
 }
 
-void Server::sendToAll(const google::protobuf::Message * aMessage, const bool &async) {
+void Server::sendToAll(google::protobuf::Message * aMessage, const bool &deleteAfterUse, const bool &async) {
 	for(Socket * s: _connections) {
-		s->send(aMessage, async);
+		s->send(aMessage, false, async);
+	}
+
+	if(deleteAfterUse) {
+		delete aMessage;
 	}
 }
 
 void Server::handleClose(Socket * closedSocket) {
-	// The socket is closed, remove it from the array of connections
+	// The socket is closed, remove it from the arra1y of connections
 	_connections.erase(std::find(_connections.begin(), _connections.end(), closedSocket));
 
 	onSocketClosed(closedSocket);

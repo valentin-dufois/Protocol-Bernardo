@@ -29,10 +29,7 @@ AcquisitorClient::AcquisitorClient() {
 }
 
 void AcquisitorClient::requestBodyStream() {
-	messages::Datagram datagram;
-	datagram.set_type(messages::Datagram_Type_ACQ_GET_BODY_STREAM);
-
-	_socket.send(&datagram);
+	_socket.send(messages::makeDatagram(messages::Datagram_Type_ACQ_GET_BODY_STREAM));
 }
 
 
@@ -55,7 +52,8 @@ void AcquisitorClient::onDatagram(messages::Datagram * datagram) {
 	// Make sure the parcel is really for us. Acquisitor datagrams numbers are comprised between 0-100 (Common) and 100-200 (Acquisitor)
 	if(datagramType == 0 || datagramType >= 200) {
 		// This datagram isn't for us
-		LOG_WARN("Received an unexpected parcel");
+		LOG_WARN("Received an unexpected parcel : " + std::to_string(datagramType));
+		delete datagram;
 		return;
 	}
 
@@ -67,7 +65,7 @@ void AcquisitorClient::onDatagram(messages::Datagram * datagram) {
 
 		case messages::Datagram_Type_HEARTBEAT:
 			// LOG_DEBUG("Received a heartbeat"); break;
-
+			break;
 		case messages::Datagram_Type_PING:
 			onPing(datagram->mutable_data(), &_socket); break;
 
@@ -83,7 +81,6 @@ void AcquisitorClient::onDatagram(messages::Datagram * datagram) {
 			LOG_WARN("Unimplemented datagram type : " + std::to_string(datagramType));
 	}
 
-	datagram->Clear();
 	delete datagram;
 }
 

@@ -73,8 +73,6 @@ struct Body {
 		if(rawSkeletons.size() == 0)
 			return;
 
-		LOG_DEBUG(std::to_string(rawSkeletons.size()));
-
 		Skeleton skeleton;
 
 		// Add all the rawSkeletons
@@ -89,6 +87,7 @@ struct Body {
 
 		// Keep history size
 		if(skeletons.size() > TRACKING_ENGINE_BODY_HISTORY_SIZE) {
+			delete skeletons.front();
 			skeletons.erase(skeletons.begin());
 		}
 

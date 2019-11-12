@@ -36,6 +36,10 @@ class LayoutCanvasViewController: NSViewController {
 			parametersView.viewLeadingConstraint = parametersLeadingConstraint
 		}
 	}
+
+	func showTrackedBodies(_ trackedBodies: Messages_TrackedBodies) {
+		canvas.show(trackedBodies: trackedBodies)
+	}
 }
 
 // MARK: - User events

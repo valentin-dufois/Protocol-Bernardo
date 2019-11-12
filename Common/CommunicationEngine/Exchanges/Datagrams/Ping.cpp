@@ -28,19 +28,20 @@ void Ping::ping(Socket * socket) {
 	datagram->set_allocated_data(data);
 
 	LOG_DEBUG("Sending a ping to " + socket->getRemote().ip);
-	socket->send(datagram, true);
+	socket->send(datagram);
 }
 
-void Ping::onPing(google::protobuf::Any * data, Socket * socket) {
+void Ping::
+onPing(google::protobuf::Any * data, Socket * socket) {
 	// Say we received a ping
 //	LOG_DEBUG("Relaying a ping");
 
 	// Relay the ping to its sender directly
 	messages::Datagram * datagram = new messages::Datagram();
 	datagram->set_type(messages::Datagram_Type::Datagram_Type_PONG);
-	datagram->set_allocated_data(data);
+	datagram->set_allocated_data(new protobuf::Any(*data));
 
-	socket->send(datagram, true);
+	socket->send(datagram);
 }
 
 void Ping::onPong(google::protobuf::Any * data, Socket * socket) {

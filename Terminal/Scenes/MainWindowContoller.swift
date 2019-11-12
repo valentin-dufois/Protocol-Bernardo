@@ -64,6 +64,12 @@ class MainWindowController: NSWindowController {
 		App.networkEngine.requestMasterStatus();
 	}
 
+	func showTrackedBodies(_ trackedBodies: Messages_TrackedBodies) {
+		DispatchQueue.main.async {
+			self.controller.layoutInterfaceController?.showTrackedBodies(trackedBodies)
+		}
+	}
+
 }
 
 extension MainWindowController: EventsDelegate {

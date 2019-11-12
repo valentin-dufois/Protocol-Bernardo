@@ -17,3 +17,9 @@ DEFINE_string(interface, "", "The network interface to use when advertising on t
 DEFINE_bool(liveview, false, "Enable liveview from the connected devices. Liveview is useful for placing captation devices but should not be used for live performances as it degrades the acquisitor performances.");
 
 #endif /* MACHINE_ACQUISITOR */
+
+//#ifdef MACHINE_MASTER
+
+DEFINE_string(layout, "", "Specify which layout to use on application startup. Removes the need to set the active layout using a terminal");
+
+//#endif /* MACHINE_MASTER */

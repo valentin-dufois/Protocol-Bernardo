@@ -13,4 +13,6 @@ protocol NetworkEngineDelegate: AnyObject {
 	func onReceive(layoutList: Messages_LayoutList);
 
 	func onReceive(layout: Messages_Layout);
+
+	func onReceive(trackedBodies: Messages_TrackedBodies);
 }

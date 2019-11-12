@@ -42,6 +42,7 @@ void MasterServer::onDatagram(messages::Datagram * datagram, Socket * socket) {
 	if(datagramType == 0 || (datagramType > 100 && datagramType < 200) || datagramType >= 300) {
 		// This datagram isn't for us
 		LOG_WARN("Received an unsupported datagram");
+		delete datagram;
 		return;
 	}
 
@@ -84,6 +85,8 @@ void MasterServer::onDatagram(messages::Datagram * datagram, Socket * socket) {
 		default:
 			LOG_WARN("Unimplemented datagram type : " + std::to_string(datagramType));
 	}
+
+	delete datagram;
 }
 
 void MasterServer::onStatusRequest(Socket * socket) {
@@ -103,10 +106,6 @@ void MasterServer::onStatusRequest(Socket * socket) {
 	protobuf::Message * datagram = messages::makeDatagram(messages::Datagram_Type_STATUS, status);
 
 	socket->send(datagram);
-
-	// Release
-	datagram->Clear();
-	delete datagram;
 }
 
 // MARK: - Layout methods
@@ -127,10 +126,6 @@ void MasterServer::onLayoutList(Socket * socket) {
 	protobuf::Message * datagram = messages::makeDatagram(messages::Datagram_Type_LAYOUT_LIST, message);
 
 	socket->send(datagram);
-
-	// Release
-	datagram->Clear();
-	delete datagram;
 }
 
 void MasterServer::onLayoutCreate(google::protobuf::Any *data, Socket *socket) {
@@ -148,10 +143,6 @@ void MasterServer::onLayoutCreate(google::protobuf::Any *data, Socket *socket) {
 	protobuf::Message * datagram = messages::makeDatagram(messages::Datagram_Type_LAYOUT_OPEN, *layout);
 
 	socket->send(datagram);
-
-	// Release
-	datagram->Clear();
-	delete datagram;
 }
 
 void MasterServer::onLayoutOpen(google::protobuf::Any *data, Socket *socket) {
@@ -169,10 +160,6 @@ void MasterServer::onLayoutOpen(google::protobuf::Any *data, Socket *socket) {
 	protobuf::Message * datagram = messages::makeDatagram(messages::Datagram_Type_LAYOUT_OPEN, *layout);
 
 	socket->send(datagram);
-
-	// Release
-	datagram->Clear();
-	delete datagram;
 }
 
 void MasterServer::onLayoutClose(Socket *socket) {
@@ -237,8 +224,4 @@ void MasterServer::onLayoutDelete(google::protobuf::Any *data, Socket *socket) {
 	protobuf::Message * datagram = messages::makeDatagram(messages::Datagram_Type_LAYOUT_LIST, message);
 
 	socket->send(datagram);
-
-	// Release
-	datagram->Clear();
-	delete datagram;
 }
