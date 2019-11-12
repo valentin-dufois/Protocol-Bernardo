@@ -8,6 +8,8 @@
 #ifndef Socket_hpp
 #define Socket_hpp
 
+#include <atomic>
+
 #include <boost/asio.hpp>
 
 #include "SocketStatus.hpp"
@@ -74,12 +76,14 @@ protected:
 
 	void onTimeout(const boost::system::error_code& error) override;
 
+	void onError() override;
+
 	friend Server;
 
 private:
 
 	/// The status of the socket
-	SocketStatus _status = idle;
+	std::atomic<SocketStatus> _status = SocketStatus::idle;
 
 	/// The underlying Asio socket
 	asio::ip::tcp::socket _socket;

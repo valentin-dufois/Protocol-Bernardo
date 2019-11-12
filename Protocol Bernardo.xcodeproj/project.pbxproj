@@ -30,6 +30,7 @@
 		3937AE0A23566634009E6021 /* layout.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3937AE0623566634009E6021 /* layout.pb.swift */; };
 		3937AE0B23566634009E6021 /* network.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3937AE0723566634009E6021 /* network.pb.swift */; };
 		3937AE0C23566634009E6021 /* maths.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3937AE0823566634009E6021 /* maths.pb.swift */; };
+		39387FA3237AE8CF009E3FF2 /* thread.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 39387FA2237AE82C009E3FF2 /* thread.hpp */; };
 		393AB5862368D7EE00F4F087 /* EventsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393AB5852368D7EE00F4F087 /* EventsDelegate.swift */; };
 		393AB5882368DAED00F4F087 /* NetworkEngineDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393AB5872368DAED00F4F087 /* NetworkEngineDelegate.swift */; };
 		393AB58A2368E14400F4F087 /* LayoutManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393AB5892368E14400F4F087 /* LayoutManagerViewController.swift */; };
@@ -282,6 +283,7 @@
 		3937AE0623566634009E6021 /* layout.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = layout.pb.swift; sourceTree = "<group>"; };
 		3937AE0723566634009E6021 /* network.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = network.pb.swift; sourceTree = "<group>"; };
 		3937AE0823566634009E6021 /* maths.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = maths.pb.swift; sourceTree = "<group>"; };
+		39387FA2237AE82C009E3FF2 /* thread.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = thread.hpp; sourceTree = "<group>"; };
 		393AB5852368D7EE00F4F087 /* EventsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsDelegate.swift; sourceTree = "<group>"; };
 		393AB5872368DAED00F4F087 /* NetworkEngineDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkEngineDelegate.swift; sourceTree = "<group>"; };
 		393AB5892368E14400F4F087 /* LayoutManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutManagerViewController.swift; sourceTree = "<group>"; };
@@ -965,6 +967,7 @@
 				395A79822333323500499894 /* maths.hpp */,
 				399D167823521E7600CEC2F0 /* flags.cpp */,
 				399D167923521E7600CEC2F0 /* flags.hpp */,
+				39387FA2237AE82C009E3FF2 /* thread.hpp */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1032,6 +1035,7 @@
 			files = (
 				395A7983233332CB00499894 /* maths.hpp in Headers */,
 				3960B8482337DFB20094A2E9 /* Core.hpp in Headers */,
+				39387FA3237AE8CF009E3FF2 /* thread.hpp in Headers */,
 				395A79802333321600499894 /* RawBody.hpp in Headers */,
 				395A79C82335BB2000499894 /* network.pb.h in Headers */,
 				391A20092342B6D300F00517 /* Ping.hpp in Headers */,

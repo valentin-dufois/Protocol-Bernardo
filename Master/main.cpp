@@ -8,12 +8,14 @@
 #include <gflags/gflags.h>
 
 #include "../Common/Utils/Log.hpp"
+#include "../Common/Utils/thread.hpp"
 
 #include "Core/Core.hpp"
 
 int main(int argc, char * argv[]) {
 	// Set app parameters
 	gflags::ParseCommandLineFlags(&argc, &argv, true);
+	pb::setThreadName("pb.master");
 
 	Log::level = Log::Level::DEV;
 	CommunicationEngine::thisMachineType = Endpoint::Type::master;

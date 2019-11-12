@@ -80,7 +80,13 @@ class MasterClient {
 	}
 
 	public func close() {
-		// Close everything
+		var datagram = Messages_Datagram();
+		datagram.type = .close;
+
+		try! _socket.write(from: datagram.serializedData());
+	}
+	deinit {
+		close();
 	}
 }
 

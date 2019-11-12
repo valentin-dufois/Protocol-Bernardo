@@ -11,8 +11,10 @@
 
 void Socket::connectTo(const Endpoint &remote) {
 	if(_status != idle) {
-		LOG_ERROR("Trying to connect an already active socket");
+		LOG_ERROR("This socket could not be opened");
 	}
+
+	_status = SocketStatus::connecting;
 
 	_remote = remote;
 
@@ -102,6 +104,10 @@ void Socket::close(bool silent) {
 
 void Socket::onTimeout(const boost::system::error_code& error) {
 	LOG_WARN("Remote unreachable, closing silently now.");
+	close(true);
+}
+
+void Socket::onError() {
 	close(true);
 }
 

@@ -6,9 +6,16 @@
 //
 
 #include "PoseEstimationEngine.hpp"
+#include "../../Common/Utils/thread.hpp"
 
+#include <chrono>
 
 void PoseEstimationEngine::start() {
+	if(_isRunning)
+		return;
+
+	_isRunning = true;
+
 	// Create the parsers
 	OpenNIParser * openNIParser = OpenNIParser::getInstance();
 	openNIParser->onNewDevice = [&] (const Device * device) {
@@ -21,6 +28,15 @@ void PoseEstimationEngine::start() {
 	for(Parser * p: _parsers) {
 		p->start();
 	}
+
+	// Start the run loop
+	_executionThread = new std::thread([&] () {
+		pb::setThreadName("pb.pose-estimation-engine");
+
+		runLoop();
+
+		_executionThread->detach();
+	});
 }
 
 std::vector<Device *> PoseEstimationEngine::getDevices() {
@@ -43,10 +59,41 @@ void PoseEstimationEngine::onNewDevice(const Device * device) {
 			break;
 	}
 
-	tracker->bodyHandler = [&] (const RawBody * body) {
-		if(onBody)
-			onBody(body);
+	tracker->bodyHandler = [&] (RawBody * rawBody) {
+		onRawBody(rawBody);
 	};
 
 	_trackers.push_back(tracker);
 }
+
+void PoseEstimationEngine::onRawBody(RawBody * rawBody) {
+	_rawBodiesBufferMutex.lock();
+
+	_rawBodies.push_back(rawBody);
+
+	_rawBodiesBufferMutex.unlock();
+}
+
+void PoseEstimationEngine::runLoop() {
+	std::chrono::time_point<std::chrono::system_clock> startPoint;
+
+	while (_isRunning) {
+		// Get the start time
+		startPoint = std::chrono::system_clock::now();
+
+		if(onRawBodies) {
+			_rawBodiesBufferMutex.lock();
+			onRawBodies(_rawBodies);
+
+			for(RawBody * rawBody: _rawBodies) {
+				delete rawBody;
+			}
+			_rawBodies.clear();
+			_rawBodiesBufferMutex.unlock();
+		}
+		
+		// Cadence the loop
+		pb::cadence(std::chrono::system_clock::now() - startPoint, TRACKING_ENGINE_RUN_SPEED);
+	}
+}
+

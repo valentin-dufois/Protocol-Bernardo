@@ -7,6 +7,7 @@
 //
 
 #include "CommunicationEngine.hpp"
+#include "../Utils/thread.hpp"
 
 #include <pthread.h>
 // MARK: - Static informations
@@ -23,12 +24,8 @@ void CommunicationEngine::runContext() {
 
 	// No thread, create it and run it
 	_executionThread = new std::thread([&] () {
-		std::string threadName = "pb.communication-engine.context";
-#ifdef __APPLE__
-		pthread_setname_np(threadName.c_str());
-#else
-		pthread_setname_np(pthread_self(), threadName.c_str());
-#endif
+		pb::setThreadName("pb.communication-engine");
+
 		_ioContext.restart();
 		_ioContext.run();
 

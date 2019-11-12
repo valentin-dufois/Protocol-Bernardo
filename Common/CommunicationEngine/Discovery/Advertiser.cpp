@@ -63,7 +63,14 @@ void Advertiser::advertise(const boost::system::error_code &e) {
 	
 	// Broadcast
 	LOG_DEBUG("Advertising on network");
-	_socket->send_to(_outputBuffer.data(), _broadcastEndpoint);
+
+	boost::system::error_code error;
+	_socket->send_to(_outputBuffer.data(), _broadcastEndpoint, boost::asio::socket_base::message_flags(), error);
+
+	if(error) {
+		LOG_ERROR("Error while advertising");
+		LOG_ERROR(e.message());
+	}
 
 	// Reset the timer
 	setTimer();

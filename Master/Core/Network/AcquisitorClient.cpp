@@ -9,7 +9,6 @@
 #include "AcquisitorClient.hpp"
 
 #include "../../../Common/Structs/RawBody.hpp"
-
 #include "../../../Common/CommunicationEngine/CommunicationEngine.hpp"
 #include "../../../Common/Messages/messages.hpp"
 
@@ -89,10 +88,10 @@ void AcquisitorClient::onBodyStream(const protobuf::Any * data) {
 	messages::RawBody messageBody;
 	data->UnpackTo(&messageBody);
 
-	RawBody * body;
+	messages::RawBodies rawBodiesMessage;
 
 	try {
-		body = new RawBody(messageBody);
+		data->UnpackTo(&rawBodiesMessage);
 	} catch (protobuf::FatalException e) {
 		LOG_ERROR("Error while deserializing a body. Ignoring...");
 		LOG_DEBUG(e.message());
@@ -100,8 +99,15 @@ void AcquisitorClient::onBodyStream(const protobuf::Any * data) {
 		return;
 	}
 
+	std::list<RawBody *> rawBodies;
+
+	for(int i = 0; i < rawBodiesMessage.rawbodies_size(); ++i) {
+		rawBodies.push_back(new RawBody(rawBodiesMessage
+										.rawbodies(i)));
+	}
+
 	// LOG_INFO("Received a body from the stream");
 
-	if(onBody)
-		onBody(body);
+	if(onRawBodies)
+		onRawBodies(rawBodies);
 }

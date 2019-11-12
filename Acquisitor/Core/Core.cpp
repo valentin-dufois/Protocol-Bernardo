@@ -33,8 +33,8 @@ void Core::init() {
 	_server = new AcquisitorServer(Endpoint::Type::acquisitor);
 
 	// Setup the Pose estimation engine
-	_poseEngine.onBody = [&] (const RawBody * body) {
-		onBody(body);
+	_poseEngine.onRawBodies = [&] (const std::list<RawBody *> & rawBody) {
+		onRawBodies(rawBody);
 	};
 	
 	_poseEngine.start();
@@ -48,14 +48,11 @@ void Core::run() {
 	}
 }
 
-void Core::onBody(const RawBody * body) {
-	_server->sendBody(body);
-
-	delete body;
+void Core::onRawBodies(const std::list<RawBody *> &body) {
+//	_server->sendBody(body);
 }
 
 Core::~Core() {
-//	delete _poseEngine;
 	delete _server;
 }
 

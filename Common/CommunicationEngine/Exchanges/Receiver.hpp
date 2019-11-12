@@ -35,6 +35,7 @@ protected:
 	virtual SocketStatus getStatus() = 0;
 
 	virtual void close(bool silent = true) = 0;
+	virtual void onError() = 0;
 
 	/// Tell if the receiver is actively listening
 	inline bool isListening() { return _isListening; }

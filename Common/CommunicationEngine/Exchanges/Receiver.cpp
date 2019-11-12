@@ -38,7 +38,9 @@ void Receiver::onReceive(const boost::system::error_code &error, std::size_t byt
 
 		// Unknown error, ignore this
 		LOG_INFO("Error while receiving data : " + error.message());
-		return prepareReceive();
+		onError();
+
+		return;
 	}
 
 	messages::Datagram * datagram = new messages::Datagram;
@@ -46,7 +48,9 @@ void Receiver::onReceive(const boost::system::error_code &error, std::size_t byt
 
 	// Check we haven't reached the buffer size
 	if(bytes_transferred >= RECEPTION_BUFFER_SIZE) {
-		LOG_WARN("TCP Connection reception buffer sized reach. If the message was larger than the buffer size, further behaviour is undefined and may produce errors");
+		LOG_WARN("TCP Connection reception buffer sized reach. If the message was larger than the buffer size, ignoring packet");
+
+		delete datagram;
 	}
 
 	// Pass along the received datagram

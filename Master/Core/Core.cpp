@@ -6,6 +6,8 @@
 //
 
 #include <iostream>
+#include <list>
+
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm/gtx/string_cast.hpp>
 
@@ -55,8 +57,8 @@ void Core::run() {
 
 void Core::onAcquisitor(AcquisitorClient * acquisitor) {
 	// Link the acquisitor clients to the tracking engine
-	acquisitor->onBody = [&] (RawBody * body) {
-		_trackingEngine.onRawBody(body);
+	acquisitor->onRawBodies = [&] (std::list<RawBody *> rawBodies) {
+		_trackingEngine.onRawBodies(rawBodies);
 	};
 }
 
@@ -72,7 +74,7 @@ void Core::onTrack(const std::map<pb::bodyUID, Body *> &bodies) {
 
 	messages::Datagram * datagram = messages::makeDatagram(messages::Datagram_Type_TRACKED_BODIES, *trackedBodies);
 
-	_outSocket->sendAsJson(trackedBodies);
+//	_outSocket->sendAsJson(trackedBodies);
 	_networkManager.sendToTerminal(datagram);
 
 	delete trackedBodies;

@@ -34,6 +34,10 @@ message RawBody {
 	string deviceUID = 4;
 }
 
+message RawBodies {
+	repeated RawBody rawBodies = 1;
+}
+
 message Body {
 	string uid = 1;
 	uint32 frame = 5;

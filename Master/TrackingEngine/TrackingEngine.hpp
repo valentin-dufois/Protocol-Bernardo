@@ -13,6 +13,7 @@
 #include <thread>
 #include <mutex>
 #include <map>
+#include <list>
 #include <unordered_set>
 #include <functional>
 
@@ -45,9 +46,9 @@ public:
 	/// Stops the tracking engine
 	inline void stop() { _isTracking = false; };
 
-	/// Call this method to give the TrackingEngine a new rawBody to work with
-	/// @param body The body to handle
-	void onRawBody(RawBody * body);
+	/// Call this method to give the TrackingEngine a new set of rawBody to work with
+	/// @param rawBodies The list of bodies to handle
+	void onRawBodies(std::list<RawBody *> rawBodies);
 
 	/// This method is called every time the Tracking Engine finishes a cycle.
 	std::function<void(std::map<pb::bodyUID, Body *>)> onCycleEnd;
@@ -91,7 +92,7 @@ private:
 	std::unordered_set<pb::deviceUID> _devicesUID;
 
 	/// All the bodies received since the last cycle
-	std::vector<RawBody *> _bodiesBuffer;
+	std::list<RawBody *> _bodiesBuffer;
 
 	/// All the bodies actively tracked by the tracking engine
 	std::map<pb::bodyUID, Body *> _bodies;
@@ -118,9 +119,6 @@ private:
 
 	/// Clear the `_bodiesBuffer`
 	void clearBuffer();
-
-	/// Used by the runLoop to cadence its running to the specified cadence
-	void cadenceLoop(const std::chrono::duration<double, std::milli> &workTime);
 
 	/// Remove the reference to a rawbody from bodies. If the bodies has ne more
 	/// reference after that, it is also removed

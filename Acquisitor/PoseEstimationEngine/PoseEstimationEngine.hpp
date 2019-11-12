@@ -9,7 +9,9 @@
 #define PoseEstimationEngine_hpp
 
 #include <vector>
-#include <map>
+#include <list>
+#include <mutex>
+#include <thread>
 
 #include "../libraries.hpp"
 
@@ -38,11 +40,15 @@ public:
 	void start();
 
 	/// Called everytime a body is received from a connected device
-	std::function<void(const RawBody * body)> onBody;
+	// std::function<void(const RawBody * body)> onBody;
 
 	std::vector<Device *> getDevices();
 
+	std::function<void(std::list<RawBody *>)> onRawBodies;
+
 private:
+
+	bool _isRunning = false;
 
 	/// Internal method handling newly connected devices
 	void onNewDevice(const Device * device);
@@ -53,7 +59,22 @@ private:
 	/// Holds all the active trackers
 	std::vector<Tracker *> _trackers;
 
+	/// Holds all the raw bodies until beiing sent
+	/// TODO: Update container to prevent insertion of multiple same-person rawBody
+	std::list<RawBody *> _rawBodies;
 
+	/// Called everytime a device has a new body
+	void onRawBody(RawBody * rawbody);
+
+	void runLoop();
+
+	// MARK: System
+
+	/// The thread on which the pose engine run loop is running
+	std::thread * _executionThread = nullptr;
+
+	/// The rawBodies buffer mutex
+	std::mutex _rawBodiesBufferMutex;
 };
 
 #endif /* PoseEstimationEngine_hpp */

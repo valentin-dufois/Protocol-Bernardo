@@ -9,6 +9,7 @@
 
 #include "../../Common/Utils/maths.hpp"
 #include "../../Common/Utils/Log.hpp"
+#include "../../Common/Utils/thread.hpp"
 #include "../../Common/Structs/RawBody.hpp"
 #include "../../Common/Structs/Body.hpp"
 
@@ -30,35 +31,35 @@ void TrackingEngine::start() {
 
 	// Let's create and run the thread
 	_executionThread = new std::thread([&] () {
-		std::string threadName = "pb.tracking-engine";
-#ifdef __APPLE__	
-		pthread_setname_np(threadName.c_str());
-#else
-		pthread_setname_np(pthread_self(), threadName.c_str());
-#endif
 		runLoop();
 
 		_executionThread->detach();
 	});
 }
 
-void TrackingEngine::onRawBody(RawBody * rawBody) {
+void TrackingEngine::onRawBodies(std::list<RawBody *> rawBodies) {
 	if(!_isTracking) {
 		// Not tracking, do nothin, prevent leaks
-		delete rawBody;
+		for(RawBody * rawBody: rawBodies)
+			delete rawBody;
+
+		rawBodies.clear();
+		return;
 	}
 
 	// Prevent other threads from accessing the buffer
 	_bodiesBufferMutex.lock();
 
-	_bodiesBuffer.push_back(rawBody);
+	// Append the two lists
+	_bodiesBuffer.merge(rawBodies);
 
-	_devicesUID.insert(rawBody->deviceUID);
-
+	// Unlock the buffer
 	_bodiesBufferMutex.unlock();
 }
 
 void TrackingEngine::runLoop() {
+	pb::setThreadName("pb.tracking-engine");
+
 	std::chrono::time_point<std::chrono::system_clock> startPoint;
 
 	while (_isTracking) {
@@ -75,7 +76,7 @@ void TrackingEngine::runLoop() {
 		}
 
 		// Cadence the loop
-		cadenceLoop(std::chrono::system_clock::now() - startPoint);
+		pb::cadence(std::chrono::system_clock::now() - startPoint, TRACKING_ENGINE_RUN_SPEED);
 	}
 }
 
@@ -99,6 +100,9 @@ void TrackingEngine::parseBodiesBuffer() {
 	_bodiesBufferMutex.lock();
 
 	for(RawBody * rawBody: _bodiesBuffer) {
+		// Register device UID
+		_devicesUID.insert(rawBody->deviceUID);
+
 		// We only handle tracked users
 		if(rawBody->state != RawBody::State::tracked) {
 			// remove reference to this rawBody in Bodies if needed
@@ -188,17 +192,6 @@ void TrackingEngine::clearBuffer() {
 		delete rawBody;
 	}
 	_bodiesBuffer.clear();
-}
-
-void TrackingEngine::cadenceLoop(const std::chrono::duration<double, std::milli> &workTime) {
-	if(workTime.count() > (1.0/TRACKING_ENGINE_RUN_SPEED))
-		return; // Last iteration took longer than one frame to complete, do not yield
-
-	std::chrono::duration<double, std::milli> delta(1.0/TRACKING_ENGINE_RUN_SPEED - workTime.count());
-	auto deltaMsDuration = std::chrono::duration_cast<std::chrono::milliseconds>(delta);
-
-	// Temporary pause the thread
-	std::this_thread::sleep_for(std::chrono::milliseconds(deltaMsDuration.count()));
 }
 
 Body * TrackingEngine::getBodyFor(const RawBody * rawbody) {

@@ -8,6 +8,8 @@
 #ifndef AcquisitorServer_hpp
 #define AcquisitorServer_hpp
 
+#include <list>
+
 #include "../../Common/Structs/RawBody.hpp"
 
 #include "../../Common/Messages/messages.hpp"
@@ -28,7 +30,7 @@ public:
 	}
 
 	/// Emits the given body to all the sockets registered on the body stream
-	void sendBody(const RawBody * body);
+	void sendRawBodise(const std::list<RawBody *> rawBodies);
 
 protected:
 	/// Called by the server when a new connections opens

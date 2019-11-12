@@ -13,13 +13,15 @@
 
 using messages::Datagram_Type;
 
-void AcquisitorServer::sendBody(const RawBody * body) {
-	protobuf::Any * data = new protobuf::Any();
-	data->PackFrom(*body);
+void AcquisitorServer::sendRawBodise(const std::list<RawBody *> rawBodies) {
+	messages::RawBodies rawBodiesMessage;
 
-	messages::Datagram * datagram = new messages::Datagram();
-	datagram->set_type(::messages::Datagram_Type_ACQ_BODY);
-	datagram->set_allocated_data(data);
+	for(RawBody * rawBody: rawBodies) {
+		messages::RawBody * rawBodyMessage = rawBodiesMessage.add_rawbodies();
+		rawBodyMessage->CopyFrom((messages::RawBody)*rawBody);
+	}
+
+	messages::Datagram * datagram = messages::makeDatagram(messages::Datagram_Type_ACQ_BODY, rawBodiesMessage);
 
 	for(Socket * socket: _socketsForBodyStream) {
 		socket->send(datagram, false);

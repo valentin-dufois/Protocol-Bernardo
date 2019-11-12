@@ -186,6 +186,18 @@ extension Messages_RawBody.State: CaseIterable {
 
 #endif  // swift(>=4.2)
 
+struct Messages_RawBodies {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var rawBodies: [Messages_RawBody] = []
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
 struct Messages_Body {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -474,6 +486,35 @@ extension Messages_RawBody.State: SwiftProtobuf._ProtoNameProviding {
     4: .same(proto: "missing"),
     5: .same(proto: "lost"),
   ]
+}
+
+extension Messages_RawBodies: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".RawBodies"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "rawBodies"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeRepeatedMessageField(value: &self.rawBodies)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.rawBodies.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.rawBodies, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Messages_RawBodies, rhs: Messages_RawBodies) -> Bool {
+    if lhs.rawBodies != rhs.rawBodies {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
 }
 
 extension Messages_Body: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {

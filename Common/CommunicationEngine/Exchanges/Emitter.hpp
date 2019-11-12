@@ -8,6 +8,8 @@
 #ifndef Emitter_hpp
 #define Emitter_hpp
 
+#include <mutex>
+
 #include <boost/asio.hpp>
 
 #include "SocketStatus.hpp"
@@ -43,11 +45,15 @@ protected:
 
 	virtual SocketStatus getStatus() = 0;
 
+	virtual void onError() = 0;
+
 private:
 
 	/// Send a message to the server synchronously.
 	/// @param message The message to send
 	void sendSync(google::protobuf::Message * message, const bool deleteAfterUse);
+
+	std::mutex _sendMutex;
 
 	/// Synchronous send output stream
 	std::ostream _outputStream;

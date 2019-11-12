@@ -13,8 +13,12 @@
 
 void Emitter::
 send(google::protobuf::Message * message, const bool deleteAfterUse, const bool async) {
+
+	_sendMutex.lock();
+
 	// Make sure the socket is ready to send data
 	if(getStatus() != SocketStatus::ready) {
+		_sendMutex.unlock();
 		LOG_WARN("Could not send data on a not-ready socket. The socket may not be opened yet or is already closed.");
 		return;
 	}
@@ -23,6 +27,8 @@ send(google::protobuf::Message * message, const bool deleteAfterUse, const bool 
 		sendAsync(message, deleteAfterUse);
 	else
 		sendSync(message, deleteAfterUse);
+
+	_sendMutex.unlock();
 }
 
 void Emitter::sendSync(google::protobuf::Message * message, const bool deleteAfterUse) {
@@ -31,8 +37,16 @@ void Emitter::sendSync(google::protobuf::Message * message, const bool deleteAft
 
 	startTimer();
 
+	boost::system::error_code error;
+
 	// Send the datagram
-	getSocket().send(_outputBuffer.data());
+	getSocket().send(_outputBuffer.data(), boost::asio::socket_base::message_flags(), error);
+
+	if (error) {
+		LOG_ERROR("An error occured while sending data synchronously");
+		LOG_ERROR(error.message());
+		onError();
+	}
 
 	endTimer();
 
@@ -60,6 +74,12 @@ void Emitter::sendAsync(google::protobuf::Message * message, const bool deleteAf
 	// Send the datagram
 	getSocket().async_write_some(outputBuffer.data(), [&] (const boost::system::error_code &error, std::size_t bytes_transferred) {
 		endTimer();
+
+		if(error) {
+			LOG_ERROR("An error occured while sending data asynchronously");
+			LOG_ERROR(error.message());
+			onError();
+		}
 	});
 }
 
