@@ -12,14 +12,13 @@ class Browser {
 
 	public var delegate: BrowserDelegate?
 
-	private var _socket: Socket
+	private var _socket: Socket? = nil
 
 	private var _isBrowsing: Bool = false
 
 	private var _thread: DispatchQueue
 
 	public init() {
-		_socket = try! Socket.create(family: .inet, type: .datagram, proto: .udp)
 		_thread = DispatchQueue.global(qos: .utility)
 	}
 
@@ -38,17 +37,20 @@ class Browser {
 
 	public func stopBrowsing() {
 		_isBrowsing = false;
+		_socket?.close();
+		_socket = nil
 	}
 
 	private func receptionLoop() {
 
-		try! _socket.listen(on: 40003);
+		_socket = try! Socket.create(family: .inet, type: .datagram, proto: .udp)
+		try! _socket!.listen(on: 40003);
 
 		while(_isBrowsing) {
 			var data = Data()
 
 			// Listen for a datagram
-			let (bytesCount, address) = try! _socket.readDatagram(into: &data);
+			let (bytesCount, address) = try! _socket!.readDatagram(into: &data);
 
 			guard bytesCount >= 0 else {
 				print("No data received")

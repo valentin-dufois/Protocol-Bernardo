@@ -15,4 +15,6 @@ protocol NetworkEngineDelegate: AnyObject {
 	func onReceive(layout: Messages_Layout);
 
 	func onReceive(trackedBodies: Messages_TrackedBodies);
+
+	func masterDidDisconnect();
 }

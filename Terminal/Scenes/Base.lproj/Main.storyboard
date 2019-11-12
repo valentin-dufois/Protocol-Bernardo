@@ -363,7 +363,7 @@ CA
         <scene sceneID="Ost-wh-Ztk">
             <objects>
                 <viewController id="fB0-hq-gnC" customClass="CanvasPropertiesViewController" customModule="pb_terminal" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="wPb-aa-Gap">
+                    <view key="view" wantsLayer="YES" id="wPb-aa-Gap">
                         <rect key="frame" x="0.0" y="0.0" width="280" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
@@ -384,7 +384,7 @@ CA
                                                     <tableColumns>
                                                         <tableColumn editable="NO" width="275" minWidth="275" maxWidth="275" id="pQU-1V-PWl">
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Layout">
-                                                                <font key="font" metaFont="controlContent" size="11"/>
+                                                                <font key="font" metaFont="menu" size="11"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                             </tableHeaderCell>
@@ -587,7 +587,7 @@ DQ
                                                         <tableColumns>
                                                             <tableColumn width="499" minWidth="40" maxWidth="1000" id="ugE-vl-WPv">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Layout">
-                                                                    <font key="font" metaFont="controlContent" size="11"/>
+                                                                    <font key="font" metaFont="menu" size="11"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                     <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                                 </tableHeaderCell>

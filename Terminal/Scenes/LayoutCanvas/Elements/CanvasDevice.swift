@@ -146,7 +146,7 @@ extension CanvasDevice: CanvasElement {
 
 		views.append(CPSeparator.make())
 		views.append(CPSection.make(title: "Physical Device"))
-		var physicalUIDField = CPComboBox.make(label: "UID",
+		let physicalUIDField = CPComboBox.make(label: "UID",
 											   values: devicesList,
 											   delegate: self)
 		physicalUIDField.field.stringValue = device.physicalUID;
@@ -294,7 +294,6 @@ extension CanvasDevice {
 // MARK: - User Interactions
 extension CanvasDevice {
 	@objc func remove() {
-		let deviceName = device.name;
 		// Remove the associated device from the layout
 		App.layoutEngine.remove(device: device)
 

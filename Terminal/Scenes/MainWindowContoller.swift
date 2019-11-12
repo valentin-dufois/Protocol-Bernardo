@@ -69,7 +69,6 @@ class MainWindowController: NSWindowController {
 			self.controller.layoutInterfaceController?.showTrackedBodies(trackedBodies)
 		}
 	}
-
 }
 
 extension MainWindowController: EventsDelegate {

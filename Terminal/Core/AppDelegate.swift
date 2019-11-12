@@ -81,4 +81,12 @@ extension AppDelegate: NetworkEngineDelegate {
 	func onReceive(trackedBodies: Messages_TrackedBodies) {
 		App.mainWindow?.showTrackedBodies(trackedBodies);
 	}
+
+	func masterDidDisconnect() {
+		App.isStarting = true;
+		
+		DispatchQueue.main.async {
+			App.mainWindow?.controller.showWelcomeView();
+		}
+	}
 }

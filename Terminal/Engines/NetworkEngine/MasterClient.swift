@@ -14,14 +14,12 @@ class MasterClient {
 	var delegate: MasterClientDelegate?;
 
 	private var _socket: Socket;
-
 	private var _thread = DispatchQueue.global(qos: .userInitiated);
 
 	private(set) var remoteIP: String!;
 
 	private(set) var isOpen: Bool = false;
 
-	// Create the client, connecting it to the given IP
 	init() {
 		_socket = try! Socket.create(family: .inet, type: .stream, proto: .tcp);
 	}
@@ -33,7 +31,9 @@ class MasterClient {
 			return; // Connection already open
 		}
 
+		_socket = try! Socket.create(family: .inet, type: .stream, proto: .tcp);
 		try! _socket.connect(to: remoteIP, port: 40030);
+
 		isOpen = true;
 
 		delegate?.masterDidConnect(self);
@@ -47,11 +47,18 @@ class MasterClient {
 		while(isOpen) {
 			var data = Data();
 
-			let (bytesRead) = try! _socket.read(into: &data);
+			do {
+				let (bytesRead) = try _socket.read(into: &data);
 
-			guard bytesRead > 0 else {
-				// No data received, continue
-				continue;
+				guard bytesRead > 0 else {
+					// No data received, continue
+					continue;
+				}
+			} catch {
+				Log.error("Could not receive data, closing socket");
+				Log.error(error.localizedDescription);
+				close();
+				return
 			}
 
 			// Decode the message
@@ -76,12 +83,35 @@ class MasterClient {
 		}
 	}
 
+	public func send(_ message: Message) {
+		do {
+			let data = try message.serializedData();
+			try _socket.write(from: data);
+		} catch {
+			Log.error("Could not send data");
+			Log.error(error.localizedDescription);
+
+			close()
+		}
+	}
+
 	public func close() {
+		if !isOpen {
+			return
+		}
+
+		isOpen = false
+
+		_socket.close();
+
 		var datagram = Messages_Datagram();
 		datagram.type = .close;
 
-		try! _socket.write(from: datagram.serializedData());
+		_ = try? _socket.write(from: datagram.serializedData());
+
+		delegate?.masterDidDisconnect(self);
 	}
+
 	deinit {
 		close();
 	}
@@ -92,14 +122,14 @@ extension MasterClient {
 		var datagram = Messages_Datagram();
 		datagram.type = .status;
 
-		try! _socket.write(from: datagram.serializedData());
+		send(datagram);
 	}
 
 	func requestLayoutList() {
 		var datagram = Messages_Datagram();
 		datagram.type = .layoutList;
 
-		try! _socket.write(from: datagram.serializedData());
+		send(datagram);
 	}
 
 	func requestLayout(name: String) {
@@ -110,7 +140,7 @@ extension MasterClient {
 		datagram.type = .layoutOpen;
 		datagram.data = try! Google_Protobuf_Any(message: layoutName);
 
-		try! _socket.write(from: datagram.serializedData());
+		send(datagram);
 	}
 
 	func createLayout(withName name: String) {
@@ -121,7 +151,7 @@ extension MasterClient {
 		datagram.type = .layoutCreate;
 		datagram.data = try! Google_Protobuf_Any(message: layoutName);
 
-		try! _socket.write(from: datagram.serializedData());
+		send(datagram);
 	}
 
 	func deleteLayout(withName name: String) {
@@ -132,7 +162,7 @@ extension MasterClient {
 		datagram.type = .layoutDelete;
 		datagram.data = try! Google_Protobuf_Any(message: layoutName);
 
-		try! _socket.write(from: datagram.serializedData());
+		send(datagram);
 	}
 
 	func openLayout(withName name: String) {
@@ -143,7 +173,7 @@ extension MasterClient {
 		datagram.type = .layoutOpen;
 		datagram.data = try! Google_Protobuf_Any(message: layoutName);
 
-		try! _socket.write(from: datagram.serializedData());
+		send(datagram);
 	}
 
 	func updateLayout(updatedLayout layout: Layout) {
@@ -151,7 +181,7 @@ extension MasterClient {
 		datagram.type = .layoutUpdate;
 		datagram.data = try! Google_Protobuf_Any(message: layout.asMessage());
 
-		try! _socket.write(from: datagram.serializedData());
+		send(datagram);
 
 		Log.info("Layout \(layout.name) updated on master")
 	}
@@ -172,7 +202,7 @@ extension MasterClient {
 		datagram.type = .ping;
 		datagram.data = try! Google_Protobuf_Any(message: ping);
 
-		try! _socket.write(from: datagram.serializedData());
+		send(datagram);
 	}
 
 	/// Called everytime we rerceive a ping message from the remote.
@@ -184,7 +214,7 @@ extension MasterClient {
 		datagram.data = data;
 
 		// Send the pond
-		try! _socket.write(from: datagram.serializedData());
+		send(datagram);
 	}
 
 	/// Called when the response to a previously sent ping is received

@@ -12,4 +12,6 @@ protocol MasterClientDelegate {
 	func masterDidConnect(_: MasterClient);
 
 	func master(_: MasterClient, receivedDatagram: Messages_Datagram);
+
+	func masterDidDisconnect(_: MasterClient)
 }

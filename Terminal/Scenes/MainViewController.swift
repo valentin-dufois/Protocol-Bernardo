@@ -42,8 +42,16 @@ class MainViewController: NSViewController {
 		}
 	}
 
+	func showWelcomeView() {
+		welcomeView?.isHidden = false;
+		containerView?.isHidden = true;
+
+		layoutManagerController?.dismiss(nil);
+		layoutInterfaceController?.dismiss(nil);
+	}
+
 	func showLayoutInterface() {
-		welcomeView?.removeFromSuperview();
+		welcomeView?.isHidden = true;
 		containerView?.isHidden = false;
 
 		Log.info("\(App.layoutEngine.layout.name) opened")
