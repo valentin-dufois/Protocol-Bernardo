@@ -60,10 +60,6 @@ class MainWindowController: NSWindowController {
 		}
 	}
 
-	@IBAction func refreshMasterStatus(_ sender: Any) {
-		App.networkEngine.requestMasterStatus();
-	}
-
 	func showTrackedBodies(_ trackedBodies: Messages_TrackedBodies) {
 		DispatchQueue.main.async {
 			self.controller.layoutInterfaceController?.showTrackedBodies(trackedBodies)

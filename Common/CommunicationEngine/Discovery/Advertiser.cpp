@@ -41,7 +41,7 @@ void Advertiser::startAdvertising() {
 
 	asio::ip::address outboundAddress = getOutboundInterfaceIP();
 
-	LOG_DEBUG("Advertising on interface " + outboundAddress.to_string());
+	LOG_INFO("Advertising on interface " + outboundAddress.to_string());
 
 	_socket->set_option(asio::ip::multicast::outbound_interface(outboundAddress.to_v4()));
 	_socket->set_option(asio::ip::udp::socket::reuse_address(true));
@@ -62,7 +62,7 @@ void Advertiser::advertise(const boost::system::error_code &e) {
 		return;
 	
 	// Broadcast
-	LOG_DEBUG("Advertising on network");
+	// LOG_DEBUG("Advertising on network");
 
 	boost::system::error_code error;
 	_socket->send_to(_outputBuffer.data(), _broadcastEndpoint, boost::asio::socket_base::message_flags(), error);

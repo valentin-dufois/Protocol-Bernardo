@@ -17,7 +17,9 @@ namespace asio = boost::asio;
 class BroadcastSocket {
 public:
 
-	BroadcastSocket(const int &port);
+	BroadcastSocket();
+
+	void open(const int &port);
 
 	void emit(const protobuf::Message * message);
 

@@ -14,9 +14,12 @@
 #include "../../Utils/Log.hpp"
 #include "../../Utils/flags.hpp"
 
-BroadcastSocket::BroadcastSocket(const int &port):
-_socket(CommunicationEngine::instance()->getContext()),
-_broadcastEndpoint(asio::ip::address_v4::broadcast(), port) {
+BroadcastSocket::BroadcastSocket():
+_socket(CommunicationEngine::instance()->getContext()) { }
+
+void BroadcastSocket::open(const int &port) {
+	_broadcastEndpoint = asio::ip::udp::endpoint(asio::ip::address_v4::broadcast(), port);
+
 	boost::system::error_code error;
 
 	_socket.open(asio::ip::udp::v4(), error);
