@@ -31,6 +31,8 @@
 		3937AE0B23566634009E6021 /* network.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3937AE0723566634009E6021 /* network.pb.swift */; };
 		3937AE0C23566634009E6021 /* maths.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3937AE0823566634009E6021 /* maths.pb.swift */; };
 		39387FA3237AE8CF009E3FF2 /* thread.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 39387FA2237AE82C009E3FF2 /* thread.hpp */; };
+		39387FA6237B1375009E3FF2 /* BroadcastSocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39387FA4237B1375009E3FF2 /* BroadcastSocket.cpp */; };
+		39387FA7237B1375009E3FF2 /* BroadcastSocket.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 39387FA5237B1375009E3FF2 /* BroadcastSocket.hpp */; };
 		393AB5862368D7EE00F4F087 /* EventsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393AB5852368D7EE00F4F087 /* EventsDelegate.swift */; };
 		393AB5882368DAED00F4F087 /* NetworkEngineDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393AB5872368DAED00F4F087 /* NetworkEngineDelegate.swift */; };
 		393AB58A2368E14400F4F087 /* LayoutManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393AB5892368E14400F4F087 /* LayoutManagerViewController.swift */; };
@@ -284,6 +286,8 @@
 		3937AE0723566634009E6021 /* network.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = network.pb.swift; sourceTree = "<group>"; };
 		3937AE0823566634009E6021 /* maths.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = maths.pb.swift; sourceTree = "<group>"; };
 		39387FA2237AE82C009E3FF2 /* thread.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = thread.hpp; sourceTree = "<group>"; };
+		39387FA4237B1375009E3FF2 /* BroadcastSocket.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BroadcastSocket.cpp; sourceTree = "<group>"; };
+		39387FA5237B1375009E3FF2 /* BroadcastSocket.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BroadcastSocket.hpp; sourceTree = "<group>"; };
 		393AB5852368D7EE00F4F087 /* EventsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsDelegate.swift; sourceTree = "<group>"; };
 		393AB5872368DAED00F4F087 /* NetworkEngineDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkEngineDelegate.swift; sourceTree = "<group>"; };
 		393AB5892368E14400F4F087 /* LayoutManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutManagerViewController.swift; sourceTree = "<group>"; };
@@ -627,6 +631,8 @@
 				3950170A2341689000E7F6BD /* Socket.hpp */,
 				3950170D23416C9C00E7F6BD /* SocketStatus.hpp */,
 				392DCCB823455D6E00885C84 /* TimeoutHandling.hpp */,
+				39387FA4237B1375009E3FF2 /* BroadcastSocket.cpp */,
+				39387FA5237B1375009E3FF2 /* BroadcastSocket.hpp */,
 			);
 			path = Exchanges;
 			sourceTree = "<group>";
@@ -1058,6 +1064,7 @@
 				392DCCB923455D6E00885C84 /* TimeoutHandling.hpp in Headers */,
 				395A79C22335BB2000499894 /* body.pb.h in Headers */,
 				395017082341667D00E7F6BD /* Receiver.hpp in Headers */,
+				39387FA7237B1375009E3FF2 /* BroadcastSocket.hpp in Headers */,
 				39CA4ADB2331486D00E528CD /* Endpoint.hpp in Headers */,
 				3966E41F2338018800710DD4 /* layout.pb.h in Headers */,
 			);
@@ -1310,6 +1317,7 @@
 				399D167A23521E7600CEC2F0 /* flags.cpp in Sources */,
 				39CA4AD62331486D00E528CD /* Browser.cpp in Sources */,
 				39CA4ADA2331486D00E528CD /* Advertiser.cpp in Sources */,
+				39387FA6237B1375009E3FF2 /* BroadcastSocket.cpp in Sources */,
 				395A79C92335BB2000499894 /* network.pb.cc in Sources */,
 				395017022341646900E7F6BD /* Emitter.cpp in Sources */,
 				391A20082342B6D300F00517 /* Ping.cpp in Sources */,

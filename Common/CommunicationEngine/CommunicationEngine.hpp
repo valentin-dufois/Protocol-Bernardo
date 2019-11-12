@@ -11,6 +11,7 @@
 #define CommunicationEngine_hpp
 
 #include <thread>
+#include <vector>
 #include <boost/asio.hpp>
 
 #include "NetworkParameters.h"
@@ -53,6 +54,7 @@ public:
 	/// Run the asio context on another context for asynchronous networking. This emthod handles calling run on an already running context. Basically, you should call this method everytime you finish setting up new services
 	void runContext();
 
+	std::vector<asio::ip::address> getOutboundInterfaces();
 
 private:
 

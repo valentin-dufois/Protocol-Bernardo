@@ -13,12 +13,11 @@
 
 using messages::Datagram_Type;
 
-void AcquisitorServer::sendRawBodise(const std::list<RawBody *> rawBodies) {
+void AcquisitorServer::sendRawBodies(const std::list<RawBody *> rawBodies) {
 	messages::RawBodies rawBodiesMessage;
 
 	for(RawBody * rawBody: rawBodies) {
-		messages::RawBody * rawBodyMessage = rawBodiesMessage.add_rawbodies();
-		rawBodyMessage->CopyFrom((messages::RawBody)*rawBody);
+		rawBodiesMessage.add_rawbodies()->CopyFrom((messages::RawBody)*rawBody);
 	}
 
 	messages::Datagram * datagram = messages::makeDatagram(messages::Datagram_Type_ACQ_BODY, rawBodiesMessage);
@@ -70,9 +69,6 @@ void AcquisitorServer::onDatagram(messages::Datagram * datagram, Socket * socket
 		// Commons
 		case messages::Datagram_Type_CLOSE:
 			socket->close(true); break;
-		case messages::Datagram_Type_HEARTBEAT:
-			// LOG_DEBUG("Received a heartbeat");
-			break;
 		case messages::Datagram_Type_PING:
 			onPing(datagram->mutable_data(), socket);
 			break;

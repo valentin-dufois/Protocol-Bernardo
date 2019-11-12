@@ -64,9 +64,6 @@ class MasterClient {
 			switch datagram.type {
 			case .close:
 				close();
-			case .heartbeat:
-				// Received a heartbeat. Do nothing.
-				break;
 			case .ping:
 				onPing(datagram.data);
 			case .pong:

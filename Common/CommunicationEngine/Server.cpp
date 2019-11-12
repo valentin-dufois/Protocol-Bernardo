@@ -29,7 +29,6 @@ void Server::open() {
 
 	// Run the context
 	CommunicationEngine::instance()->runContext();
-	
 
 	_isRunning = true;
 
@@ -44,6 +43,12 @@ void Server::sendToAll(google::protobuf::Message * aMessage, const bool &deleteA
 
 	if(deleteAfterUse) {
 		delete aMessage;
+	}
+}
+
+void Server::sendToAllAsJSON(google::protobuf::Message * aMessage) {
+	for(Socket * s: _connections) {
+		s->sendAsJson(aMessage);
 	}
 }
 

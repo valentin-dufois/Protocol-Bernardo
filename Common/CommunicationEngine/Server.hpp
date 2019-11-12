@@ -49,6 +49,8 @@ public:
 	/// @param aMessage <#aMessage description#>
 	void sendToAll(google::protobuf::Message * aMessage, const bool &deleteAfterUser = true, const bool &async = true);
 
+	void sendToAllAsJSON(google::protobuf::Message * aMessage);
+
 	/// Start the advertiser, exposing explicitely the server on the network
 	inline void advertise() { _advertiser.startAdvertising(); }
 
@@ -60,7 +62,7 @@ protected:
 
 	/// Called everytime a new client is connects to the server
 	/// @param newConnection The newly opened connection
-	virtual void onClient(Socket * newConnection) = 0;
+	virtual void onClient(Socket * newConnection) {};
 
 	/// Called everytime a conncetion is lost. The given connection
 	/// will be free-ed once this callback is completed

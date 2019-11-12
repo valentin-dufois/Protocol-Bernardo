@@ -41,7 +41,7 @@ private:
 	PoseEstimationEngine _poseEngine;
 
 	/// Called by the Pose Engine  everytime a new body has been received
-	void onRawBodies(const std::list<RawBody *> &body);
+	void onRawBodies(const std::list<RawBody *> &rawBodies);
 };
 
 #endif /* Core_hpp */

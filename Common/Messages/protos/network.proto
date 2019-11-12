@@ -33,8 +33,6 @@ message Datagram {
 		UNDEFINED 			= 0;		// Compatibility purposes
 		CLOSE 				= 5;		// Tell other side to close the connection
 
-		HEARTBEAT 			= 7;		// Check connection is still active
-
 		PING 				= 10;	// Ping command
 		PONG 				= 11;	// Pong response
 

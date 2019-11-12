@@ -166,7 +166,8 @@ layout::Device * LayoutEngine::getDeviceByPhysicalUID(const pb::deviceUID &uid) 
 
 // MARK: - Mathematics
 
-Skeleton * LayoutEngine::inGlobalCoordinates(const Skeleton &s, const pb::deviceUID deviceUID) {
+Skeleton * LayoutEngine::
+inGlobalCoordinates(const Skeleton &s, const pb::deviceUID deviceUID) {
 	Skeleton * skeleton = new Skeleton();
 
 	for(int i = 0; i < s.joints.size(); ++i) {
@@ -208,7 +209,7 @@ vec3 LayoutEngine::inGlobalCoordinates(const vec3 &local, const pb::deviceUID de
 	global.z = local.x * sin(orientation) + local.z * cos(orientation);
 
 	// Take into account the device position
-	global.x -= device->position.x * 10.0; // cm to mm
+	global.x += device->position.x * 10.0; // cm to mm
 	global.z += device->position.y * 10.0; // cm to mm
 
 	// Y position (Height) is not affected by the angle of capture

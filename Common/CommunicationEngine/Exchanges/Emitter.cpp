@@ -84,9 +84,27 @@ void Emitter::sendAsync(google::protobuf::Message * message, const bool deleteAf
 }
 
 void Emitter::sendAsJson(protobuf::Message * message) {
-	std::string output;
-	
-	protobuf::util::MessageToJsonString(*message, &output);
+	std::string outputString;
+	protobuf::util::MessageToJsonString(*message, &outputString);
 
-	LOG_DEBUG(output);
+	asio::streambuf outputBuffer;
+	std::iostream os(&outputBuffer);
+	os << outputString;
+
+	boost::system::error_code error;
+
+	// Send the datagram
+	getSocket().send(outputBuffer.data(), boost::asio::socket_base::message_flags(), error);
+
+	CommunicationEngine::instance()->runContext();
+
+	if (error) {
+		LOG_ERROR("An error occured while sending data synchronously");
+		LOG_ERROR(error.message());
+		onError();
+	}
+
+	// Clear the buffer
+	_outputBuffer.consume(_outputBuffer.size());
+
 }

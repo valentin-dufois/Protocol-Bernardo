@@ -61,10 +61,7 @@ void AcquisitorClient::onDatagram(messages::Datagram * datagram) {
 		// Commons
 		case messages::Datagram_Type_CLOSE:
 			_socket.close(true); break;
-
-		case messages::Datagram_Type_HEARTBEAT:
-			// LOG_DEBUG("Received a heartbeat"); break;
-			break;
+			
 		case messages::Datagram_Type_PING:
 			onPing(datagram->mutable_data(), &_socket); break;
 

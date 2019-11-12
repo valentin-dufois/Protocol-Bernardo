@@ -32,3 +32,24 @@ void CommunicationEngine::runContext() {
 		_executionThread->detach();
 	});
 }
+
+std::vector<asio::ip::address> CommunicationEngine::getOutboundInterfaces() {
+	// Find the outbound interfaces
+	asio::ip::udp::resolver resolver(CommunicationEngine::instance()->getContext());
+	asio::ip::udp::resolver::query query(asio::ip::host_name(), "");
+	asio::ip::udp::resolver::iterator it = resolver.resolve(query);
+
+	asio::ip::address interfaceIPAdress;
+
+	std::vector<asio::ip::address> interfaces;
+
+	// Select the first IPv4 interface and use it
+	while(it != boost::asio::ip::udp::resolver::iterator()) {
+		asio::ip::address interface = (it++)->endpoint().address();
+		if(interface.is_v4()) {
+			interfaces.push_back(interface);
+		}
+	}
+
+	return interfaces;
+}

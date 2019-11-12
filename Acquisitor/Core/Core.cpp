@@ -48,8 +48,8 @@ void Core::run() {
 	}
 }
 
-void Core::onRawBodies(const std::list<RawBody *> &body) {
-//	_server->sendBody(body);
+void Core::onRawBodies(const std::list<RawBody *> &rawBodies) {
+	_server->sendRawBodies(rawBodies);
 }
 
 Core::~Core() {

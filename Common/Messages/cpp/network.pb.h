@@ -109,7 +109,6 @@ inline bool Endpoint_Type_Parse(
 enum Datagram_Type : int {
   Datagram_Type_UNDEFINED = 0,
   Datagram_Type_CLOSE = 5,
-  Datagram_Type_HEARTBEAT = 7,
   Datagram_Type_PING = 10,
   Datagram_Type_PONG = 11,
   Datagram_Type_STATUS = 50,
@@ -728,8 +727,6 @@ class Datagram :
     Datagram_Type_UNDEFINED;
   static constexpr Type CLOSE =
     Datagram_Type_CLOSE;
-  static constexpr Type HEARTBEAT =
-    Datagram_Type_HEARTBEAT;
   static constexpr Type PING =
     Datagram_Type_PING;
   static constexpr Type PONG =

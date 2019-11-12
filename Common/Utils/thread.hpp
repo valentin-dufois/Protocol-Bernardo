@@ -11,6 +11,8 @@
 #include <thread>
 #include <chrono>
 
+#include "Log.hpp"
+
 namespace pb {
 
 inline void setThreadName(const std::string &threadName) {
@@ -21,15 +23,14 @@ inline void setThreadName(const std::string &threadName) {
 #endif
 }
 
-inline void cadence(const std::chrono::duration<double, std::milli> &workTime, const float targetSpeed) {
+inline void cadence(const std::chrono::duration<double, std::milli> &workTime, const double targetSpeed) {
 	if(workTime.count() > (1.0/targetSpeed))
 		return; // Last iteration took longer than one frame to complete, do not yield
 
 	std::chrono::duration<double, std::milli> delta(1.0/targetSpeed - workTime.count());
-	auto deltaMsDuration = std::chrono::duration_cast<std::chrono::milliseconds>(delta);
 
 	// Temporary pause the thread
-	std::this_thread::sleep_for(std::chrono::milliseconds(deltaMsDuration.count()));
+	std::this_thread::sleep_for(delta * 1000);
 }
 
 }

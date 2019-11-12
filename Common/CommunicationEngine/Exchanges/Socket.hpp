@@ -27,8 +27,7 @@ public:
 	Socket(): Socket(CommunicationEngine::instance()->getContext()) {}
 
 	Socket(asio::io_context &aContext):
-		_socket(aContext),
-		_heartbeatTimer(aContext) {}
+		_socket(aContext) {}
 
 	/// Connects the socket to the given endpoint
 	void connectTo(const Endpoint &remote);
@@ -91,13 +90,6 @@ private:
 	/// The remote endpoint this socket is connected. Irrelevant if the socket status
 	/// isn't `SocketStatus::ready`
 	Endpoint _remote;
-
-	asio::deadline_timer _heartbeatTimer;
-
-	messages::Datagram _heartbeat;
-
-	void emitHeartbeat();
-
 };
 
 #endif /* Socket_hpp */

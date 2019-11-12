@@ -12,6 +12,8 @@
 #include "Network/NetworkManager.hpp"
 #include "../TrackingEngine/TrackingEngine.hpp"
 
+#include "../../Common/CommunicationEngine/Server.hpp"
+
 struct RawBody;
 class Socket;
 
@@ -32,7 +34,7 @@ private:
 
 	TrackingEngine _trackingEngine;
 
-	Socket * _outSocket;
+	Server _broadcastServer = Server(Endpoint::Type::broadcaster);
 
 	// Events
 	void onTrack(const std::map<pb::bodyUID, Body *> &bodies);

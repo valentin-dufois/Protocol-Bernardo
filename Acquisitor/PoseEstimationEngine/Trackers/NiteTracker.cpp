@@ -24,6 +24,9 @@ _device(aDevice)
 
 void NiteTracker::onNewFrame(nite::UserTracker &) {
 	// Retrieve the frame
+	if(!_tracker.isValid())
+		return;
+
 	nite::UserTrackerFrameRef * userFrame = new nite::UserTrackerFrameRef();
 	_tracker.readFrame(userFrame);
 
@@ -147,7 +150,7 @@ void NiteTracker::processFrame(nite::UserTrackerFrameRef * frame) {
 		skeleton->set(Skeleton::Joint::leftFoot, Joint(niteSkeleton->getJoint(nite::JOINT_LEFT_FOOT), _tracker));
 		skeleton->set(Skeleton::Joint::rightFoot, Joint(niteSkeleton->getJoint(nite::JOINT_RIGHT_FOOT), _tracker));
 		
-		LOG_DEBUG("Skeleton Tracked");
+		// LOG_DEBUG("Skeleton Tracked");
 
 		// Pass along the body
 		if(bodyHandler)

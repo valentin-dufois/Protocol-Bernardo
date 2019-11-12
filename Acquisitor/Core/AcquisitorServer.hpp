@@ -30,7 +30,7 @@ public:
 	}
 
 	/// Emits the given body to all the sockets registered on the body stream
-	void sendRawBodise(const std::list<RawBody *> rawBodies);
+	void sendRawBodies(const std::list<RawBody *> rawBodies);
 
 protected:
 	/// Called by the server when a new connections opens

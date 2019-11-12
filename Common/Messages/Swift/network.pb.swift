@@ -151,9 +151,6 @@ struct Messages_Datagram {
     /// Tell other side to close the connection
     case close // = 5
 
-    /// Check connection is still active
-    case heartbeat // = 7
-
     /// Ping command
     case ping // = 10
 
@@ -209,7 +206,6 @@ struct Messages_Datagram {
       switch rawValue {
       case 0: self = .undefined
       case 5: self = .close
-      case 7: self = .heartbeat
       case 10: self = .ping
       case 11: self = .pong
       case 50: self = .status
@@ -233,7 +229,6 @@ struct Messages_Datagram {
       switch self {
       case .undefined: return 0
       case .close: return 5
-      case .heartbeat: return 7
       case .ping: return 10
       case .pong: return 11
       case .status: return 50
@@ -267,7 +262,6 @@ extension Messages_Datagram.TypeEnum: CaseIterable {
   static var allCases: [Messages_Datagram.TypeEnum] = [
     .undefined,
     .close,
-    .heartbeat,
     .ping,
     .pong,
     .status,
@@ -474,7 +468,6 @@ extension Messages_Datagram.TypeEnum: SwiftProtobuf._ProtoNameProviding {
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "UNDEFINED"),
     5: .same(proto: "CLOSE"),
-    7: .same(proto: "HEARTBEAT"),
     10: .same(proto: "PING"),
     11: .same(proto: "PONG"),
     50: .same(proto: "STATUS"),

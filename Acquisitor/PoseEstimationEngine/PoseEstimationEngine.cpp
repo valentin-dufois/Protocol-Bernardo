@@ -16,6 +16,15 @@ void PoseEstimationEngine::start() {
 
 	_isRunning = true;
 
+	// Start the run loop
+	_executionThread = new std::thread([&] () {
+		pb::setThreadName("pb.pose-estimation-engine");
+
+		runLoop();
+
+		_executionThread->detach();
+	});
+
 	// Create the parsers
 	OpenNIParser * openNIParser = OpenNIParser::getInstance();
 	openNIParser->onNewDevice = [&] (const Device * device) {
@@ -28,15 +37,6 @@ void PoseEstimationEngine::start() {
 	for(Parser * p: _parsers) {
 		p->start();
 	}
-
-	// Start the run loop
-	_executionThread = new std::thread([&] () {
-		pb::setThreadName("pb.pose-estimation-engine");
-
-		runLoop();
-
-		_executionThread->detach();
-	});
 }
 
 std::vector<Device *> PoseEstimationEngine::getDevices() {
@@ -93,7 +93,7 @@ void PoseEstimationEngine::runLoop() {
 		}
 		
 		// Cadence the loop
-		pb::cadence(std::chrono::system_clock::now() - startPoint, TRACKING_ENGINE_RUN_SPEED);
+		pb::cadence(std::chrono::system_clock::now() - startPoint, POSE_ENGINE_RUN_SPEED);
 	}
 }
 

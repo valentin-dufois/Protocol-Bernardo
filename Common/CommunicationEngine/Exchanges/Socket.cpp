@@ -45,25 +45,18 @@ void Socket::connectTo(const Endpoint &remote) {
 
 	_status = SocketStatus::ready;
 
-	// Start emitting heartbeats
-	_heartbeat.set_type(messages::Datagram_Type::Datagram_Type_HEARTBEAT);
-	emitHeartbeat();
-
 	if(onConnectionOpened)
 		onConnectionOpened();
 }
 
-void Socket::onOpenedFromRemote(const Endpoint::Type &remoteType) {
+void Socket::
+onOpenedFromRemote(const Endpoint::Type &remoteType) {
 	_remote = Endpoint(_socket.remote_endpoint());
 	_remote.type = remoteType;
 
 	_status = SocketStatus::ready;
 
 	LOG_INFO("Connected the " + _remote.typeLabel() + " server to client on " + _remote.ip);
-
-	// Start emitting heartbeats
-	_heartbeat.set_type(messages::Datagram_Type::Datagram_Type_HEARTBEAT);
-	emitHeartbeat();
 
 	if(onConnectionOpened)
 		onConnectionOpened();
@@ -75,9 +68,6 @@ void Socket::close(bool silent) {
 
 	if(silent)
 		_status = closed;
-
-	// Stop the heartbeat timer
-	_heartbeatTimer.cancel();
 
 	LOG_INFO("Closing connection with " + _remote.ip + ":" + std::to_string(_remote.getPort()));
 
@@ -109,18 +99,6 @@ void Socket::onTimeout(const boost::system::error_code& error) {
 
 void Socket::onError() {
 	close(true);
-}
-
-void Socket::emitHeartbeat() {
-	// LOG_DEBUG("Sending Heartbeat");
-	send(&_heartbeat, false);
-
-	// Start a new timer
-	_heartbeatTimer.expires_from_now(boost::posix_time::seconds(30));
-	_heartbeatTimer.async_wait([&] (const boost::system::error_code &error) {
-		if(error != asio::error::operation_aborted)
-			emitHeartbeat();
-	});
 }
 
 Socket::~Socket() {

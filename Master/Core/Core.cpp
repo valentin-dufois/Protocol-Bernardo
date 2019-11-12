@@ -39,12 +39,7 @@ void Core::init() {
 	};
 	_trackingEngine.start();
 
-	Endpoint touch;
-	touch.ip = "127.0.0.1";
-	touch.type = Endpoint::broadcaster;
-
-	_outSocket = new Socket();
-	_outSocket->connectTo(touch);
+	_broadcastServer.open();
 }
 
 void Core::run() {
@@ -74,7 +69,7 @@ void Core::onTrack(const std::map<pb::bodyUID, Body *> &bodies) {
 
 	messages::Datagram * datagram = messages::makeDatagram(messages::Datagram_Type_TRACKED_BODIES, *trackedBodies);
 
-//	_outSocket->sendAsJson(trackedBodies);
+	_broadcastServer.sendToAllAsJSON(trackedBodies);
 	_networkManager.sendToTerminal(datagram);
 
 	delete trackedBodies;

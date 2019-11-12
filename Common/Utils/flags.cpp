@@ -10,6 +10,7 @@
 /// loglevel
 DEFINE_int32(loglevel, 1, "Set the log level.\n1 = All logs; 2 = Informatives logs; 3 = Warnings; 4 = Errors only; 5 = No logs");
 DEFINE_string(interface, "", "The network interface to use when advertising on the network. If left empty, the user may be prompted to choose the interface at run-time.");
+DEFINE_string(broadcastInterface, "", "The network interface to use for broascsting the tracked bodies to display applications");
 
 #ifdef MACHINE_ACQUISITOR
 
