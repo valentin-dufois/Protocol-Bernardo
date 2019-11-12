@@ -13,6 +13,8 @@
 #include <thread>
 #include <mutex>
 #include <map>
+#include <unordered_set>
+#include <functional>
 
 #include "../../Common/common.hpp"
 #include "../../Common/Utils/maths.hpp"

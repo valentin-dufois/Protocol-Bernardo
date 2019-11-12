@@ -9,6 +9,7 @@
 #include "../main.hpp"
 
 #include <cstdio>
+#include <algorithm>
 
 #include "Structs/Layout.hpp"
 #include "../../Common/Utils/DiskIO.hpp"

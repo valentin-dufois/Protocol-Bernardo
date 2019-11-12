@@ -9,7 +9,7 @@
 #define Core_hpp
 
 #include "../LayoutEngine/LayoutEngine.hpp"
-#include "NetworkManager.hpp"
+#include "Network/NetworkManager.hpp"
 #include "../TrackingEngine/TrackingEngine.hpp"
 
 struct RawBody;

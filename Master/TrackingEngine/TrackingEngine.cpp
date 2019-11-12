@@ -30,8 +30,12 @@ void TrackingEngine::start() {
 
 	// Let's create and run the thread
 	_executionThread = new std::thread([&] () {
-		pthread_setname_np("pb.tracking-engine");
-
+		std::string threadName = "pb.tracking-engine";
+#ifdef __APPLE__	
+		pthread_setname_np(threadName.c_str());
+#else
+		pthread_setname_np(pthread_self(), threadName.c_str());
+#endif
 		runLoop();
 
 		_executionThread->detach();

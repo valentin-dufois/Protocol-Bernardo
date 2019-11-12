@@ -5,14 +5,16 @@
 //  Created by Valentin Dufois on 2019-09-17.
 //
 
-#include <iostream>
+#include <gflags/gflags.h>
 
 #include "../Common/Utils/Log.hpp"
 
 #include "Core/Core.hpp"
 
-int main(int argc, const char * argv[]) {
+int main(int argc, char * argv[]) {
 	// Set app parameters
+	gflags::ParseCommandLineFlags(&argc, &argv, true);
+
 	Log::level = Log::Level::DEV;
 	CommunicationEngine::thisMachineType = Endpoint::Type::master;
 
