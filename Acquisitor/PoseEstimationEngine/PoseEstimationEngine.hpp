@@ -9,7 +9,7 @@
 #define PoseEstimationEngine_hpp
 
 #include <vector>
-#include <list>
+#include <set>
 #include <mutex>
 #include <thread>
 
@@ -44,7 +44,7 @@ public:
 
 	std::vector<Device *> getDevices();
 
-	std::function<void(std::list<RawBody *>)> onRawBodies;
+	std::function<void(std::set<RawBody *, RawBodyComparator>)> onRawBodies;
 
 private:
 
@@ -61,7 +61,7 @@ private:
 
 	/// Holds all the raw bodies until beiing sent
 	/// TODO: Update container to prevent insertion of multiple same-person rawBody
-	std::list<RawBody *> _rawBodies;
+	std::set<RawBody *, RawBodyComparator> _rawBodies;
 
 	/// Called everytime a device has a new body
 	void onRawBody(RawBody * rawbody);

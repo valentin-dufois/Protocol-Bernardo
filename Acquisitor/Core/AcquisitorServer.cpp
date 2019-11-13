@@ -13,21 +13,20 @@
 
 using messages::Datagram_Type;
 
-void AcquisitorServer::sendRawBodies(const std::list<RawBody *> rawBodies) {
-	messages::RawBodies rawBodiesMessage;
+void AcquisitorServer::sendRawBodies(const std::set<RawBody *, RawBodyComparator> rawBodies) {
+	messages::Datagram * datagram;
 
 	for(RawBody * rawBody: rawBodies) {
-		rawBodiesMessage.add_rawbodies()->CopyFrom((messages::RawBody)*rawBody);
+
+		datagram = messages::makeDatagram(messages::Datagram_Type_ACQ_BODY, (messages::RawBody)*rawBody);
+
+		for(Socket * socket: _socketsForBodyStream) {
+			socket->send(datagram, false);
+		}
+
+		datagram->Clear();
+		delete datagram;
 	}
-
-	messages::Datagram * datagram = messages::makeDatagram(messages::Datagram_Type_ACQ_BODY, rawBodiesMessage);
-
-	for(Socket * socket: _socketsForBodyStream) {
-		socket->send(datagram, false);
-	}
-
-	datagram->Clear();
-	delete datagram;
 }
 
 void AcquisitorServer::onClient(Socket * newSocket) {

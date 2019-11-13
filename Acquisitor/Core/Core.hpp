@@ -5,6 +5,8 @@
 //  Created by Valentin Dufois on 2019-09-20.
 //
 
+#include <set>
+
 #ifndef Core_hpp
 #define Core_hpp
 
@@ -41,7 +43,7 @@ private:
 	PoseEstimationEngine _poseEngine;
 
 	/// Called by the Pose Engine  everytime a new body has been received
-	void onRawBodies(const std::list<RawBody *> &rawBodies);
+	void onRawBodies(const std::set<RawBody *, RawBodyComparator> &rawBodies);
 };
 
 #endif /* Core_hpp */

@@ -37,13 +37,10 @@ void TrackingEngine::start() {
 	});
 }
 
-void TrackingEngine::onRawBodies(std::list<RawBody *> rawBodies) {
+void TrackingEngine::onRawBody(RawBody * rawBody) {
 	if(!_isTracking) {
 		// Not tracking, do nothin, prevent leaks
-		for(RawBody * rawBody: rawBodies)
-			delete rawBody;
-
-		rawBodies.clear();
+		delete rawBody;
 		return;
 	}
 
@@ -51,7 +48,7 @@ void TrackingEngine::onRawBodies(std::list<RawBody *> rawBodies) {
 	_bodiesBufferMutex.lock();
 
 	// Append the two lists
-	_bodiesBuffer.merge(rawBodies);
+	_bodiesBuffer.push_back(rawBody);
 
 	// Unlock the buffer
 	_bodiesBufferMutex.unlock();

@@ -83,12 +83,9 @@ void AcquisitorClient::onDatagram(messages::Datagram * datagram) {
 void AcquisitorClient::onBodyStream(const protobuf::Any * data) {
 	// Decode the data
 	messages::RawBody messageBody;
-	data->UnpackTo(&messageBody);
-
-	messages::RawBodies rawBodiesMessage;
 
 	try {
-		data->UnpackTo(&rawBodiesMessage);
+		data->UnpackTo(&messageBody);
 	} catch (protobuf::FatalException e) {
 		LOG_ERROR("Error while deserializing a body. Ignoring...");
 		LOG_DEBUG(e.message());
@@ -96,20 +93,10 @@ void AcquisitorClient::onBodyStream(const protobuf::Any * data) {
 		return;
 	}
 
-	std::list<RawBody *> rawBodies;
-
-	for(int i = 0; i < rawBodiesMessage.rawbodies_size(); ++i) {
-		try {
-			rawBodies.push_back(new RawBody(rawBodiesMessage
-										.rawbodies(i)));
-		} catch (std::exception &e) {
-			// Could not build rawbody, ignoring it
-			continue;
-		}
-	}
+	RawBody * rawBody = new RawBody(messageBody);
 
 	// LOG_INFO("Received a body from the stream");
 
-	if(onRawBodies)
-		onRawBodies(rawBodies);
+	if(onRawBody)
+		onRawBody(rawBody);
 }

@@ -46,9 +46,9 @@ public:
 	/// Stops the tracking engine
 	inline void stop() { _isTracking = false; };
 
-	/// Call this method to give the TrackingEngine a new set of rawBody to work with
-	/// @param rawBodies The list of bodies to handle
-	void onRawBodies(std::list<RawBody *> rawBodies);
+	/// Call this method to give the TrackingEngine a new rawBody to work with
+	/// @param rawBodies A rawBody
+	void onRawBody(RawBody * rawBody);
 
 	/// This method is called every time the Tracking Engine finishes a cycle.
 	std::function<void(std::map<pb::bodyUID, Body *>)> onCycleEnd;

@@ -69,7 +69,7 @@ void PoseEstimationEngine::onNewDevice(const Device * device) {
 void PoseEstimationEngine::onRawBody(RawBody * rawBody) {
 	_rawBodiesBufferMutex.lock();
 
-	_rawBodies.push_back(rawBody);
+	_rawBodies.insert(rawBody);
 
 	_rawBodiesBufferMutex.unlock();
 }

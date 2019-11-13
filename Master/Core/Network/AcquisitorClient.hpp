@@ -8,8 +8,6 @@
 #ifndef AcquisitorClient_hpp
 #define AcquisitorClient_hpp
 
-#include <list>
-
 #include "../../../Common/CommunicationEngine/Exchanges/Socket.hpp"
 #include "../../../Common/CommunicationEngine/Exchanges/Datagrams/Ping.hpp"
 
@@ -27,7 +25,7 @@ public:
 	std::function<void(const Endpoint &)> onConnected;
 
 	/// Called everytime a body is received. The body memory has to be freed by you.
-	std::function<void(std::list<RawBody *>)> onRawBodies;
+	std::function<void(RawBody *)> onRawBody;
 
 	/// Called when the connection has closed.
 	std::function<void()> onClose;

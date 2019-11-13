@@ -14,6 +14,7 @@
 
 #include "../Messages/messages.hpp"
 #include "../Utils/maths.hpp"
+#include "../Utils/Log.hpp"
 
 #include <google/protobuf/util/json_util.h>
 

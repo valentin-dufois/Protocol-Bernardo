@@ -52,8 +52,8 @@ void Core::run() {
 
 void Core::onAcquisitor(AcquisitorClient * acquisitor) {
 	// Link the acquisitor clients to the tracking engine
-	acquisitor->onRawBodies = [&] (std::list<RawBody *> rawBodies) {
-		_trackingEngine.onRawBodies(rawBodies);
+	acquisitor->onRawBody = [&] (RawBody * rawBody) {
+		_trackingEngine.onRawBody(rawBody);
 	};
 }
 

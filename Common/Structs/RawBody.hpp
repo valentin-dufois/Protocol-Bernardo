@@ -111,4 +111,10 @@ struct RawBody {
 	}
 };
 
+struct RawBodyComparator {
+	bool operator() (const RawBody * lhs, const RawBody * rhs) const {
+		return lhs->deviceUID == rhs->deviceUID && lhs->uid == rhs->uid;
+	}
+};
+
 #endif /* RawBody_hpp */

@@ -52,6 +52,7 @@ void Receiver::onReceive(const boost::system::error_code &error, std::size_t byt
 		LOG_WARN("TCP Connection reception buffer sized reach. If the message was larger than the buffer size, ignoring packet");
 
 		delete datagram;
+		return;
 	}
 
 	// Pass along the received datagram
