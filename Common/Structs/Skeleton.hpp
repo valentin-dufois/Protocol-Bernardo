@@ -10,9 +10,12 @@
 #define Skeleton_hpp
 
 #include <array>
+#include <stdexcept>
 
 #include "../Messages/messages.hpp"
 #include "../Utils/maths.hpp"
+
+#include <google/protobuf/util/json_util.h>
 
 #include "Joint.hpp"
 
@@ -69,8 +72,13 @@ struct Skeleton  {
 	Skeleton(const messages::Skeleton &message) {
 		centerOfMass = maths::fromMessage(message.centerofmass());
 
+		if (message.joints_size() != 15) {
+			LOG_ERROR("Malformed Skeleton message");
+			throw std::runtime_error("Malformed Skeleton message");
+		}
+
 		for(int i = 0; i < 15; ++i) {
-			joints[i] = message.joints(i);
+				joints[i] = message.joints(i);
 		}
 	}
 

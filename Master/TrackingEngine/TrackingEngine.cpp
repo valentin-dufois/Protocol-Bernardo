@@ -154,7 +154,7 @@ void TrackingEngine::parseBodies() {
 	if(_bodies.size() < 2)
 		return; // Do nothing
 
-	for(std::map<pb::bodyUID, Body *>::iterator it; it != _bodies.end(); ++it) {
+	for(std::map<pb::bodyUID, Body *>::iterator it = _bodies.begin(); it != _bodies.end();) {
 		Body * body = it->second;
 
 		// Remove untracked bodies
@@ -169,8 +169,10 @@ void TrackingEngine::parseBodies() {
 		// The closest body will usually be ourselves, so we should select the second one if this is the case
 		std::pair<Body *, SCALAR> closest = bodiesDistance[0].first == body ? bodiesDistance[1] : bodiesDistance[0];
 
-		if(closest.second >= TRACKING_ENGINE_MERGE_DISTANCE)
+		if(closest.second >= TRACKING_ENGINE_MERGE_DISTANCE) {
+			++it;
 			continue; // The two bodies are not in merge distance, do nothing.
+		}
 
 		// The two bodies are really close, merge them. Merging occur with a one frame latency. We take the youngest body and put its references in the oldest one.
 

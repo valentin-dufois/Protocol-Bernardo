@@ -99,8 +99,13 @@ void AcquisitorClient::onBodyStream(const protobuf::Any * data) {
 	std::list<RawBody *> rawBodies;
 
 	for(int i = 0; i < rawBodiesMessage.rawbodies_size(); ++i) {
-		rawBodies.push_back(new RawBody(rawBodiesMessage
+		try {
+			rawBodies.push_back(new RawBody(rawBodiesMessage
 										.rawbodies(i)));
+		} catch (std::exception &e) {
+			// Could not build rawbody, ignoring it
+			continue;
+		}
 	}
 
 	// LOG_INFO("Received a body from the stream");
