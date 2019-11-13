@@ -174,7 +174,7 @@ inGlobalCoordinates(const Skeleton &s, const pb::deviceUID deviceUID) {
 		skeleton->joints[i] = inGlobalCoordinates(s.joints[i], deviceUID);
 	}
 
-	skeleton->centerOfMass = inGlobalCoordinates(s.centerOfMass, deviceUID);
+	skeleton->centerOfMass = inGlobalCoordinates(vec3(-s.centerOfMass.x, s.centerOfMass.y, s.centerOfMass.z), deviceUID);
 
 	return skeleton;
 }
@@ -182,7 +182,7 @@ inGlobalCoordinates(const Skeleton &s, const pb::deviceUID deviceUID) {
 Joint LayoutEngine::inGlobalCoordinates(const Joint &j, const pb::deviceUID deviceUID) {
 	Joint joint = j;
 
-	joint.position = inGlobalCoordinates(j.position, deviceUID);
+	joint.position = inGlobalCoordinates(vec3(-j.position.x, j.position.y, j.position.z), deviceUID);
 
 	return joint;
 }

@@ -49,7 +49,6 @@ struct Joint {
 
 		// Joint coordinates are given in real world coordinates
 		position = maths::P3FToVec3(joint.getPosition());
-		position.x = -position.x;
 		positionConfidence = joint.getPositionConfidence();
 
 		// Get their 2D values equivalent

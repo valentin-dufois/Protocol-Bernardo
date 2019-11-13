@@ -65,6 +65,8 @@ void Core::onTrack(const std::map<pb::bodyUID, Body *> &bodies) {
 	for(std::pair<pb::deviceUID, Body *> bodyPair: bodies) {
 		messages::Body * bodyMessage = trackedBodies->add_bodies();
 		bodyMessage->CopyFrom((messages::Body)*bodyPair.second);
+
+		LOG_DEBUG(std::to_string(bodyPair.second->skeletons.back()->joints[Skeleton::torso].position.y));
 	}
 
 	messages::Datagram * datagram = messages::makeDatagram(messages::Datagram_Type_TRACKED_BODIES, *trackedBodies);
