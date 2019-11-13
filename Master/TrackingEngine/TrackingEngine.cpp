@@ -154,11 +154,12 @@ void TrackingEngine::parseBodies() {
 	if(_bodies.size() < 2)
 		return; // Do nothing
 
-	for(std::pair<pb::bodyUID, Body *> bodyPair: _bodies) {
-		Body * body = bodyPair.second;
+	for(std::map<pb::bodyUID, Body *>::iterator it; it != _bodies.end(); ++it) {
+		Body * body = it->second;
+
 		// Remove untracked bodies
 		if(body->rawSkeletons.size() == 0) {
-			_bodies.erase(bodyPair.first);
+			it = _bodies.erase(it);
 			delete body;
 			continue;
 		}
@@ -181,7 +182,7 @@ void TrackingEngine::parseBodies() {
 		}
 
 		// Finally, remove the youngest user
-		_bodies.erase(youngest->uid);
+		it = _bodies.erase(it);
 		delete youngest;
 	}
 }

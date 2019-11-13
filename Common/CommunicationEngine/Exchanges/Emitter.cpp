@@ -87,6 +87,8 @@ void Emitter::sendAsJson(protobuf::Message * message) {
 	std::string outputString;
 	protobuf::util::MessageToJsonString(*message, &outputString);
 
+	outputString += "\n";
+
 	asio::streambuf outputBuffer;
 	std::iostream os(&outputBuffer);
 	os << outputString;
