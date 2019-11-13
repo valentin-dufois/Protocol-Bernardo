@@ -14,7 +14,7 @@ apt-get -y install cuda
 export PATH=/usr/local/cuda-10.1/bin:/usr/local/cuda-10.1/NsightCompute-2019.1${PATH:+:${PATH}}
 
 # pb libraries
-apt libopenni2-dev -y
+apt install libopenni2-dev -y
 
 # Nite2
 wget https://sourceforge.net/projects/roboticslab/files/External/nite/NiTE-Linux-x64-2.2.tar.bz2
@@ -32,6 +32,8 @@ make
 make install
 cp ../platform/linux/udev/90-kinect2.rules /etc/udev/rules.d/
 cp ~/freenect2/lib/OpenNI2/Drivers/* /usr/lib/OpenNI2/Drivers/
+mkdir CURRDIR/libs
+cp -R ../Redist CURRDIR/libs/NiTE2
 
 cd CURRDIR
 

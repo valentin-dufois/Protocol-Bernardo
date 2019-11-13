@@ -24,7 +24,7 @@ INSTALLDIR := /usr/local/lib/
 # ###########
 # MARK: Setup
 
-CXX := g++
+CXX := g++-8
 SRCDIR := .
 SRCEXT := cpp
 SRCEXTALT := cc
