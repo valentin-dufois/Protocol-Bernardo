@@ -13,7 +13,8 @@
 
 using messages::Datagram_Type;
 
-void AcquisitorServer::sendRawBodies(const std::set<RawBody *, RawBodyComparator> rawBodies) {
+void AcquisitorServer::
+sendRawBodies(const std::set<RawBody *, RawBodyComparator> rawBodies) {
 	messages::Datagram * datagram;
 
 	for(RawBody * rawBody: rawBodies) {

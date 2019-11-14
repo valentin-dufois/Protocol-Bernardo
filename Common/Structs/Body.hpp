@@ -40,6 +40,10 @@ struct Body {
 	/// This is used by the TrackingEngine.
 	std::vector<Skeleton *> rawSkeletons;
 
+	bool isValid = true;
+
+	unsigned int inactivityCount = 0;
+
 	// MARK: - Constructors
 
 	// Default constructor
@@ -69,9 +73,14 @@ struct Body {
 
 	/// Calculate the weighted mean of all the raw skeletons matching the current body
 	void updatePosition() {
+
 		// Is there any rawSkeleton to work with ?
-		if(rawSkeletons.size() == 0)
+		if(rawSkeletons.size() == 0) {
+			++inactivityCount;
 			return;
+		}
+
+		inactivityCount = 0;
 
 		Skeleton skeleton;
 

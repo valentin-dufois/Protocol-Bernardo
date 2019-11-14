@@ -40,7 +40,7 @@ class CanvasBody: SKShapeNode {
 		yLabel.fontSize = 18
 		yLabel.fontName = NSFont.systemFont(ofSize: 11, weight: .bold).fontName
 
-		self.addChild(xLabel);
-		self.addChild(yLabel);
+//		self.addChild(xLabel);
+//		self.addChild(yLabel);
 	}
 }

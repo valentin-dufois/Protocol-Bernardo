@@ -28,6 +28,7 @@ void Core::init() {
 	pthread_setname_np(pthread_self(), threadName.c_str());
 #endif
 
+
 	// Set up the acquisitor server
 	LOG_INFO("Starting up the acquisitor server");
 	_server = new AcquisitorServer(Endpoint::Type::acquisitor);
