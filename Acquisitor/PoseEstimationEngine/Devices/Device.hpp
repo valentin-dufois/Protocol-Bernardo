@@ -12,6 +12,10 @@
 #include <thread>
 
 /// Represent a physical acquisition device
+///
+/// A dvice subclass must implement all logic regarding connecting
+/// to a device and disconnecting properly from it. Disconnection
+/// logic must be executed when the destructor is called
 class Device {
 public:
 

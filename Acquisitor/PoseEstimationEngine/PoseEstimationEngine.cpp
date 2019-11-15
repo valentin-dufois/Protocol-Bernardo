@@ -97,3 +97,16 @@ void PoseEstimationEngine::runLoop() {
 	}
 }
 
+PoseEstimationEngine::~PoseEstimationEngine() {
+	_isRunning = false;
+
+	for(Tracker * tracker: _trackers) {
+		delete tracker;
+	}
+	_trackers.clear();
+
+	for(Parser * parser: _parsers) {
+		delete parser;
+	}
+	_parsers.clear();
+}

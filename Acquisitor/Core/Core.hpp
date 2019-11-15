@@ -21,16 +21,32 @@ class RawBody;
 class Core {
 public:
 
+	static inline Core * instance() {
+		if(_instance == nullptr)
+			_instance = new Core();
+
+		return _instance;
+	}
+
 	/// Perform initializing tasks run only at the start of the app
 	void init();
 
 	/// Main loop of the app
 	void run();
 
+	/// Performs proper closing of application components by
+	/// deleting the singleton instance
+	void terminate();
+
 	/// Properly ends the application
 	~Core();
 
 private:
+
+	// Private constructor
+	Core() = default;
+
+	static Core * _instance;
 
 	// MARK: - Communication
 

@@ -22,6 +22,9 @@ public:
 	std::function<void(RawBody *)> bodyHandler;
 
 	virtual Device * getDevice() = 0;
+
+	/// Stops tracking and properly disconnects from the device
+	virtual ~Tracker() = 0;
 };
 
 #include "NiteTracker.hpp"

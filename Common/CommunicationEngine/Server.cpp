@@ -90,7 +90,18 @@ void Server::handleAccept(Socket * newConnection, const boost::system::error_cod
 
 Server::~Server() {
 	// Perform stopping actions...
+	_isRunning = false;
 
+	_acceptor->cancel();
+	_acceptor->close();
+	delete _acceptor;
+
+	for(Socket * socket: _connections) {
+		socket->close();
+		delete socket;
+	}
+
+	_connections.clear();
 
 	// Free used memory
 	delete _acceptor;

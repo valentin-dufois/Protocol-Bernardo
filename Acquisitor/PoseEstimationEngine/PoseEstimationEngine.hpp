@@ -12,6 +12,7 @@
 #include <set>
 #include <mutex>
 #include <thread>
+#include <atomic>
 
 #include "../libraries.hpp"
 
@@ -46,9 +47,11 @@ public:
 
 	std::function<void(std::set<RawBody *, RawBodyComparator>)> onRawBodies;
 
+	~PoseEstimationEngine();
+
 private:
 
-	bool _isRunning = false;
+	std::atomic<bool> _isRunning = false;
 
 	/// Internal method handling newly connected devices
 	void onNewDevice(const Device * device);
@@ -60,7 +63,6 @@ private:
 	std::vector<Tracker *> _trackers;
 
 	/// Holds all the raw bodies until beiing sent
-	/// TODO: Update container to prevent insertion of multiple same-person rawBody
 	std::set<RawBody *, RawBodyComparator> _rawBodies;
 
 	/// Called everytime a device has a new body

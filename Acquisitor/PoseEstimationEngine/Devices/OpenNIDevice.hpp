@@ -38,7 +38,6 @@ public:
 	/// Gives the state of the device
 	inline State getState() { return _state; }
 
-
 private:
 
 	/// Underlying openni device

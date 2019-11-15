@@ -159,6 +159,8 @@ void NiteTracker::processFrame(nite::UserTrackerFrameRef * frame) {
 }
 
 NiteTracker::~NiteTracker() {
+	_tracker.destroy();
+
 	delete _device;
 	_device = nullptr;
 }

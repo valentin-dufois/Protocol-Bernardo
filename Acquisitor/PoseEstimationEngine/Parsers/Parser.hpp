@@ -22,6 +22,8 @@ public:
 
 	/// Starts the parser
 	virtual void start() = 0;
+
+	virtual ~Parser() = 0;
 };
 
 #include "OpenNIParser.hpp"

@@ -66,9 +66,6 @@ void Socket::close(bool silent) {
 	if(_status != ready)
 		return;
 
-	if(silent)
-		_status = closed;
-
 	LOG_INFO("Closing connection with " + _remote.ip + ":" + std::to_string(_remote.getPort()));
 
 	if(!silent)
@@ -80,8 +77,9 @@ void Socket::close(bool silent) {
 
 		// Send the close message
 		send(&datagram, true, false);
+
 	}
-	
+
 	_status = closed;
 
 	boost::system::error_code ec;

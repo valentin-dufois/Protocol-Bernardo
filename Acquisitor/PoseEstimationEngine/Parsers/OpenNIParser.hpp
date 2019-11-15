@@ -41,6 +41,8 @@ public:
 	
 	void start() override;
 
+	~OpenNIParser();
+
 private:
 	// MARK: - Singleton
 

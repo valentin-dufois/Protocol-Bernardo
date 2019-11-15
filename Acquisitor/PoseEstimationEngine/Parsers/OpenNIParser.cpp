@@ -61,3 +61,7 @@ void OpenNIParser::onDeviceConnected(const openni::DeviceInfo * deviceInfo) {
 void OpenNIParser::onDeviceDisconnected(const openni::DeviceInfo *) {
 	
 }
+
+OpenNIParser::~OpenNIParser() {
+	openni::OpenNI::shutdown();
+}

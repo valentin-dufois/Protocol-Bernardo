@@ -27,6 +27,8 @@ public:
 	
 	~NiteTracker();
 
+	void stop() override;
+
 private:
 	OpenNIDevice * _device;
 
