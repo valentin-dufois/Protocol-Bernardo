@@ -9,7 +9,7 @@
 
 # MARK: The Target
 
-TARGETNAME := pb-acquisitor
+TARGETNAME := pb-master
 BUILDDIR := build/
 TARGET := $(BUILDDIR)$(TARGETNAME)
 

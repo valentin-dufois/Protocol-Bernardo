@@ -63,6 +63,7 @@ void NiteTracker::processFrame(nite::UserTrackerFrameRef * frame) {
 
 			// This is a new user, ask for skeleton tracking
 			_tracker.startSkeletonTracking(body->uid);
+			LOG_DEBUG("TRACKING A USER");	
 
 			// We just started tracking this user, there is nothing else to do here.
 			// Just pass the body along and continue
