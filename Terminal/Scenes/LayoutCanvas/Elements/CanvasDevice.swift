@@ -42,6 +42,14 @@ class CanvasDevice: SKNode {
 	/// The name tag for the device on the scene
 	private var deviceLabel: SKLabelNode!
 
+
+	// MARK: - Parameters
+
+	weak var positionXDelta: CPValue?
+	weak var positionYDelta: CPValue?
+	weak var positionZDelta: CPValue?
+	weak var orientationZDelta: CPValue?
+
 }
 
 extension CanvasDevice {
@@ -105,11 +113,13 @@ extension CanvasDevice: CanvasElement {
 
 		var views = [CanvasProperty]()
 
+		// Device name
 		views.append(CPSection.make(title: "Device"))
 		views.append(CPString.make(label: "Name",
 								   defaultValue: device.name,
 								   delegate: self))
 
+		// Device placement
 		views.append(CPSeparator.make())
 		views.append(CPSection.make(title: "Position"))
 
@@ -129,6 +139,7 @@ extension CanvasDevice: CanvasElement {
 								  defaultValue: device.position.z,
 								  delegate: self))
 
+		// Device properties
 		views.append(CPSeparator.make())
 		views.append(CPSection.make(title: "Captation"))
 		views.append(CPDouble.make(label: "Field of View",
@@ -144,6 +155,7 @@ extension CanvasDevice: CanvasElement {
 								   defaultValue: device.maxDistance,
 								   delegate: self))
 
+		// Real-world
 		views.append(CPSeparator.make())
 		views.append(CPSection.make(title: "Physical Device"))
 		let physicalUIDField = CPComboBox.make(label: "UID",
@@ -151,6 +163,24 @@ extension CanvasDevice: CanvasElement {
 											   delegate: self)
 		physicalUIDField.field.stringValue = device.physicalUID;
 		views.append(physicalUIDField);
+
+		// Calibration
+		views.append(CPSeparator.make())
+		views.append(CPSection.make(title: "Calibration"))
+
+		var devicesNames = delegate?.getDevicesList().map({ $0.device.name });
+		devicesNames?.insert("", at: 0);
+		views.append(CPPopUp.make(label: "Reference", values: devicesNames!.filter({ $0 != device.name }), delegate: self));
+
+		positionXDelta = CPValue.make(label: "Position X", value: "-")
+		positionYDelta = CPValue.make(label: "Position Y", value: "-")
+		positionZDelta = CPValue.make(label: "Position Z", value: "-")
+		orientationZDelta = CPValue.make(label: "Orientation Z", value: "-")
+
+		views.append(positionXDelta!);
+		views.append(positionYDelta!);
+		views.append(positionZDelta!);
+		views.append(orientationZDelta!);
 
 		return views
 	}
@@ -176,6 +206,7 @@ extension CanvasDevice: CPDelegate {
 		switch pName {
 		case "Name": device.name = newValue
 		case "UID": device.physicalUID = newValue
+		case "Reference": delegate?.device(self, referenceDidSet: newValue)
 		default: return
 		}
 
@@ -296,6 +327,8 @@ extension CanvasDevice {
 	@objc func remove() {
 		// Remove the associated device from the layout
 		App.layoutEngine.remove(device: device)
+
+		delegate?.deselect(self);
 
 		// Remove ourselves from the canvas
 		removeFromParent()

@@ -10,6 +10,7 @@
 
 #include <filesystem>
 
+namespace pb {
 namespace Log {
 
 Level level = static_cast<Level>(FLAGS_loglevel);
@@ -49,4 +50,5 @@ std::string locat(const std::string &file, const int &line) {
 	return " [" + filename + ":" + std::to_string(line) + "] ";
 }
 
-}
+} /* ::Log */
+} /* ::pb */

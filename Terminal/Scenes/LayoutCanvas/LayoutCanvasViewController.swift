@@ -37,8 +37,17 @@ class LayoutCanvasViewController: NSViewController {
 		}
 	}
 
-	func showTrackedBodies(_ trackedBodies: Messages_TrackedBodies) {
+	func
+		showTrackedBodies(_ trackedBodies: Pb_Network_Messages_TrackedBodies) {
 		canvas.show(trackedBodies: trackedBodies)
+
+		if(trackedBodies.hasCalibrationValues) {
+			canvas.update(calibrationValues: trackedBodies.calibrationValues)
+		}
+	}
+
+	func clear() {
+		canvas.elementsNode.removeAllChildren();
 	}
 }
 
@@ -60,7 +69,39 @@ extension LayoutCanvasViewController: SKSceneDelegate {
 		// Build the new device
 		let deviceElement = CanvasDevice(for: device)
 
+		deviceElement.delegate = self;
 		canvas.elementsNode.addChild(deviceElement)
 		canvas.set(selectedElement: deviceElement)
+	}
+}
+
+extension LayoutCanvasViewController: CanvasElementDelegate {
+	func getDevicesList() -> [CanvasDevice] {
+		var devices = [CanvasDevice]();
+
+		canvas.elementsNode.children.forEach {
+			guard let device = $0 as? CanvasDevice else {
+				return
+			}
+
+			devices.append(device);
+		}
+
+		return devices
+	}
+
+	func device(_ device: CanvasDevice, referenceDidSet reference: String) {
+		let referenceDevice = canvas.elementsNode.children.first(where: {
+			guard let device = $0 as? CanvasDevice else {
+			return false
+			}
+			return device.device.name == reference;
+		}) as! CanvasDevice;
+
+		App.networkEngine.master.setCalibrationDevices(device.device.uid, referenceDevice.device.uid);
+	}
+
+	func deselect(_ device: CanvasDevice) {
+		canvas.set(selectedElement: nil);
 	}
 }

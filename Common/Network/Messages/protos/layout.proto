@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+import "maths.proto";
+
+package pb.network.messages;
+
+message LayoutList {
+	repeated string layoutName = 10;
+}
+
+message LayoutName {
+	string name 			   = 10;
+}
+
+message Device {
+	string name 			= 10;
+	string uid 				= 20;
+	double horizontalFOV 	= 30;
+	double minDistance 		= 40;
+	double maxDistance 		= 50;
+	vec3 position 			= 60;
+	vec3 orientation 		= 70;
+	string physicaluid		= 80;
+	vec3 positionDelta		= 90;
+	vec3 orientationDelta	= 100;
+}
+
+message Screen {
+	string name				= 10;
+	string uid				= 20;
+	vec3 position			= 30;
+	vec3 orientation 		= 40;
+	vec2 size				= 50;
+}
+
+message Layout {
+	string name				= 10;
+	repeated Device devices	= 20;
+	repeated Screen screens	= 30;
+}
+
+message CalibrationValues {
+	vec3 angle				= 10;
+	vec3 position			= 20;
+}
+
+message CalibrationDevices {
+	string deviceA			= 10;
+	string deviceB			= 20;
+}
+

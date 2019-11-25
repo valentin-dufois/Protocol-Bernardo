@@ -1,3 +1,4 @@
+
 //
 //  common.hpp
 //  Protocol Bernardo
@@ -8,9 +9,6 @@
 #ifndef common_h
 #define common_h
 
-#include <string>
-
-
 #define TRACKING_ENGINE_RUN_SPEED 15.0 // Times per seconds
 #define TRACKING_ENGINE_MERGE_DISTANCE 150.0 // mm
 #define TRACKING_ENGINE_BODY_HISTORY_SIZE 1
@@ -19,6 +17,8 @@
 
 // Tells if we are currently compiling on GCC
 #define GCC_COMPILER (defined(__GNUC__) && !defined(__clang__))
+
+#include <string>
 
 // MARK: - Type alias
 

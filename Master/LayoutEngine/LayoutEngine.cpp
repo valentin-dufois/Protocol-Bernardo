@@ -1,20 +1,19 @@
 //
 //  LayoutEngine.cpp
-//  pb-acquisitor
+//  pb-tracker
 //
 //  Created by Valentin Dufois on 2019-09-21.
 //
 
-#include "LayoutEngine.hpp"
-#include "../main.hpp"
-
 #include <cstdio>
 #include <algorithm>
 
+#include "LayoutEngine.hpp"
+
 #include "Structs/Layout.hpp"
-#include "../../Common/Utils/DiskIO.hpp"
-#include "../../Common/Utils/maths.hpp"
-#include "../../Common/Utils/flags.hpp"
+
+namespace pb {
+namespace master {
 
 LayoutEngine::LayoutEngine():
 _savePath(std::string(getenv("HOME")) + "/pb-layouts/") {
@@ -27,7 +26,7 @@ _savePath(std::string(getenv("HOME")) + "/pb-layouts/") {
 
 std::vector<std::string> LayoutEngine::getLayouts() {
 	// Start by making sure the save folder exists
-	if(DiskIO::mkdir(_savePath)) {
+	if(diskIO::mkdir(_savePath)) {
 		LOG_INFO("Created layouts save directory");
 
 		// No need to parse the folder as we have just created it
@@ -40,7 +39,7 @@ std::vector<std::string> LayoutEngine::getLayouts() {
 	std::vector<std::string> layouts;
 
 	// For each entry in the folder
-	for(std::string entry: DiskIO::ls(_savePath)) {
+	for(std::string entry: diskIO::ls(_savePath)) {
 
 		// Check the extension match a PB Layout
 		if(entry.substr(entry.size() - 9) != LAYOUT_EXT) {
@@ -62,11 +61,11 @@ layout::Layout * LayoutEngine::createLayout(const std::string &name) {
 	layout->name = name;
 
 	// Create the layout directory
-	DiskIO::mkdir(_savePath.string() + name + LAYOUT_EXT);
+	diskIO::mkdir(_savePath.string() + name + LAYOUT_EXT);
 
 	// Save the layout to the disk
-	messages::Layout layoutMessage = *layout;
-	DiskIO::write(layoutPathFromName(name) + "/layout", &layoutMessage);
+	network::messages::Layout layoutMessage = *layout;
+	diskIO::write(layoutPathFromName(name) + "/layout", &layoutMessage);
 
 	return openLayout(name);
 }
@@ -80,7 +79,7 @@ layout::Layout * LayoutEngine::openLayout(const std::string &name) {
 
 	// Load the layout from the disk
 	_activeLayout = new layout::Layout(
-		DiskIO::read<messages::Layout>(
+		diskIO::read<network::messages::Layout>(
 			layoutPathFromName(name) + "/layout"
 		)
 	);
@@ -99,7 +98,7 @@ void LayoutEngine::renameLayout(const std::string &newName) {
 	LOG_DEBUG("Renaming active layout " + _activeLayout->name + " to " + newName + "...");
 
 	// Rename the layout folder
-	DiskIO::rename(layoutPathFromName(_activeLayout->name),
+	diskIO::rename(layoutPathFromName(_activeLayout->name),
 				   layoutPathFromName(newName));
 
 	LOG_INFO("Active layout renamed to " + newName);
@@ -120,8 +119,8 @@ void LayoutEngine::updateLayout(layout::Layout *layout) {
 	_activeLayout = layout;
 
 	// Save the new version on the disk
-	messages::Layout layoutMessage = *_activeLayout;
-	DiskIO::write(layoutPathFromName(_activeLayout->name) + "/layout", &layoutMessage);
+	network::messages::Layout layoutMessage = *_activeLayout;
+	diskIO::write(layoutPathFromName(_activeLayout->name) + "/layout", &layoutMessage);
 
 	LOG_INFO("Updated layout saved to disk");
 }
@@ -139,7 +138,7 @@ std::vector<std::string> LayoutEngine::deleteLayout(const std::string &name) {
 
 	LOG_DEBUG("Removing layout " + name + "...");
 
-	DiskIO::rm(layoutPathFromName(name), true);
+	diskIO::rm(layoutPathFromName(name));
 
 	LOG_DEBUG("Layout removed");
 
@@ -166,15 +165,15 @@ layout::Device * LayoutEngine::getDeviceByPhysicalUID(const pb::deviceUID &uid) 
 
 // MARK: - Mathematics
 
-Skeleton * LayoutEngine::
+Skeleton LayoutEngine::
 inGlobalCoordinates(const Skeleton &s, const pb::deviceUID deviceUID) {
-	Skeleton * skeleton = new Skeleton();
+	Skeleton skeleton;
 
 	for(int i = 0; i < s.joints.size(); ++i) {
-		skeleton->joints[i] = inGlobalCoordinates(s.joints[i], deviceUID);
+		skeleton.joints[i] = inGlobalCoordinates(s.joints[i], deviceUID);
 	}
 
-	skeleton->centerOfMass = inGlobalCoordinates(vec3(-s.centerOfMass.x, s.centerOfMass.y, s.centerOfMass.z), deviceUID);
+	skeleton.centerOfMass = inGlobalCoordinates(s.centerOfMass, deviceUID);
 
 	return skeleton;
 }
@@ -182,15 +181,15 @@ inGlobalCoordinates(const Skeleton &s, const pb::deviceUID deviceUID) {
 Joint LayoutEngine::inGlobalCoordinates(const Joint &j, const pb::deviceUID deviceUID) {
 	Joint joint = j;
 
-	joint.position = inGlobalCoordinates(vec3(-j.position.x, j.position.y, j.position.z), deviceUID);
+	joint.position = inGlobalCoordinates(j.position, deviceUID);
 
 	return joint;
 }
 
-vec3 LayoutEngine::inGlobalCoordinates(const vec3 &local, const pb::deviceUID deviceUID) {
+maths::vec3 LayoutEngine::inGlobalCoordinates(const maths::vec3 &local, const pb::deviceUID deviceUID) {
 	if(!hasActiveLayout()) {
 		LOG_ERROR("An active layout is required for this method");
-		return vec3(0, 0, 0);
+		return maths::vec3(0, 0, 0);
 	}
 
 	layout::Device * device = getDeviceByPhysicalUID(deviceUID);
@@ -198,10 +197,10 @@ vec3 LayoutEngine::inGlobalCoordinates(const vec3 &local, const pb::deviceUID de
 	if(device == nullptr) {
 		LOG_WARN("Cannot infer global coordinates for the device " + deviceUID);
 		LOG_WARN("Device " + deviceUID + " is not matched for the current layout");
-		return vec3(0, 0, 0);
+		return maths::vec3(0, 0, 0);
 	}
 
-	vec3 global(0, 0, 0);
+	maths::vec3 global(0, 0, 0);
 	SCALAR orientation = maths::deg2rad(device->orientation.z);
 
 	// X and Z coordinates takes into account the angle of the device
@@ -217,3 +216,6 @@ vec3 LayoutEngine::inGlobalCoordinates(const vec3 &local, const pb::deviceUID de
 
 	return global;
 }
+
+} /* ::master */
+} /* ::pb */

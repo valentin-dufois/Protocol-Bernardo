@@ -10,5 +10,9 @@ import SpriteKit
 
 
 protocol CanvasElementDelegate: AnyObject {
+	func getDevicesList() -> [CanvasDevice];
 
+	func device(_ device: CanvasDevice, referenceDidSet reference: String);
+
+	func deselect(_ device: CanvasDevice);
 }

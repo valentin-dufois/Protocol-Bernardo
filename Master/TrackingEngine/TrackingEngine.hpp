@@ -18,13 +18,19 @@
 #include <functional>
 
 #include "../../Common/common.hpp"
-#include "../../Common/Utils/maths.hpp"
+#include "../../Common/Utils.hpp"
+#include "../../Common/Structs/CalibrationValues.hpp"
+
+namespace pb {
 
 // MARK: Forward declarations
-class LayoutEngine;
 class Skeleton;
 class RawBody;
 class Body;
+
+namespace master {
+
+class LayoutEngine;
 
 // MARK: - Tracking Engine
 /// The tracking engine takes Raw Bodies from the tracking devices as input and
@@ -47,14 +53,31 @@ public:
 	inline void stop() { _isTracking = false; };
 
 	/// Call this method to give the TrackingEngine a new rawBody to work with
-	/// @param rawBodies A rawBody
+	/// @param rawBody A rawBody
 	void onRawBody(RawBody * rawBody);
 
 	/// This method is called every time the Tracking Engine finishes a cycle.
-	std::function<void(std::map<pb::bodyUID, Body *>)> onCycleEnd;
+	std::function<void(std::map<bodyUID, Body *>)> onCycleEnd;
 
-	inline std::unordered_set<pb::deviceUID> getConnectedDevicesUID() {
+	/// Gives a list of all the connected devices UID
+	inline std::unordered_set<deviceUID> getConnectedDevicesUID() {
 		return _devicesUID;
+	}
+
+	/// MARK: Device calibration
+
+	inline void setCalibrationDevices(const deviceUID &deviceA, const deviceUID &deviceB) {
+		_calibrationDevices.first = deviceA;
+		_calibrationDevices.second = deviceB;
+		LOG_INFO("Calibration values set");
+	};
+
+	inline bool canCalibrate() {
+		return _calibrationDevices.first.size() != 0 && _calibrationDevices.second.size() != 0;
+	}
+
+	inline CalibrationValues getCalibrationValues() {
+		return _calibrationValues;
 	}
 
 	// MARK: Bodies accessors
@@ -97,6 +120,16 @@ private:
 	/// All the bodies actively tracked by the tracking engine
 	std::map<pb::bodyUID, Body *> _bodies;
 
+	// MARK: - Calibration
+
+	std::pair<pb::deviceUID, pb::deviceUID> _calibrationDevices;
+
+	std::pair<Skeleton *, Skeleton *> _calibrationBodies;
+
+	CalibrationValues _calibrationValues;
+
+	void updateCalibrationValues();
+
 	// MARK: - Private mecanisms
 
 	/// The run loop handling the tracking engines cycles
@@ -109,7 +142,7 @@ private:
 	/// buffer. `parseBodies` locks the _bodiesBuffer while running
 	void parseBodiesBuffer();
 
-	/// Execute the updates script on all the users, convrting their local skeletons
+	/// Execute the updates script on all the users, converting their local skeletons
 	/// to one unique global skeletons. Also update their history
 	void updateBodies();
 
@@ -132,5 +165,8 @@ private:
 	/// Mutex for the bodies buffer as it will be accessed from  multiple threads
 	std::mutex _bodiesBufferMutex;
 };
+
+} /* ::master */
+} /* ::pb */
 
 #endif /* TrackingEngine_hpp */

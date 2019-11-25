@@ -8,8 +8,11 @@
 #ifndef Screen_h
 #define Screen_h
 
-#include "../../../Common/Messages/messages.hpp"
-#include "../../../Common/Utils/maths.hpp"
+#include "../../../Common/Network/Messages/messages.hpp"
+#include "../../../Common/Utils.hpp"
+
+namespace pb {
+namespace layout {
 
 struct Screen {
 	/// The name of the screen
@@ -19,17 +22,17 @@ struct Screen {
 	std::string uid;
 
 	/// The position of the screen
-	vec3 position;
+	maths::vec3 position;
 
 	/// The orientation of the screen
-	vec3 orientation;
+	maths::vec3 orientation;
 
 	/// The dimensions of the screen in cm
-	vec2 size;
+	maths::vec2 size;
 
 	Screen() = default;
 
-	Screen(const messages::Screen &message) {
+	Screen(const network::messages::Screen &message) {
 		name = message.name();
 		uid = message.uid();
 		position = maths::fromMessage(message.position());
@@ -37,8 +40,8 @@ struct Screen {
 		size = maths::fromMessage(message.size());
 	}
 
-	operator messages::Screen () {
-		messages::Screen message;
+	operator network::messages::Screen () {
+		network::messages::Screen message;
 
 		message.set_name(name);
 		message.set_uid(uid);
@@ -49,6 +52,9 @@ struct Screen {
 		return message;
 	}
 };
+
+} /* ::layout */
+} /* ::pb */
 
 
 #endif /* Screen_h */

@@ -8,14 +8,17 @@
 #ifndef Layout_h
 #define Layout_h
 
-#include "../../../Common/Messages/messages.hpp"
 #include <vector>
 #include <string>
+
+#include "../../../Common/Network/Messages/messages.hpp"
 
 #include "Device.hpp"
 #include "Screen.hpp"
 
+namespace pb {
 namespace layout {
+
 struct Layout {
 	/// The name of the layout
 	std::string name;
@@ -31,7 +34,7 @@ struct Layout {
 
 	Layout() = default;
 
-	Layout(messages::Layout * message) {
+	Layout(network::messages::Layout * message) {
 		name = message->name();
 
 		for(int i = 0; i < message->devices_size(); ++i) {
@@ -47,17 +50,17 @@ struct Layout {
 	}
 
 	// MARK: - Operators
-	operator messages::Layout () const {
-		messages::Layout message;
+	operator network::messages::Layout () const {
+		network::messages::Layout message;
 
 		message.set_name(name);
 
-		std::vector<messages::Device> devicesMessages;
+		std::vector<network::messages::Device> devicesMessages;
 		for(Device * device: devices) {
 			devicesMessages.push_back(*device);
 		}
 
-		std::vector<messages::Screen> screensMessages;
+		std::vector<network::messages::Screen> screensMessages;
 		for(Screen * screen: screens) {
 			screensMessages.push_back(*screen);
 		}
@@ -68,6 +71,10 @@ struct Layout {
 		return message;
 	}
 };
-}
+
+
+
+} /* ::layout */
+} /* ::pb */
 
 #endif /* Layout_h */

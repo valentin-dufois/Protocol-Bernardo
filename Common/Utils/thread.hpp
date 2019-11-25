@@ -14,8 +14,9 @@
 #include "Log.hpp"
 
 namespace pb {
+namespace thread {
 
-inline void setThreadName(const std::string &threadName) {
+inline void setName(const std::string &threadName) {
 #ifdef __APPLE__
 	pthread_setname_np(threadName.c_str());
 #else
@@ -33,6 +34,7 @@ inline void cadence(const std::chrono::duration<double, std::milli> &workTime, c
 	std::this_thread::sleep_for(delta * 1000);
 }
 
-}
+} /* ::thread */
+} /* ::pb */
 
 #endif /* thread_h */

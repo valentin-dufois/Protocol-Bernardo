@@ -62,7 +62,7 @@ class MasterClient {
 			}
 
 			// Decode the message
-			guard let datagram = try? Messages_Datagram(serializedData: Data(data)) else {
+			guard let datagram = try? Pb_Network_Messages_Datagram(serializedData: Data(data)) else {
 				print("Received object was not a datagram...")
 				return
 			}
@@ -104,7 +104,7 @@ class MasterClient {
 
 		_socket.close();
 
-		var datagram = Messages_Datagram();
+		var datagram = Pb_Network_Messages_Datagram();
 		datagram.type = .close;
 
 		_ = try? _socket.write(from: datagram.serializedData());
@@ -119,24 +119,24 @@ class MasterClient {
 
 extension MasterClient {
 	@objc func requestStatus() {
-		var datagram = Messages_Datagram();
+		var datagram = Pb_Network_Messages_Datagram();
 		datagram.type = .status;
 
 		send(datagram);
 	}
 
 	func requestLayoutList() {
-		var datagram = Messages_Datagram();
+		var datagram = Pb_Network_Messages_Datagram();
 		datagram.type = .layoutList;
 
 		send(datagram);
 	}
 
 	func requestLayout(name: String) {
-		var layoutName = Messages_LayoutName();
+		var layoutName = Pb_Network_Messages_LayoutName();
 		layoutName.name = name;
 
-		var datagram = Messages_Datagram();
+		var datagram = Pb_Network_Messages_Datagram();
 		datagram.type = .layoutOpen;
 		datagram.data = try! Google_Protobuf_Any(message: layoutName);
 
@@ -144,10 +144,10 @@ extension MasterClient {
 	}
 
 	func createLayout(withName name: String) {
-		var layoutName = Messages_LayoutName();
+		var layoutName = Pb_Network_Messages_LayoutName();
 		layoutName.name = name;
 
-		var datagram = Messages_Datagram();
+		var datagram = Pb_Network_Messages_Datagram();
 		datagram.type = .layoutCreate;
 		datagram.data = try! Google_Protobuf_Any(message: layoutName);
 
@@ -155,10 +155,10 @@ extension MasterClient {
 	}
 
 	func deleteLayout(withName name: String) {
-		var layoutName = Messages_LayoutName();
+		var layoutName = Pb_Network_Messages_LayoutName();
 		layoutName.name = name;
 
-		var datagram = Messages_Datagram();
+		var datagram = Pb_Network_Messages_Datagram();
 		datagram.type = .layoutDelete;
 		datagram.data = try! Google_Protobuf_Any(message: layoutName);
 
@@ -166,10 +166,10 @@ extension MasterClient {
 	}
 
 	func openLayout(withName name: String) {
-		var layoutName = Messages_LayoutName();
+		var layoutName = Pb_Network_Messages_LayoutName();
 		layoutName.name = name;
 
-		var datagram = Messages_Datagram();
+		var datagram = Pb_Network_Messages_Datagram();
 		datagram.type = .layoutOpen;
 		datagram.data = try! Google_Protobuf_Any(message: layoutName);
 
@@ -177,13 +177,31 @@ extension MasterClient {
 	}
 
 	func updateLayout(updatedLayout layout: Layout) {
-		var datagram = Messages_Datagram();
+		var datagram = Pb_Network_Messages_Datagram();
 		datagram.type = .layoutUpdate;
 		datagram.data = try! Google_Protobuf_Any(message: layout.asMessage());
 
 		send(datagram);
 
 		Log.info("Layout \(layout.name) updated on master")
+	}
+
+	func clearCalibrationDevice() {
+		setCalibrationDevices("", "");
+	}
+
+	func setCalibrationDevices(_ deviceA: String, _ deviceB: String) {
+		var message = Pb_Network_Messages_CalibrationDevices();
+		message.deviceA = deviceA;
+		message.deviceB = deviceB;
+
+		var datagram = Pb_Network_Messages_Datagram();
+		datagram.type = .calibrationSet;
+		datagram.data = try! Google_Protobuf_Any(message: message);
+
+		send(datagram);
+
+		Log.info("Calibration devices updated")
 	}
 }
 
@@ -195,10 +213,10 @@ extension MasterClient {
 	/// will be printed in the logs.
 	func ping() {
 
-		var ping = Messages_Ping();
+		var ping = Pb_Network_Messages_Ping();
 		ping.time = UInt64(Date().timeIntervalSince1970 * 1000.0);
 
-		var datagram = Messages_Datagram();
+		var datagram = Pb_Network_Messages_Datagram();
 		datagram.type = .ping;
 		datagram.data = try! Google_Protobuf_Any(message: ping);
 
@@ -209,7 +227,7 @@ extension MasterClient {
 	/// Protocol is to respond directly with the same content
 	func onPing(_ data: SwiftProtobuf.Google_Protobuf_Any) {
 		// Build the pong datagram
-		var datagram = Messages_Datagram();
+		var datagram = Pb_Network_Messages_Datagram();
 		datagram.type = .pong;
 		datagram.data = data;
 
@@ -220,7 +238,7 @@ extension MasterClient {
 	/// Called when the response to a previously sent ping is received
 	func onPong(_ data: SwiftProtobuf.Google_Protobuf_Any) {
 		// Decode the message
-		let pong = try! Messages_Ping(unpackingAny: data);
+		let pong = try! Pb_Network_Messages_Ping(unpackingAny: data);
 		let now = UInt64(Date().timeIntervalSince1970 * 1000.0);
 
 		let duration = now - pong.time;

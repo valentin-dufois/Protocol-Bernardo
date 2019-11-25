@@ -11,7 +11,7 @@ import SwiftProtobuf
 protocol MasterClientDelegate {
 	func masterDidConnect(_: MasterClient);
 
-	func master(_: MasterClient, receivedDatagram: Messages_Datagram);
+	func master(_: MasterClient, receivedDatagram: Pb_Network_Messages_Datagram);
 
 	func masterDidDisconnect(_: MasterClient)
 }

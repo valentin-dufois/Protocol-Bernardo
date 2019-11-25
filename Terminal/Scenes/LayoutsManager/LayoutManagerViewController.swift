@@ -33,7 +33,7 @@ class LayoutManagerViewController: NSViewController {
 		layoutsTable.delegate = self;
 	}
 
-	func set(list: Messages_LayoutList) {
+	func set(list: Pb_Network_Messages_LayoutList) {
 		layoutsList.removeAll()
 
 		layoutsList = list.layoutName.sorted(by: { $0 < $1 })

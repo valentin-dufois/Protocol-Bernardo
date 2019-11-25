@@ -15,7 +15,7 @@ class Layout {
 
 	/// Fill in the layout with the given message
 	/// - Parameter message: -
-	convenience init(fromMessage message: Messages_Layout) {
+	convenience init(fromMessage message: Pb_Network_Messages_Layout) {
 		self.init()
 
 		name = message.name
@@ -23,8 +23,8 @@ class Layout {
 		devices = message.devices.map { Device(fromMessage: $0) }
 	}
 
-	func asMessage() -> Messages_Layout {
-		var message = Messages_Layout()
+	func asMessage() -> Pb_Network_Messages_Layout {
+		var message = Pb_Network_Messages_Layout()
 		message.name = name
 		message.devices = devices.map { $0.asMessage() }
 

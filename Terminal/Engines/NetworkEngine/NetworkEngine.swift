@@ -38,7 +38,7 @@ class NetworkEngine {
 
 // MARK: - BrowserDelegate
 extension NetworkEngine: BrowserDelegate {
-	func browser(_: Browser, didFoundMaster: Messages_Endpoint, withIP masterIP: String) {
+	func browser(_: Browser, didFoundMaster: Pb_Network_Messages_Endpoint, withIP masterIP: String) {
 		// We have a master, stop browsing.
 		_browser.stopBrowsing();
 
@@ -88,7 +88,7 @@ extension NetworkEngine: MasterClientDelegate {
 		_master.requestStatus()
 	}
 
-	func master(_: MasterClient, receivedDatagram datagram: Messages_Datagram) {
+	func master(_: MasterClient, receivedDatagram datagram: Pb_Network_Messages_Datagram) {
 		switch datagram.type {
 		case .status:
 			onMasterStatus(datagram.data);
@@ -107,7 +107,7 @@ extension NetworkEngine: MasterClientDelegate {
 
 	func onMasterStatus(_ data: Google_Protobuf_Any) {
 		// Decode the status
-		let status = try! Messages_MasterStatus(unpackingAny: data)
+		let status = try! Pb_Network_Messages_MasterStatus(unpackingAny: data)
 
 		// Store the status until the next one for everyone to access
 		App.masterStatus = status
@@ -117,21 +117,26 @@ extension NetworkEngine: MasterClientDelegate {
 	}
 
 	func onLayoutList(_ data: Google_Protobuf_Any) {
-		let layoutList = try! Messages_LayoutList(unpackingAny: data);
+		let layoutList = try! Pb_Network_Messages_LayoutList(unpackingAny: data);
 
 		delegate?.onReceive(layoutList: layoutList);
 	}
 
 	func onLayout(_ data: Google_Protobuf_Any) {
-		let layout = try! Messages_Layout(unpackingAny: data);
+		let layout = try! Pb_Network_Messages_Layout(unpackingAny: data);
 
 		delegate?.onReceive(layout: layout);
 	}
 
 	func onTrackedBodies(_ data: Google_Protobuf_Any) {
-		let trackedBodies = try! Messages_TrackedBodies(unpackingAny: data)
+		do {
+			let trackedBodies = try Pb_Network_Messages_TrackedBodies(unpackingAny: data)
 
-		delegate?.onReceive(trackedBodies: trackedBodies);
+			delegate?.onReceive(trackedBodies: trackedBodies);
+		} catch {
+			Log.error(error.localizedDescription);
+			return;
+		}
 	}
 }
 

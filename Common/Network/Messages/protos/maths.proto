@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package pb.network.messages;
+
+message Empty {}
+
+message vec2 {
+	double x = 1;
+	double y = 2;
+}
+
+message vec3 {
+	double x = 1;
+	double y = 2;
+	double z = 3;
+}
+
+message vec4 {
+	double x = 1;
+	double y = 2;
+	double z = 3;
+	double w = 4;
+}

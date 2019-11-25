@@ -32,7 +32,7 @@ class MainWindowController: NSWindowController {
 
 	}
 
-	func showLayoutList(_ list: Messages_LayoutList) {
+	func showLayoutList(_ list: Pb_Network_Messages_LayoutList) {
 		closeLayoutList()
 
 		DispatchQueue.main.async {
@@ -60,7 +60,7 @@ class MainWindowController: NSWindowController {
 		}
 	}
 
-	func showTrackedBodies(_ trackedBodies: Messages_TrackedBodies) {
+	func showTrackedBodies(_ trackedBodies: Pb_Network_Messages_TrackedBodies) {
 		DispatchQueue.main.async {
 			self.controller.layoutInterfaceController?.showTrackedBodies(trackedBodies)
 		}

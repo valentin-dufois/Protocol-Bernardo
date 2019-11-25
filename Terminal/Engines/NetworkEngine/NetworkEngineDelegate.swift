@@ -8,13 +8,13 @@
 import SwiftProtobuf
 
 protocol NetworkEngineDelegate: AnyObject {
-	func onReceive(status: Messages_MasterStatus);
+	func onReceive(status: Pb_Network_Messages_MasterStatus);
 
-	func onReceive(layoutList: Messages_LayoutList);
+	func onReceive(layoutList: Pb_Network_Messages_LayoutList);
 
-	func onReceive(layout: Messages_Layout);
+	func onReceive(layout: Pb_Network_Messages_Layout);
 
-	func onReceive(trackedBodies: Messages_TrackedBodies);
+	func onReceive(trackedBodies: Pb_Network_Messages_TrackedBodies);
 
 	func masterDidDisconnect();
 }

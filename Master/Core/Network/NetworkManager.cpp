@@ -7,26 +7,26 @@
 
 #include "NetworkManager.hpp"
 
-#include "AcquisitorClient.hpp"
+#include "TrackerClient.hpp"
+
+namespace pb {
+namespace master {
 
 NetworkManager::NetworkManager():
-_masterServer(CommunicationEngine::thisMachineType),
-_acquisitorBrowser(Endpoint::acquisitor),
-_broadcasterBrowser(Endpoint::broadcaster)
+_terminalServer(Endpoint::master),
+_trackerBrowser(Endpoint::tracker),
+_receiversServer(Endpoint::receiver)
 {
 	// Set up the browsers
-	_acquisitorBrowser.onReceive = [&] (const Endpoint &endpoint) {
+	_trackerBrowser.onReceive = [&] (const Endpoint &endpoint) {
 		connectTo(endpoint);
-	};
-
-	_broadcasterBrowser.onReceive = [&] (const Endpoint &endpoint) {
-		connectTo(endpoint);
-	};
-}
+	};}
 
 void NetworkManager::startActivities() {
-	_acquisitorBrowser.startBrowsing();
-	_broadcasterBrowser.startBrowsing();
+	_trackerBrowser.startBrowsing();
+	_receiversServer.advertise();
+
+	_receiversServer.open();
 }
 
 void NetworkManager::connectTo(const Endpoint &endpoint) {
@@ -43,43 +43,51 @@ void NetworkManager::connectTo(const Endpoint &endpoint) {
 
 	// Dispatch connection call
 	switch (endpoint.type) {
-		case Endpoint::Type::acquisitor: connectToAcquisitor(endpoint); break;
-//		case Endpoint::Type::broadcaster: connectToBroadcaster(endpoint); break;
+		case Endpoint::Type::tracker: connectToTracker(endpoint); break;
 		default:
 			LOG_WARN("Trying to connect to an unsupported enpoint");
 			return; // Other endpoint are not supported here
 	}
 }
 
-void NetworkManager::connectToAcquisitor(const Endpoint &endpoint) {
+void NetworkManager::connectToTracker(const Endpoint &endpoint) {
 
-	LOG_DEBUG("Building Acquisitor client for " + endpoint.name);
+	LOG_DEBUG("Building Tracker client for " + endpoint.name);
 
-	AcquisitorClient * acquisitor = new AcquisitorClient();
+	TrackerClient * tracker = new TrackerClient();
 
 	// On connection successful, store the endpoint in our list of connected ones to
 	// prevent multiple connection on the same endpoint for the same service
-	acquisitor->onConnected = [&, acquisitor] (const Endpoint &server) {
+	tracker->onConnected = [&, tracker] (const Endpoint &server) {
 		_connectedEndpoints.push_back(server);
-		_connectedAcquisitors.push_back(acquisitor);
+		_connectedTrackers.push_back(tracker);
 
 		// Start the body stream
-		acquisitor->requestBodyStream();
+		tracker->requestBodyStream();
 	};
 
-	// On close, remove the acquisitor fromn the acquisitor array
-	acquisitor->onClose = [&, acquisitor, endpoint] {
-		_connectedEndpoints.erase(std::find(_connectedEndpoints.begin(), _connectedEndpoints.end(), endpoint));
+	// On close, remove the tracker fromn the tracker array
+	tracker->onClose = [&] (TrackerClient * closingTracker) {
+		_connectedEndpoints.erase(std::find(_connectedEndpoints.begin(), _connectedEndpoints.end(), closingTracker->getRemote()));
 
-		_connectedAcquisitors.erase(std::find(_connectedAcquisitors.begin(), _connectedAcquisitors.end(), acquisitor));
+		_connectedTrackers.erase(std::find(_connectedTrackers.begin(), _connectedTrackers.end(), closingTracker));
 	};
 
 	// Open the connection
-	acquisitor->connectTo(endpoint);
+	tracker->connectTo(endpoint);
 
-	if(onAcquisitor)
-		onAcquisitor(acquisitor);
+	if(onTracker)
+		onTracker(tracker);
 }
-void NetworkManager::sendToTerminal(protobuf::Message *message) {
-	_masterServer.sendToAll(message, true, false);
+
+void NetworkManager::sendToTerminal(protobuf::Message * message) {
+	_terminalServer.sendToAll(message);
 }
+
+void NetworkManager::
+sendToReceivers(protobuf::Message * message) {
+	_receiversServer.sendToAll(message);
+}
+
+} /* ::master */
+} /* ::pb */

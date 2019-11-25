@@ -12,13 +12,13 @@
 #include <array>
 #include <stdexcept>
 
-#include "../Messages/messages.hpp"
+#include "../Network/Messages/messages.hpp"
 #include "../Utils/maths.hpp"
 #include "../Utils/Log.hpp"
 
-#include <google/protobuf/util/json_util.h>
-
 #include "Joint.hpp"
+
+namespace pb {
 
 /**
  Represent a user skeleton/rig. Holds all the joints composing it
@@ -28,16 +28,16 @@ struct Skeleton  {
 	// MARK: - Properties
 
 	/// Stores all the joints in the skeleton
-	std::array<::Joint, 15> joints;
+	std::array<pb::Joint, 15> joints;
 
 	/// The center of mass of the skeleton
-	vec3 centerOfMass;
+	maths::vec3 centerOfMass;
 
 
 	// MARK: - Enum
 
 	// Defines all the joints stored in a Skeleton
-	enum Joint {
+	enum JointID {
 		head = 0,
 		neck = 1,
 		leftShoulder = 2,
@@ -70,7 +70,7 @@ struct Skeleton  {
 	}
 
 	/// Build a skeleton from a message
-	Skeleton(const messages::Skeleton &message) {
+	Skeleton(const network::messages::Skeleton &message) {
 		centerOfMass = maths::fromMessage(message.centerofmass());
 
 		if (message.joints_size() != 15) {
@@ -87,46 +87,27 @@ struct Skeleton  {
 	// MARK: - Operators
 
 	/// Convenient access to the specified joint
-	::Joint & operator [](Joint &jointID) {
+	pb::Joint & operator [](JointID &jointID) {
 		return joints[jointID];
 	}
 
 	/// Replace the value of the specified joint with he given one
-	void set(const Joint &jointID, const ::Joint &joint) {
+	void set(const JointID &jointID, const pb::Joint &joint) {
 		joints[jointID] = joint;
 	}
 
-	/// @deprecated
-	operator messages::Skeleton * () const {
-		messages::Skeleton * message = new messages::Skeleton();
+	operator network::messages::Skeleton * () const {
+		network::messages::Skeleton * message = new network::messages::Skeleton();
 
 		// Converts the joints
-		std::vector<messages::Joint> jointsMessages;
+		std::vector<network::messages::Joint> jointsMessages;
 
-		for(int i = 0; i < 15; ++i) {
-			jointsMessages.push_back(joints[i]);
+		for(const pb::Joint &joint: joints) {
+			message->mutable_joints()->Add(joint);
 		}
 
 		// Fill in the message
-		*message->mutable_joints() = {jointsMessages.begin(), jointsMessages.end()};
 		message->set_allocated_centerofmass(maths::asMessage(centerOfMass));
-
-		return message;
-	}
-
-	operator messages::Skeleton () const {
-		messages::Skeleton message;
-
-		// Converts the joints
-		std::vector<messages::Joint> jointsMessages;
-
-		for(int i = 0; i < 15; ++i) {
-			jointsMessages.push_back(joints[i]);
-		}
-
-		// Fill in the message
-		*message.mutable_joints() = {jointsMessages.begin(), jointsMessages.end()};
-		message.set_allocated_centerofmass(maths::asMessage(centerOfMass));
 
 		return message;
 	}
@@ -145,6 +126,19 @@ struct Skeleton  {
 		return *this;
 	}
 
+	Skeleton operator - (const Skeleton &s2) {
+		Skeleton s;
+		// Substract all joints
+		for(int i = 0; i < joints.size(); ++i) {
+			s.joints[i] = joints[i] - s2.joints[i];
+		}
+
+		// Substract the center of mass
+		s.centerOfMass = centerOfMass - s2.centerOfMass;
+
+		return s;
+	}
+
 	Skeleton operator / (const SCALAR &div) {
 		Skeleton s;
 
@@ -159,5 +153,7 @@ struct Skeleton  {
 		return s;
 	}
 };
+
+} /* ::pb */
 
 #endif /* Skeleton_hpp */

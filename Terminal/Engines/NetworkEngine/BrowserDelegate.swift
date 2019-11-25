@@ -9,5 +9,5 @@ import Foundation
 import Socket
 
 protocol BrowserDelegate {
-	func browser(_: Browser, didFoundMaster: Messages_Endpoint, withIP: String)
+	func browser(_: Browser, didFoundMaster: Pb_Network_Messages_Endpoint, withIP: String)
 }

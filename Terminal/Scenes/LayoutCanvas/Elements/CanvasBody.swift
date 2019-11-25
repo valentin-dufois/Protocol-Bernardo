@@ -17,7 +17,7 @@ class CanvasBody: SKShapeNode {
 	/// The name tag for the device on the scene
 	private var yLabel: SKLabelNode!
 
-	convenience init(forBody body: Messages_Body) {
+	convenience init(forBody body: Pb_Network_Messages_Body) {
 		self.init(circleOfRadius: 15);
 		alpha = 1.0
 		fillColor = NSColor(NSColor.systemPink, alpha: 0.5)

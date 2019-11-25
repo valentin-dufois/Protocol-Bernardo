@@ -9,9 +9,11 @@
 #define Device_h
 
 #include <string>
-#include "../../../Common/Utils/maths.hpp"
-#include "../../../Common/Messages/messages.hpp"
+#include "../../../Common/common.hpp"
+#include "../../../Common/Utils.hpp"
+#include "../../../Common/Network/Messages/messages.hpp"
 
+namespace pb {
 namespace layout {
 
 struct Device {
@@ -36,22 +38,22 @@ struct Device {
 	SCALAR maxDistance;
 
 	/// The position of the device. This is used for calculations
-	vec3 position = vec3(0, 0, 0);
+	maths::vec3 position = maths::vec3(0, 0, 0);
 
 	/// The orientation of the device. This is used for calculations
-	vec3 orientation = vec3(0, 0, 0);
+	maths::vec3 orientation = maths::vec3(0, 0, 0);
 
 
 	// MARK: - Calibration properties
 
 	/// The UID of the physical device this device correcponds to. If null, it means it corresponds to no physical device.
-	std::string physicalUID = "";
+	pb::deviceUID physicalUID = "";
 
 	/// The position difference between the logic device and the physical device
-	vec3 positionDelta = vec3(0, 0, 0);
+	maths::vec3 positionDelta = maths::vec3(0, 0, 0);
 
 	/// The orientation difference between the logic and physical device
-	vec3 orientationDelta = vec3(0, 0, 0);
+	maths::vec3 orientationDelta = maths::vec3(0, 0, 0);
 
 
 	// MARK: - Constructors and Factories
@@ -69,7 +71,7 @@ struct Device {
 		return d;
 	}
 
-	Device(const messages::Device & message) {
+	Device(const network::messages::Device & message) {
 		name = message.name();
 		uid = message.uid();
 		horizontalFOV = message.horizontalfov();
@@ -84,8 +86,8 @@ struct Device {
 	}
 
 
-	operator messages::Device () const {
-		messages::Device message;
+	operator network::messages::Device () const {
+		network::messages::Device message;
 
 		message.set_name(name);
 		message.set_uid(uid);
@@ -102,6 +104,8 @@ struct Device {
 		return message;
 	}
 };
-}
+
+} /* ::layout */
+} /* ::pb */
 
 #endif /* Device_h */

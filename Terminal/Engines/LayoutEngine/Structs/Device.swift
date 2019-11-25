@@ -39,7 +39,7 @@ class Device {
 
 	/// Fill in the device using the given message
 	/// - Parameter message: -
-	convenience init(fromMessage message: Messages_Device) {
+	convenience init(fromMessage message: Pb_Network_Messages_Device) {
 		self.init()
 
 		name = message.name
@@ -64,20 +64,20 @@ class Device {
 		physicalUID = device.physicalUID;
 	}
 
-	func asMessage() -> Messages_Device {
-		var message = Messages_Device()
+	func asMessage() -> Pb_Network_Messages_Device {
+		var message = Pb_Network_Messages_Device()
 		message.name = name;
 		message.uid = uid;
 		message.horizontalFov = horizontalFOV;
 		message.minDistance = minDistance;
 		message.maxDistance = maxDistance;
 
-		var positionMessage = Messages_vec3()
+		var positionMessage = Pb_Network_Messages_vec3()
 		positionMessage.x = position.x
 		positionMessage.y = position.y
 		positionMessage.z = position.z
 
-		var orientationMessage = Messages_vec3()
+		var orientationMessage = Pb_Network_Messages_vec3()
 		orientationMessage.x = orientation.x
 		orientationMessage.y = orientation.y
 		orientationMessage.z = orientation.z
@@ -87,12 +87,12 @@ class Device {
 
 		message.physicaluid = physicalUID
 
-		var positionDeltaMessage = Messages_vec3()
+		var positionDeltaMessage = Pb_Network_Messages_vec3()
 		positionDeltaMessage.x = positionDelta.x
 		positionDeltaMessage.y = positionDelta.y
 		positionDeltaMessage.z = positionDelta.z
 
-		var orientationDeltaMessage = Messages_vec3()
+		var orientationDeltaMessage = Pb_Network_Messages_vec3()
 		orientationDeltaMessage.x = orientationDelta.x
 		orientationDeltaMessage.y = orientationDelta.y
 		orientationDeltaMessage.z = orientationDelta.z

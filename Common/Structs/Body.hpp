@@ -8,16 +8,18 @@
 #ifndef Body_h
 #define Body_h
 
-#include "../common.hpp"
-#include "../Messages/messages.hpp"
-#include "Skeleton.hpp"
-#include "RawBody.hpp"
+#include <string>
+#include <list>
 
 #include <boost/uuid/random_generator.hpp>
 #include <boost/uuid/uuid_io.hpp>
 
-#include <string>
-#include <list>
+#include "../common.hpp"
+#include "../Network/Messages/messages.hpp"
+#include "Skeleton.hpp"
+#include "RawBody.hpp"
+
+namespace pb {
 
 // A body is a collection of one or more rawbodies that have been merge by the Tracking Engine using a layout. A Body has a current position as well as an history of positions
 struct Body {
@@ -53,6 +55,17 @@ struct Body {
 		uid = boost::uuids::to_string(boost::uuids::random_generator()());
 		rawBodiesUID[rawBody->deviceUID] = rawBody->uid;
 		rawSkeletons.push_back(new Skeleton(rawBody->skeleton));
+	}
+
+	Body(const network::messages::Body &body) {
+		uid = body.uid();
+		frame = body.frame();
+
+		unsigned int skeletonCount = body.skeletons_size();
+
+		for(int i = 0; i < skeletonCount; ++i) {
+			skeletons.push_back(new Skeleton(body.skeletons(i)));
+		}
 	}
 
 	~Body() {
@@ -97,6 +110,7 @@ struct Body {
 		// Keep history size
 		if(skeletons.size() > TRACKING_ENGINE_BODY_HISTORY_SIZE) {
 			delete skeletons.front();
+			skeletons.front() = nullptr;
 			skeletons.erase(skeletons.begin());
 		}
 
@@ -111,6 +125,7 @@ struct Body {
 		// Clear the rawSkeletons
 		for (Skeleton * skeleton: rawSkeletons) {
 			delete skeleton;
+			skeleton = nullptr;
 		}
 
 		rawSkeletons.clear();
@@ -118,19 +133,20 @@ struct Body {
 
 	// MARK: - Operators
 
-	operator messages::Body () const {
-		messages::Body message;
+	operator network::messages::Body () const {
+		network::messages::Body message;
 		message.set_uid(uid);
 		message.set_frame(frame);
 
 		// Convert the skeletons
 		for(Skeleton * s: skeletons) {
-			messages::Skeleton * skeletonMessage = message.add_skeletons();
-			skeletonMessage->CopyFrom((messages::Skeleton)*s);
+			message.mutable_skeletons()->AddAllocated(*s);
 		}
 
 		return message;
 	}
 };
+
+} /* ::pb */
 
 #endif /* Body_h */

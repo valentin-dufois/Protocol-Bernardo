@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+import "maths.proto";
+import "layout.proto";
+
+package pb.network.messages;
+
+message Joint {
+	vec3 orientation = 1;
+	double orientationConfidence = 2;
+	vec3 position = 3;
+	vec2 position2D = 4;
+	double positionConfidence = 5;
+}
+
+message Skeleton {
+	repeated Joint joints = 1;
+	vec3 centerOfMass = 2;
+}
+
+message RawBody {
+	int32 uid = 1;
+	Skeleton skeleton = 2;
+
+	enum State {
+		error = 0;
+		noSkeleton = 1;
+		calibrating = 2;
+		tracked = 3;
+		missing = 4;
+		lost = 5;
+	}
+
+	State state = 3;
+	string deviceUID = 4;
+}
+
+message RawBodies {
+	repeated RawBody rawBodies = 1;
+}
+
+message Body {
+	string uid = 1;
+	uint32 frame = 5;
+	repeated Skeleton skeletons = 10;
+}
+
+message TrackedBodies {
+	repeated Body bodies = 10;
+	CalibrationValues calibrationValues = 20;
+}

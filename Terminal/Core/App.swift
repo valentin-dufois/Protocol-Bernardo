@@ -24,5 +24,5 @@ struct App {
 
 	static var layoutEngine = LayoutEngine()
 
-	static var masterStatus = Messages_MasterStatus()
+	static var masterStatus = Pb_Network_Messages_MasterStatus()
 }

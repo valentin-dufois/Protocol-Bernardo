@@ -1,6 +1,6 @@
 //
 //  Core.cpp
-//  pb-acquisitor
+//  pb-tracker
 //
 //  Created by Valentin Dufois on 2019-09-21.
 //
@@ -11,23 +11,23 @@
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm/gtx/string_cast.hpp>
 
-#include "Core.hpp"
-
-#include "Network/AcquisitorClient.hpp"
-
 #include "../../Common/common.hpp"
-#include "../../Common/Messages/messages.hpp"
-#include "../../Common/Utils/Log.hpp"
+#include "../../Common/Utils.hpp"
 #include "../../Common/Structs/RawBody.hpp"
 #include "../../Common/Structs/Body.hpp"
 
-#include "../../Common/CommunicationEngine/Exchanges/Socket.hpp"
+#include "Core.hpp"
+
+#include "Network/TrackerClient.hpp"
+
+namespace pb {
+namespace master {
 
 void Core::init() {
 	_networkManager.setLayoutEngine(&_layoutEngine);
 	_networkManager.setTrackingEngine(&_trackingEngine);
-	_networkManager.onAcquisitor = [&] (AcquisitorClient * acquisitor) {
-		onAcquisitor(acquisitor);
+	_networkManager.onTracker = [&] (TrackerClient * tracker) {
+		onTracker(tracker);
 	};
 
 	_networkManager.startActivities();
@@ -37,9 +37,8 @@ void Core::init() {
 	_trackingEngine.onCycleEnd = [&] (const std::map<pb::deviceUID, Body *> &bodies) {
 		onTrack(bodies);
 	};
-	_trackingEngine.start();
 
-	_broadcastServer.open();
+	_trackingEngine.start();
 }
 
 void Core::run() {
@@ -50,15 +49,15 @@ void Core::run() {
 	}
 }
 
-void Core::onAcquisitor(AcquisitorClient * acquisitor) {
-	// Link the acquisitor clients to the tracking engine
-	acquisitor->onRawBody = [&] (RawBody * rawBody) {
+void Core::onTracker(TrackerClient * tracker) {
+	// Link the tracker clients to the tracking engine
+	tracker->onRawBody = [&] (RawBody * rawBody) {
 		_trackingEngine.onRawBody(rawBody);
 	};
 }
 
 void Core::onTrack(const std::map<pb::bodyUID, Body *> &bodies) {
-	// Send the bodies to the terminal
+	// Send the bodies to the terminal and the receiveers
 	// Build the message
 	messages::TrackedBodies * trackedBodies = new messages::TrackedBodies();
 
@@ -69,13 +68,22 @@ void Core::onTrack(const std::map<pb::bodyUID, Body *> &bodies) {
 		messages::Body * bodyMessage = trackedBodies->add_bodies();
 		bodyMessage->CopyFrom((messages::Body)*bodyPair.second);
 
-		LOG_DEBUG(std::to_string(bodyPair.second->rawBodiesUID.size()));
+//		LOG_DEBUG(std::to_string(bodyPair.second->rawBodiesUID.size()));
 	}
 
-	messages::Datagram * datagram = messages::makeDatagram(messages::Datagram_Type_TRACKED_BODIES, *trackedBodies);
+	if(_trackingEngine.canCalibrate()) {
+		trackedBodies->set_allocated_calibrationvalues(_trackingEngine.getCalibrationValues());
+	}
 
-	_broadcastServer.sendToAllAsJSON(trackedBodies);
+	messages::Datagram * datagram = makeDatagram(network::messages::Datagram_Type_TRACKED_BODIES, *trackedBodies);
+
+	_networkManager.sendToReceivers(datagram);
 	_networkManager.sendToTerminal(datagram);
 
+	datagram->Clear();
+	delete datagram;
 	delete trackedBodies;
 }
+
+} /* ::master */
+} /* ::pb */

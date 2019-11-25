@@ -10,10 +10,12 @@
 #define RawBody_hpp
 
 #include "../common.hpp"
-#include "../Messages/messages.hpp"
-#include "../Utils/maths.hpp"
+#include "../Network.hpp"
+#include "../Utils.hpp"
 
 #include "Skeleton.hpp"
+
+namespace pb {
 
 /**
  Represent a body tracked by a device.
@@ -64,17 +66,29 @@ struct RawBody {
 
 	RawBody() = default;
 
-	RawBody(const messages::RawBody &body) {
+	RawBody(const network::messages::RawBody &body) {
 		uid = body.uid();
 		skeleton = Skeleton(body.skeleton());
 
 		switch(body.state()) {
-			case messages::RawBody_State_error: 		state = error; 		break;
-			case messages::RawBody_State_noSkeleton:	state = noSkeleton; 	break;
-			case messages::RawBody_State_calibrating:	state = calibrating; 	break;
-			case messages::RawBody_State_tracked: 	state = tracked; 	break;
-			case messages::RawBody_State_missing:		state = missing;		break;
-			case messages::RawBody_State_lost:		state = lost; 		break;
+			case network::messages::RawBody_State_error:
+				state = error;
+				break;
+			case network::messages::RawBody_State_noSkeleton:
+				state = noSkeleton;
+				break;
+			case network::messages::RawBody_State_calibrating:
+				state = calibrating;
+				break;
+			case network::messages::RawBody_State_tracked:
+				state = tracked;
+				break;
+			case network::messages::RawBody_State_missing:
+				state = missing;
+				break;
+			case network::messages::RawBody_State_lost:
+				state = lost;
+				break;
 			default: break;
 		}
 
@@ -84,25 +98,30 @@ struct RawBody {
 	// MARK: - Operators
 
 	/// Casts the current body as a message for sending on the network
-	operator messages::RawBody () const {
-		messages::RawBody message;
+	operator network::messages::RawBody () const {
+		network::messages::RawBody message;
 
 		message.set_uid(uid);
 		message.set_allocated_skeleton(skeleton);
 
 		switch(state) {
 			case State::error:
-				message.set_state(messages::RawBody_State_error); break;
+				message.set_state(network::messages::RawBody_State_error);
+				break;
 			case State::noSkeleton:
-				message.set_state(messages::RawBody_State_noSkeleton); break;
+				message.set_state(network::messages::RawBody_State_noSkeleton);
+				break;
 			case State::calibrating:
-				message.set_state(messages::RawBody_State_calibrating); break;
+				message.set_state(network::messages::RawBody_State_calibrating); break;
 			case State::tracked:
-				message.set_state(messages::RawBody_State_tracked); break;
+				message.set_state(network::messages::RawBody_State_tracked);
+				break;
 			case State::missing:
-				message.set_state(messages::RawBody_State_missing); break;
+				message.set_state(network::messages::RawBody_State_missing);
+				break;
 			case State::lost:
-				message.set_state(messages::RawBody_State_lost); break;
+				message.set_state(network::messages::RawBody_State_lost);
+				break;
 		}
 
 		message.set_deviceuid(deviceUID);
@@ -116,5 +135,7 @@ struct RawBodyComparator {
 		return lhs->deviceUID == rhs->deviceUID && lhs->uid == rhs->uid;
 	}
 };
+
+} /* ::pb */
 
 #endif /* RawBody_hpp */

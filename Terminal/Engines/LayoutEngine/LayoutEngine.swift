@@ -13,7 +13,7 @@ class LayoutEngine {
 
 	private(set) var layout: Layout!
 
-	func setLayout(_ layoutMessage: Messages_Layout) {
+	func setLayout(_ layoutMessage: Pb_Network_Messages_Layout) {
 		// Close any open layout if needed
 
 		// Convert the layout message to a more convenient format

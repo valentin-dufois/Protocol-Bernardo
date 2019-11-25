@@ -10,7 +10,9 @@
 #define Joint_h
 
 #include "../Utils/maths.hpp"
-#include "../Messages/messages.hpp"
+#include "../Network/Messages/messages.hpp"
+
+namespace pb {
 
 /**
  Represent a joint on a skeleton.
@@ -19,16 +21,16 @@ struct Joint {
 	// MARK: - Properties
 
     /** The current orientation of the joint */
-    vec4 orientation;
+    maths::vec3 orientation;
     
     /** The confidence of NiTE when giving the orientation */
     SCALAR orientationConfidence;
     
     /** The position in 3D space of the Joint */
-	vec3 position;
+	maths::vec3 position;
 
 	/** The position in 2D space of the Joint */
-	vec2 position2D;
+	maths::vec2 position2D;
     
     /** The confidence of NiTE when giving the position */
     SCALAR positionConfidence;
@@ -38,17 +40,18 @@ struct Joint {
 	/// Default constructor
 	Joint() {}
 
-#ifdef MACHINE_ACQUISITOR
+#ifdef MACHINE_TRACKER
 
 	/// This sconstructor allow for creating a `Joint` from NiTE joint.
 	/// @param joint The NiTE joint to use
 	/// @param tracker The NiTE tracker used to convert coordinates
 	Joint(const nite::SkeletonJoint &joint, const nite::UserTracker &tracker) {
-		orientation = maths::nQuatToVec4(joint.getOrientation());
+		orientation = maths::nQuatToVec3(joint.getOrientation());
 		orientationConfidence = joint.getOrientationConfidence();
 
 		// Joint coordinates are given in real world coordinates
 		position = maths::P3FToVec3(joint.getPosition());
+		position.x = -position.x;
 		positionConfidence = joint.getPositionConfidence();
 
 		// Get their 2D values equivalent
@@ -60,11 +63,11 @@ struct Joint {
 		position2D.y = y2D;
 	}
 
-#endif /* MACHINE_ACQUISITOR */
+#endif /* MACHINE_TRACKER */
 
 	/// Build a Joint using the given message
 	/// @param message The message holding the Joint's informations
-	Joint(const messages::Joint &message) {
+	Joint(const network::messages::Joint &message) {
 		orientation = maths::fromMessage(message.orientation());
 		orientationConfidence = message.orientationconfidence();
 		position = maths::fromMessage(message.position());
@@ -74,8 +77,8 @@ struct Joint {
 
 	// MARK: - Operators
 
-	operator messages::Joint() const {
-		messages::Joint message;
+	operator network::messages::Joint() const {
+		network::messages::Joint message;
 
 		// Fill in the message
 		message.set_allocated_orientation(maths::asMessage(orientation));
@@ -117,6 +120,19 @@ struct Joint {
 		return j;
 	}
 
+	Joint operator - (const Joint &j2) {
+		Joint j;
+		j.orientation = orientation - j2.orientation;
+		j.orientationConfidence = orientationConfidence - j2.orientationConfidence;
+		j.position = position - j2.position;
+		j.position2D = position2D - j2.position2D;
+		j.positionConfidence = positionConfidence - j2.positionConfidence;
+
+		return j;
+	}
+
 };
+
+} /* ::pb */
 
 #endif /* Joint_h */

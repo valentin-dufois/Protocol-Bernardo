@@ -57,7 +57,7 @@ class Browser {
 				continue; // No data received
 			}
 
-			guard let message = try? Messages_Endpoint(serializedData: Data(data)) else {
+			guard let message = try? Pb_Network_Messages_Endpoint(serializedData: Data(data)) else {
 				print("Could not decode received object to Endpoint")
 				return
 			}

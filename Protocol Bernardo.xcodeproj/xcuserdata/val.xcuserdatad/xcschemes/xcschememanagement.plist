@@ -9,32 +9,32 @@
 			<key>orderHint</key>
 			<integer>2</integer>
 		</dict>
-		<key>pb-acquisitor-launcher.xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>2</integer>
-		</dict>
-		<key>pb-acquisitor.xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>1</integer>
-		</dict>
-		<key>pb-broadcaster.xcscheme_^#shared#^_</key>
+		<key>pb-common.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
-		<key>pb-common.xcscheme_^#shared#^_</key>
+		<key>pb-master.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>5</integer>
+			<integer>1</integer>
 		</dict>
-		<key>pb-master.xcscheme_^#shared#^_</key>
+		<key>pb-receiver-touch.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>pb-terminal.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>3</integer>
 		</dict>
-		<key>pb-terminal.xcscheme_^#shared#^_</key>
+		<key>pb-tracker-launcher.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>5</integer>
+		</dict>
+		<key>pb-tracker.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>4</integer>
@@ -42,6 +42,21 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>39C23806238309B300791E1E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>39C2388C2384962C00791E1E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>39CA4A762331407A00E528CD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>39CA4A80233140BE00E528CD</key>
 		<dict>
 			<key>primary</key>

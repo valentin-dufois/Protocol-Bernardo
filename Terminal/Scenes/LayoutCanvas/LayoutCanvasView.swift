@@ -38,6 +38,7 @@ class LayoutCanvasView: SKView {
 		guard selectedElement != nil else {
 			// Hide the parameters
 			controller.parametersView.hideParameters()
+			App.networkEngine.master.clearCalibrationDevice();
 			return
 		}
 
@@ -45,12 +46,23 @@ class LayoutCanvasView: SKView {
 		controller.parametersView.showParameters(selectedElement!.getParametersViews())
 	}
 
-	func show(trackedBodies: Messages_TrackedBodies) {
+	func show(trackedBodies: Pb_Network_Messages_TrackedBodies) {
 		trackedBodiesNode?.removeAllChildren();
 
 		trackedBodies.bodies.forEach { body in
 			trackedBodiesNode?.addChild(CanvasBody(forBody: body));
 		}
+	}
+
+	func update(calibrationValues values: Pb_Network_Messages_CalibrationValues) {
+		guard let el = selectedElement as? CanvasDevice else {
+			return
+		}
+
+		el.positionXDelta?.set(value: String(values.position.x));
+		el.positionYDelta?.set(value: String(values.position.y));
+		el.positionZDelta?.set(value: String(values.position.z));
+		el.orientationZDelta?.set(value: String(values.angle.z));
 	}
 }
 

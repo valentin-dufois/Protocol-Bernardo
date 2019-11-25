@@ -34,7 +34,7 @@ class MainViewController: NSViewController {
 		switch segue.identifier {
 		case "layoutListSegue":
 			layoutManagerController = segue.destinationController as? LayoutManagerViewController
-			layoutManagerController?.set(list: sender as! Messages_LayoutList)
+			layoutManagerController?.set(list: sender as! Pb_Network_Messages_LayoutList)
 		case "layoutInterfaceSegue":
 			layoutInterfaceController = segue.destinationController as? LayoutCanvasViewController
 		default:
@@ -45,6 +45,8 @@ class MainViewController: NSViewController {
 	func showWelcomeView() {
 		welcomeView?.isHidden = false;
 		containerView?.isHidden = true;
+
+		layoutInterfaceController?.clear();
 
 		layoutManagerController?.dismiss(nil);
 		layoutInterfaceController?.dismiss(nil);

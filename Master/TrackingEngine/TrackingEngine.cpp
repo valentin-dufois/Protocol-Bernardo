@@ -4,18 +4,17 @@
 //
 //  Created by Valentin Dufois on 2019-11-04.
 //
+#include <chrono>
 
-#include "TrackingEngine.hpp"
-
-#include "../../Common/Utils/maths.hpp"
-#include "../../Common/Utils/Log.hpp"
-#include "../../Common/Utils/thread.hpp"
 #include "../../Common/Structs/RawBody.hpp"
 #include "../../Common/Structs/Body.hpp"
 
+#include "TrackingEngine.hpp"
+
 #include "../LayoutEngine/LayoutEngine.hpp"
 
-#include <chrono>
+namespace pb {
+namespace master {
 
 void TrackingEngine::start() {
 	if(_isTracking) {
@@ -31,6 +30,8 @@ void TrackingEngine::start() {
 
 	// Let's create and run the thread
 	_executionThread = new std::thread([&] () {
+		pb::thread::setName("pb.tracking-engine");
+
 		runLoop();
 
 		_executionThread->detach();
@@ -44,6 +45,9 @@ void TrackingEngine::onRawBody(RawBody * rawBody) {
 		return;
 	}
 
+	// Convert the body coordinates
+	rawBody->skeleton = _layoutEngine->inGlobalCoordinates(rawBody->skeleton, rawBody->deviceUID);
+
 	// Prevent other threads from accessing the buffer
 	_bodiesBufferMutex.lock();
 
@@ -55,8 +59,6 @@ void TrackingEngine::onRawBody(RawBody * rawBody) {
 }
 
 void TrackingEngine::runLoop() {
-	pb::setThreadName("pb.tracking-engine");
-
 	std::chrono::time_point<std::chrono::system_clock> startPoint;
 
 	while (_isTracking) {
@@ -73,7 +75,7 @@ void TrackingEngine::runLoop() {
 		}
 
 		// Cadence the loop
-		pb::cadence(std::chrono::system_clock::now() - startPoint, TRACKING_ENGINE_RUN_SPEED);
+		pb::thread::cadence(std::chrono::system_clock::now() - startPoint, TRACKING_ENGINE_RUN_SPEED);
 	}
 }
 
@@ -82,18 +84,24 @@ void TrackingEngine::trackBodies() {
 
 	// Empty buffer, do nothing
 	if(_bodiesBuffer.size() == 0) {
+		// Unlock
 		_bodiesBufferMutex.unlock();
+
+		if(onCycleEnd)
+			onCycleEnd(_bodies);
+
 		return;
 	}
 
 	// Parse the body buffer and fill in tracked bodies
 	parseBodiesBuffer();
 
-
 	// Unlock
 	_bodiesBufferMutex.unlock();
 
-	//Calculate the average global position for each body
+	updateCalibrationValues();
+
+	// Calculate the average global position for each body
 	updateBodies();
 
 	// Parse the bodies to prevent errors due to lack of precision from the tracking devices
@@ -122,8 +130,8 @@ void TrackingEngine::parseBodiesBuffer() {
 			continue;
 		}
 
-		// Convert the skeleton
-		Skeleton * skeleton = _layoutEngine->inGlobalCoordinates(rawBody->skeleton, rawBody->deviceUID);
+		// Get the skeleton
+		Skeleton * skeleton = &rawBody->skeleton;
 
 		// Is this rawbody already matched to a body ?
 		Body * body = getBodyFor(rawBody);
@@ -150,10 +158,50 @@ void TrackingEngine::parseBodiesBuffer() {
 		LOG_DEBUG("Appending to existing body");
 		closestBody.first->rawBodiesUID[rawBody->deviceUID] = rawBody->uid;
 		closestBody.first->rawSkeletons.push_back(skeleton);
+
+		// Check if this body is used for calibration
+		if(_calibrationDevices.first == rawBody->deviceUID) {
+			delete _calibrationBodies.first;
+			_calibrationBodies.first = new Skeleton(*skeleton);
+			return;
+		}
+
+		if(_calibrationDevices.second == rawBody->deviceUID) {
+			delete _calibrationBodies.second;
+			_calibrationBodies.second = new Skeleton(*skeleton);
+		}
 	}
 
 	// Empty the buffer
 	clearBuffer();
+}
+
+void TrackingEngine::updateCalibrationValues() {
+	if(!canCalibrate()) {
+		return; // No calibration
+	}
+
+	// Compare the two skeletons
+	Skeleton deltas = *_calibrationBodies.first - *_calibrationBodies.second;
+
+	// Get the position delta with the spine
+	maths::vec3 posDeltaAcc = deltas.joints[Skeleton::head].position;
+	posDeltaAcc += deltas.joints[Skeleton::neck].position;
+	posDeltaAcc += deltas.joints[Skeleton::torso].position;
+
+	_calibrationValues.position = posDeltaAcc / maths::vec3(3, 3, 3);
+
+	// Get the orientation delta using the shoulders
+	maths::vec3 vecAngleA = _calibrationBodies.first->joints[Skeleton::leftShoulder].position - _calibrationBodies.first->joints[Skeleton::rightShoulder].position;
+
+	maths::vec3 vecAngleB = _calibrationBodies.second->joints[Skeleton::leftShoulder].position - _calibrationBodies.second->joints[Skeleton::rightShoulder].position;
+
+	// Calculate each angle
+	_calibrationValues.angle.x = glm::angle(glm::normalize(glm::vec2(vecAngleA.y, vecAngleA.z)), glm::normalize(glm::vec2(vecAngleB.y, vecAngleB.z)));
+
+	_calibrationValues.angle.y = glm::angle(glm::normalize(glm::vec2(vecAngleA.x, vecAngleA.z)), glm::normalize(glm::vec2(vecAngleB.x, vecAngleB.z)));
+
+	_calibrationValues.angle.z = glm::angle(glm::normalize(glm::vec2(vecAngleA.x, vecAngleA.y)), glm::normalize(glm::vec2(vecAngleB.x, vecAngleB.y)));
 }
 
 void TrackingEngine::updateBodies() {
@@ -207,7 +255,7 @@ void TrackingEngine::parseBodies() {
 			continue;
 		}
 
-		if(it->second->inactivityCount > 150) {
+		if(it->second->inactivityCount > 15) {
 			delete it->second;
 			it = _bodies.erase(it);
 			continue;
@@ -236,8 +284,6 @@ Body * TrackingEngine::getBodyFor(const RawBody * rawbody) {
 	return it == _bodies.end() ? nullptr : it->second;
 }
 
-
-
 std::vector<std::pair<Body *, SCALAR>> TrackingEngine::getClosestBodiesFrom(const Skeleton * target) {
 	// If no user, returns nothing
 	if(_bodies.size() == 0)
@@ -257,7 +303,7 @@ std::vector<std::pair<Body *, SCALAR>> TrackingEngine::getClosestBodiesFrom(cons
 			continue;
 
 		// Get the bodyt position in the global space
-		vec3 bodyTorso = body->skeleton()->joints[Skeleton::torso].position;
+		maths::vec3 bodyTorso = body->skeleton()->joints[Skeleton::torso].position;
 
 		// Calculate and store the distance between this body and the target
 		bodiesDistance.push_back(std::pair(body,glm::distance(bodyTorso, target->joints[Skeleton::torso].position)));
@@ -298,5 +344,6 @@ void TrackingEngine::removeRawBodyReference(const RawBody * rawbody) {
 	}
 }
 
-
+} /* ::master */
+} /* ::pb */
 

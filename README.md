@@ -7,8 +7,8 @@
 PB is composed of multiple components that talks with each other through the network.
 A full PB network is composed of:
 * One pb-master executing tracking tasks
-* One or more pb-acquisitor on machines connected to tracking devices
-* One or more pb-broadcaster on machines using the tracking information from the pb-master
+* One or more pb-tracker on machines connected to tracking devices
+* One or more pb-receiver on machines using the tracking information from the pb-master
 
 PB-terminal is only used when there is a need to manipulate the current layout used by the master.
 
@@ -20,7 +20,7 @@ Each component of PB executes a specific task
 
 ### pb-common
 
-This is a dynamic library used by pb-acquisitor, pb-master and pb-broadcaster. It contains the networking codes, skeleton structures and more.
+This is a dynamic library used by pb-tracker, pb-master and pb-broadcaster. It contains the networking codes, skeleton structures and more.
 
 #### Dependencies
 
@@ -31,7 +31,7 @@ pb-common relies on multiple libraries:
 
 ### pb-master
 
-The pb-master preforms tracking operations on bodies it receives from connected pb-acquisitors. These operations merge bodies that are coming from different devices but who represent the same person. This allows for continuous tracking across multiple devices.
+The pb-master preforms tracking operations on bodies it receives from connected pb-trackers. These operations merge bodies that are coming from different devices but who represent the same person. This allows for continuous tracking across multiple devices.
 
 Tracking operations require a Layout defining the placement of each tracking device in the real world. Layouts are created and updated with the pb-terminal application. A pb-terminal can set the layout then disconnect, the layout will stay active.
 
@@ -51,30 +51,30 @@ Layouts are stored on the master machine.
 
 The pb-terminal uses the Swift Packet Manager for its dependencies. Xcode 11 handles this for you. 
 
-### pb-acquisitor
+### pb-tracker
 
-The pb-acquisitor handles the Human Pose Estimation (HPE) part of the application. It searches for compatible
+The pb-tracker handles the Human Pose Estimation (HPE) part of the application. It searches for compatible
 tracking devices connected to the machine on which it is running (for now, only Kinects V2 are supported),
 connects to them, and then stream the detected bodies to the master application. 
 
 #### Dependencies
 
-pb-acquisitor relies on multiple libraries:
+pb-tracker relies on multiple libraries:
 * **pb-common**
 * **OpenNI2** with **libfreenect2** driver: Connection to the Kinects)
 * **NiTE2**: HPE for OpenNI2 devices
 * **OpenCV**: Live view of the device (Todo)
 
-### pb-acquisitor-launcher
+### pb-tracker-launcher
 
-At this stage of development, the pb-acquisitor application isn't very stable as the NiTE library tends to segfault without warning.
+At this stage of development, the pb-tracker application isn't very stable as the NiTE library tends to segfault without warning.
 
-To handle this, the acquisitor launcher will restart the pb-acquisitor if it crashes. Since the components autoconnects with each other automatically, downtime is limited.
-Work is planned, to stabilize the acquisitor.
+To handle this, the tracker launcher will restart the pb-tracker if it crashes. Since the components autoconnects with each other automatically, downtime is limited.
+Work is planned, to stabilize the tracker.
 
 #### Dependencies
 
-The acquisitor launcher relies only on **Boost** headers.
+The tracker launcher relies only on **Boost** headers.
 
 ### pb-broadcaster
 

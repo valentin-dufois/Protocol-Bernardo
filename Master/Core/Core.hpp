@@ -1,6 +1,6 @@
 //
 //  Core.hpp
-//  pb-acquisitor
+//  pb-tracker
 //
 //  Created by Valentin Dufois on 2019-09-21.
 //
@@ -8,14 +8,16 @@
 #ifndef Core_hpp
 #define Core_hpp
 
-#include "../LayoutEngine/LayoutEngine.hpp"
 #include "Network/NetworkManager.hpp"
+#include "../LayoutEngine/LayoutEngine.hpp"
 #include "../TrackingEngine/TrackingEngine.hpp"
 
-#include "../../Common/CommunicationEngine/Server.hpp"
+#include "../../Common/Network.hpp"
 
+namespace pb {
 struct RawBody;
-class Socket;
+
+namespace master {
 
 class Core {
 public:
@@ -23,7 +25,7 @@ public:
 
 	void run();
 
-	void onAcquisitor(AcquisitorClient * acquisitor);
+	void onTracker(TrackerClient * tracker);
 private:
 
 	bool _isRunning = true;
@@ -34,10 +36,11 @@ private:
 
 	TrackingEngine _trackingEngine;
 
-	Server _broadcastServer = Server(Endpoint::Type::broadcaster);
-
 	// Events
 	void onTrack(const std::map<pb::bodyUID, Body *> &bodies);
 };
+
+} /* ::master */
+} /* ::pb */
 
 #endif /* Core_hpp */

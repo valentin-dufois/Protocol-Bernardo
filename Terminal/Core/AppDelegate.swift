@@ -52,7 +52,7 @@ extension AppDelegate {
 }
 
 extension AppDelegate: NetworkEngineDelegate {
-	func onReceive(status: Messages_MasterStatus) {
+	func onReceive(status: Pb_Network_Messages_MasterStatus) {
 		if App.isStarting {
 			if status.activeLayout.count == 0 {
 				Log.info("Requesting layout list...");
@@ -65,11 +65,11 @@ extension AppDelegate: NetworkEngineDelegate {
 		}
 	}
 
-	func onReceive(layoutList: Messages_LayoutList) {
+	func onReceive(layoutList: Pb_Network_Messages_LayoutList) {
 		App.mainWindow?.showLayoutList(layoutList)
 	}
 
-	func onReceive(layout: Messages_Layout) {
+	func onReceive(layout: Pb_Network_Messages_Layout) {
 		// Open event.
 		// Close the layout list if needed
 		App.mainWindow?.closeLayoutList()
@@ -78,7 +78,7 @@ extension AppDelegate: NetworkEngineDelegate {
 		App.layoutEngine.setLayout(layout);
 	}
 
-	func onReceive(trackedBodies: Messages_TrackedBodies) {
+	func onReceive(trackedBodies: Pb_Network_Messages_TrackedBodies) {
 		App.mainWindow?.showTrackedBodies(trackedBodies);
 	}
 
