@@ -187,6 +187,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_body_2eproto::offsets[] PROTOB
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::pb::network::messages::Body, uid_),
+  PROTOBUF_FIELD_OFFSET(::pb::network::messages::Body, isvalid_),
   PROTOBUF_FIELD_OFFSET(::pb::network::messages::Body, frame_),
   PROTOBUF_FIELD_OFFSET(::pb::network::messages::Body, skeletons_),
   ~0u,  // no _has_bits_
@@ -203,7 +204,7 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOB
   { 17, -1, sizeof(::pb::network::messages::RawBody)},
   { 26, -1, sizeof(::pb::network::messages::RawBodies)},
   { 32, -1, sizeof(::pb::network::messages::Body)},
-  { 40, -1, sizeof(::pb::network::messages::TrackedBodies)},
+  { 41, -1, sizeof(::pb::network::messages::TrackedBodies)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -232,13 +233,13 @@ const char descriptor_table_protodef_body_2eproto[] PROTOBUF_SECTION_VARIABLE(pr
   "\n\005State\022\t\n\005error\020\000\022\016\n\nnoSkeleton\020\001\022\017\n\013ca"
   "librating\020\002\022\013\n\007tracked\020\003\022\013\n\007missing\020\004\022\010\n"
   "\004lost\020\005\"<\n\tRawBodies\022/\n\trawBodies\030\001 \003(\0132"
-  "\034.pb.network.messages.RawBody\"T\n\004Body\022\013\n"
-  "\003uid\030\001 \001(\t\022\r\n\005frame\030\005 \001(\r\0220\n\tskeletons\030\n"
-  " \003(\0132\035.pb.network.messages.Skeleton\"}\n\rT"
-  "rackedBodies\022)\n\006bodies\030\n \003(\0132\031.pb.networ"
-  "k.messages.Body\022A\n\021calibrationValues\030\024 \001"
-  "(\0132&.pb.network.messages.CalibrationValu"
-  "esb\006proto3"
+  "\034.pb.network.messages.RawBody\"e\n\004Body\022\013\n"
+  "\003uid\030\001 \001(\t\022\017\n\007isValid\030\002 \001(\010\022\r\n\005frame\030\005 \001"
+  "(\r\0220\n\tskeletons\030\n \003(\0132\035.pb.network.messa"
+  "ges.Skeleton\"}\n\rTrackedBodies\022)\n\006bodies\030"
+  "\n \003(\0132\031.pb.network.messages.Body\022A\n\021cali"
+  "brationValues\030\024 \001(\0132&.pb.network.message"
+  "s.CalibrationValuesb\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_body_2eproto_deps[2] = {
   &::descriptor_table_layout_2eproto,
@@ -255,7 +256,7 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_bod
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_body_2eproto_once;
 static bool descriptor_table_body_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_body_2eproto = {
-  &descriptor_table_body_2eproto_initialized, descriptor_table_protodef_body_2eproto, "body.proto", 890,
+  &descriptor_table_body_2eproto_initialized, descriptor_table_protodef_body_2eproto, "body.proto", 907,
   &descriptor_table_body_2eproto_once, descriptor_table_body_2eproto_sccs, descriptor_table_body_2eproto_deps, 6, 2,
   schemas, file_default_instances, TableStruct_body_2eproto::offsets,
   file_level_metadata_body_2eproto, 6, file_level_enum_descriptors_body_2eproto, file_level_service_descriptors_body_2eproto,
@@ -1408,14 +1409,18 @@ Body::Body(const Body& from)
   if (!from._internal_uid().empty()) {
     uid_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.uid_);
   }
-  frame_ = from.frame_;
+  ::memcpy(&isvalid_, &from.isvalid_,
+    static_cast<size_t>(reinterpret_cast<char*>(&frame_) -
+    reinterpret_cast<char*>(&isvalid_)) + sizeof(frame_));
   // @@protoc_insertion_point(copy_constructor:pb.network.messages.Body)
 }
 
 void Body::SharedCtor() {
   ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_Body_body_2eproto.base);
   uid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  frame_ = 0u;
+  ::memset(&isvalid_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&frame_) -
+      reinterpret_cast<char*>(&isvalid_)) + sizeof(frame_));
 }
 
 Body::~Body() {
@@ -1444,7 +1449,9 @@ void Body::Clear() {
 
   skeletons_.Clear();
   uid_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  frame_ = 0u;
+  ::memset(&isvalid_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&frame_) -
+      reinterpret_cast<char*>(&isvalid_)) + sizeof(frame_));
   _internal_metadata_.Clear();
 }
 
@@ -1459,6 +1466,13 @@ const char* Body::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::inter
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParserUTF8(_internal_mutable_uid(), ptr, ctx, "pb.network.messages.Body.uid");
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // bool isValid = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
+          isvalid_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -1517,6 +1531,12 @@ failure:
         1, this->_internal_uid(), target);
   }
 
+  // bool isValid = 2;
+  if (this->isvalid() != 0) {
+    stream->EnsureSpace(&target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(2, this->_internal_isvalid(), target);
+  }
+
   // uint32 frame = 5;
   if (this->frame() != 0) {
     stream->EnsureSpace(&target);
@@ -1559,6 +1579,11 @@ size_t Body::ByteSizeLong() const {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_uid());
+  }
+
+  // bool isValid = 2;
+  if (this->isvalid() != 0) {
+    total_size += 1 + 1;
   }
 
   // uint32 frame = 5;
@@ -1604,6 +1629,9 @@ void Body::MergeFrom(const Body& from) {
 
     uid_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.uid_);
   }
+  if (from.isvalid() != 0) {
+    _internal_set_isvalid(from._internal_isvalid());
+  }
   if (from.frame() != 0) {
     _internal_set_frame(from._internal_frame());
   }
@@ -1633,6 +1661,7 @@ void Body::InternalSwap(Body* other) {
   skeletons_.InternalSwap(&other->skeletons_);
   uid_.Swap(&other->uid_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
     GetArenaNoVirtual());
+  swap(isvalid_, other->isvalid_);
   swap(frame_, other->frame_);
 }
 

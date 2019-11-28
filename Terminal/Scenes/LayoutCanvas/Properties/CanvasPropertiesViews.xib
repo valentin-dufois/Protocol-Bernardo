@@ -321,6 +321,7 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </comboBoxCell>
                     <connections>
+                        <action selector="comboBoxValueDidChange:" target="Bzx-Q1-UIJ" id="vp1-SA-5Ys"/>
                         <outlet property="dataSource" destination="Bzx-Q1-UIJ" id="wh1-Rb-6ET"/>
                     </connections>
                 </comboBox>

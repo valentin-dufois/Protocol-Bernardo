@@ -25,6 +25,8 @@ public:
 
 	/// Starts the parser
 	virtual void start() = 0;
+
+	virtual ~Parser() {};
 };
 
 } /* ::tracker */

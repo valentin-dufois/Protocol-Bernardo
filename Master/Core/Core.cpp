@@ -57,6 +57,10 @@ void Core::onTracker(TrackerClient * tracker) {
 }
 
 void Core::onTrack(const std::map<pb::bodyUID, Body *> &bodies) {
+
+
+//	LOG_DEBUG("Tracking " + std::to_string(bodies.size()) + " bodies");
+
 	// Send the bodies to the terminal and the receiveers
 	// Build the message
 	messages::TrackedBodies * trackedBodies = new messages::TrackedBodies();

@@ -14,6 +14,7 @@ Core::Core() {
 	_socket->delegate = this;
 
 	_browser = new pb::network::Browser(pb::network::Endpoint::receiver);
+
 	_browser->onReceive = [&] (const pb::network::Endpoint &remote) {
 		if(_socket->getStatus() != pb::network::SocketStatus::ready) {
 			_socketMutex.lock();
@@ -73,6 +74,13 @@ Core::getOutputInfo(CHOP_OutputInfo* info, const OP_Inputs* inputs, void* reserv
 		// We received informations, copy the buffer and clear it
 		clearTempBodies();
 		for(std::pair<pb::bodyUID, pb::Body *> pair: _bodiesBuffer) {
+			// Check if the body is valid
+			if(!pair.second->isValid) {
+				// Invalid body, ignore and erase.
+				delete pair.second;
+				continue;
+			}
+
 			_tempBodies.push_back(pair.second);
 		}
 		_bodiesBuffer.clear();
@@ -244,7 +252,6 @@ void Core::getWarningString(OP_String * warning, void *reserved1) {
 
 void Core::socketDidOpen(pb::network::Socket * socket) {
 //	LOG_DEBUG("SOCKET_OPEN");
-	_socket->listen();
 }
 
 void Core::socketDidReceive(pb::network::Socket * socket, pb::network::messages::Datagram * datagram) {

@@ -6,6 +6,8 @@
 //  Copyright © 2019 Prisme. All rights reserved.
 //
 
+#include <boost/asio/impl/src.hpp> 
+
 #include "NetworkEngine.hpp"
 #include "../Utils/thread.hpp"
 
@@ -32,7 +34,8 @@ void Engine::runContext() {
 		_ioContext.restart();
 		_ioContext.run();
 
-//		_executionThread->detach();
+		LOG_DEBUG("Detaching network engine thread");
+		_executionThread->detach();
 	});
 }
 
@@ -50,6 +53,10 @@ std::vector<asio::ip::address> Engine::getOutboundInterfaces() {
 	while(it != boost::asio::ip::udp::resolver::iterator()) {
 		asio::ip::address interface = (it++)->endpoint().address();
 		if(interface.is_v4()) {
+			// Ignore loopback
+			if(interface.to_string() == "127.0.0.1")
+				continue;
+
 			interfaces.push_back(interface);
 		}
 	}

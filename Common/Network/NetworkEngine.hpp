@@ -59,9 +59,17 @@ public:
 
 	std::vector<asio::ip::address> getOutboundInterfaces();
 
-	inline void stopContext() { _ioContext.stop(); }
+	inline void stopContext() {
+		_guard.reset();
+		_ioContext.stop();
+
+		if(_executionThread->joinable())
+			_executionThread->join();
+	}
 
 private:
+
+	Engine(): _guard(boost::asio::make_work_guard(_ioContext)) {}
 
 	// MARK: - Singleton Properties
 
@@ -72,6 +80,8 @@ private:
 
 	/// The asio context
 	asio::io_context _ioContext;
+
+	boost::asio::executor_work_guard<boost::asio::io_context::executor_type> _guard;
 
 	/// The thread on which the asio context is running
 	std::thread * _executionThread = nullptr;

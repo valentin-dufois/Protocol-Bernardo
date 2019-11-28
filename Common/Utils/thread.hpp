@@ -25,10 +25,14 @@ inline void setName(const std::string &threadName) {
 }
 
 inline void cadence(const std::chrono::duration<double, std::milli> &workTime, const double targetSpeed) {
+
+//	LOG_DEBUG(std::to_string(workTime.count()) + "/" + std::to_string(1.0/targetSpeed));
+
 	if(workTime.count() > (1.0/targetSpeed))
 		return; // Last iteration took longer than one frame to complete, do not yield
 
 	std::chrono::duration<double, std::milli> delta(1.0/targetSpeed - workTime.count());
+//	LOG_DEBUG(std::to_string(delta.count()));
 
 	// Temporary pause the thread
 	std::this_thread::sleep_for(delta * 1000);

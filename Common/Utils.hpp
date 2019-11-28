@@ -10,7 +10,7 @@
 
 #include "Utils/Log.hpp"
 
-#include "Utils/diskIO.hpp"
+#include "Utils/DiskIO.hpp"
 #include "Utils/flags.hpp"
 #include "Utils/maths.hpp"
 #include "Utils/thread.hpp"

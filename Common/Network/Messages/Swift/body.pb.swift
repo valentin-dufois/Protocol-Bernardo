@@ -205,6 +205,8 @@ struct Pb_Network_Messages_Body {
 
   var uid: String = String()
 
+  var isValid: Bool = false
+
   var frame: UInt32 = 0
 
   var skeletons: [Pb_Network_Messages_Skeleton] = []
@@ -535,6 +537,7 @@ extension Pb_Network_Messages_Body: SwiftProtobuf.Message, SwiftProtobuf._Messag
   static let protoMessageName: String = _protobuf_package + ".Body"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "uid"),
+    2: .same(proto: "isValid"),
     5: .same(proto: "frame"),
     10: .same(proto: "skeletons"),
   ]
@@ -543,6 +546,7 @@ extension Pb_Network_Messages_Body: SwiftProtobuf.Message, SwiftProtobuf._Messag
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
       case 1: try decoder.decodeSingularStringField(value: &self.uid)
+      case 2: try decoder.decodeSingularBoolField(value: &self.isValid)
       case 5: try decoder.decodeSingularUInt32Field(value: &self.frame)
       case 10: try decoder.decodeRepeatedMessageField(value: &self.skeletons)
       default: break
@@ -553,6 +557,9 @@ extension Pb_Network_Messages_Body: SwiftProtobuf.Message, SwiftProtobuf._Messag
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     if !self.uid.isEmpty {
       try visitor.visitSingularStringField(value: self.uid, fieldNumber: 1)
+    }
+    if self.isValid != false {
+      try visitor.visitSingularBoolField(value: self.isValid, fieldNumber: 2)
     }
     if self.frame != 0 {
       try visitor.visitSingularUInt32Field(value: self.frame, fieldNumber: 5)
@@ -565,6 +572,7 @@ extension Pb_Network_Messages_Body: SwiftProtobuf.Message, SwiftProtobuf._Messag
 
   static func ==(lhs: Pb_Network_Messages_Body, rhs: Pb_Network_Messages_Body) -> Bool {
     if lhs.uid != rhs.uid {return false}
+    if lhs.isValid != rhs.isValid {return false}
     if lhs.frame != rhs.frame {return false}
     if lhs.skeletons != rhs.skeletons {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}

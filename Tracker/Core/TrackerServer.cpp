@@ -34,6 +34,8 @@ void TrackerServer::socketDidOpen(Socket * newSocket) {
 	
 	// Stop advertising once we have one connection
 	endAdvertising();
+
+//	_socketsForBodyStream.push_back(newSocket);
 }
 
 void TrackerServer::socketDidReceive(Socket * socket, messages::Datagram * datagram) {
@@ -61,10 +63,10 @@ void TrackerServer::socketDidReceive(Socket * socket, messages::Datagram * datag
 }
 
 void TrackerServer::socketDidClose( Socket * closedSocket) {
-	Server::socketDidClose(closedSocket);
-
 	// Make sure the socket is removed from the body stream
 	onEndBodyStreamRequest(closedSocket);
+
+	Server::socketDidClose(closedSocket);
 
 	if(socketsCount() == 0) {
 		// No more connections to this server, restart the advertiser
@@ -83,14 +85,16 @@ void TrackerServer::onBodyStreamRequest(Socket * socket) {
 	}
 
 	LOG_INFO("Registering a new listener for the body stream");
-	_socketsForBodyStream.push_back(socket);
+//	_socketsForBodyStream.push_back(socket);
 }
 
 void TrackerServer::onEndBodyStreamRequest(Socket * socket) {
 	// Remove the socket from the rergistered ones for the body stream
-	_socketsForBodyStream.erase(std::find(_socketsForBodyStream.begin(),
-										  _socketsForBodyStream.end(),
-										  socket));
+
+	auto searchResult = std::find(_socketsForBodyStream.begin(), _socketsForBodyStream.end(), socket);
+
+	if(searchResult != _socketsForBodyStream.end())
+		_socketsForBodyStream.erase(searchResult);
 
 	LOG_INFO("Removing a listener of the body stream");
 }

@@ -18,15 +18,12 @@ class Socket;
 class SocketDelegate {
 public:
 	/// Called when the socket did connect to its remote
-	///
-	/// @param socket The socket
-	virtual void socketDidOpen(Socket * socket) {}
+	virtual void socketDidOpen(Socket *) {}
 
 	/// Called everytime the socket received a datagram from the
 	/// network. Some datagram with Socket-specific types, such as
 	/// 'close' might not be propagated to this method.
-	/// @param datagram the received datagram
-	virtual void socketDidReceive(Socket * socket, messages::Datagram * datagram) {}
+	virtual void socketDidReceive(Socket *, messages::Datagram *) {}
 
 	/// Called when the socket disconnects/closes
 	///
@@ -35,7 +32,7 @@ public:
 	///
 	/// Calling the destructor on the socket will not trigger this
 	/// callback
-	virtual void socketDidClose(Socket * socket) {}
+	virtual void socketDidClose(Socket *) {}
 };
 
 } /* ::network */

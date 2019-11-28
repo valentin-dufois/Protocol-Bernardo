@@ -93,7 +93,7 @@ public:
 	inline std::string typeLabel() const {
 		switch (type) {
 			case Type::tracker: 	return "Tracker"; break;
-			case Type::receiver: 	return "Broadcaster"; break;
+			case Type::receiver: 	return "Receiver"; break;
 			case Type::master: 	return "Master"; break;
 			case Type::terminal: 	return "Terminal"; break;
 			default: 			return "Unknown"; break;

@@ -61,10 +61,17 @@ void Browser::handleReceive(const boost::system::error_code &error, std::size_t 
 	if(onReceive)
 		onReceive(endpoint);
 
-	// Bind the handler
+	// Are we still running ?
+	if(!_isRunning)
+		return;
+
+	// Prepare for another receive
 	_socket->async_receive_from(asio::buffer(_receptionBuffer), _anyEndpoint, [&] (const boost::system::error_code &error, std::size_t bytes_transferred) {
 		handleReceive(error, bytes_transferred);
 	});
+
+	// Run the thread on the background
+	Engine::instance()->runContext();
 }
 
 void Browser::stopBrowsing() {

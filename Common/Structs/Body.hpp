@@ -42,6 +42,8 @@ struct Body {
 	/// This is used by the TrackingEngine.
 	std::vector<Skeleton *> rawSkeletons;
 
+	/// Tell if the body is valid. An invalid body does not have new meaningful skeletons.
+	/// As of 2019-11-27, an invalid body will always be removed on the next frame.
 	bool isValid = true;
 
 	unsigned int inactivityCount = 0;
@@ -59,6 +61,7 @@ struct Body {
 
 	Body(const network::messages::Body &body) {
 		uid = body.uid();
+		isValid = body.isvalid();
 		frame = body.frame();
 
 		unsigned int skeletonCount = body.skeletons_size();
@@ -136,6 +139,7 @@ struct Body {
 	operator network::messages::Body () const {
 		network::messages::Body message;
 		message.set_uid(uid);
+		message.set_isvalid(isValid);
 		message.set_frame(frame);
 
 		// Convert the skeletons

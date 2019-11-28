@@ -17,21 +17,16 @@ TrackerClient::TrackerClient() {
 	_socket.delegate = this;
 }
 
-void TrackerClient::requestBodyStream() {
-	_socket.send(makeDatagram(messages::Datagram_Type_ACQ_GET_BODY_STREAM));
-}
-
-
-void TrackerClient::socketDidOpen(Socket * socket) {
+void TrackerClient::socketDidOpen(Socket *) {
 	LOG_INFO("Connection opened");
 
-	_socket.listen();
+	_socket.send(makeDatagram(messages::Datagram_Type_ACQ_GET_BODY_STREAM));
 
 	if(onConnected)
 		onConnected(_socket.getRemote());
 }
 
-void TrackerClient::socketDidReceive(Socket * socket, messages::Datagram * datagram) {
+void TrackerClient::socketDidReceive(Socket *, messages::Datagram * datagram) {
 	// LOG_DEBUG("Received a datagram");
 
 	messages::Datagram_Type datagramType = datagram->type();

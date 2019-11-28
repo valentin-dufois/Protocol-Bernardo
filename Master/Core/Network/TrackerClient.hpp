@@ -36,11 +36,6 @@ public:
 
 	inline Endpoint getRemote() { return _socket.getRemote(); }
 
-	// MARK: - Datagrams
-
-	/// Asks for the body stream from the tracker server
-	void requestBodyStream();
-
 	// MARK: - Socket Delegate
 
 	void socketDidOpen(Socket *) override;

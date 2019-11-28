@@ -45,9 +45,7 @@ void Server::sendToAll(protobuf::Message * aMessage) {
 	}
 }
 
-void Server::socketDidOpen(Socket * socket) {
-	socket->listen();
-}
+void Server::socketDidOpen(Socket * socket) { }
 
 void Server::socketDidClose(Socket * socket) {
 	// The socket is closed, remove it from the array of connections
@@ -57,7 +55,7 @@ void Server::socketDidClose(Socket * socket) {
 }
 
 void Server::prepareAccept() {
-	Socket * newConnection = new Socket(Engine::instance()->getContext());
+	Socket * newConnection = new Socket();
 	newConnection->delegate = this;
 
 	_acceptor->async_accept(newConnection->getSocket(), boost::bind(&Server::handleAccept, this, newConnection, boost::asio::placeholders::error));

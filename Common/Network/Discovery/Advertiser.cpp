@@ -23,6 +23,7 @@ Advertiser::Advertiser(const Endpoint::Type &endpointType):
 _broadcastEndpoint(asio::ip::udp::endpoint(asio::ip::address_v4::broadcast(),
 				  Endpoint(endpointType).discoveryPort)) {
 	Endpoint thisMachine = Engine::thisMachine();
+	thisMachine.type = endpointType;
 
 	// Prepare the message
 	messages::Endpoint * message = thisMachine;
@@ -100,8 +101,9 @@ void Advertiser::setTimer() {
 	}
 
 	// Set up the timer
-	_timer->expires_from_now(boost::posix_time::seconds(5));
+	_timer->expires_from_now(boost::posix_time::seconds(1));
 	_timer->async_wait(boost::bind(&Advertiser::advertise, this, boost::asio::placeholders::error));
+	Engine::instance()->runContext();
 }
 
 asio::ip::address Advertiser::getOutboundInterfaceIP() {
@@ -112,6 +114,10 @@ asio::ip::address Advertiser::getOutboundInterfaceIP() {
 
 	std::vector<asio::ip::address> interfaces = Engine::instance()->getOutboundInterfaces();
 
+	if(interfaces.size() == 0) {
+		return asio::ip::make_address_v4("127.0.0.1");
+	}
+
 	if(interfaces.size() == 1) {
 		return interfaces[0];
 	}
@@ -119,7 +125,7 @@ asio::ip::address Advertiser::getOutboundInterfaceIP() {
 	// Muliple network interfaces are available
 	// Request user input for selecting the network interface to use
 	LOG_WARN("Found " + std::to_string(interfaces.size()) + " ipv4 network interface.s");
-	LOG_INFO("Please select interface to use for advertising on the network:");
+	LOG_INFO("Please select interface to use for advertising on port:" + std::to_string(_broadcastEndpoint.port()));
 
 	std::string queryInteraces = "";
 	for(int i = 0; i < interfaces.size(); ++i) {

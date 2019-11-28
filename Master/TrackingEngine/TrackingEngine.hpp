@@ -153,6 +153,8 @@ private:
 	/// Clear the `_bodiesBuffer`
 	void clearBuffer();
 
+	void cleanBodies();
+
 	/// Remove the reference to a rawbody from bodies. If the bodies has ne more
 	/// reference after that, it is also removed
 	void removeRawBodyReference(const RawBody * rawbody);

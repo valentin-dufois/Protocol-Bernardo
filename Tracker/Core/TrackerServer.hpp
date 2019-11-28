@@ -10,6 +10,7 @@
 
 #include <list>
 
+#include "../libraries.hpp"
 #include "../../Common/Structs/RawBody.hpp"
 #include "../../Common/Network.hpp"
 

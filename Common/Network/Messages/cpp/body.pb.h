@@ -925,6 +925,7 @@ class Body :
   enum : int {
     kSkeletonsFieldNumber = 10,
     kUidFieldNumber = 1,
+    kIsValidFieldNumber = 2,
     kFrameFieldNumber = 5,
   };
   // repeated .pb.network.messages.Skeleton skeletons = 10;
@@ -961,6 +962,15 @@ class Body :
   std::string* _internal_mutable_uid();
   public:
 
+  // bool isValid = 2;
+  void clear_isvalid();
+  bool isvalid() const;
+  void set_isvalid(bool value);
+  private:
+  bool _internal_isvalid() const;
+  void _internal_set_isvalid(bool value);
+  public:
+
   // uint32 frame = 5;
   void clear_frame();
   ::PROTOBUF_NAMESPACE_ID::uint32 frame() const;
@@ -977,6 +987,7 @@ class Body :
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::pb::network::messages::Skeleton > skeletons_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr uid_;
+  bool isvalid_;
   ::PROTOBUF_NAMESPACE_ID::uint32 frame_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_body_2eproto;
@@ -1714,6 +1725,26 @@ inline void Body::set_allocated_uid(std::string* uid) {
   }
   uid_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), uid);
   // @@protoc_insertion_point(field_set_allocated:pb.network.messages.Body.uid)
+}
+
+// bool isValid = 2;
+inline void Body::clear_isvalid() {
+  isvalid_ = false;
+}
+inline bool Body::_internal_isvalid() const {
+  return isvalid_;
+}
+inline bool Body::isvalid() const {
+  // @@protoc_insertion_point(field_get:pb.network.messages.Body.isValid)
+  return _internal_isvalid();
+}
+inline void Body::_internal_set_isvalid(bool value) {
+  
+  isvalid_ = value;
+}
+inline void Body::set_isvalid(bool value) {
+  _internal_set_isvalid(value);
+  // @@protoc_insertion_point(field_set:pb.network.messages.Body.isValid)
 }
 
 // uint32 frame = 5;

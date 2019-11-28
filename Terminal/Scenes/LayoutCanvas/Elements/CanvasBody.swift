@@ -23,7 +23,7 @@ class CanvasBody: SKShapeNode {
 		fillColor = NSColor(NSColor.systemPink, alpha: 0.5)
 		strokeColor = NSColor(NSColor.systemPink, alpha: 0.8)
 
-		position.x = CGFloat(body.skeletons.last!.centerOfMass.x / 10.0) - 15;
+		position.x = CGFloat(-body.skeletons.last!.centerOfMass.x / 10.0) - 15;
 		position.y = CGFloat(body.skeletons.last!.centerOfMass.z / 10.0) + 15;
 
 		xLabel = SKLabelNode(text: "\(body.skeletons.last!.centerOfMass.x/10)")

@@ -41,6 +41,7 @@ message RawBodies {
 
 message Body {
 	string uid = 1;
+	bool isValid = 2;
 	uint32 frame = 5;
 	repeated Skeleton skeletons = 10;
 }

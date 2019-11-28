@@ -20,8 +20,6 @@
 // MARK: Exchanges
 #include "Network/Exchanges/Socket.hpp"
 #include "Network/Exchanges/SocketDelegate.hpp"
-#include "Network/Exchanges/Emitter.hpp"
-#include "Network/Exchanges/Receiver.hpp"
 
 // MARK: Discovery
 #include "Network/Discovery/Advertiser.hpp"

@@ -27,6 +27,8 @@ public:
 	std::function<void(pb::RawBody *)> bodyHandler;
 
 	virtual Device * getDevice() = 0;
+
+	virtual ~Tracker() {};
 };
 
 } /* ::tracker */

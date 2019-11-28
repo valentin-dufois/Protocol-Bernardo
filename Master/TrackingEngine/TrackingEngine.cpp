@@ -34,7 +34,7 @@ void TrackingEngine::start() {
 
 		runLoop();
 
-		_executionThread->detach();
+		_isTracking = false;
 	});
 }
 
@@ -107,31 +107,31 @@ void TrackingEngine::trackBodies() {
 	// Parse the bodies to prevent errors due to lack of precision from the tracking devices
 	parseBodies();
 
-	LOG_DEBUG("Tracking " + std::to_string(_bodies.size()) + " bodies");
-
 	// Do we have a callback ?
 	if(onCycleEnd) {
 		onCycleEnd(_bodies);
 	}
+
+	// Remove invalid bodies
+	cleanBodies();
 }
 
 void TrackingEngine::parseBodiesBuffer() {
 
 	for(RawBody * rawBody: _bodiesBuffer) {
-		LOG_DEBUG("Parsing rawBody from " + rawBody->deviceUID);
 		// Register device UID
 		_devicesUID.insert(rawBody->deviceUID);
 
 		// We only handle tracked users
 		if(rawBody->state != RawBody::State::tracked) {
 			// remove reference to this rawBody in Bodies if needed
-			LOG_DEBUG("RawBody is not tracked");
+//			LOG_DEBUG("RawBody is not tracked");
 			removeRawBodyReference(rawBody);
 			continue;
 		}
 
 		// Get the skeleton
-		Skeleton * skeleton = &rawBody->skeleton;
+		Skeleton * skeleton = new Skeleton(rawBody->skeleton);
 
 		// Is this rawbody already matched to a body ?
 		Body * body = getBodyFor(rawBody);
@@ -214,11 +214,20 @@ void TrackingEngine::parseBodies() {
 	if(_bodies.size() < 2)
 		return; // Do nothing
 
-	for(std::map<pb::bodyUID, Body *>::iterator it = _bodies.begin(); it != _bodies.end();) {
+	for(std::map<pb::bodyUID, Body *>::iterator it = _bodies.begin(); it != _bodies.end(); ++it) {
+
 		Body * body = it->second;
 
+		// Check the body inactivity count
+		if(body->inactivityCount > 15) {
+			body->isValid = false;
+			continue;
+		}
+
+		// Get all the bodies by distance
 		std::vector<std::pair<Body *, SCALAR>> bodiesDistance =  getClosestBodiesFrom(body->skeleton());
 
+		// Check we are not alone
 		if(bodiesDistance.size() == 0 || (bodiesDistance.size() == 1 && bodiesDistance[0].first == body)) {
 			++it;
 			continue;
@@ -228,11 +237,11 @@ void TrackingEngine::parseBodies() {
 		std::pair<Body *, SCALAR> closest = bodiesDistance[0].first == body ? bodiesDistance[1] : bodiesDistance[0];
 
 		if(closest.first == nullptr || closest.second >= TRACKING_ENGINE_MERGE_DISTANCE) {
-			++it;
 			continue; // The two bodies are not in merge distance, do nothing.
 		}
 
-		// The two bodies are really close, merge them. Merging occur with a one frame latency. We take the youngest body and put its references in the oldest one.
+		// The two bodies are really close, merge them.
+		// Merging occur with a one frame latency. We take the youngest body and put its references in the oldest one.
 		LOG_DEBUG("MERGING");
 
 		Body * youngest = body->frame < closest.first->frame ? body : closest.first;
@@ -244,24 +253,6 @@ void TrackingEngine::parseBodies() {
 
 		// Finally, mark the youngest as invalid
 		youngest->isValid = false;
-		++it;
-	}
-
-	// Cleanup
-	for(std::map<pb::bodyUID, Body *>::iterator it = _bodies.begin(); it != _bodies.end();) {
-		if(!it->second->isValid) {
-			delete it->second;
-			it = _bodies.erase(it);
-			continue;
-		}
-
-		if(it->second->inactivityCount > 15) {
-			delete it->second;
-			it = _bodies.erase(it);
-			continue;
-		}
-
-		++it;
 	}
 }
 
@@ -271,6 +262,19 @@ void TrackingEngine::clearBuffer() {
 		delete rawBody;
 	}
 	_bodiesBuffer.clear();
+}
+
+void TrackingEngine::cleanBodies() {
+	for(auto it = _bodies.begin(); it != _bodies.end();) {
+		if(it->second->isValid) {
+			++it;
+			continue;
+		}
+
+		// Remove invalid bodies
+		delete it->second;
+		it = _bodies.erase(it);
+	}
 }
 
 Body * TrackingEngine::getBodyFor(const RawBody * rawbody) {

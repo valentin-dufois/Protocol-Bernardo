@@ -70,7 +70,7 @@ extern "C" {
 	{
 		// Delete the instance here, this will be called when
 		// Touch is shutting down, when the CHOP using that instance is deleted, or
-		// if the CHOP loads a different DLL
+		// if the CHOP loads a different DLL	
 		delete (Core *)instance;
 	}
 

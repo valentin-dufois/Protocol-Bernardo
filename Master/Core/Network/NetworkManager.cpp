@@ -61,9 +61,6 @@ void NetworkManager::connectToTracker(const Endpoint &endpoint) {
 	tracker->onConnected = [&, tracker] (const Endpoint &server) {
 		_connectedEndpoints.push_back(server);
 		_connectedTrackers.push_back(tracker);
-
-		// Start the body stream
-		tracker->requestBodyStream();
 	};
 
 	// On close, remove the tracker fromn the tracker array
