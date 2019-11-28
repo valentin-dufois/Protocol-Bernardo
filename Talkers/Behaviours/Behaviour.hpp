@@ -49,7 +49,7 @@ public:
 	/// the expected inputs.
 	///
 	/// @returns True if import was successful or false if there was an error
-	virtual bool importMessage(Message * message);
+	bool importMessage(Message * message);
 
 	/// Executes the behaviour actions and update its state accordingly
 	///
@@ -58,7 +58,7 @@ public:
 	virtual bool execute(Machine * machine) = 0;
 
 	/// Gives the output for this behaviour based on the current inner state
-	virtual Output * getOutput();
+	Output * getOutput();
 
 	virtual ~Behaviour() {}
 
