@@ -8,7 +8,7 @@
 #ifndef Message_h
 #define Message_h
 
-#include "StateValue.hpp"
+#include "../Utils/StateValue.hpp"
 
 struct Message {
 	State values;
@@ -16,6 +16,6 @@ struct Message {
 	unsigned int behaviour;
 
 	std::string caption;
-}
+};
 
 #endif /* Message_h */

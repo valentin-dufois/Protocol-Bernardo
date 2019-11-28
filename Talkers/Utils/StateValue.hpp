@@ -8,9 +8,28 @@
 #ifndef StateValue_h
 #define StateValue_h
 
+#include <string>
 #include <map>
 
 struct StateValue{
+
+	StateValue() = default;
+
+	StateValue(const int v) {
+		set(v);
+	}
+
+	StateValue(const double v) {
+		set(v);
+	}
+
+	StateValue(const float v) {
+		set(v);
+	}
+
+	StateValue(const bool v) {
+		set(v);
+	}
 
 	inline void set(const int v) {
 		_int = v;
@@ -59,6 +78,26 @@ struct StateValue{
 			case boolType:
 				return _bool ? "Oui" : "Non";
 		}
+	}
+
+	StateValue& operator = (int val) {
+		set(val);
+		return *this;
+	}
+
+	StateValue& operator = (double val) {
+		set(val);
+		return *this;
+	}
+
+	StateValue& operator = (float val) {
+		set(val);
+		return *this;
+	}
+
+	StateValue& operator = (bool val) {
+		set(val);
+		return *this;
 	}
 
 private:

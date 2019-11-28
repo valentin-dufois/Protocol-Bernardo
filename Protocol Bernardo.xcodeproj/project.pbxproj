@@ -50,9 +50,7 @@
 		39580E882358E43800CD3CEC /* Socket in Frameworks */ = {isa = PBXBuildFile; productRef = 39580E872358E43800CD3CEC /* Socket */; };
 		39580E8A23591B0800CD3CEC /* MasterClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39580E8923591B0800CD3CEC /* MasterClient.swift */; };
 		39580E8D23591F7500CD3CEC /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39580E8C23591F7500CD3CEC /* Log.swift */; };
-		39593A82238F299200B8CF17 /* Behaviour.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39593A80238F299200B8CF17 /* Behaviour.cpp */; };
 		39593A83238F299200B8CF17 /* Behaviour.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 39593A81238F299200B8CF17 /* Behaviour.hpp */; };
-		39593A87238F334700B8CF17 /* Output.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39593A86238F334700B8CF17 /* Output.cpp */; };
 		395A0C81237F5E2A00FB1D1D /* Endpoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 395A0C80237F5E2A00FB1D1D /* Endpoint.cpp */; };
 		395A0C85237F912200FB1D1D /* SocketDelegate.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 395A0C84237F912200FB1D1D /* SocketDelegate.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		395A0C87237FAFB600FB1D1D /* Network.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 395A0C86237FAF5A00FB1D1D /* Network.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -190,6 +188,18 @@
 		39E37C0E236E4DED007C78EA /* NSColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E37C0D236E4DED007C78EA /* NSColor.swift */; };
 		39E37C10236E611B007C78EA /* Keycode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E37C0F236E611B007C78EA /* Keycode.swift */; };
 		39EBB7C32350E1630057D474 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39EBB79A2350E0EC0057D474 /* main.cpp */; };
+		39F860CD2390655800A32146 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39F860CC2390655800A32146 /* main.cpp */; };
+		39F860D22390657600A32146 /* Core.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 39F860D02390657600A32146 /* Core.hpp */; };
+		39F860D72390667E00A32146 /* Machine.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 39F860D52390667E00A32146 /* Machine.hpp */; };
+		39F860E4239076C300A32146 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39F860E3239076C300A32146 /* main.cpp */; };
+		39F860E8239076D900A32146 /* Core.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39F860CF2390657600A32146 /* Core.cpp */; };
+		39F860E9239076D900A32146 /* Machine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39F860D42390667E00A32146 /* Machine.cpp */; };
+		39F860EA239076D900A32146 /* Behaviour.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39593A80238F299200B8CF17 /* Behaviour.cpp */; };
+		39F860EB239076D900A32146 /* getBehaviour.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39F860D92390686800A32146 /* getBehaviour.cpp */; };
+		39F860EC239076D900A32146 /* Output.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39593A86238F334700B8CF17 /* Output.cpp */; };
+		39F860EE2390773E00A32146 /* libboost_regex.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 39F860ED2390773E00A32146 /* libboost_regex.a */; };
+		39F860F223907B5500A32146 /* B-000.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39F860F123907B5500A32146 /* B-000.cpp */; };
+		39F860F32390800A00A32146 /* getOutput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39F860DB239072D100A32146 /* getOutput.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -311,6 +321,15 @@
 			);
 			name = "Embed Libraries";
 			runOnlyForDeploymentPostprocessing = 0;
+		};
+		39F860DF239076C300A32146 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -487,6 +506,20 @@
 		39E37C0F236E611B007C78EA /* Keycode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keycode.swift; sourceTree = "<group>"; };
 		39EBB79A2350E0EC0057D474 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		39EBB7C02350E13F0057D474 /* pb-tracker-launcher */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "pb-tracker-launcher"; sourceTree = BUILT_PRODUCTS_DIR; };
+		39F860CC2390655800A32146 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		39F860CF2390657600A32146 /* Core.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Core.cpp; sourceTree = "<group>"; };
+		39F860D02390657600A32146 /* Core.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Core.hpp; sourceTree = "<group>"; };
+		39F860D3239065D500A32146 /* Tree.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Tree.hpp; sourceTree = "<group>"; };
+		39F860D42390667E00A32146 /* Machine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Machine.cpp; sourceTree = "<group>"; };
+		39F860D52390667E00A32146 /* Machine.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Machine.hpp; sourceTree = "<group>"; };
+		39F860D92390686800A32146 /* getBehaviour.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = getBehaviour.cpp; path = Talkers/Behaviours/getBehaviour.cpp; sourceTree = SOURCE_ROOT; };
+		39F860DB239072D100A32146 /* getOutput.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = getOutput.cpp; sourceTree = "<group>"; };
+		39F860E1239076C300A32146 /* Talkers */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Talkers; sourceTree = BUILT_PRODUCTS_DIR; };
+		39F860E3239076C300A32146 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		39F860ED2390773E00A32146 /* libboost_regex.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_regex.a; path = ../../../../../usr/local/Cellar/boost/1.71.0/lib/libboost_regex.a; sourceTree = "<group>"; };
+		39F860EF2390775C00A32146 /* Talkers.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Talkers.entitlements; sourceTree = "<group>"; };
+		39F860F0239079F100A32146 /* B-000.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "B-000.hpp"; sourceTree = "<group>"; };
+		39F860F123907B5500A32146 /* B-000.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "B-000.cpp"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -547,6 +580,14 @@
 			files = (
 				39512F8A235537DF00A88539 /* SwiftProtobuf in Frameworks */,
 				39580E882358E43800CD3CEC /* Socket in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		39F860DE239076C300A32146 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				39F860EE2390773E00A32146 /* libboost_regex.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -727,6 +768,9 @@
 		39593A7E238F289500B8CF17 /* Talkers */ = {
 			isa = PBXGroup;
 			children = (
+				39F860EF2390775C00A32146 /* Talkers.entitlements */,
+				39F860CC2390655800A32146 /* main.cpp */,
+				39F860CE2390656D00A32146 /* Core */,
 				39593A89238F392B00B8CF17 /* Utils */,
 				39593A7F238F297900B8CF17 /* Behaviours */,
 			);
@@ -736,12 +780,14 @@
 		39593A7F238F297900B8CF17 /* Behaviours */ = {
 			isa = PBXGroup;
 			children = (
+				39F860D8239067E500A32146 /* B-000 */,
 				39593A80238F299200B8CF17 /* Behaviour.cpp */,
 				39593A81238F299200B8CF17 /* Behaviour.hpp */,
+				39F860D92390686800A32146 /* getBehaviour.cpp */,
+				39F860DB239072D100A32146 /* getOutput.cpp */,
+				39593A88238F336500B8CF17 /* Message.hpp */,
 				39593A84238F2AB200B8CF17 /* Output.hpp */,
 				39593A86238F334700B8CF17 /* Output.cpp */,
-				39593A85238F309B00B8CF17 /* StateValue.hpp */,
-				39593A88238F336500B8CF17 /* Message.hpp */,
 			);
 			path = Behaviours;
 			sourceTree = "<group>";
@@ -749,6 +795,7 @@
 		39593A89238F392B00B8CF17 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				39593A85238F309B00B8CF17 /* StateValue.hpp */,
 				39593A8A238F393600B8CF17 /* Random.hpp */,
 			);
 			path = Utils;
@@ -903,6 +950,7 @@
 				39CA4A8D233140E100E528CD /* Master */,
 				39CA4AA32331413A00E528CD /* Terminal */,
 				39C2388E2384962C00791E1E /* Receiver-Touch */,
+				39F860E2239076C300A32146 /* Talkers */,
 				39CA4A782331407A00E528CD /* Products */,
 				39CA4ABA233145A200E528CD /* Frameworks */,
 			);
@@ -918,6 +966,7 @@
 				39EBB7C02350E13F0057D474 /* pb-tracker-launcher */,
 				39C23841238309B300791E1E /* libpb-common.a */,
 				39C2388D2384962C00791E1E /* pb-receiver-touch.plugin */,
+				39F860E1239076C300A32146 /* Talkers */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -978,6 +1027,7 @@
 		39CA4ABA233145A200E528CD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				39F860ED2390773E00A32146 /* libboost_regex.a */,
 				39C2384B23848EDA00791E1E /* libgflags.a */,
 				39C2384923848D5E00791E1E /* libprotobuf.a */,
 				39C2384523848D1200791E1E /* libboost_system.a */,
@@ -1112,6 +1162,35 @@
 			path = "Tracker-Launcher";
 			sourceTree = "<group>";
 		};
+		39F860CE2390656D00A32146 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				39F860CF2390657600A32146 /* Core.cpp */,
+				39F860D02390657600A32146 /* Core.hpp */,
+				39F860D3239065D500A32146 /* Tree.hpp */,
+				39F860D42390667E00A32146 /* Machine.cpp */,
+				39F860D52390667E00A32146 /* Machine.hpp */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		39F860D8239067E500A32146 /* B-000 */ = {
+			isa = PBXGroup;
+			children = (
+				39F860F0239079F100A32146 /* B-000.hpp */,
+				39F860F123907B5500A32146 /* B-000.cpp */,
+			);
+			path = "B-000";
+			sourceTree = "<group>";
+		};
+		39F860E2239076C300A32146 /* Talkers */ = {
+			isa = PBXGroup;
+			children = (
+				39F860E3239076C300A32146 /* main.cpp */,
+			);
+			path = Talkers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -1154,6 +1233,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				39593A83238F299200B8CF17 /* Behaviour.hpp in Headers */,
+				39F860D22390657600A32146 /* Core.hpp in Headers */,
 				395A7983233332CB00499894 /* maths.hpp in Headers */,
 				395A79802333321600499894 /* RawBody.hpp in Headers */,
 				39CA4AFD2332BDAB00E528CD /* Log.hpp in Headers */,
@@ -1170,6 +1250,7 @@
 				395A79CE2335BB3400499894 /* messages.hpp in Headers */,
 				393AD3EA23523D5600ECE95C /* diskIO.hpp in Headers */,
 				39CA4ADD2331486D00E528CD /* Browser.hpp in Headers */,
+				39F860D72390667E00A32146 /* Machine.hpp in Headers */,
 				3950170E23416C9C00E7F6BD /* SocketStatus.hpp in Headers */,
 				39CA4AD52331486D00E528CD /* NetworkEngine.hpp in Headers */,
 				39CA4AD92331486D00E528CD /* NetworkParameters.h in Headers */,
@@ -1321,6 +1402,23 @@
 			productReference = 39EBB7C02350E13F0057D474 /* pb-tracker-launcher */;
 			productType = "com.apple.product-type.tool";
 		};
+		39F860E0239076C300A32146 /* Talkers */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 39F860E5239076C300A32146 /* Build configuration list for PBXNativeTarget "Talkers" */;
+			buildPhases = (
+				39F860DD239076C300A32146 /* Sources */,
+				39F860DE239076C300A32146 /* Frameworks */,
+				39F860DF239076C300A32146 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Talkers;
+			productName = Talkers;
+			productReference = 39F860E1239076C300A32146 /* Talkers */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1345,6 +1443,9 @@
 					39CA4AA12331413A00E528CD = {
 						CreatedOnToolsVersion = 11.0;
 						LastSwiftMigration = 1100;
+					};
+					39F860E0239076C300A32146 = {
+						CreatedOnToolsVersion = 11.2.1;
 					};
 				};
 			};
@@ -1378,6 +1479,7 @@
 				39CA4A80233140BE00E528CD /* pb-tracker */,
 				39EBB79F2350E13F0057D474 /* pb-tracker-launcher */,
 				39C2388C2384962C00791E1E /* pb-receiver-touch */,
+				39F860E0239076C300A32146 /* Talkers */,
 			);
 		};
 /* End PBXProject section */
@@ -1497,7 +1599,6 @@
 				395A79C42335BB2000499894 /* body.pb.cc in Sources */,
 				3950170B2341689000E7F6BD /* Socket.cpp in Sources */,
 				396C6A50233C5643008FD842 /* Server.cpp in Sources */,
-				39593A82238F299200B8CF17 /* Behaviour.cpp in Sources */,
 				39CA4AD82331486D00E528CD /* NetworkEngine.cpp in Sources */,
 				395A796F2332D2B300499894 /* Log.cpp in Sources */,
 				3966E41C2338018800710DD4 /* layout.pb.cc in Sources */,
@@ -1505,9 +1606,9 @@
 				399D167A23521E7600CEC2F0 /* flags.cpp in Sources */,
 				39CA4AD62331486D00E528CD /* Browser.cpp in Sources */,
 				39CA4ADA2331486D00E528CD /* Advertiser.cpp in Sources */,
-				39593A87238F334700B8CF17 /* Output.cpp in Sources */,
 				395A79C92335BB2000499894 /* network.pb.cc in Sources */,
 				395A0C81237F5E2A00FB1D1D /* Endpoint.cpp in Sources */,
+				39F860CD2390655800A32146 /* main.cpp in Sources */,
 				391A20082342B6D300F00517 /* Ping.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1599,6 +1700,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				39EBB7C32350E1630057D474 /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		39F860DD239076C300A32146 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				39F860E4239076C300A32146 /* main.cpp in Sources */,
+				39F860E8239076D900A32146 /* Core.cpp in Sources */,
+				39F860E9239076D900A32146 /* Machine.cpp in Sources */,
+				39F860EA239076D900A32146 /* Behaviour.cpp in Sources */,
+				39F860EB239076D900A32146 /* getBehaviour.cpp in Sources */,
+				39F860F223907B5500A32146 /* B-000.cpp in Sources */,
+				39F860EC239076D900A32146 /* Output.cpp in Sources */,
+				39F860F32390800A00A32146 /* getOutput.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2690,6 +2806,77 @@
 			};
 			name = Release;
 		};
+		39F860E6239076C300A32146 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = Talkers/Talkers.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = KJ993GM677;
+				ENABLE_HARDENED_RUNTIME = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		39F860E7239076C300A32146 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = Talkers/Talkers.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = KJ993GM677;
+				ENABLE_HARDENED_RUNTIME = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -2761,6 +2948,15 @@
 			buildConfigurations = (
 				39EBB7BE2350E13F0057D474 /* Debug */,
 				39EBB7BF2350E13F0057D474 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		39F860E5239076C300A32146 /* Build configuration list for PBXNativeTarget "Talkers" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				39F860E6239076C300A32146 /* Debug */,
+				39F860E7239076C300A32146 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

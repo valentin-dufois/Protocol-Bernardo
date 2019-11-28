@@ -19,6 +19,10 @@ struct Message;
 struct Output {
 public:
 
+	static Output * get(const unsigned int id);
+
+	unsigned int id;
+
 	/// Tell if this output means the end of the tree on this machine
 	bool isTreeEnd;
 
@@ -31,6 +35,8 @@ public:
 	/// Gives the message corresponding to this output
 	/// If no message should be sent because this is an end, you should override this method and return nullptr;
 	virtual Message * getMessage();
+
+	virtual ~Output() {}
 
 protected:
 

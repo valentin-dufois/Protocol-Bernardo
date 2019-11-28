@@ -11,20 +11,24 @@
 #include <string>
 #include <vector>
 
-#include "StateValue.hpp"
+#include "../Utils/StateValue.hpp"
 
 class Tree;
 class Output;
 class Message;
+class Machine;
 
 class Behaviour {
 public:
+
+	static Behaviour * get(const unsigned int id);
+
 	// MARK: - Identification
 
 	/// Unique ID of the behaviour
-	const unsigned int id;
+	unsigned int id;
 
-	// MARK: - Tree;
+	// MARK: - Tree
 
 	/// Access to the current tree
 	Tree * tree;
@@ -45,24 +49,28 @@ public:
 	/// the expected inputs.
 	///
 	/// @returns True if import was successful or false if there was an error
-	virtual bool importMessage(Message *);
+	virtual bool importMessage(Message * message);
 
 	/// Executes the behaviour actions and update its state accordingly
 	///
+	/// @params machine the machine on which we are executing
 	/// @returns True if execution was successful or false if there was an error
-	virtual bool execute() = 0;
+	virtual bool execute(Machine * machine) = 0;
 
 	/// Gives the output for this behaviour based on the current inner state
-	virtual Output * getOutput() = 0;
+	virtual Output * getOutput();
+
+	virtual ~Behaviour() {}
 
 protected:
-	/// List of exepcted inputs
-	const std::vector<std::string> expectedInputs;
+	/// List of expected inputs
+	std::vector<std::string> _expectedInputs;
+
+	/// List of possible outputs
+	std::vector<unsigned int> _possibleOutputs;
 
 	/// The inner state of the behaviour
 	State _state;
-
-	// MARK: - Outputs
 };
 
 #endif /* Behaviour_hpp */
