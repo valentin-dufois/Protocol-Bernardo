@@ -8,7 +8,6 @@
 #include "Ping.hpp"
 
 #include "../Socket.hpp"
-#include "../../Messages/messages.hpp"
 
 #include <chrono>
 
@@ -23,7 +22,7 @@ void Ping::ping(Socket * socket) {
 	messages::Ping ping;
 	ping.set_time(now);
 
-	google::protobuf::Any * data = new google::protobuf::Any();
+	protobuf::Any * data = new protobuf::Any();
 	data->PackFrom(ping);
 
 	messages::Datagram * datagram = new messages::Datagram();
@@ -35,9 +34,9 @@ void Ping::ping(Socket * socket) {
 }
 
 void Ping::
-onPing(google::protobuf::Any * data, Socket * socket) {
+onPing(protobuf::Any * data, Socket * socket) {
 	// Say we received a ping
-//	LOG_DEBUG("Relaying a ping");
+	LOG_DEBUG("Relaying a ping");
 
 	// Relay the ping to its sender directly
 	messages::Datagram * datagram = new messages::Datagram();
@@ -47,7 +46,7 @@ onPing(google::protobuf::Any * data, Socket * socket) {
 	socket->send(datagram);
 }
 
-void Ping::onPong(google::protobuf::Any * data, Socket * socket) {
+void Ping::onPong(protobuf::Any * data, Socket * socket) {
 	long long now = std::chrono::duration_cast<timeScale>(std::chrono::system_clock::now().time_since_epoch()).count();
 
 	messages::Ping pong;

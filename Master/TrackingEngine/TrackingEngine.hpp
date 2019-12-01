@@ -73,7 +73,10 @@ public:
 	};
 
 	inline bool canCalibrate() {
-		return _calibrationDevices.first.size() != 0 && _calibrationDevices.second.size() != 0;
+		return _calibrationDevices.first.size() != 0 &&
+			_calibrationDevices.second.size() != 0 &&
+			_calibrationBodies.first != nullptr &&
+			_calibrationBodies.second != nullptr;
 	}
 
 	inline CalibrationValues getCalibrationValues() {
@@ -124,7 +127,7 @@ private:
 
 	std::pair<pb::deviceUID, pb::deviceUID> _calibrationDevices;
 
-	std::pair<Skeleton *, Skeleton *> _calibrationBodies;
+	std::pair<Skeleton *, Skeleton *> _calibrationBodies = std::pair<Skeleton *, Skeleton *>(nullptr, nullptr);
 
 	CalibrationValues _calibrationValues;
 

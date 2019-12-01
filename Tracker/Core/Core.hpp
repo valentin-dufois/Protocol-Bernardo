@@ -9,17 +9,16 @@
 #define Core_hpp
 
 #include <set>
+#include "../../Common/Network.hpp"
 
 #include "../PoseEstimationEngine/PoseEstimationEngine.hpp"
 
 namespace pb {
 namespace tracker {
 
-class TrackerServer;
-
 /// The Core class holds the initialization of the app and the main run loop.
 /// This should be one of the first thing created and called on the `main()`
-class Core {
+class Core: public network::SocketDelegate {
 public:
 
 	/// Provides a reference to the unique instance of the singleton
@@ -43,6 +42,10 @@ public:
 	/// Properly ends the application
 	~Core();
 
+	// MARK: - SocketDelegate
+
+	virtual void socketDidClose(network::Socket *) override;
+
 private:
 
 	/// Private constructor
@@ -53,8 +56,10 @@ private:
 
 	// MARK: - Network
 
-	/// The tracker server
-	TrackerServer * _server;
+	/// The master browser
+	network::Browser _browser;
+
+	network::Socket _socket;
 
 	// MARK: - Acquisition
 

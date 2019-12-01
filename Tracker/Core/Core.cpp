@@ -11,8 +11,6 @@
 #include "Core.hpp"
 #include "../libraries.hpp"
 
-#include "TrackerServer.hpp"
-
 #include "../../Common/Utils.hpp"
 #include "../../Common/Network.hpp"
 
@@ -25,16 +23,21 @@ void Core::init() {
 	// Name our main thread
 	pb::thread::setName("pb.tracker.main");
 
-	// Set up the tracker server
-	LOG_INFO("Starting up the tracker server");
-	_server = new TrackerServer(network::Endpoint::Type::tracker);
-
 	// Setup the Pose estimation engine
-	_poseEngine.onRawBodies = [&] (const std::set<pb::RawBody *, pb::RawBodyComparator> & rawBodies) {
+	_poseEngine.onRawBodies = [&] (const std::set<pb::RawBody *, pb::RawBodyComparator> &rawBodies) {
 		onRawBodies(rawBodies);
 	};
-	
 	_poseEngine.start();
+
+	_socket.delegate = this;
+
+	// Start browsing
+	_browser.onReceive = [&] (const network::Endpoint &endpoint) {
+		_browser.stopBrowsing();
+		_socket.connectTo(endpoint.ip, network::serverPortTracker);
+	};
+
+	_browser.startBrowsing(network::discoveryPortTracker);
 }
 
 void Core::run() {
@@ -49,11 +52,26 @@ void Core::terminate() {
 }
 
 void Core::onRawBodies(const std::set<pb::RawBody *, pb::RawBodyComparator> &rawBodies) {
-	_server->sendRawBodies(rawBodies);
+
+	if(_socket.getStatus() != network::SocketStatus::ready)
+		return;
+
+	network::messages::Datagram * datagram;
+
+	for(pb::RawBody * rawBody: rawBodies) {
+		datagram = network::makeDatagram(network::messages::Datagram_Type_RAW_BODY, (network::messages::RawBody)*rawBody);
+
+		_socket.send(datagram);
+
+		datagram->Clear();
+		delete datagram;
+	}
 }
 
-Core::~Core() {
-	delete _server;
+Core::~Core() {}
+
+void Core::socketDidClose(network::Socket *) {
+	_browser.startBrowsing(network::discoveryPortTracker);
 }
 
 } /* ::tracker */

@@ -8,11 +8,14 @@
 #include <csignal>
 
 #include "../Common/Network.hpp"
+#include "../Common/Utils/Log.hpp"
 
 #include "libraries.hpp"
 #include "Core/Core.hpp"
 
 void signalHandler(int signum) {
+	LOG_INFO("Closing...");
+
 	// Properly terminate the application services
 	pb::tracker::Core::instance()->terminate();
 

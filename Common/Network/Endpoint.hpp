@@ -51,8 +51,9 @@ struct Endpoint {
 
 	/// Construct an Endpoint using the given information
 	///
-	/// @param aType Type of the endpoint
-	Endpoint(const Type &aType);
+	/// @param aIP IP of the endpoint
+	/// @param aPort Port of the endpoint
+	Endpoint(const std::string &aIP, const unsigned int &aPort);
 
 	/// Construct an Endpoint using the given information
 	///

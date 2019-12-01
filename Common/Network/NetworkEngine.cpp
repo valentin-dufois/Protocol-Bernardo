@@ -6,7 +6,9 @@
 //  Copyright © 2019 Prisme. All rights reserved.
 //
 
-#include <boost/asio/impl/src.hpp> 
+#ifdef BOOST_ASIO_SEPARATE_COMPILATION
+#include <boost/asio/impl/src.hpp>
+#endif
 
 #include "NetworkEngine.hpp"
 #include "../Utils/thread.hpp"

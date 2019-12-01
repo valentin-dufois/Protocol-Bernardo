@@ -50,7 +50,9 @@ class LayoutCanvasView: SKView {
 		trackedBodiesNode?.removeAllChildren();
 
 		trackedBodies.bodies.forEach { body in
-			trackedBodiesNode?.addChild(CanvasBody(forBody: body));
+			if body.skeletons.count != 0 {
+				trackedBodiesNode?.addChild(CanvasBody(forBody: body));
+			}
 		}
 	}
 
@@ -59,10 +61,10 @@ class LayoutCanvasView: SKView {
 			return
 		}
 
-		el.positionXDelta?.set(value: String(values.position.x));
-		el.positionYDelta?.set(value: String(values.position.y));
-		el.positionZDelta?.set(value: String(values.position.z));
-		el.orientationZDelta?.set(value: String(values.angle.z));
+		el.positionXDelta?.set(value: values.position.x / 10.0); // mm to cm
+		el.positionYDelta?.set(value: values.position.y / 10.0);
+		el.positionZDelta?.set(value: values.position.z / 10.0);
+		el.orientationZDelta?.set(value: values.angle.z / 10.0);
 	}
 }
 

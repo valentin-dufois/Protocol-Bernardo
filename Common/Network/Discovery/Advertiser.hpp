@@ -26,7 +26,7 @@ namespace network {
 class Advertiser {
 public:
 
-	Advertiser(const Endpoint::Type &endpointType);
+	Advertiser(const NetworkPort &port);
 
 	/// Start advertising on the network
 	virtual void startAdvertising() final;

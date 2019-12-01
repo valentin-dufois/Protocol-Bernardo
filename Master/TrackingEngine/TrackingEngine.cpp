@@ -82,17 +82,6 @@ void TrackingEngine::runLoop() {
 void TrackingEngine::trackBodies() {
 	_bodiesBufferMutex.lock();
 
-	// Empty buffer, do nothing
-	if(_bodiesBuffer.size() == 0) {
-		// Unlock
-		_bodiesBufferMutex.unlock();
-
-		if(onCycleEnd)
-			onCycleEnd(_bodies);
-
-		return;
-	}
-
 	// Parse the body buffer and fill in tracked bodies
 	parseBodiesBuffer();
 
@@ -104,8 +93,10 @@ void TrackingEngine::trackBodies() {
 	// Calculate the average global position for each body
 	updateBodies();
 
-	// Parse the bodies to prevent errors due to lack of precision from the tracking devices
-	parseBodies();
+	if(!canCalibrate()) {
+		// Parse the bodies to prevent errors due to lack of precision from the tracking devices
+		parseBodies();
+	}
 
 	// Do we have a callback ?
 	if(onCycleEnd) {
@@ -120,6 +111,9 @@ void TrackingEngine::parseBodiesBuffer() {
 
 	for(RawBody * rawBody: _bodiesBuffer) {
 		// Register device UID
+		if(rawBody == NULL)
+			continue;
+		
 		_devicesUID.insert(rawBody->deviceUID);
 
 		// We only handle tracked users
@@ -137,9 +131,21 @@ void TrackingEngine::parseBodiesBuffer() {
 		Body * body = getBodyFor(rawBody);
 
 		if(body != nullptr) {
-			// Yes, update it
-			LOG_DEBUG("RawBody matched with " + body->uid);
 			body->rawSkeletons.push_back(skeleton);
+
+			// Check if this body is used for calibration
+			if(_calibrationDevices.first == rawBody->deviceUID) {
+				if(_calibrationBodies.first != nullptr)
+					delete _calibrationBodies.first;
+
+				_calibrationBodies.first = new Skeleton(*skeleton);
+			} else if(_calibrationDevices.second == rawBody->deviceUID) {
+				if(_calibrationBodies.second != nullptr)
+					delete _calibrationBodies.second;
+
+				_calibrationBodies.second = new Skeleton(*skeleton);
+			}
+
 			continue;
 		}
 
@@ -158,18 +164,6 @@ void TrackingEngine::parseBodiesBuffer() {
 		LOG_DEBUG("Appending to existing body");
 		closestBody.first->rawBodiesUID[rawBody->deviceUID] = rawBody->uid;
 		closestBody.first->rawSkeletons.push_back(skeleton);
-
-		// Check if this body is used for calibration
-		if(_calibrationDevices.first == rawBody->deviceUID) {
-			delete _calibrationBodies.first;
-			_calibrationBodies.first = new Skeleton(*skeleton);
-			return;
-		}
-
-		if(_calibrationDevices.second == rawBody->deviceUID) {
-			delete _calibrationBodies.second;
-			_calibrationBodies.second = new Skeleton(*skeleton);
-		}
 	}
 
 	// Empty the buffer
@@ -185,11 +179,13 @@ void TrackingEngine::updateCalibrationValues() {
 	Skeleton deltas = *_calibrationBodies.first - *_calibrationBodies.second;
 
 	// Get the position delta with the spine
-	maths::vec3 posDeltaAcc = deltas.joints[Skeleton::head].position;
-	posDeltaAcc += deltas.joints[Skeleton::neck].position;
-	posDeltaAcc += deltas.joints[Skeleton::torso].position;
+//	maths::vec3 posDeltaAcc = deltas.joints[Skeleton::head].position;
+//	posDeltaAcc += deltas.joints[Skeleton::neck].position;
+//	posDeltaAcc += deltas.joints[Skeleton::torso].position;
+//
+//	_calibrationValues.position = posDeltaAcc / maths::vec3(3, 3, 3);
 
-	_calibrationValues.position = posDeltaAcc / maths::vec3(3, 3, 3);
+	_calibrationValues.position = deltas.centerOfMass ;
 
 	// Get the orientation delta using the shoulders
 	maths::vec3 vecAngleA = _calibrationBodies.first->joints[Skeleton::leftShoulder].position - _calibrationBodies.first->joints[Skeleton::rightShoulder].position;
@@ -197,11 +193,11 @@ void TrackingEngine::updateCalibrationValues() {
 	maths::vec3 vecAngleB = _calibrationBodies.second->joints[Skeleton::leftShoulder].position - _calibrationBodies.second->joints[Skeleton::rightShoulder].position;
 
 	// Calculate each angle
-	_calibrationValues.angle.x = glm::angle(glm::normalize(glm::vec2(vecAngleA.y, vecAngleA.z)), glm::normalize(glm::vec2(vecAngleB.y, vecAngleB.z)));
+	_calibrationValues.angle.x = maths::rad2deg(glm::angle(glm::normalize(glm::vec2(vecAngleA.y, vecAngleA.z)), glm::normalize(glm::vec2(vecAngleB.y, vecAngleB.z))));
 
-	_calibrationValues.angle.y = glm::angle(glm::normalize(glm::vec2(vecAngleA.x, vecAngleA.z)), glm::normalize(glm::vec2(vecAngleB.x, vecAngleB.z)));
+	_calibrationValues.angle.y = maths::rad2deg(glm::angle(glm::normalize(glm::vec2(vecAngleA.x, vecAngleA.z)), glm::normalize(glm::vec2(vecAngleB.x, vecAngleB.z))));
 
-	_calibrationValues.angle.z = glm::angle(glm::normalize(glm::vec2(vecAngleA.x, vecAngleA.y)), glm::normalize(glm::vec2(vecAngleB.x, vecAngleB.y)));
+	_calibrationValues.angle.z = maths::rad2deg(glm::angle(glm::normalize(glm::vec2(vecAngleA.x, vecAngleA.y)), glm::normalize(glm::vec2(vecAngleB.x, vecAngleB.y))));
 }
 
 void TrackingEngine::updateBodies() {
@@ -218,6 +214,9 @@ void TrackingEngine::parseBodies() {
 
 		Body * body = it->second;
 
+		if(!body->isValid)
+			continue;
+
 		// Check the body inactivity count
 		if(body->inactivityCount > 15) {
 			body->isValid = false;
@@ -229,7 +228,6 @@ void TrackingEngine::parseBodies() {
 
 		// Check we are not alone
 		if(bodiesDistance.size() == 0 || (bodiesDistance.size() == 1 && bodiesDistance[0].first == body)) {
-			++it;
 			continue;
 		}
 
@@ -242,7 +240,7 @@ void TrackingEngine::parseBodies() {
 
 		// The two bodies are really close, merge them.
 		// Merging occur with a one frame latency. We take the youngest body and put its references in the oldest one.
-		LOG_DEBUG("MERGING");
+//		LOG_DEBUG("MERGING");
 
 		Body * youngest = body->frame < closest.first->frame ? body : closest.first;
 		Body * oldest = body->frame >= closest.first->frame ? body : closest.first;
@@ -343,8 +341,7 @@ void TrackingEngine::removeRawBodyReference(const RawBody * rawbody) {
 
 	// If the body has no more reference, we remove it completely
 	if(body->rawBodiesUID.size() == 0) {
-		_bodies.erase(body->uid);
-		delete body;
+		body->isValid = false;
 	}
 }
 

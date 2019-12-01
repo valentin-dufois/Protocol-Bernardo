@@ -19,11 +19,10 @@
 namespace pb {
 namespace network {
 
-Advertiser::Advertiser(const Endpoint::Type &endpointType):
-_broadcastEndpoint(asio::ip::udp::endpoint(asio::ip::address_v4::broadcast(),
-				  Endpoint(endpointType).discoveryPort)) {
+Advertiser::Advertiser(const NetworkPort &port):
+_broadcastEndpoint(asio::ip::udp::endpoint(asio::ip::address_v4::broadcast(), port)) {
 	Endpoint thisMachine = Engine::thisMachine();
-	thisMachine.type = endpointType;
+	thisMachine.port = port;
 
 	// Prepare the message
 	messages::Endpoint * message = thisMachine;
@@ -101,7 +100,7 @@ void Advertiser::setTimer() {
 	}
 
 	// Set up the timer
-	_timer->expires_from_now(boost::posix_time::seconds(1));
+	_timer->expires_from_now(boost::posix_time::seconds(advertiserRate));
 	_timer->async_wait(boost::bind(&Advertiser::advertise, this, boost::asio::placeholders::error));
 	Engine::instance()->runContext();
 }

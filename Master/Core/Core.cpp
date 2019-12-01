@@ -18,17 +18,12 @@
 
 #include "Core.hpp"
 
-#include "Network/TrackerClient.hpp"
-
 namespace pb {
 namespace master {
 
 void Core::init() {
 	_networkManager.setLayoutEngine(&_layoutEngine);
 	_networkManager.setTrackingEngine(&_trackingEngine);
-	_networkManager.onTracker = [&] (TrackerClient * tracker) {
-		onTracker(tracker);
-	};
 
 	_networkManager.startActivities();
 
@@ -49,38 +44,26 @@ void Core::run() {
 	}
 }
 
-void Core::onTracker(TrackerClient * tracker) {
-	// Link the tracker clients to the tracking engine
-	tracker->onRawBody = [&] (RawBody * rawBody) {
-		_trackingEngine.onRawBody(rawBody);
-	};
-}
-
 void Core::onTrack(const std::map<pb::bodyUID, Body *> &bodies) {
-
-
-//	LOG_DEBUG("Tracking " + std::to_string(bodies.size()) + " bodies");
-
 	// Send the bodies to the terminal and the receiveers
 	// Build the message
 	messages::TrackedBodies * trackedBodies = new messages::TrackedBodies();
 
+	// Put all the tracked bodies in the message
 	for(std::pair<pb::deviceUID, Body *> bodyPair: bodies) {
-		if(!bodyPair.second->hasSkeleton())
-			continue;
-
 		messages::Body * bodyMessage = trackedBodies->add_bodies();
 		bodyMessage->CopyFrom((messages::Body)*bodyPair.second);
-
-//		LOG_DEBUG(std::to_string(bodyPair.second->rawBodiesUID.size()));
 	}
 
+	// Attach calibration values if needed
 	if(_trackingEngine.canCalibrate()) {
 		trackedBodies->set_allocated_calibrationvalues(_trackingEngine.getCalibrationValues());
 	}
 
+	// Build the datagram
 	messages::Datagram * datagram = makeDatagram(network::messages::Datagram_Type_TRACKED_BODIES, *trackedBodies);
 
+	// Send to the receivers and the the terminal
 	_networkManager.sendToReceivers(datagram);
 	_networkManager.sendToTerminal(datagram);
 

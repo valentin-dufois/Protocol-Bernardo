@@ -118,9 +118,7 @@ enum Datagram_Type : int {
   Datagram_Type_PONG = 11,
   Datagram_Type_CLOSE = 15,
   Datagram_Type_STATUS = 50,
-  Datagram_Type_ACQ_GET_BODY_STREAM = 110,
-  Datagram_Type_ACQ_END_BODY_STREAM = 111,
-  Datagram_Type_ACQ_BODY = 115,
+  Datagram_Type_RAW_BODY = 110,
   Datagram_Type_LAYOUT_LAYOUT = 205,
   Datagram_Type_LAYOUT_LIST = 210,
   Datagram_Type_LAYOUT_CREATE = 211,
@@ -741,12 +739,8 @@ class Datagram :
     Datagram_Type_CLOSE;
   static constexpr Type STATUS =
     Datagram_Type_STATUS;
-  static constexpr Type ACQ_GET_BODY_STREAM =
-    Datagram_Type_ACQ_GET_BODY_STREAM;
-  static constexpr Type ACQ_END_BODY_STREAM =
-    Datagram_Type_ACQ_END_BODY_STREAM;
-  static constexpr Type ACQ_BODY =
-    Datagram_Type_ACQ_BODY;
+  static constexpr Type RAW_BODY =
+    Datagram_Type_RAW_BODY;
   static constexpr Type LAYOUT_LAYOUT =
     Datagram_Type_LAYOUT_LAYOUT;
   static constexpr Type LAYOUT_LIST =

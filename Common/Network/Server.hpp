@@ -42,7 +42,7 @@ public:
 
 	/// Creates the server for the specified type.
 	/// @param aType The type of service this server represent
-	Server(const Endpoint::Type &aType);
+	Server(const NetworkPort &port, const NetworkPort &discoveryPort = 0, const Endpoint::Type &aType = Endpoint::undefined);
 
 	/// Opens the server, making it listen to connections from the network
 	void open();

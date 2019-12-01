@@ -51,7 +51,7 @@ struct Joint {
 
 		// Joint coordinates are given in real world coordinates
 		position = maths::P3FToVec3(joint.getPosition());
-		position.x = -position.x;
+		position.x = position.x;
 		positionConfidence = joint.getPositionConfidence();
 
 		// Get their 2D values equivalent
@@ -111,11 +111,25 @@ struct Joint {
 	/// multiple skeletons
 	Joint operator / (const SCALAR &div) {
 		Joint j;
-		j.orientation = orientation / orientationConfidence;
+
 		j.orientationConfidence = orientationConfidence / div;
-		j.position = position / positionConfidence;
-		j.position2D = position2D / positionConfidence;
 		j.positionConfidence = positionConfidence / div;
+
+		if(ceil(orientationConfidence) == 0) {
+			// prevent division by 0
+			orientation = maths::vec3(0, 0, 0);
+		} else {
+			j.orientation = orientation / orientationConfidence;
+		}
+
+		if(ceil(positionConfidence) == 0) {
+			// prevent division by 0
+			j.position = maths::vec3(0, 0, 0);
+			j.position2D = maths::vec2(0, 0);
+		} else {
+			j.position = position / positionConfidence;
+			j.position2D = position2D / positionConfidence;
+		}
 
 		return j;
 	}

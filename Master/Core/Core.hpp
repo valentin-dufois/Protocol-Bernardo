@@ -24,8 +24,6 @@ public:
 	void init();
 
 	void run();
-
-	void onTracker(TrackerClient * tracker);
 private:
 
 	bool _isRunning = true;

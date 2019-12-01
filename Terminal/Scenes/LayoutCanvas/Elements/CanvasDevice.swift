@@ -134,7 +134,7 @@ extension CanvasDevice: CanvasElement {
 								   unit: "º",
 								   defaultValue: device.orientation.z,
 								   delegate: self))
-		views.append(CPDouble.make(label: "height",
+		views.append(CPDouble.make(label: "Height",
 								  unit: "cm",
 								  defaultValue: device.position.z,
 								  delegate: self))
@@ -172,10 +172,10 @@ extension CanvasDevice: CanvasElement {
 		devicesNames?.insert("", at: 0);
 		views.append(CPPopUp.make(label: "Reference", values: devicesNames!.filter({ $0 != device.name }), delegate: self));
 
-		positionXDelta = CPValue.make(label: "Position X", value: "-")
-		positionYDelta = CPValue.make(label: "Position Y", value: "-")
-		positionZDelta = CPValue.make(label: "Position Z", value: "-")
-		orientationZDelta = CPValue.make(label: "Orientation Z", value: "-")
+		positionXDelta = CPValue.make(label: "Position X", value: nil)
+		positionYDelta = CPValue.make(label: "Position Y", value: nil)
+		positionZDelta = CPValue.make(label: "Position Z", value: nil)
+		orientationZDelta = CPValue.make(label: "Orientation Z", value: nil)
 
 		views.append(positionXDelta!);
 		views.append(positionYDelta!);
@@ -247,8 +247,6 @@ extension CanvasDevice {
 
 	private func refreshAppearance() {
 		deviceLabel.text = device.name
-
-		captationAreaNode.zRotation = CGFloat(device.orientation.z)
 
 		captationAreaNode.path = captationArea()
 		captationAreaNode.zRotation = CGFloat(deg2rad(device.horizontalFOV / -2 + device.orientation.z + 90))

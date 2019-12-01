@@ -96,9 +96,13 @@ extension LayoutCanvasViewController: CanvasElementDelegate {
 			return false
 			}
 			return device.device.name == reference;
-		}) as! CanvasDevice;
+		}) as? CanvasDevice;
 
-		App.networkEngine.master.setCalibrationDevices(device.device.uid, referenceDevice.device.uid);
+		guard let refDevice = referenceDevice else {
+			App.networkEngine.master.setCalibrationDevices("", "");
+			return;
+		}
+		App.networkEngine.master.setCalibrationDevices(device.device.physicalUID, refDevice.device.physicalUID);
 	}
 
 	func deselect(_ device: CanvasDevice) {

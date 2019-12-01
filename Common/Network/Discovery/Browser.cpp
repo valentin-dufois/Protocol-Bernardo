@@ -17,20 +17,16 @@
 namespace pb {
 namespace network {
 
-Browser::Browser(const Endpoint::Type &serverType):
-_anyEndpoint(asio::ip::udp::endpoint(asio::ip::address_v4::any(),
-									 Endpoint(serverType).discoveryPort))
-{}
-
-void Browser::startBrowsing() {
+void Browser::startBrowsing(const NetworkPort &port) {
 	if(_isRunning)
 		return;
+
+	_anyEndpoint = asio::ip::udp::endpoint(asio::ip::address_v4::any(), port);
 
 	// Create the socket
 	_socket = new asio::ip::udp::socket(Engine::instance()->getContext());
 
 	_socket->open(asio::ip::udp::v4());
-	_socket->set_option(asio::ip::udp::socket::reuse_address(true));
 	_socket->set_option(asio::socket_base::broadcast(true));
 
 	// Open the socket
@@ -45,6 +41,8 @@ void Browser::startBrowsing() {
 	Engine::instance()->runContext();
 
 	_isRunning = true;
+
+	LOG_INFO("Browsing on port " + std::to_string(_anyEndpoint.port()));
 }
 
 void Browser::handleReceive(const boost::system::error_code &error, std::size_t bytes_transferred) {
@@ -80,6 +78,8 @@ void Browser::stopBrowsing() {
 
 	// Close the socket
 	_socket->close();
+	delete _socket;
+	_socket = nullptr;
 
 	_isRunning = false;
 }

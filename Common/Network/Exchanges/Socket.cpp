@@ -14,6 +14,10 @@ namespace network {
 
 // MARK: - Socket
 
+void Socket::connectTo(const std::string &ip, const NetworkPort &port) {
+	connectTo(Endpoint(ip, port));
+}
+
 void Socket::connectTo(const Endpoint &remote) {
 	if(_status != idle && _status != closed) {
 		LOG_ERROR("This socket could not be opened");
@@ -36,7 +40,7 @@ void Socket::connectTo(const Endpoint &remote) {
 	}
 
 	
-	LOG_DEBUG("Opening connection to " + _remote.ip);
+	LOG_DEBUG("Opening connection to " + _remote.uri());
 
 	// Connect synchronously
 	_socket.connect(_remote, ec);
@@ -50,7 +54,7 @@ void Socket::connectTo(const Endpoint &remote) {
 		return;
 	}
 
-	LOG_INFO("Connected to " + _remote.typeLabel() + " " + remote.name + " (" + remote.ip + ")");
+	LOG_INFO("Connected to " + remote.uri());
 
 	prepareReceive();
 
@@ -60,8 +64,7 @@ void Socket::connectTo(const Endpoint &remote) {
 		delegate->socketDidOpen(this);
 }
 
-void Socket::
-close(bool silent) {
+void Socket::close(bool silent) {
 	if(_status != ready)
 		return;
 
@@ -97,8 +100,7 @@ Socket::~Socket() {
 // MARK: - Exchanges
 
 void Socket::send(const google::protobuf::Message * message) {
-
-	_sendMutex.lock();
+//	_sendMutex.lock();
 
 	// Make sure the socket is ready to send data
 	if(getStatus() != SocketStatus::ready) {
@@ -116,7 +118,7 @@ void Socket::send(const google::protobuf::Message * message) {
 			break;
 	}
 
-	_sendMutex.unlock();
+//	_sendMutex.unlock();
 }
 
 
@@ -151,12 +153,12 @@ void Socket::sendSync(const google::protobuf::Message * message) {
 
 	boost::system::error_code error;
 
-	//	startTimer();
+	startTimer();
 
 	// Send the datagram
 	_socket.send(_outputBuffer.data(), boost::asio::socket_base::message_flags(), error);
 
-	//	endTimer();
+	endTimer();
 
 	if (error) {
 		LOG_ERROR("An error occured while sending data synchronously");
@@ -273,10 +275,10 @@ void Socket::onReceive(protobuf::Message * message) {
 			close(true);
 			break;
 		case messages::Datagram_Type_PING:
-			//			onPing(datagram->mutable_data(), this);
+			onPing(datagram->mutable_data(), this);
 			break;
 		case messages::Datagram_Type_PONG:
-			//			onPong(datagram->mutable_data(), this);
+			onPong(datagram->mutable_data(), this);
 			break;
 		default:
 			LOG_WARN("Received unrecognized Socket command " + std::to_string(datagramType));

@@ -17,6 +17,9 @@ namespace pb {
 namespace master {
 
 void TerminalServer::socketDidOpen(Socket * newSocket) {
+
+	newSocket->setEmissionType(EmissionType::async);
+
 	Server::socketDidOpen(newSocket);
 	// Stop advertising once we have one connection
 	endAdvertising();
@@ -152,7 +155,7 @@ void TerminalServer::onLayoutOpen(google::protobuf::Any *data, Socket *socket) {
 	socket->send(datagram);
 }
 
-void TerminalServer::onLayoutClose(Socket *socket) {
+void TerminalServer::onLayoutClose(Socket *) {
 	if(layoutEngine == nullptr) {
 		LOG_ERROR("Cannot perform layout operations if not layout engine is defined.");
 		return;
@@ -161,7 +164,7 @@ void TerminalServer::onLayoutClose(Socket *socket) {
 	// No response here
 }
 
-void TerminalServer::onLayoutRename(google::protobuf::Any *data, Socket *socket) {
+void TerminalServer::onLayoutRename(protobuf::Any *data, Socket *) {
 	if(layoutEngine == nullptr) {
 		LOG_ERROR("Cannot perform layout operations if not layout engine is defined.");
 		return;
@@ -175,12 +178,11 @@ void TerminalServer::onLayoutRename(google::protobuf::Any *data, Socket *socket)
 	// No response here
 }
 
-void TerminalServer::onLayoutUpdate(google::protobuf::Any *data, Socket *socket) {
+void TerminalServer::onLayoutUpdate(protobuf::Any *data, Socket *) {
 	if(layoutEngine == nullptr) {
 		LOG_ERROR("Cannot perform layout operations if not layout engine is defined.");
 		return;
 	}
-
 
 	messages::Layout * layoutMessage = new messages::Layout();
 	data->UnpackTo(layoutMessage);

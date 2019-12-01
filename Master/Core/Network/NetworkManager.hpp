@@ -15,34 +15,27 @@
 #include "../../../Common/Network.hpp"
 
 #include "TerminalServer.hpp"
+#include "TrackersServer.hpp"
 
 using namespace pb::network;
 
 namespace pb {
 namespace master {
 
-class TrackerClient;
 class LayoutEngine;
 class TrackingEngine;
 
-/// <#Description#>
 class NetworkManager {
 public:
 
+	// MARK: LifeCycle
 	NetworkManager();
 
 	/// Start all activities of the network manager
 	void startActivities();
 
-	/// Open a connection to the given endpoint. If successful, the corresponding callabacks will be called.
-	/// @param endpoint The endpoint to connect to
-	void connectTo(const Endpoint &endpoint);
 
-	/// Called everytime a new Tracker is connected
-	std::function<void(TrackerClient *)> onTracker;
-
-	/// Called everytime a new Broadcaster is connected
-//	std::function<void()> onBroadcaster;
+	// MARK: - Setters
 
 	inline void setLayoutEngine(LayoutEngine * layoutEngine) {
 		_terminalServer.layoutEngine = layoutEngine;
@@ -50,35 +43,26 @@ public:
 
 
 	inline void setTrackingEngine(TrackingEngine * trackingEngine) {
+		_trackersServer.trackingEngine = trackingEngine;
 		_terminalServer.trackingEngine = trackingEngine;
 	}
 
-	void sendToTerminal(protobuf::Message * message);
+	// MARK: - Emitters
 
 	void sendToReceivers(protobuf::Message * message);
 
+	void sendToTerminal(protobuf::Message * message);
+
 private:
 
-	/// Used to find Trackers on the network
-	Browser _trackerBrowser;
-
-	/// The list of endpoints we are connected to
-	std::vector<Endpoint> _connectedEndpoints;
-
-	/// The list of connected Trackers
-	std::vector<TrackerClient *> _connectedTrackers;
-
-	/// The list of connected Receiverrs
-	std::vector<Socket *> _connectedReceivers;
-
-	/// Establishes a connection to the given Tracker
-	void connectToTracker(const Endpoint &endpoint);
-
-	/// The master server
-	TerminalServer _terminalServer;
+	/// The trackers server
+	TrackersServer _trackersServer;
 
 	/// The receivers server
 	Server _receiversServer;
+
+	/// The terminal server
+	TerminalServer _terminalServer;
 
 };
 

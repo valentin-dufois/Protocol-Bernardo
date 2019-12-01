@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		3900756323567A39007A0982 /* libprotobuf.21.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3937AE0223566528009E6021 /* libprotobuf.21.dylib */; };
 		3900756523567C50007A0982 /* libprotobuf.21.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3937AE0223566528009E6021 /* libprotobuf.21.dylib */; };
+		3903C2722392FA300061CFA8 /* Log.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 395A796E2332D2B300499894 /* Log.cpp */; };
+		3903C2762392FBC80061CFA8 /* TrackersServer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3903C2742392FBC80061CFA8 /* TrackersServer.hpp */; };
+		3903C2772392FC960061CFA8 /* TrackersServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3903C2732392FBC80061CFA8 /* TrackersServer.cpp */; };
 		391159092369E9BE00ED75C5 /* NewLayoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391159082369E9BE00ED75C5 /* NewLayoutViewController.swift */; };
 		3911590D2369E9F100ED75C5 /* LayoutEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3911590C2369E9F100ED75C5 /* LayoutEngine.swift */; };
 		391A1FFF2342872600F00517 /* OpenNIParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39CA4AF62332BAEA00E528CD /* OpenNIParser.cpp */; };
@@ -42,7 +45,6 @@
 		3950170B2341689000E7F6BD /* Socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 395017092341689000E7F6BD /* Socket.cpp */; };
 		3950170C2341689000E7F6BD /* Socket.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3950170A2341689000E7F6BD /* Socket.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		3950170E23416C9C00E7F6BD /* SocketStatus.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3950170D23416C9C00E7F6BD /* SocketStatus.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
-		3950170F2341792D00E7F6BD /* TrackerClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3962B348233EE6AB00AEAD8B /* TrackerClient.cpp */; };
 		39512F8A235537DF00A88539 /* SwiftProtobuf in Frameworks */ = {isa = PBXBuildFile; productRef = 39512F89235537DF00A88539 /* SwiftProtobuf */; };
 		3957A738236F6DAF00AB54D0 /* CanvasProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3957A737236F6DAF00AB54D0 /* CanvasProperty.swift */; };
 		3957A73A236F73EA00AB54D0 /* PropertiesTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3957A739236F73EA00AB54D0 /* PropertiesTable.swift */; };
@@ -83,7 +85,6 @@
 		3962032B238DE5E800CB1E76 /* libgflags.2.2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 399D167C23521EB700CEC2F0 /* libgflags.2.2.2.dylib */; };
 		3962032C238DE5E800CB1E76 /* libboost_system.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 39CA4ABF2331470200E528CD /* libboost_system.dylib */; };
 		3962032F238E00E500CB1E76 /* libpb-common.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 39C23841238309B300791E1E /* libpb-common.a */; };
-		3962B346233ECFF700AEAD8B /* TrackerServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3962B342233ECFF200AEAD8B /* TrackerServer.cpp */; };
 		3966E41C2338018800710DD4 /* layout.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = 3966E4182338018800710DD4 /* layout.pb.cc */; };
 		3966E41F2338018800710DD4 /* layout.pb.h in Headers */ = {isa = PBXBuildFile; fileRef = 3966E41B2338018800710DD4 /* layout.pb.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		396C6A50233C5643008FD842 /* Server.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 396C6A4E233C5643008FD842 /* Server.cpp */; };
@@ -188,7 +189,6 @@
 		39E37C0E236E4DED007C78EA /* NSColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E37C0D236E4DED007C78EA /* NSColor.swift */; };
 		39E37C10236E611B007C78EA /* Keycode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E37C0F236E611B007C78EA /* Keycode.swift */; };
 		39EBB7C32350E1630057D474 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39EBB79A2350E0EC0057D474 /* main.cpp */; };
-		39F860CD2390655800A32146 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39F860CC2390655800A32146 /* main.cpp */; };
 		39F860D22390657600A32146 /* Core.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 39F860D02390657600A32146 /* Core.hpp */; };
 		39F860D72390667E00A32146 /* Machine.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 39F860D52390667E00A32146 /* Machine.hpp */; };
 		39F860E4239076C300A32146 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39F860E3239076C300A32146 /* main.cpp */; };
@@ -230,13 +230,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 39CA4A762331407A00E528CD;
 			remoteInfo = "pb-common";
-		};
-		39EBB7C12350E15D0057D474 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 39CA4A6D23313F1E00E528CD /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 39CA4A80233140BE00E528CD;
-			remoteInfo = "pb-acquisitor";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -334,6 +327,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3903C2732392FBC80061CFA8 /* TrackersServer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TrackersServer.cpp; sourceTree = "<group>"; };
+		3903C2742392FBC80061CFA8 /* TrackersServer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TrackersServer.hpp; sourceTree = "<group>"; };
 		39089E982335E24600D03D24 /* pb-tracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "pb-tracker.entitlements"; sourceTree = "<group>"; };
 		391159082369E9BE00ED75C5 /* NewLayoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewLayoutViewController.swift; sourceTree = "<group>"; };
 		3911590C2369E9F100ED75C5 /* LayoutEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutEngine.swift; sourceTree = "<group>"; };
@@ -416,10 +411,6 @@
 		395E05112370C91900C58971 /* TrackingEngine.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TrackingEngine.hpp; sourceTree = "<group>"; };
 		395E05132370CCD700C58971 /* Body.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Body.hpp; sourceTree = "<group>"; };
 		3960B8512337EC870094A2E9 /* layout.proto */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.protobuf; path = layout.proto; sourceTree = "<group>"; };
-		3962B342233ECFF200AEAD8B /* TrackerServer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TrackerServer.cpp; sourceTree = "<group>"; };
-		3962B343233ECFF200AEAD8B /* TrackerServer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TrackerServer.hpp; sourceTree = "<group>"; };
-		3962B348233EE6AB00AEAD8B /* TrackerClient.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TrackerClient.cpp; sourceTree = "<group>"; };
-		3962B349233EE6AB00AEAD8B /* TrackerClient.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TrackerClient.hpp; sourceTree = "<group>"; };
 		3966E4182338018800710DD4 /* layout.pb.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = layout.pb.cc; sourceTree = "<group>"; };
 		3966E41B2338018800710DD4 /* layout.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = layout.pb.h; sourceTree = "<group>"; };
 		396C6A4E233C5643008FD842 /* Server.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Server.cpp; sourceTree = "<group>"; };
@@ -520,9 +511,17 @@
 		39F860EF2390775C00A32146 /* Talkers.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Talkers.entitlements; sourceTree = "<group>"; };
 		39F860F0239079F100A32146 /* B-000.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "B-000.hpp"; sourceTree = "<group>"; };
 		39F860F123907B5500A32146 /* B-000.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "B-000.cpp"; sourceTree = "<group>"; };
+		39F8610C2391DB5800A32146 /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		3903C26E2392F9FB0061CFA8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		39C23836238309B300791E1E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -828,8 +827,6 @@
 			children = (
 				395A798B23358F1600499894 /* Core.cpp */,
 				395A798C23358F1600499894 /* Core.hpp */,
-				3962B342233ECFF200AEAD8B /* TrackerServer.cpp */,
-				3962B343233ECFF200AEAD8B /* TrackerServer.hpp */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -864,10 +861,10 @@
 			children = (
 				39ABB5572336FE1200C5D147 /* NetworkManager.cpp */,
 				39ABB5582336FE1200C5D147 /* NetworkManager.hpp */,
-				3962B348233EE6AB00AEAD8B /* TrackerClient.cpp */,
-				3962B349233EE6AB00AEAD8B /* TrackerClient.hpp */,
 				392DCCB023453B7700885C84 /* TerminalServer.cpp */,
 				392DCCB123453B7700885C84 /* TerminalServer.hpp */,
+				3903C2732392FBC80061CFA8 /* TrackersServer.cpp */,
+				3903C2742392FBC80061CFA8 /* TrackersServer.hpp */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -994,6 +991,7 @@
 				39CA4AEF2332B92800E528CD /* PoseEstimationEngine */,
 				39CA4A83233140BE00E528CD /* main.cpp */,
 				39CA4AFA2332BB6700E528CD /* libraries.hpp */,
+				39F8610C2391DB5800A32146 /* Makefile */,
 			);
 			path = Tracker;
 			sourceTree = "<group>";
@@ -1237,6 +1235,7 @@
 				395A7983233332CB00499894 /* maths.hpp in Headers */,
 				395A79802333321600499894 /* RawBody.hpp in Headers */,
 				39CA4AFD2332BDAB00E528CD /* Log.hpp in Headers */,
+				3903C2762392FBC80061CFA8 /* TrackersServer.hpp in Headers */,
 				395A0C87237FAFB600FB1D1D /* Network.hpp in Headers */,
 				39387FA3237AE8CF009E3FF2 /* thread.hpp in Headers */,
 				395A79C82335BB2000499894 /* network.pb.h in Headers */,
@@ -1391,11 +1390,11 @@
 			buildConfigurationList = 39EBB7BD2350E13F0057D474 /* Build configuration list for PBXNativeTarget "pb-tracker-launcher" */;
 			buildPhases = (
 				39EBB7A42350E13F0057D474 /* Sources */,
+				3903C26E2392F9FB0061CFA8 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				39EBB7C22350E15D0057D474 /* PBXTargetDependency */,
 			);
 			name = "pb-tracker-launcher";
 			productName = "pb-acquisitor";
@@ -1608,7 +1607,6 @@
 				39CA4ADA2331486D00E528CD /* Advertiser.cpp in Sources */,
 				395A79C92335BB2000499894 /* network.pb.cc in Sources */,
 				395A0C81237F5E2A00FB1D1D /* Endpoint.cpp in Sources */,
-				39F860CD2390655800A32146 /* main.cpp in Sources */,
 				391A20082342B6D300F00517 /* Ping.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1622,7 +1620,6 @@
 				39CA4A84233140BE00E528CD /* main.cpp in Sources */,
 				391A1FFF2342872600F00517 /* OpenNIParser.cpp in Sources */,
 				395A799623359B2D00499894 /* PoseEstimationEngine.cpp in Sources */,
-				3962B346233ECFF700AEAD8B /* TrackerServer.cpp in Sources */,
 				395A796B2332C4F800499894 /* OpenNIDevice.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1632,7 +1629,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				39ABB55B2337087900C5D147 /* NetworkManager.cpp in Sources */,
-				3950170F2341792D00E7F6BD /* TrackerClient.cpp in Sources */,
+				3903C2772392FC960061CFA8 /* TrackersServer.cpp in Sources */,
 				392DCCB423453D8300885C84 /* TerminalServer.cpp in Sources */,
 				3978A80B2336F7C300AF409D /* Core.cpp in Sources */,
 				39CA4A8F233140E100E528CD /* main.cpp in Sources */,
@@ -1699,6 +1696,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3903C2722392FA300061CFA8 /* Log.cpp in Sources */,
 				39EBB7C32350E1630057D474 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1740,11 +1738,6 @@
 			isa = PBXTargetDependency;
 			target = 39CA4A762331407A00E528CD /* pb-common (shared) */;
 			targetProxy = 39CA4AB42331415900E528CD /* PBXContainerItemProxy */;
-		};
-		39EBB7C22350E15D0057D474 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 39CA4A80233140BE00E528CD /* pb-tracker */;
-			targetProxy = 39EBB7C12350E15D0057D474 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -2153,7 +2146,6 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
-					BOOST_ASIO_SEPARATE_COMPILATION,
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -2169,7 +2161,7 @@
 				);
 				MACH_O_TYPE = mh_dylib;
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_ENABLE_DEBUG_INFO = "";
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "pb-common";
@@ -2223,7 +2215,7 @@
 				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = BOOST_ASIO_SEPARATE_COMPILATION;
+				GCC_PREPROCESSOR_DEFINITIONS = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;

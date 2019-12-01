@@ -19,7 +19,6 @@
 #include "../Endpoint.hpp"
 
 namespace asio = boost::asio;
-namespace protobuf = google::protobuf;
 
 namespace pb {
 namespace network {
@@ -29,7 +28,7 @@ namespace network {
 class Browser {
 public:
 
-	Browser(const Endpoint::Type &serverType);
+	Browser() = default;
 
 	/// Called everytime a message is received from the network
 	/// This is where you set up your callback method
@@ -37,7 +36,7 @@ public:
 
 	/// Make the browser attentive to the network, and ready to receive messages from
 	/// other advertisers on the network
-	virtual void startBrowsing() final;
+	virtual void startBrowsing(const NetworkPort &port) final;
 
 	/// End listening to the network.
 	virtual void stopBrowsing() final;

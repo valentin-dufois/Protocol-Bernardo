@@ -90,13 +90,22 @@ struct Body {
 	/// Calculate the weighted mean of all the raw skeletons matching the current body
 	void updatePosition() {
 
+		if(!isValid)
+			return;
+
 		// Is there any rawSkeleton to work with ?
 		if(rawSkeletons.size() == 0) {
 			++inactivityCount;
+
+			if(inactivityCount > 15)
+				isValid = false;
+
 			return;
 		}
 
+		// Reset
 		inactivityCount = 0;
+		isValid = true;
 
 		Skeleton skeleton;
 

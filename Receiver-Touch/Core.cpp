@@ -13,17 +13,17 @@ Core::Core() {
 	_socket = new pb::network::Socket();
 	_socket->delegate = this;
 
-	_browser = new pb::network::Browser(pb::network::Endpoint::receiver);
+	_browser = new pb::network::Browser();
 
 	_browser->onReceive = [&] (const pb::network::Endpoint &remote) {
 		if(_socket->getStatus() != pb::network::SocketStatus::ready) {
 			_socketMutex.lock();
-			_socket->connectTo(remote);
+			_socket->connectTo(remote.ip, pb::network::serverPortReceiver);
 			_socketMutex.unlock();
 		}
 	};
 
-	_browser->startBrowsing();
+	_browser->startBrowsing(pb::network::discoveryPortReceiver);
 }
 
 Core::~Core()
@@ -73,6 +73,7 @@ Core::getOutputInfo(CHOP_OutputInfo* info, const OP_Inputs* inputs, void* reserv
 	if(_bodiesBuffer.size() > 0) {
 		// We received informations, copy the buffer and clear it
 		clearTempBodies();
+
 		for(std::pair<pb::bodyUID, pb::Body *> pair: _bodiesBuffer) {
 			// Check if the body is valid
 			if(!pair.second->isValid) {
@@ -131,17 +132,20 @@ Core::execute(CHOP_Output* output, const OP_Inputs* inputs, void* reserved)
 
 	for(pb::Body * body: _tempBodies) {
 		for(pb::Joint &joint: body->skeleton()->joints) {
+			bool posConf = joint.positionConfidence > 0 && joint.positionConfidence <= 1.0;
+			bool orConf = joint.orientationConfidence > 0 && joint.orientationConfidence <= 1.0;
+
 			if(_outputPositions) {
-				output->channels[currChannel + 0][0] = joint.position.x;
-				output->channels[currChannel + 1][0] = joint.position.y;
-				output->channels[currChannel + 2][0] = joint.position.z;
+				output->channels[currChannel + 0][0] = posConf ? joint.position.x : 0;
+				output->channels[currChannel + 1][0] = posConf ? joint.position.y : 0;
+				output->channels[currChannel + 2][0] = posConf ? -joint.position.z : 0;
 				currChannel += 3;
 			}
 
 			if(_outputOrientations) {
-				output->channels[currChannel + 0][0] = joint.orientation.x;
-				output->channels[currChannel + 1][0] = joint.orientation.y;
-				output->channels[currChannel + 2][0] = joint.orientation.z;
+				output->channels[currChannel + 0][0] = orConf ? joint.orientation.x : 0;
+				output->channels[currChannel + 1][0] = orConf ? joint.orientation.y : 0;
+				output->channels[currChannel + 2][0] = orConf ? joint.orientation.z : 0;
 				currChannel += 3;
 			}
 
@@ -250,9 +254,7 @@ void Core::getWarningString(OP_String * warning, void *reserved1) {
 
 // MARK: - SocketDelegate
 
-void Core::socketDidOpen(pb::network::Socket * socket) {
-//	LOG_DEBUG("SOCKET_OPEN");
-}
+void Core::socketDidOpen(pb::network::Socket * socket) {}
 
 void Core::socketDidReceive(pb::network::Socket * socket, pb::network::messages::Datagram * datagram) {
 
@@ -290,8 +292,6 @@ void Core::socketDidReceive(pb::network::Socket * socket, pb::network::messages:
 }
 
 void Core::socketDidClose(pb::network::Socket * socket) {
-//	LOG_INFO("Disconnected from master");
-
 	// Empty the buffers
 	_bodiesBufferMutex.lock();
 

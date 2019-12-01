@@ -42,9 +42,7 @@ message Datagram {
 									// depends on the remote
 
 		// 1XX: Tracker types -
-		ACQ_GET_BODY_STREAM = 110;	// Request stream of bodies
-		ACQ_END_BODY_STREAM = 111;	// Requests end of bodies stream
-		ACQ_BODY			= 115;	// A Body sent through the stream
+		RAW_BODY			= 110;	// A Body sent through the stream
 
 		// 2XX: Master types -
 		// Layout

@@ -13,7 +13,7 @@
 namespace pb {
 namespace Log {
 
-Level level = static_cast<Level>(FLAGS_loglevel);
+Level level = Level::DEV;
 
 void debug(const std::string &log, const std::string &file, const int &line) {
 	if(level <= 1)

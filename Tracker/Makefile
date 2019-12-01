@@ -48,9 +48,9 @@ LDFLAGS = -L/usr/local/lib
 
 # Libraries
 LDLIBS = -lpb-common \
-	 -lboost_system \
+		-lboost_system \
          -lOpenNI2 \
-	 -lNiTE2 \
+		-lNiTE2
 
 
 # #######################

@@ -161,13 +161,7 @@ struct Pb_Network_Messages_Datagram {
     case status // = 50
 
     /// 1XX: Tracker types -
-    case acqGetBodyStream // = 110
-
-    /// Requests end of bodies stream
-    case acqEndBodyStream // = 111
-
-    /// A Body sent through the stream
-    case acqBody // = 115
+    case rawBody // = 110
 
     /// 2XX: Master types -
     /// Layout
@@ -215,9 +209,7 @@ struct Pb_Network_Messages_Datagram {
       case 11: self = .pong
       case 15: self = .close
       case 50: self = .status
-      case 110: self = .acqGetBodyStream
-      case 111: self = .acqEndBodyStream
-      case 115: self = .acqBody
+      case 110: self = .rawBody
       case 205: self = .layoutLayout
       case 210: self = .layoutList
       case 211: self = .layoutCreate
@@ -240,9 +232,7 @@ struct Pb_Network_Messages_Datagram {
       case .pong: return 11
       case .close: return 15
       case .status: return 50
-      case .acqGetBodyStream: return 110
-      case .acqEndBodyStream: return 111
-      case .acqBody: return 115
+      case .rawBody: return 110
       case .layoutLayout: return 205
       case .layoutList: return 210
       case .layoutCreate: return 211
@@ -275,9 +265,7 @@ extension Pb_Network_Messages_Datagram.TypeEnum: CaseIterable {
     .pong,
     .close,
     .status,
-    .acqGetBodyStream,
-    .acqEndBodyStream,
-    .acqBody,
+    .rawBody,
     .layoutLayout,
     .layoutList,
     .layoutCreate,
@@ -483,9 +471,7 @@ extension Pb_Network_Messages_Datagram.TypeEnum: SwiftProtobuf._ProtoNameProvidi
     11: .same(proto: "PONG"),
     15: .same(proto: "CLOSE"),
     50: .same(proto: "STATUS"),
-    110: .same(proto: "ACQ_GET_BODY_STREAM"),
-    111: .same(proto: "ACQ_END_BODY_STREAM"),
-    115: .same(proto: "ACQ_BODY"),
+    110: .same(proto: "RAW_BODY"),
     205: .same(proto: "LAYOUT_LAYOUT"),
     210: .same(proto: "LAYOUT_LIST"),
     211: .same(proto: "LAYOUT_CREATE"),

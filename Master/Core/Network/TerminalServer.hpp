@@ -21,10 +21,7 @@ class LayoutEngine;
 class TerminalServer: public network::Server {
 public:
 
-	TerminalServer(const Endpoint::Type &aType): Server(aType) {
-		open();
-		advertise();
-	}
+	TerminalServer(): Server(serverPortTerminal, discoveryPortTerminal, Endpoint::terminal) {}
 
 	/// Handle to the layout engine
 	LayoutEngine * layoutEngine = nullptr;

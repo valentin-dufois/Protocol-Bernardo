@@ -18,10 +18,10 @@
 namespace pb {
 namespace network {
 
-Server::Server(const Endpoint::Type &aType):
+Server::Server(const NetworkPort &port, const NetworkPort &discoveryPort, const Endpoint::Type &aType):
 _type(aType),
-_port(Endpoint(_type).port),
-_advertiser(aType) {
+_port(port),
+_advertiser(discoveryPort) {
 	// Build the acceptor
 	_acceptor = new asio::ip::tcp::acceptor(Engine::instance()->getContext(), asio::ip::tcp::endpoint(asio::ip::tcp::v4(), _port));
 }

@@ -8,9 +8,7 @@
 #ifndef Ping_hpp
 #define Ping_hpp
 
-namespace google::protobuf {
-	class Any;
-}
+#include "../../Messages/messages.hpp"
 
 namespace pb {
 namespace network {
@@ -21,9 +19,9 @@ class Ping {
 protected:
 	void ping(Socket * socket);
 
-	void onPing(google::protobuf::Any * data, Socket * socket);
+	void onPing(protobuf::Any * data, Socket * socket);
 
-	void onPong(google::protobuf::Any * data, Socket * socket);
+	void onPong(protobuf::Any * data, Socket * socket);
 };
 
 } /* ::network */

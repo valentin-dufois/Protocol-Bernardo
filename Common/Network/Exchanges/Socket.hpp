@@ -34,8 +34,7 @@ namespace network {
 ///
 /// A Socket handles all logics needed to open a connection, send and receive datagrams, and close the connection.
 /// Received datagrams, as well as multiple events, can be catched using a SocketDelegate subclass.
-class Socket: public
-Ping {
+class Socket: public Ping {
 public:
 
 	SocketDelegate * delegate = nullptr;
@@ -46,6 +45,9 @@ public:
 		_socket(Engine::instance()->getContext()),
 		_outputStream(&_outputBuffer),
 		_timer(Engine::instance()->getContext()) {}
+
+	/// Connects the socket to the given ip and port
+	void connectTo(const std::string &ip, const NetworkPort &port);
 
 	/// Connects the socket to the given endpoint
 	void connectTo(const Endpoint &remote);
@@ -169,14 +171,15 @@ private:
 		_timer.expires_from_now(boost::posix_time::seconds(2));
 		_timer.async_wait([&] (const boost::system::error_code &error) {
 			// Operation aborted is send if the timer is cancelled, meaning no timeout1
-			if(error != boost::asio::error::operation_aborted)
+			if(error != boost::asio::error::operation_aborted) {
 				LOG_ERROR("Socket send timeout");
-			close(true);
+				close(true);
+			}
 		});
 	}
 
 	inline void endTimer() {
-		_timer.cancel_one();
+		_timer.cancel();
 	}
 
 

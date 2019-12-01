@@ -51,7 +51,7 @@ inline T rad2deg(const T &rad) {
 /// Converts a nite float3 to a `vec3`
 /// @param p3f The float3 to convert
 inline vec3 P3FToVec3(const nite::Point3f &p3f) {
-	return vec3(p3f.x, p3f.y, p3f.z);
+	return vec3(-p3f.x, p3f.y, p3f.z);
 }
 
 /// Converts a nite quaternion to a `vec3` euler angle (pitch, yaw, roll)

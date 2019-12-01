@@ -10,21 +10,16 @@
 namespace pb {
 namespace network {
 
+Endpoint::Endpoint(const std::string &aIP, const unsigned int &aPort):
+ip(aIP),
+port(aPort) {};
+
 Endpoint::Endpoint(const std::string &aIP,
 				  const std::string &aName,
 				  const Type &aType):
-	ip(aIP),
-	name(aName),
-	type(aType) {
-		port = getPort();
-		discoveryPort = getDiscoveryPort();
-};
-
-Endpoint::Endpoint(const Type &aType):
-	type(aType) {
-		port = getPort();
-		discoveryPort = getDiscoveryPort();
-};
+ip(aIP),
+name(aName),
+type(aType) {};
 
 Endpoint::Endpoint(const messages::Endpoint message):
 	name(std::string(message.name()))
@@ -45,9 +40,6 @@ Endpoint::Endpoint(const messages::Endpoint message):
 		default:
 			type = Type::undefined;
 	}
-
-	port = getPort();
-	discoveryPort = getDiscoveryPort();
 }
 
 Endpoint::Endpoint(const messages::Endpoint message,
@@ -59,36 +51,6 @@ Endpoint::Endpoint(const messages::Endpoint message,
 
 Endpoint::Endpoint(const boost::asio::ip::tcp::endpoint &endpoint) {
 	ip = endpoint.address().to_string();
-}
-
-
-// MARK: - Methods
-NetworkPort Endpoint::getPort() {
-	switch (type) {
-		case tracker:
-			return serverPortTracker; 	break;
-		case receiver:
-			return serverPortReceiver; 	break;
-		case master:
-			return serverPortMaster; 	   	break;
-		default:
-			LOG_WARN("Could not found port for non supported endpoint");
-			return 0;
-	}
-}
-
-NetworkPort Endpoint::getDiscoveryPort() {
-	switch (type) {
-		case tracker:
-			return discoveryPortTracker; 		break;
-		case receiver:
-			return discoveryPortReceiver; 	break;
-		case master:
-			return discoveryPortMaster; 	   	break;
-		default:
-			LOG_WARN("Could not found port for non supported endpoint");
-			return 0;
-	}
 }
 
 } /* ::network */
