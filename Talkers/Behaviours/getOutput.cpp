@@ -10,10 +10,12 @@
 
 #include <iostream>
 
+#include "B-100/S-100-00.hpp"
+
 Output * Output::get(const unsigned int id) {
 	switch (id) {
-		case 0:
-			return nullptr;
+		case 10000:
+			return new S10000();
 		default:
 			std::cout << "No output " << id << std::endl;
 			return nullptr;

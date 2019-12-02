@@ -13,7 +13,11 @@
 namespace pb {
 namespace Log {
 
+#ifdef LOG_LEVEL
+Level level = Level(LOG_LEVEL);
+#else
 Level level = Level::DEV;
+#endif
 
 void debug(const std::string &log, const std::string &file, const int &line) {
 	if(level <= 1)

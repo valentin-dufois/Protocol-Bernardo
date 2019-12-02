@@ -49,6 +49,12 @@ protected:
 	/// Available captions to form the output message
 	std::vector<std::string> _captions;
 
+	/// Tell if this output marks the end of the current tree
+	bool _isTreeEnd;
+
+	/// The next behaviour id, if any
+	unsigned int _nextBehaviour;
+
 	/// Tell if the output message should be delayed or not
 	bool _isDelayed;
 
@@ -57,9 +63,6 @@ protected:
 
 	/// The delay variance in seconds
 	double _delayVariance;
-
-	/// The next behaviour id, if any
-	unsigned int _nextBehaviour;
 
 	/// Gives the caption to insert in the message
 	std::string getCaption();

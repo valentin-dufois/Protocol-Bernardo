@@ -52,7 +52,9 @@ std::string Output::getCaption() {
 		std::string fullMatch = match.str();
 		std::string key = fullMatch.substr(1, fullMatch.size() - 2);
 
-		return "";
+		// TODO: 
+
+		return "{}";
 	});
 
 	return builtCaption;

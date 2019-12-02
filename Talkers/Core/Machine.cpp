@@ -20,11 +20,10 @@ void Machine::onMessage(Message * message) {
 
 	// Do we have a valid behaviour ?
 	if(behaviour == nullptr) {
-		delete behaviour;
 		return onError();
 	}
 
-	if(!behaviour->isTreeStart) {
+	if(behaviour->isTreeStart) {
 		if(_tree != nullptr && !behaviour->forceStart) {
 			delete behaviour;
 			return onError();

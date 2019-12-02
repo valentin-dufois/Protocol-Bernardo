@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		3900756323567A39007A0982 /* libprotobuf.21.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3937AE0223566528009E6021 /* libprotobuf.21.dylib */; };
 		3900756523567C50007A0982 /* libprotobuf.21.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3937AE0223566528009E6021 /* libprotobuf.21.dylib */; };
-		3903C2722392FA300061CFA8 /* Log.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 395A796E2332D2B300499894 /* Log.cpp */; };
 		3903C2762392FBC80061CFA8 /* TrackersServer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3903C2742392FBC80061CFA8 /* TrackersServer.hpp */; };
 		3903C2772392FC960061CFA8 /* TrackersServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3903C2732392FBC80061CFA8 /* TrackersServer.cpp */; };
 		391159092369E9BE00ED75C5 /* NewLayoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391159082369E9BE00ED75C5 /* NewLayoutViewController.swift */; };
@@ -19,6 +18,17 @@
 		391A20092342B6D300F00517 /* Ping.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 391A20072342B6D300F00517 /* Ping.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		391A20112343F0E900F00517 /* OpenNI2 in Copy OpenNI + NiTE Support Files */ = {isa = PBXBuildFile; fileRef = 391A20102343F0E100F00517 /* OpenNI2 */; };
 		391A20132343F16100F00517 /* NiTE2 in Copy OpenNI + NiTE Support Files */ = {isa = PBXBuildFile; fileRef = 391A20122343F15E00F00517 /* NiTE2 */; };
+		3922C27323943EB40088537C /* Log.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 395A796E2332D2B300499894 /* Log.cpp */; };
+		3922C27423943FBD0088537C /* Ping.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 391A20062342B6D300F00517 /* Ping.cpp */; };
+		3922C27523943FBD0088537C /* Socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 395017092341689000E7F6BD /* Socket.cpp */; };
+		3922C27623943FBD0088537C /* Browser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39CA4AC42331486D00E528CD /* Browser.cpp */; };
+		3922C27723943FBD0088537C /* layout.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = 3966E4182338018800710DD4 /* layout.pb.cc */; };
+		3922C27823943FBD0088537C /* body.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = 395A79B42335BB2000499894 /* body.pb.cc */; };
+		3922C27923943FBD0088537C /* maths.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = 395A79AE2335BB2000499894 /* maths.pb.cc */; };
+		3922C27A23943FBD0088537C /* network.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = 395A79B92335BB2000499894 /* network.pb.cc */; };
+		3922C27B23943FBD0088537C /* NetworkEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39CA4AC62331486D00E528CD /* NetworkEngine.cpp */; };
+		3922C27C23943FBD0088537C /* Endpoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 395A0C80237F5E2A00FB1D1D /* Endpoint.cpp */; };
+		3922C27D23943FBD0088537C /* Log.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 395A796E2332D2B300499894 /* Log.cpp */; };
 		3928CC232367A084006E8D9F /* MasterClientDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CC222367A084006E8D9F /* MasterClientDelegate.swift */; };
 		3928CC272367AA2A006E8D9F /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CC262367AA2A006E8D9F /* App.swift */; };
 		392BEED5237239D300DED1D6 /* CPComboBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392BEED4237239D300DED1D6 /* CPComboBox.swift */; };
@@ -81,10 +91,11 @@
 		395D8883238CAB0400FEC1EC /* libpb-common.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 39CA4A772331407A00E528CD /* libpb-common.dylib */; };
 		395E05122370C91900C58971 /* TrackingEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 395E05102370C91900C58971 /* TrackingEngine.cpp */; };
 		395E05142370CDD200C58971 /* Body.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 395E05132370CCD700C58971 /* Body.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
+		395E305C2395991300B8B69F /* B-100.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 395E305A2395991300B8B69F /* B-100.cpp */; };
+		395E305F2395998A00B8B69F /* S-100-00.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 395E305D2395998A00B8B69F /* S-100-00.cpp */; };
 		3962032A238DE5E800CB1E76 /* libprotobuf.21.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3937AE0223566528009E6021 /* libprotobuf.21.dylib */; };
 		3962032B238DE5E800CB1E76 /* libgflags.2.2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 399D167C23521EB700CEC2F0 /* libgflags.2.2.2.dylib */; };
 		3962032C238DE5E800CB1E76 /* libboost_system.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 39CA4ABF2331470200E528CD /* libboost_system.dylib */; };
-		3962032F238E00E500CB1E76 /* libpb-common.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 39C23841238309B300791E1E /* libpb-common.a */; };
 		3966E41C2338018800710DD4 /* layout.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = 3966E4182338018800710DD4 /* layout.pb.cc */; };
 		3966E41F2338018800710DD4 /* layout.pb.h in Headers */ = {isa = PBXBuildFile; fileRef = 3966E41B2338018800710DD4 /* layout.pb.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		396C6A50233C5643008FD842 /* Server.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 396C6A4E233C5643008FD842 /* Server.cpp */; };
@@ -203,13 +214,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		3962032D238E00D800CB1E76 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 39CA4A6D23313F1E00E528CD /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 39C23806238309B300791E1E;
-			remoteInfo = "pb-common (static)";
-		};
 		39C2384223830B2C00791E1E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 39CA4A6D23313F1E00E528CD /* Project object */;
@@ -410,6 +414,10 @@
 		395E05102370C91900C58971 /* TrackingEngine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TrackingEngine.cpp; sourceTree = "<group>"; };
 		395E05112370C91900C58971 /* TrackingEngine.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TrackingEngine.hpp; sourceTree = "<group>"; };
 		395E05132370CCD700C58971 /* Body.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Body.hpp; sourceTree = "<group>"; };
+		395E305A2395991300B8B69F /* B-100.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "B-100.cpp"; sourceTree = "<group>"; };
+		395E305B2395991300B8B69F /* B-100.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "B-100.hpp"; sourceTree = "<group>"; };
+		395E305D2395998A00B8B69F /* S-100-00.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "S-100-00.cpp"; sourceTree = "<group>"; };
+		395E305E2395998A00B8B69F /* S-100-00.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "S-100-00.hpp"; sourceTree = "<group>"; };
 		3960B8512337EC870094A2E9 /* layout.proto */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.protobuf; path = layout.proto; sourceTree = "<group>"; };
 		3966E4182338018800710DD4 /* layout.pb.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = layout.pb.cc; sourceTree = "<group>"; };
 		3966E41B2338018800710DD4 /* layout.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = layout.pb.h; sourceTree = "<group>"; };
@@ -533,7 +541,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3962032F238E00E500CB1E76 /* libpb-common.a in Frameworks */,
 				3962032A238DE5E800CB1E76 /* libprotobuf.21.dylib in Frameworks */,
 				3962032B238DE5E800CB1E76 /* libgflags.2.2.2.dylib in Frameworks */,
 				3962032C238DE5E800CB1E76 /* libboost_system.dylib in Frameworks */,
@@ -779,6 +786,7 @@
 		39593A7F238F297900B8CF17 /* Behaviours */ = {
 			isa = PBXGroup;
 			children = (
+				395E3059239598FC00B8B69F /* B-100 */,
 				39F860D8239067E500A32146 /* B-000 */,
 				39593A80238F299200B8CF17 /* Behaviour.cpp */,
 				39593A81238F299200B8CF17 /* Behaviour.hpp */,
@@ -843,6 +851,17 @@
 				395E05112370C91900C58971 /* TrackingEngine.hpp */,
 			);
 			path = TrackingEngine;
+			sourceTree = "<group>";
+		};
+		395E3059239598FC00B8B69F /* B-100 */ = {
+			isa = PBXGroup;
+			children = (
+				395E305A2395991300B8B69F /* B-100.cpp */,
+				395E305B2395991300B8B69F /* B-100.hpp */,
+				395E305D2395998A00B8B69F /* S-100-00.cpp */,
+				395E305E2395998A00B8B69F /* S-100-00.hpp */,
+			);
+			path = "B-100";
 			sourceTree = "<group>";
 		};
 		3962B33D233EAD8900AEAD8B /* Discovery */ = {
@@ -1298,7 +1317,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				3962032E238E00D800CB1E76 /* PBXTargetDependency */,
 			);
 			name = "pb-receiver-touch";
 			productName = "pb-receiver-touch";
@@ -1588,6 +1606,16 @@
 			files = (
 				39C2389B2384983600791E1E /* main.cpp in Sources */,
 				39C238982384976F00791E1E /* Core.cpp in Sources */,
+				3922C27423943FBD0088537C /* Ping.cpp in Sources */,
+				3922C27523943FBD0088537C /* Socket.cpp in Sources */,
+				3922C27623943FBD0088537C /* Browser.cpp in Sources */,
+				3922C27723943FBD0088537C /* layout.pb.cc in Sources */,
+				3922C27823943FBD0088537C /* body.pb.cc in Sources */,
+				3922C27923943FBD0088537C /* maths.pb.cc in Sources */,
+				3922C27A23943FBD0088537C /* network.pb.cc in Sources */,
+				3922C27B23943FBD0088537C /* NetworkEngine.cpp in Sources */,
+				3922C27C23943FBD0088537C /* Endpoint.cpp in Sources */,
+				3922C27D23943FBD0088537C /* Log.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1696,7 +1724,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3903C2722392FA300061CFA8 /* Log.cpp in Sources */,
+				3922C27323943EB40088537C /* Log.cpp in Sources */,
 				39EBB7C32350E1630057D474 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1710,6 +1738,8 @@
 				39F860E9239076D900A32146 /* Machine.cpp in Sources */,
 				39F860EA239076D900A32146 /* Behaviour.cpp in Sources */,
 				39F860EB239076D900A32146 /* getBehaviour.cpp in Sources */,
+				395E305F2395998A00B8B69F /* S-100-00.cpp in Sources */,
+				395E305C2395991300B8B69F /* B-100.cpp in Sources */,
 				39F860F223907B5500A32146 /* B-000.cpp in Sources */,
 				39F860EC239076D900A32146 /* Output.cpp in Sources */,
 				39F860F32390800A00A32146 /* getOutput.cpp in Sources */,
@@ -1719,11 +1749,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		3962032E238E00D800CB1E76 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 39C23806238309B300791E1E /* pb-common (static) */;
-			targetProxy = 3962032D238E00D800CB1E76 /* PBXContainerItemProxy */;
-		};
 		39C2384323830B2C00791E1E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 39CA4A762331407A00E528CD /* pb-common (shared) */;
@@ -1984,6 +2009,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					MACHINE_RECEIVER_TOUCH,
 					BOOST_ASIO_SEPARATE_COMPILATION,
+					"LOG_LEVEL=5",
 				);
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;

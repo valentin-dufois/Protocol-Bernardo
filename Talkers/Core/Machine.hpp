@@ -28,6 +28,10 @@ public:
 
 	void print(std::string);
 
+	// DATA ACCESS
+
+
+
 private:
 	Tree * _tree = nullptr;
 
