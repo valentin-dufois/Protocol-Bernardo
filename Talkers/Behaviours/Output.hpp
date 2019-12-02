@@ -34,7 +34,7 @@ public:
 
 	/// Gives the message corresponding to this output
 	/// If no message should be sent because this is an end, you should override this method and return nullptr;
-	virtual Message * getMessage();
+	Message * getMessage();
 
 	virtual ~Output() {}
 

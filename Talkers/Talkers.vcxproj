@@ -77,6 +77,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>C:\Users\mflouze\Documents\UQAT\PRISME\libs\boost_1_71_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <TargetMachine>MachineX86</TargetMachine>
@@ -102,6 +103,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="behaviours\b-000\B-000.cpp" />
+    <ClCompile Include="Behaviours\B-100\B-100.cpp" />
+    <ClCompile Include="Behaviours\B-100\S-100-00.cpp" />
+    <ClCompile Include="Behaviours\B-102\B-102.cpp" />
     <ClCompile Include="behaviours\Behaviour.cpp" />
     <ClCompile Include="behaviours\getBehaviour.cpp" />
     <ClCompile Include="behaviours\getOutput.cpp" />
@@ -112,6 +116,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="behaviours\b-000\B-000.hpp" />
+    <ClInclude Include="Behaviours\B-100\B-100.hpp" />
+    <ClInclude Include="Behaviours\B-100\S-100-00.hpp" />
+    <ClInclude Include="Behaviours\B-102\B-102.hpp" />
+    <ClInclude Include="Behaviours\B-102\S-102-00.hpp" />
     <ClInclude Include="behaviours\Behaviour.hpp" />
     <ClInclude Include="behaviours\Message.hpp" />
     <ClInclude Include="behaviours\Output.hpp" />
