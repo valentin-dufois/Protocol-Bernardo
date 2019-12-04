@@ -13,27 +13,23 @@
 class S10000: public Output {
 public:
 
-	virtual bool isConditionValid(const State &behaviourState);
-
-protected:
-	
-	std::vector<std::string> _outputValues = {
+	S10000(): Output(10000,	// Output ID
+					 false,	// Is tree end ?
+					 101,	// Next Behaviour ID
+					 false,	// Is delayed
+					 0,		// Delay value (seconds)
+					 0,		// Delay variance (seconds)
+					 {		// Output values
 		"NBR_BODY"
-	};
-
-	std::vector<std::string> _captions = {
+	},
+					 {		// Captions
 		"Bien que je détecte {NBR_BODY} personne.s, je ne détecte pas de mouvement."
+	}) {}
+
+	virtual bool isConditionValid(const State &behaviourState) override {
+		_state["NBR_BODY"] = behaviourState.at("NBR_BODY");
+		return true;
 	};
-
-	bool _isTreeEnd = false;
-
-	unsigned int _nextBehaviour = 101;
-
-	bool _isDelayed = false;
-
-	double _delayValue = 0;
-
-	double _delayVariance = 0;
 };
 
 #endif /* S_100_00_hpp */
