@@ -21,12 +21,25 @@ class Machine;
 class Behaviour {
 public:
 
+	Behaviour(const unsigned int id,
+			  const unsigned int treeID,
+			  const bool isTreeStart,
+			  const bool forceStart,
+			  const std::vector<std::string> expectedInputs,
+			  const std::vector<unsigned int> possibleOutputs):
+	id(id),
+	treeID(treeID),
+	isTreeStart(isTreeStart),
+	forceStart(forceStart),
+	_expectedInputs(expectedInputs),
+	_possibleOutputs(possibleOutputs) {}
+
 	static Behaviour * get(const unsigned int id);
 
 	// MARK: - Identification
 
 	/// Unique ID of the behaviour
-	unsigned int id;
+	const unsigned int id;
 
 	// MARK: - Tree
 
@@ -34,13 +47,13 @@ public:
 	Tree * tree;
 
 	/// ID of the tree
-	unsigned int treeID;
+	const unsigned int treeID;
 
 	/// Tell if this behaviour is the beggining of a tree
-	bool isTreeStart;
+	const bool isTreeStart;
 
 	/// Tell if this behaviour override the current tree
-	bool forceStart;
+	const bool forceStart;
 
 
 	// MARK: - LifeCycle
@@ -64,10 +77,10 @@ public:
 
 protected:
 	/// List of expected inputs
-	std::vector<std::string> _expectedInputs;
+	const std::vector<std::string> _expectedInputs;
 
 	/// List of possible outputs
-	std::vector<unsigned int> _possibleOutputs;
+	const std::vector<unsigned int> _possibleOutputs;
 
 	/// The inner state of the behaviour
 	State _state;

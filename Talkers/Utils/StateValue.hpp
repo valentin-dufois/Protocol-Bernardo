@@ -100,6 +100,19 @@ struct StateValue{
 		return *this;
 	}
 
+	operator std::string () const {
+		switch(_type) {
+			case intType:
+				return std::to_string(_int);
+			case doubleType:
+				return std::to_string(_double);
+			case floatType:
+				return std::to_string(_float);
+			case boolType:
+				return std::to_string(_bool);
+		}
+	}
+
 private:
 	int _int;
 	double _double;

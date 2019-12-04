@@ -9,23 +9,23 @@
 #define B000_h
 
 #include "../Behaviour.hpp"
+#include "../../Core/Machine.hpp"
 
 class B000: public Behaviour {
-	unsigned int id = 0;
+public:
+	B000(): Behaviour(0,		// ID
+					  0,		// Tree ID
+					  true,	// Is tree start ?
+					  true,	// Force start ?
+					  {		// Expected inputs
+	},
+					  {		// Expected outputs
+	}) {}
 
-	unsigned int treeID = 0;
-
-	bool isTreeStart = true;
-
-	bool forceStart = true;
-
-	virtual bool execute(Machine * machine) override;
-
-	/// List of expected inputs
-	std::vector<std::string> _expectedInputs = {};
-
-	/// List of possible outputs
-	std::vector<unsigned int> _possibleOutputs = { 000 };
+	virtual bool execute(Machine * machine) override {
+		machine->print("executing B000...");
+		return true;
+	}
 };
 
 

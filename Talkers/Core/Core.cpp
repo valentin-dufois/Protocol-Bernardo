@@ -11,60 +11,93 @@
 #include <iostream>
 
 void Core::init() {
+
+	// MARK: Network
+	_receiver.addObserver(this);
+	_receiver.open();
+
+	// MARK: Machines
+
 	_machineA.label = "A";
 	_machineB.label = "B";
 
-	_machineA.sendMessage = [&] (Message * message) {
-		_machineB.onMessage(message);
-		delete message;
-	};
-
-	_machineB.sendMessage = [&] (Message * message) {
-		_machineA.onMessage(message);
-		delete message;
-	};
+	_machineA.sendMessage = std::bind(&Core::onMessage, this, std::placeholders::_1);
+	_machineB.sendMessage = std::bind(&Core::onMessage, this, std::placeholders::_1);
 }
 
 void Core::run() {
 	_isRunning = true;
 
+	manualStart();
+
+	do {
+		if(_lastMachine == &_machineB)
+			_lastMachine = &_machineA;
+		else
+			_lastMachine = &_machineB;
+
+		_lastMachine->onMessage(_nextMessage);
+	} while (_nextMessage != nullptr);
+}
+
+void Core::manualStart() {
+
 	std::string bID, inputCount;
 
-	while (_isRunning) {
-		Message * message = new Message();
+	Message * message = new Message();
 
-		std::cout << "Behaviour ID to start : ";
-		std::cin >> bID;
+	std::cout << std::endl << "*** MANUAL MODE ***" << std::endl;
 
-		std::cout << "Add incoming variables ? (How Many ?): ";
-		std::cin >> inputCount;
+	std::cout << "*** Behaviour ID to start : ";
+	std::cin >> bID;
 
-		for(int i = 0; i < std::atoi(inputCount.c_str()); ++i) {
-			std::string varName;
-			std::cout << "Variable " << i << " name : ";
-			std::cin >> varName;
+	message->behaviour = std::atoi(bID.c_str());
 
-			std::string varVal;
-			std::cout << "Variable " << i << " value : ";
-			std::cin >> varVal;
+	std::cout << "*** Add incoming variables ? (How Many ?): ";
+	std::cin >> inputCount;
 
-			message->values[varName] = std::atof(varVal.c_str());
-		}
+	for(int i = 0; i < std::atoi(inputCount.c_str()); ++i) {
+		std::string varName;
+		std::cout << "*** Variable " << i << " name : ";
+		std::cin >> varName;
 
-		message->behaviour = std::atoi(bID.c_str());
+		std::string varVal;
+		std::cout << "*** Variable " << i << " value : ";
+		std::cin >> varVal;
 
-		_machineA.onMessage(message);
-
-		delete message;
-
-		std::cout << std::endl;
+		message->values[varName] = std::atof(varVal.c_str());
 	}
+
+	_nextMessage = message;
 }
 
 void Core::terminate() {
-
+	_receiver.close();
 }
 
 Core::~Core() {
 	terminate();
+}
+
+// MARK: - Receiver Delegate
+
+void Core::receiverDidConnect(pb::network::PBReceiver *) {
+
+}
+
+void Core::receiverDidReceive(pb::network::PBReceiver *, pb::network::messages::TrackedBodies *) {
+
+}
+
+void Core::receiverDidClose(pb::network::PBReceiver *) {
+
+}
+
+
+
+void Core::onMessage(Message * message) {
+	if(_nextMessage != nullptr)
+		delete _nextMessage;
+
+	_nextMessage = message;
 }

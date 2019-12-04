@@ -14,27 +14,48 @@
 
 #include "Behaviour.hpp"
 
+#define DELAY_DEFAULT true
+#define DELAY_VALUE_DEFAULT 2.0
+#define DELAY_VARIANCE_DEFAULT 1.0
+
 struct Message;
 
 struct Output {
 public:
 
+	Output(const unsigned int id,
+		   const bool isTreeEnd,
+		   const unsigned int nextBehaviour,
+		   const bool isDelayed,
+		   const double delayValue,
+		   const double delayVariance,
+		   const std::vector<std::string> outputValues,
+		   const std::vector<std::string> captions):
+	id(id),
+	isTreeEnd(isTreeEnd),
+	_nextBehaviour(nextBehaviour),
+	_isDelayed(isDelayed),
+	_delayValue(delayValue),
+	_delayVariance(delayVariance),
+	_outputValues(outputValues),
+	_captions(captions) {}
+
 	static Output * get(const unsigned int id);
 
-	unsigned int id;
+	const unsigned int id;
 
 	/// Tell if this output means the end of the tree on this machine
-	bool isTreeEnd;
+	const bool isTreeEnd;
 
 	/// Tell if the current behaviour state match the condition of this output
 	virtual bool isConditionValid(const State &behaviourState) = 0;
 
 	/// Gives the delay before sending the message
-	virtual double getDelay();
+	virtual double getDelay() const;
 
 	/// Gives the message corresponding to this output
 	/// If no message should be sent because this is an end, you should override this method and return nullptr;
-	Message * getMessage();
+	Message * getMessage() const;
 
 	virtual ~Output() {}
 
@@ -43,29 +64,26 @@ protected:
 	/// The inner state of the output
 	State _state;
 
-	/// Output values needed to build the output message
-	std::vector<std::string> _outputValues;
-
-	/// Available captions to form the output message
-	std::vector<std::string> _captions;
-
-	/// Tell if this output marks the end of the current tree
-	bool _isTreeEnd;
-
 	/// The next behaviour id, if any
-	unsigned int _nextBehaviour;
+	const unsigned int _nextBehaviour;
 
 	/// Tell if the output message should be delayed or not
-	bool _isDelayed;
+	const bool _isDelayed;
 
 	/// The delay value in seconds
-	double _delayValue;
+	const double _delayValue;
 
 	/// The delay variance in seconds
-	double _delayVariance;
+	const double _delayVariance;
+
+	/// Output values needed to build the output message
+	const std::vector<std::string> _outputValues;
+
+	/// Available captions to form the output message
+	const std::vector<std::string> _captions;
 
 	/// Gives the caption to insert in the message
-	std::string getCaption();
+	std::string getCaption() const;
 };
 
 #endif /* Output_h */

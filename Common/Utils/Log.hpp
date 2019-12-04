@@ -8,6 +8,15 @@
 #ifndef Log_h
 #define Log_h
 
+#ifndef LOG_LEVEL
+#define LOG_LEVEL 5 // If not LOG_LEVEL defined, no logs
+#endif
+
+#if LOG_LEVEL == 1
+#include <filesystem>
+#endif
+
+
 #include <iostream>
 #include <string>
 
@@ -24,28 +33,47 @@ enum Level: int {
 	NONE = 5
 };
 
-/// The current logging level
-extern Level level;
-
-/// Log something as a debug statement
-void debug(const std::string &log, const std::string &file = "", const int &line = -1);
-
-/// Log something as informative
-void info(const std::string &log, const std::string &file = "", const int &line = -1);
-
-/// Log something as a warning
-void warning(const std::string &log, const std::string &file = "", const int &line = -1);
-
-/// Log something as an error
-void error(const std::string &log, const std::string &file = "", const int &line = -1);
+/// Build the location prefix with the filename and line from where the logs are comming
+inline std::string locat(const std::string &file, const int &line) {
+	// Do not show the error location when not debugging
+#if LOG_LEVEL > 0
+		return "";
+#else
+	std::string filename = std::filesystem::path(file).filename();
+	return " [" + filename + ":" + std::to_string(line) + "] ";
+#endif
+}
 
 /// Raw method to log informations. Commonly used by all other logging methods.
 /// Supports all formats supported by `std::cout`
 template<typename T>
-void raw(const T &log);
+void raw(const T &log) {
+	std::cout << log << std::endl;
+}
 
-/// Build the location prefix with the filename and line from where the logs are comming
-std::string locat(const std::string &file, const int &line);
+/// Log something as a debug statement
+inline void debug(const std::string &log, const std::string &file = "", const int &line = -1) {
+	if(LOG_LEVEL <= 1)
+		raw("➡️ " + locat(file, line) + log);
+}
+
+/// Log something as informative
+inline void info(const std::string &log, const std::string &file = "", const int &line = -1) {
+	if(LOG_LEVEL <= 2)
+		raw("📢 " + locat(file, line) + log);
+}
+
+/// Log something as a warning
+inline void warning(const std::string &log, const std::string &file = "", const int &line = -1) {
+	if(LOG_LEVEL <= 3)
+		raw("⚠️ " + locat(file, line) + log);
+}
+
+/// Log something as an error
+inline void error(const std::string &log, const std::string &file = "", const int &line = -1) {
+	if(LOG_LEVEL <= 4)
+		raw("❌ " + locat(file, line) + log);
+}
 
 } /* ::Log */
 } /* ::pb */

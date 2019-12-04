@@ -12,27 +12,21 @@
 
 class S10200 : public Output {
 public:
-
-	inline bool isConditionValid(const State &behaviourState) { return true; };
-
-protected:
-
-	std::vector<std::string> _outputValues = {
-	};
-
-	std::vector<std::string> _captions = {
+	S10200(): Output(10200,					// Output ID
+					 false,					// Is tree end ?
+					 103,					// Next Behaviour ID
+					 DELAY_DEFAULT,			// Is delayed
+					 DELAY_VALUE_DEFAULT,		// Delay value (seconds)
+					 DELAY_VARIANCE_DEFAULT,	// Delay variance (seconds)
+					 {						// Output values
+	},
+					 {						// Captions
 		"Tu penses qu'elles l'ont fait intentionnellement ?"
+	}) {}
+
+	inline bool isConditionValid(const State &behaviourState) {
+		return true;
 	};
-
-	bool _isTreeEnd = false;
-
-	unsigned int _nextBehaviour = 103;
-
-	bool _isDelayed = false;
-
-	double _delayValue = 0;
-
-	double _delayVariance = 0;
 };
 
 #endif /* S_100_00_hpp */

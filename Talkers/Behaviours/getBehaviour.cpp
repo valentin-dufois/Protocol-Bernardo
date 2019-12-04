@@ -11,16 +11,21 @@
 
 #include "B-000/B-000.hpp"
 
+// TREE 1
 #include "B-100/B-100.hpp"
+#include "B-101/B-101.hpp"
 #include "B-102/B-102.hpp"
 
 Behaviour * Behaviour::get(unsigned int behaviourID) {
 	switch (behaviourID) {
 		case   0: return new B000();
+
+		// MARK: - TREE 1
 		case 100: return new B100();
+		case 101: return new B101();
 		case 102: return new B102();
 		default:
-			std::cout << "No behaviour " << behaviourID;
+			std::cout << "*** No behaviour " << behaviourID << std::endl;
 			return nullptr;
 	}
 }

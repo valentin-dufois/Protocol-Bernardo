@@ -11,6 +11,7 @@
 #include <functional>
 
 #include "Tree.hpp"
+#include "../Utils/AccessibleValues.hpp"
 
 class Message;
 class Behaviour;
@@ -20,19 +21,28 @@ public:
 
 	std::string label;
 
-	// IN
+	// MARK: - In
 	void onMessage(Message * message);
 
-	// OUT
-	std::function<void(Message *)> sendMessage;
+	// MARK: - Out
+	std::function<void(Message * message)> sendMessage;
 
 	void print(std::string);
 
-	// DATA ACCESS
+	// MARK: - Data access
 
+	int getIntValue(const AccessibleValues &value);
 
+	double getDoubleValue(const AccessibleValues &value);
+
+	bool getBoolValue(const AccessibleValues &value);
+
+	std::string getStringValue(const AccessibleValues &value);
 
 private:
+
+	// MARK: - Properties
+
 	Tree * _tree = nullptr;
 
 	void onError();

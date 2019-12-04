@@ -28,5 +28,8 @@
 // MARK: Messages
 #include "Network/Messages/messages.hpp"
 
+// MARK: PB Specifics
+#include "Network/PB/PBReceiver.hpp"
+
 
 #endif /* Network_h */
