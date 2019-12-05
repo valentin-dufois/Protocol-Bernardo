@@ -25,8 +25,9 @@
 #include "B-110/S-110-00.hpp"
 #include "B-111/S-111-00.hpp"
 #include "B-112/S-112-00.hpp"
+#include "B-113/S-113-00.hpp"
 
-Output * Output::get(const unsigned int id) {
+Output * Output::get(const talkers::OutputID id) {
 	switch (id) {
 		// MARK: - TREE 1
 		case 10000: return new S10000();
@@ -43,6 +44,7 @@ Output * Output::get(const unsigned int id) {
 		case 11000: return new S11000();
 		case 11100: return new S11100();
 		case 11200: return new S11200();
+		case 11300: return new S11300();
 		default:
 			std::cout << "*** No output " << id << std::endl;
 			return nullptr;

@@ -27,7 +27,7 @@
 #include "B-112/B-112.hpp"
 #include "B-113/B-113.hpp"
 
-Behaviour * Behaviour::get(unsigned int behaviourID) {
+Behaviour * Behaviour::get(const talkers::BehaviourID behaviourID) {
 	switch (behaviourID) {
 		case   0: return new B000();
 
@@ -51,3 +51,4 @@ Behaviour * Behaviour::get(unsigned int behaviourID) {
 			return nullptr;
 	}
 }
+

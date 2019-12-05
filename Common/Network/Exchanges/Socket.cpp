@@ -64,24 +64,13 @@ void Socket::connectTo(const Endpoint &remote) {
 		delegate->socketDidOpen(this);
 }
 
-void Socket::close(bool silent) {
+void Socket::close(bool) {
 	if(_status != ready)
 		return;
 
-	LOG_INFO("Closing connection with " + _remote.ip + ":" + std::to_string(_remote.port));
-
-	if(!silent)
-	{
-		// Tell the other side of the connection that we are closing
-		messages::Datagram * datagram = makeDatagram(messages::Datagram_Type::Datagram_Type_CLOSE);
-
-		// Send the close message
-		send(datagram);
-
-		delete datagram;
-	}
-
 	_status = closed;
+
+	LOG_INFO("Closing connection with " + _remote.ip + ":" + std::to_string(_remote.port));
 
 	boost::system::error_code ec;
 	_socket.shutdown(asio::socket_base::shutdown_both, ec);
@@ -92,19 +81,25 @@ void Socket::close(bool silent) {
 }
 
 Socket::~Socket() {
+	if(_status == closed)
+		return;
+
 	// Make sure the socket is properly closed
+	_receiveMutex.lock();
+	_sendMutex.lock();
+
 	close();
+
+	_sendMutex.unlock();
+	_receiveMutex.unlock();
 }
 
 
 // MARK: - Exchanges
 
 void Socket::send(const google::protobuf::Message * message) {
-//	_sendMutex.lock();
-
 	// Make sure the socket is ready to send data
 	if(getStatus() != SocketStatus::ready) {
-		_sendMutex.unlock();
 		LOG_WARN("Could not send data on a not-ready socket. The socket may not be opened yet or is already closed.");
 		return;
 	}
@@ -117,21 +112,18 @@ void Socket::send(const google::protobuf::Message * message) {
 			sendAsync(message);
 			break;
 	}
-
-//	_sendMutex.unlock();
 }
 
 
 // MARK: - Internal
 
-void Socket::
-onOpenedFromRemote(const Endpoint::Type &remoteType) {
+void Socket::onOpenedFromRemote(const Endpoint::Type &remoteType) {
 	_remote = Endpoint(_socket.remote_endpoint());
 	_remote.type = remoteType;
 
 	_status = SocketStatus::ready;
 
-	LOG_INFO("Connected the " + _remote.typeLabel() + " server to client on " + _remote.ip);
+	LOG_INFO("Connected the " + _remote.typeLabel() + " server to client on " + _remote.uri());
 
 	prepareReceive();
 
@@ -148,11 +140,12 @@ void Socket::onError() {
 // MARK: - Emission
 
 void Socket::sendSync(const google::protobuf::Message * message) {
+	_sendMutex.lock();
+
 	// Send the message to the output buffer (through the outputStream)
 	formatMessageToStream(message, _outputStream);
 
 	boost::system::error_code error;
-
 	startTimer();
 
 	// Send the datagram
@@ -163,11 +156,16 @@ void Socket::sendSync(const google::protobuf::Message * message) {
 	if (error) {
 		LOG_ERROR("An error occured while sending data synchronously");
 		LOG_ERROR(error.message());
+
+		_receiveMutex.lock();
 		close(true);
+		_receiveMutex.unlock();
 	}
 
 	// Clear the buffer
 	_outputBuffer.consume(_outputBuffer.size());
+
+	_sendMutex.unlock();
 }
 
 void Socket::sendAsync(const google::protobuf::Message * message) {
@@ -177,14 +175,21 @@ void Socket::sendAsync(const google::protobuf::Message * message) {
 
 	formatMessageToStream(message, outputStream);
 
+	_sendMutex.lock();
+
 	// Send the datagram
 	_socket.async_write_some(outputBuffer.data(), [&] (const boost::system::error_code &error, std::size_t bytes_transferred) {
 
 		if(error) {
 			LOG_ERROR("An error occured while sending data asynchronously");
 			LOG_ERROR(error.message());
+
+			_receiveMutex.lock();
 			close(true);
+			_receiveMutex.unlock();
 		}
+
+		_sendMutex.unlock();
 	});
 }
 
@@ -217,16 +222,26 @@ void Socket::handleReceive(const boost::system::error_code &error, std::size_t b
 
 	// Check for any error during reception
 	if(error) {
-		if(error == asio::error::eof) {
-			// We received an eof, the socket closed on the other side.
-			// Let's close on this side too
-			return close(true);
-		}
+		if(error == asio::error::operation_aborted || error == asio::error::eof)
+			return;
 
-		// Unknown error, ignore this
 		LOG_ERROR("Error while receiving data. Closing socket");
 		LOG_ERROR(error.message());
-		return close(true);
+
+		_sendMutex.lock();
+		close(true);
+		_sendMutex.unlock();
+		return;
+	}
+
+	_receiveMutex.lock();
+
+	// Check we haven't reached the buffer size
+	if(bytes_transferred >= RECEPTION_BUFFER_SIZE) {
+		LOG_WARN("TCP Connection reception buffer sized reach. If the message was larger than the buffer size, ignoring packet");
+
+		_receiveMutex.unlock();
+		return;
 	}
 
 	// Decode the message using the proper format
@@ -241,16 +256,10 @@ void Socket::handleReceive(const boost::system::error_code &error, std::size_t b
 			break;
 	}
 
-	// Check we haven't reached the buffer size
-	if(bytes_transferred >= RECEPTION_BUFFER_SIZE) {
-		LOG_WARN("TCP Connection reception buffer sized reach. If the message was larger than the buffer size, ignoring packet");
-
-		delete datagram;
-		return;
-	}
-
 	// Pass along the received datagram
 	onReceive(datagram);
+	
+	_receiveMutex.unlock();
 
 	return prepareReceive();
 }

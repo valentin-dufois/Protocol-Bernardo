@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package messages;
+
+message Machine {
+	string label = 1;
+	string caption = 5;
+}

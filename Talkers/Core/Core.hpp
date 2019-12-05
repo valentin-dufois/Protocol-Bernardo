@@ -17,7 +17,7 @@ class Core: public pb::network::PBReceiverObserver {
 	// MARK: - Lifecycle
 public:
 
-	Core() = default;
+	Core(): _receiversServer(pb::network::serverPortTalker, pb::network::discoveryPortTalker) {}
 
 	void init();
 
@@ -26,6 +26,8 @@ public:
 private:
 
 	void manualStart();
+
+	void talk();
 
 public:
 
@@ -48,18 +50,22 @@ private:
 
 	// MARK: Network
 
-	pb::network::PBReceiver _receiver;
+	pb::network::PBReceiver _PBReceiver;
 
 	Message * _nextMessage = nullptr;
 
 	void onMessage(Message * message);
+
+	pb::network::Server _receiversServer;
+
+	void send(Message * message);
 
 	// MARK: Machines
 
 	Machine _machineA;
 	Machine _machineB;
 
-	Machine * _lastMachine = &_machineB;
+	Machine * _currentMachine = &_machineB;
 };
 
 #endif /* Core_hpp */

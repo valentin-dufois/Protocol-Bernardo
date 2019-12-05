@@ -19,10 +19,10 @@ public:
 					  {		// Expected inputs
 	},
 					  {		// Expected outputs
+		11300
 	}) {}
 	
 	virtual bool execute(Machine * machine) override {
-		machine->say("Parfait");
 		return true;
 	};
 };

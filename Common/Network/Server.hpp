@@ -73,6 +73,12 @@ public:
 	/// @return True if running, false otherwise
 	inline bool isRunning() { return _isRunning; }
 
+	inline SocketFormat getEmissionFormat() { return _emissionFormat; }
+
+	inline void setEmissionFormat(const SocketFormat &aFormat) {
+		_emissionFormat = aFormat;
+	}
+
 protected:
 
 	// The type of the server
@@ -87,6 +93,8 @@ private:
 
 	/// True if the server is opened and running, false otherwise
 	bool _isRunning = false;
+
+	SocketFormat _emissionFormat = SocketFormat::protobuf;
 
 	/// The acceptor used to accept incoming connections
 	asio::ip::tcp::acceptor * _acceptor = nullptr;

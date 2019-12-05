@@ -13,8 +13,11 @@
 void Core::init() {
 
 	// MARK: Network
-	_receiver.addObserver(this);
-	_receiver.open();
+	_PBReceiver.addObserver(this);
+	_PBReceiver.open();
+
+	_receiversServer.setEmissionFormat(pb::network::SocketFormat::json);
+	_receiversServer.open();
 
 	// MARK: Machines
 
@@ -30,14 +33,7 @@ void Core::run() {
 
 	manualStart();
 
-	do {
-		if(_lastMachine == &_machineB)
-			_lastMachine = &_machineA;
-		else
-			_lastMachine = &_machineB;
-
-		_lastMachine->onMessage(_nextMessage);
-	} while (_nextMessage != nullptr);
+	talk();
 }
 
 void Core::manualStart() {
@@ -71,8 +67,25 @@ void Core::manualStart() {
 	_nextMessage = message;
 }
 
+void Core::talk() {
+	do {
+		// Switch current machine;
+		if(_currentMachine == &_machineB)
+			_currentMachine = &_machineA;
+		else
+			_currentMachine = &_machineB;
+
+		_currentMachine->onMessage(_nextMessage);
+
+		// Here, the current machine has updated its next message, if there is one, send it to the network
+		if(_nextMessage != nullptr)
+			send(_nextMessage);
+
+	} while (_nextMessage != nullptr);
+}
+
 void Core::terminate() {
-	_receiver.close();
+	_PBReceiver.close();
 }
 
 Core::~Core() {
@@ -100,4 +113,18 @@ void Core::onMessage(Message * message) {
 		delete _nextMessage;
 
 	_nextMessage = message;
+}
+
+void Core::send(Message * message) {
+	messages::Machine machineMessage;
+
+	// Fill in message content
+	machineMessage.set_label(_currentMachine->label);
+	machineMessage.set_caption(message->caption);
+
+	// Add the machine state
+
+
+	// send
+	_receiversServer.sendToAll(&machineMessage);
 }

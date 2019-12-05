@@ -44,7 +44,7 @@ class Browser {
 	private func receptionLoop() {
 
 		_socket = try! Socket.create(family: .inet, type: .datagram, proto: .udp)
-		try! _socket!.listen(on: 40003);
+		try! _socket!.listen(on: 42003);
 
 		while(_isBrowsing) {
 			var data = Data()

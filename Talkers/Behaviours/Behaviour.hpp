@@ -11,6 +11,7 @@
 #include <string>
 #include <vector>
 
+#include "../main.hpp"
 #include "../Utils/StateValue.hpp"
 
 class Tree;
@@ -21,12 +22,12 @@ class Machine;
 class Behaviour {
 public:
 
-	Behaviour(const unsigned int id,
-			  const unsigned int treeID,
+	Behaviour(const talkers::BehaviourID id,
+			  const talkers::TreeID treeID,
 			  const bool isTreeStart,
 			  const bool forceStart,
 			  const std::vector<std::string> expectedInputs,
-			  const std::vector<unsigned int> possibleOutputs):
+			  const std::vector<talkers::OutputID> possibleOutputs):
 	id(id),
 	treeID(treeID),
 	isTreeStart(isTreeStart),
@@ -34,12 +35,12 @@ public:
 	_expectedInputs(expectedInputs),
 	_possibleOutputs(possibleOutputs) {}
 
-	static Behaviour * get(const unsigned int id);
+	static Behaviour * get(const talkers::BehaviourID id);
 
 	// MARK: - Identification
 
 	/// Unique ID of the behaviour
-	const unsigned int id;
+	const talkers::BehaviourID id;
 
 	// MARK: - Tree
 
@@ -47,7 +48,7 @@ public:
 	Tree * tree;
 
 	/// ID of the tree
-	const unsigned int treeID;
+	const talkers::TreeID treeID;
 
 	/// Tell if this behaviour is the beggining of a tree
 	const bool isTreeStart;
@@ -80,7 +81,7 @@ protected:
 	const std::vector<std::string> _expectedInputs;
 
 	/// List of possible outputs
-	const std::vector<unsigned int> _possibleOutputs;
+	const std::vector<talkers::OutputID> _possibleOutputs;
 
 	/// The inner state of the behaviour
 	State _state;

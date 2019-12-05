@@ -102,7 +102,9 @@ public:
 
 	/// Sets the exchange format used by the socket
 	/// @param aFormat An exchange format
-	inline void setFormat(const SocketFormat &aFormat) { _format = aFormat; }
+	inline void setFormat(const SocketFormat &aFormat) {
+		_format = aFormat;
+	}
 
 	/// Gives the remote endpoint this socket is connected to
 	inline Endpoint getRemote() const { return _remote; }
@@ -147,6 +149,9 @@ private:
 	/// Mutex protecting from send errors
 	std::mutex _sendMutex;
 
+	/// Mutex protecting from receive errors
+	std::mutex _receiveMutex;
+
 	/// Synchronous send output stream
 	std::ostream _outputStream;
 
@@ -160,7 +165,7 @@ private:
 	/// Send a message to the server asynchronously
 	void sendAsync(const protobuf::Message * message);
 
-	/// Format the given message in the format defined by `getFormat()` and put it in the given `sdt::oStream`;
+	/// Format the given message in the format defined by `getFormat()` and put it in the given `std::ostream`;
 	/// @param message The message to format
 	/// @param _outputStream The receiving stream
 	void formatMessageToStream(const protobuf::Message * message, std::ostream & _outputStream);

@@ -32,7 +32,7 @@ class MasterClient {
 		}
 
 		_socket = try! Socket.create(family: .inet, type: .stream, proto: .tcp);
-		try! _socket.connect(to: remoteIP, port: 40030);
+		try! _socket.connect(to: remoteIP, port: 42030);
 
 		isOpen = true;
 

@@ -12,6 +12,7 @@
 #include <string>
 #include <map>
 
+#include "../main.hpp"
 #include "Behaviour.hpp"
 
 #define DELAY_DEFAULT true
@@ -23,9 +24,9 @@ struct Message;
 struct Output {
 public:
 
-	Output(const unsigned int id,
+	Output(const talkers::OutputID id,
 		   const bool isTreeEnd,
-		   const unsigned int nextBehaviour,
+		   const talkers::BehaviourID nextBehaviour,
 		   const bool isDelayed,
 		   const double delayValue,
 		   const double delayVariance,
@@ -40,9 +41,9 @@ public:
 	_outputValues(outputValues),
 	_captions(captions) {}
 
-	static Output * get(const unsigned int id);
+	static Output * get(const talkers::OutputID id);
 
-	const unsigned int id;
+	const talkers::OutputID id;
 
 	/// Tell if this output means the end of the tree on this machine
 	const bool isTreeEnd;
@@ -65,7 +66,7 @@ protected:
 	State _state;
 
 	/// The next behaviour id, if any
-	const unsigned int _nextBehaviour;
+	const talkers::BehaviourID _nextBehaviour;
 
 	/// Tell if the output message should be delayed or not
 	const bool _isDelayed;

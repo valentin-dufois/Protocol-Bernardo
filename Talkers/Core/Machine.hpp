@@ -48,6 +48,16 @@ private:
 	Tree * _tree = nullptr;
 
 	void onError();
+
+	// MARK: - Manual data access
+
+	int getIntValueManually(const AccessibleValues &value);
+
+	double getDoubleValueManually(const AccessibleValues &value);
+
+	bool getBoolValueManually(const AccessibleValues &value);
+
+	std::string getStringValueManually(const AccessibleValues &value);
 };
 
 #endif /* Machine_hpp */

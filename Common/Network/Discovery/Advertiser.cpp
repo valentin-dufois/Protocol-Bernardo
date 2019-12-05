@@ -91,6 +91,8 @@ void Advertiser::stopAdvertising() {
 	_socket->close();
 
 	_isRunning = false;
+
+	LOG_INFO("Advertising on port " +  std::to_string(_broadcastEndpoint.port()));
 }
 
 void Advertiser::setTimer() {

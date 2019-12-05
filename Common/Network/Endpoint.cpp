@@ -10,6 +10,9 @@
 namespace pb {
 namespace network {
 
+Endpoint::Endpoint(const Type &aType):
+type(aType) {};
+
 Endpoint::Endpoint(const std::string &aIP, const unsigned int &aPort):
 ip(aIP),
 port(aPort) {};
@@ -51,6 +54,7 @@ Endpoint::Endpoint(const messages::Endpoint message,
 
 Endpoint::Endpoint(const boost::asio::ip::tcp::endpoint &endpoint) {
 	ip = endpoint.address().to_string();
+	port = endpoint.port();
 }
 
 } /* ::network */

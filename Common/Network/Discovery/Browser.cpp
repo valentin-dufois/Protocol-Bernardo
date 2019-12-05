@@ -47,6 +47,20 @@ void Browser::startBrowsing(const NetworkPort &port) {
 
 void Browser::handleReceive(const boost::system::error_code &error, std::size_t bytes_transferred) {
 
+	if(error) {
+		if(!_isRunning)
+			return;
+		
+		// Do nothing on error and prepare for receiving again
+		// Prepare for another receive
+		_socket->async_receive_from(asio::buffer(_receptionBuffer), _anyEndpoint, [&] (const boost::system::error_code &error, std::size_t bytes_transferred) {
+			handleReceive(error, bytes_transferred);
+		});
+
+		// Run the thread on the background
+		Engine::instance()->runContext();
+	}
+
 	// Get message as Endpoint
 	_receptionMessage.ParseFromArray(_receptionBuffer.data(), (int)bytes_transferred);
 	Endpoint endpoint = Endpoint(_receptionMessage, _anyEndpoint);
@@ -76,12 +90,14 @@ void Browser::stopBrowsing() {
 	if(!_isRunning)
 		return;
 
+	_isRunning = false;
+
 	// Close the socket
 	_socket->close();
 	delete _socket;
 	_socket = nullptr;
 
-	_isRunning = false;
+	LOG_INFO("Stopped browsing on port " + std::to_string(_anyEndpoint.port()));
 }
 
 Browser::~Browser() {

@@ -22,7 +22,7 @@ bool Behaviour::importMessage(Message * message) {
 }
 
 Output * Behaviour::getOutput() {
-	for(unsigned int outputID: _possibleOutputs) {
+	for(talkers::OutputID outputID: _possibleOutputs) {
 		Output * out = Output::get(outputID);
 
 		if(out == nullptr)

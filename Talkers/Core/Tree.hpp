@@ -8,18 +8,19 @@
 #ifndef Tree_h
 #define Tree_h
 
+#include "../main.hpp"
 #include "../Utils/StateValue.hpp"
 
 class Tree {
 public:
-	Tree(unsigned int treeID): _id(treeID) {};
+	Tree(talkers::TreeID treeID): _id(treeID) {};
 
-	inline unsigned int getID() const { return _id; }
+	inline talkers::TreeID getID() const { return _id; }
 
 	State state;
 
 private:
-	unsigned int _id;
+	talkers::TreeID _id;
 };
 
 #endif /* Tree_h */

@@ -20,7 +20,7 @@ double Output::getDelay() const {
 		return 0;
 
 	// Init rand
-	srand (static_cast <unsigned> (time(0)));
+	srand(static_cast<unsigned> (time(0)));
 
 	// Get variance
 	double variance = ((rand() / RAND_MAX) * _delayVariance * 2) - _delayVariance;

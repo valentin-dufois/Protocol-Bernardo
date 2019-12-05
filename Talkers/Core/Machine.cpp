@@ -21,6 +21,15 @@ void Machine::onMessage(Message * message) {
 	if(message == nullptr)
 		return;
 
+	// Store message
+	// TODO:
+
+	// Check behaviour value
+	if(message->behaviour == -1) {
+		sendMessage(nullptr);
+		return;
+	}
+
 	// Get the message behaviour
 	Behaviour * behaviour = Behaviour::get(message->behaviour);
 
@@ -70,6 +79,11 @@ void Machine::onMessage(Message * message) {
 	std::chrono::duration<double, std::ratio<1>> delay(output->getDelay());
 	std::this_thread::sleep_for(delay);
 
+	if(output->isTreeEnd) {
+		delete _tree;
+		_tree = nullptr;
+	}
+
 	delete output;
 
 	// Print the message
@@ -87,9 +101,62 @@ void Machine::say(const std::string out) {
 	std::cout << "[" << label << "] " << out << std::endl;
 }
 
+
 // MARK: - Data access
 
 int Machine::getIntValue(const AccessibleValues &value) {
+	switch (value) {
+		// Unimplemented variables fall back to manual mode
+		case BODY_COUNT:
+		case RECEIVED_QUESTIONS_COUNT:
+			return getIntValueManually(value);
+		// Default value stops program to catch errors asap
+		default:
+			std::cout << "*** " << accessibleValueLabel(value) << " is not an int" << std::endl;
+			exit(1);
+	}
+}
+
+double Machine::getDoubleValue(const AccessibleValues &value) {
+	switch (value) {
+			// Unimplemented variables fall back to manual mode
+//		case :
+//			return getDoubleValueManually(value);
+			// Default value stops program to catch errors asap
+		default:
+			std::cout << "*** " << accessibleValueLabel(value) << " is not a double" << std::endl;
+			exit(1);
+	}
+}
+
+bool Machine::getBoolValue(const AccessibleValues &value) {
+	switch (value) {
+			// Unimplemented variables fall back to manual mode
+//		case :
+//			return getBoolValueManually(value);
+			// Default value stops program to catch errors asap
+		default:
+			std::cout << "*** " << accessibleValueLabel(value) << " is not a boolean" << std::endl;
+			exit(1);
+	}
+}
+
+std::string Machine::getStringValue(const AccessibleValues &value) {
+	switch (value) {
+			// Unimplemented variables fall back to manual mode
+//		case :
+//			return getStringValueManually(value);
+			// Default value stops program to catch errors asap
+		default:
+			std::cout << "*** " << accessibleValueLabel(value) << " is not a string" << std::endl;
+			exit(1);
+	}
+}
+
+
+// MARK: - Manual data access
+
+int Machine::getIntValueManually(const AccessibleValues &value) {
 	int val;
 	bool valueSet = false;
 	std::string input;
@@ -112,7 +179,7 @@ int Machine::getIntValue(const AccessibleValues &value) {
 	return val;
 }
 
-double Machine::getDoubleValue(const AccessibleValues &value) {
+double Machine::getDoubleValueManually(const AccessibleValues &value) {
 	double val;
 	bool valueSet = false;
 	std::string input;
@@ -135,7 +202,7 @@ double Machine::getDoubleValue(const AccessibleValues &value) {
 	return val;
 }
 
-bool Machine::getBoolValue(const AccessibleValues &value) {
+bool Machine::getBoolValueManually(const AccessibleValues &value) {
 	std::string input;
 
 	std::cout << std::endl << "*** Manual input for " << accessibleValueLabel(value) << " (boolean: 0 = false; 1 = true) :" << std::endl;
@@ -147,7 +214,7 @@ bool Machine::getBoolValue(const AccessibleValues &value) {
 	return input != "0";
 }
 
-std::string Machine::getStringValue(const AccessibleValues &value) {
+std::string Machine::getStringValueManually(const AccessibleValues &value) {
 	std::string input;
 
 	std::cout << std::endl << "*** Manual input for " << accessibleValueLabel(value) << " (string) :" << std::endl;
@@ -158,6 +225,8 @@ std::string Machine::getStringValue(const AccessibleValues &value) {
 
 	return input;
 }
+
+
 
 // MARK: - Properties
 

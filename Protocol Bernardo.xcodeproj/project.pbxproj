@@ -60,6 +60,11 @@
 		39580E882358E43800CD3CEC /* Socket in Frameworks */ = {isa = PBXBuildFile; productRef = 39580E872358E43800CD3CEC /* Socket */; };
 		39580E8A23591B0800CD3CEC /* MasterClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39580E8923591B0800CD3CEC /* MasterClient.swift */; };
 		39580E8D23591F7500CD3CEC /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39580E8C23591F7500CD3CEC /* Log.swift */; };
+		3958C23C239887ED008F908E /* talkers.proto in Sources */ = {isa = PBXBuildFile; fileRef = 3958C23B239887ED008F908E /* talkers.proto */; };
+		3958C24423988BA9008F908E /* talkers.pb.h in Headers */ = {isa = PBXBuildFile; fileRef = 3958C24223988BA9008F908E /* talkers.pb.h */; };
+		3958C24523988BB7008F908E /* talkers.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = 3958C24123988BA9008F908E /* talkers.pb.cc */; };
+		3958C24623988BB9008F908E /* talkers.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = 3958C24123988BA9008F908E /* talkers.pb.cc */; };
+		3958C24723988BBB008F908E /* talkers.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = 3958C24123988BA9008F908E /* talkers.pb.cc */; };
 		39593A83238F299200B8CF17 /* Behaviour.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 39593A81238F299200B8CF17 /* Behaviour.hpp */; };
 		395A0C81237F5E2A00FB1D1D /* Endpoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 395A0C80237F5E2A00FB1D1D /* Endpoint.cpp */; };
 		395A0C85237F912200FB1D1D /* SocketDelegate.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 395A0C84237F912200FB1D1D /* SocketDelegate.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -229,6 +234,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		3958C23F23988AD5008F908E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 39CA4A6D23313F1E00E528CD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 39C23806238309B300791E1E;
+			remoteInfo = "pb-common (static)";
+		};
 		39CA4AB22331415400E528CD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 39CA4A6D23313F1E00E528CD /* Project object */;
@@ -402,6 +414,11 @@
 		3958C23623987C26008F908E /* S-112-00.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "S-112-00.hpp"; sourceTree = "<group>"; };
 		3958C23823987C82008F908E /* B-113.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "B-113.hpp"; sourceTree = "<group>"; };
 		3958C23A23987F88008F908E /* S-100-01.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "S-100-01.hpp"; sourceTree = "<group>"; };
+		3958C23B239887ED008F908E /* talkers.proto */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.protobuf; path = talkers.proto; sourceTree = "<group>"; };
+		3958C24123988BA9008F908E /* talkers.pb.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = talkers.pb.cc; sourceTree = "<group>"; };
+		3958C24223988BA9008F908E /* talkers.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = talkers.pb.h; sourceTree = "<group>"; };
+		3958C24823989B9F008F908E /* main.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = main.hpp; sourceTree = "<group>"; };
+		3958C24923989E9B008F908E /* S-113-00.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "S-113-00.hpp"; sourceTree = "<group>"; };
 		39593A80238F299200B8CF17 /* Behaviour.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Behaviour.cpp; sourceTree = "<group>"; };
 		39593A81238F299200B8CF17 /* Behaviour.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Behaviour.hpp; sourceTree = "<group>"; };
 		39593A84238F2AB200B8CF17 /* Output.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Output.hpp; sourceTree = "<group>"; };
@@ -762,6 +779,7 @@
 				395A79A02335A1AA00499894 /* maths.proto */,
 				395A799723359DCC00499894 /* body.proto */,
 				3960B8512337EC870094A2E9 /* layout.proto */,
+				3958C23B239887ED008F908E /* talkers.proto */,
 			);
 			path = protos;
 			sourceTree = "<group>";
@@ -793,6 +811,8 @@
 		393AB5842368C6E300F4F087 /* cpp */ = {
 			isa = PBXGroup;
 			children = (
+				3958C24123988BA9008F908E /* talkers.pb.cc */,
+				3958C24223988BA9008F908E /* talkers.pb.h */,
 				3966E4182338018800710DD4 /* layout.pb.cc */,
 				3966E41B2338018800710DD4 /* layout.pb.h */,
 				395A79B42335BB2000499894 /* body.pb.cc */,
@@ -888,6 +908,7 @@
 			isa = PBXGroup;
 			children = (
 				3958C23823987C82008F908E /* B-113.hpp */,
+				3958C24923989E9B008F908E /* S-113-00.hpp */,
 			);
 			path = "B-113";
 			sourceTree = "<group>";
@@ -897,6 +918,7 @@
 			children = (
 				39F860EF2390775C00A32146 /* Talkers.entitlements */,
 				39BF56F62396FFC1009F82BE /* main.cpp */,
+				3958C24823989B9F008F908E /* main.hpp */,
 				39F860CE2390656D00A32146 /* Core */,
 				39593A89238F392B00B8CF17 /* Utils */,
 				39593A7F238F297900B8CF17 /* Behaviours */,
@@ -1424,6 +1446,7 @@
 				39F860D22390657600A32146 /* Core.hpp in Headers */,
 				395A7983233332CB00499894 /* maths.hpp in Headers */,
 				395A79802333321600499894 /* RawBody.hpp in Headers */,
+				3958C24423988BA9008F908E /* talkers.pb.h in Headers */,
 				39CA4AFD2332BDAB00E528CD /* Log.hpp in Headers */,
 				3903C2762392FBC80061CFA8 /* TrackersServer.hpp in Headers */,
 				395A0C87237FAFB600FB1D1D /* Network.hpp in Headers */,
@@ -1602,6 +1625,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				3958C24023988AD5008F908E /* PBXTargetDependency */,
 			);
 			name = Talkers;
 			productName = Talkers;
@@ -1785,6 +1809,7 @@
 				39C23831238309B300791E1E /* Advertiser.cpp in Sources */,
 				39C23832238309B300791E1E /* network.pb.cc in Sources */,
 				39C23834238309B300791E1E /* Endpoint.cpp in Sources */,
+				3958C24723988BBB008F908E /* talkers.pb.cc in Sources */,
 				39C23835238309B300791E1E /* Ping.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1813,12 +1838,14 @@
 			files = (
 				395A79C42335BB2000499894 /* body.pb.cc in Sources */,
 				3950170B2341689000E7F6BD /* Socket.cpp in Sources */,
+				3958C23C239887ED008F908E /* talkers.proto in Sources */,
 				396C6A50233C5643008FD842 /* Server.cpp in Sources */,
 				39CA4AD82331486D00E528CD /* NetworkEngine.cpp in Sources */,
 				3966E41C2338018800710DD4 /* layout.pb.cc in Sources */,
 				395A79BE2335BB2000499894 /* maths.pb.cc in Sources */,
 				399D167A23521E7600CEC2F0 /* flags.cpp in Sources */,
 				39CA4AD62331486D00E528CD /* Browser.cpp in Sources */,
+				3958C24623988BB9008F908E /* talkers.pb.cc in Sources */,
 				39CA4ADA2331486D00E528CD /* Advertiser.cpp in Sources */,
 				395A79C92335BB2000499894 /* network.pb.cc in Sources */,
 				395A0C81237F5E2A00FB1D1D /* Endpoint.cpp in Sources */,
@@ -1930,6 +1957,7 @@
 				39BF574D23983DB2009F82BE /* Socket.cpp in Sources */,
 				39BF574E23983DB2009F82BE /* Advertiser.cpp in Sources */,
 				39BF574F23983DB2009F82BE /* Browser.cpp in Sources */,
+				3958C24523988BB7008F908E /* talkers.pb.cc in Sources */,
 				39BF575023983DB2009F82BE /* layout.pb.cc in Sources */,
 				39BF575123983DB2009F82BE /* body.pb.cc in Sources */,
 				39BF575223983DB2009F82BE /* maths.pb.cc in Sources */,
@@ -1944,6 +1972,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		3958C24023988AD5008F908E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 39C23806238309B300791E1E /* pb-common (static) */;
+			targetProxy = 3958C23F23988AD5008F908E /* PBXContainerItemProxy */;
+		};
 		39CA4AB32331415400E528CD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 39CA4A762331407A00E528CD /* pb-common (shared) */;

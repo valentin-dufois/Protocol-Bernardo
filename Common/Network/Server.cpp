@@ -37,6 +37,8 @@ void Server::open() {
 
 	// Be ready to accept new connections
 	prepareAccept();
+
+	LOG_INFO(Endpoint(_type).typeLabel() + " Server opened on port " + std::to_string(_port));
 }
 
 void Server::sendToAll(protobuf::Message * aMessage) {
@@ -48,6 +50,9 @@ void Server::sendToAll(protobuf::Message * aMessage) {
 void Server::socketDidOpen(Socket * socket) { }
 
 void Server::socketDidClose(Socket * socket) {
+	if(!_isRunning)
+		return;
+	
 	// The socket is closed, remove it from the array of connections
 	_connections.erase(std::find(_connections.begin(), _connections.end(), socket));
 
@@ -57,6 +62,7 @@ void Server::socketDidClose(Socket * socket) {
 void Server::prepareAccept() {
 	Socket * newConnection = new Socket();
 	newConnection->delegate = this;
+	newConnection->setFormat(_emissionFormat);
 
 	_acceptor->async_accept(newConnection->getSocket(), boost::bind(&Server::handleAccept, this, newConnection, boost::asio::placeholders::error));
 }
@@ -64,11 +70,10 @@ void Server::prepareAccept() {
 void Server::handleAccept(Socket * newConnection, const boost::system::error_code &error) {
 	// Was there an error during connection ?
 	if(error) {
-		LOG_WARN("An error occured while accepting a connection");
-		LOG_WARN(error.message());
-
-		// Prepare the server for any new connection
-		prepareAccept();
+		if(error != asio::error::operation_aborted) {
+			LOG_WARN("An error occured while accepting a connection");
+			LOG_WARN(error.message());
+		}
 		return;
 	}
 
@@ -90,16 +95,13 @@ Server::~Server() {
 	delete _acceptor;
 
 	for(Socket * socket: _connections) {
-		socket->close();
-
 		if(socket != nullptr)
 			delete socket;
 	}
 
 	_connections.clear();
 
-	// Free used memory
-	delete _acceptor;
+	LOG_INFO(Endpoint(_type).typeLabel() + " Server using port " + std::to_string(_port) + " closed");
 }
 
 } /* ::network */

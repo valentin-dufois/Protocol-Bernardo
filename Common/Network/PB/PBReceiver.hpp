@@ -55,8 +55,8 @@ public:
 	}
 
 	void close() {
-		_socket.close();
 		_browser.stopBrowsing();
+		_socket.close();
 	}
 
 	// MARK: - Accessors

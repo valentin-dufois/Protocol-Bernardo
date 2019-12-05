@@ -17,17 +17,22 @@ namespace network {
 using NetworkPort = unsigned short int;
 
 // MARK: Discovery ports
-constexpr NetworkPort discoveryPortTracker = 40001;
-constexpr NetworkPort discoveryPortReceiver = 40002;
-constexpr NetworkPort discoveryPortTerminal = 40003;
+constexpr NetworkPort discoveryPortTracker = 42001;
+constexpr NetworkPort discoveryPortReceiver = 42002;
+constexpr NetworkPort discoveryPortTerminal = 42003;
 
 // MARK: Server ports
-constexpr NetworkPort serverPortTracker = 40010;
-constexpr NetworkPort serverPortReceiver = 40020;
-constexpr NetworkPort serverPortTerminal = 40030;
+constexpr NetworkPort serverPortTracker = 42010;
+constexpr NetworkPort serverPortReceiver = 42020;
+constexpr NetworkPort serverPortTerminal = 42030;
 
 // MARK: Advertiser
 constexpr unsigned short int advertiserRate = 1; // Advertise every X seconds
+
+
+// MARK: - PB-related-but-not-used-directly ports
+constexpr NetworkPort serverPortTalker = 42100;
+constexpr NetworkPort discoveryPortTalker = 42101;
 
 } /* ::network */
 } /* ::pb */
