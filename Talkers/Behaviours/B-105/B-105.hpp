@@ -1,32 +1,31 @@
 //
-//  B-101.hpp
-//  Talkers
+//  B105.hpp
+//  Protocol Bernardo
 //
 //  Created by Valentin Dufois on 2019-12-02.
 //
 
-#ifndef B_101_hpp
-#define B_101_hpp
-
+#ifndef B105_h
+#define B105_h
 
 #include "../Behaviour.hpp"
 
-class B101: public Behaviour {
+class B105: public Behaviour {
 public:
-	B101(): Behaviour(101,	// ID
+	B105(): Behaviour(105,	// ID
 					  1,		// Tree ID
 					  false,	// Is tree start ?
 					  false,	// Force start ?
 					  {		// Expected inputs
 	},
 					  {		// Expected outputs
-		10100 // S-100-00
+		10500 // S-105-00
 	}) {}
-
+	
 	virtual bool execute(Machine * machine) override {
 		return true;
-	}
+	};
 };
 
 
-#endif /* B_101_hpp */
+#endif /* B105_h */

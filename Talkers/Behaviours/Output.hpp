@@ -15,7 +15,7 @@
 #include "Behaviour.hpp"
 
 #define DELAY_DEFAULT true
-#define DELAY_VALUE_DEFAULT 2.0
+#define DELAY_VALUE_DEFAULT 2.5
 #define DELAY_VARIANCE_DEFAULT 1.0
 
 struct Message;

@@ -29,6 +29,8 @@ public:
 
 	void print(std::string);
 
+	void say(std::string);
+
 	// MARK: - Data access
 
 	int getIntValue(const AccessibleValues &value);

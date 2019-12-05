@@ -1,5 +1,5 @@
 //
-//  B000.hpp
+//  B102.hpp
 //  Protocol Bernardo
 //
 //  Created by Marie-Lou Barbier on 2019-12-02.
@@ -28,4 +28,4 @@ public:
 };
 
 
-#endif /* B000_h */
+#endif /* B102_h */

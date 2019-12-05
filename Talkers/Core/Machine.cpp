@@ -63,6 +63,7 @@ void Machine::onMessage(Message * message) {
 		sendMessage(nullptr);
 		return;
 	}
+	
 	Message * outMessage = output->getMessage();
 
 	// Pause the thread if needed
@@ -79,6 +80,10 @@ void Machine::onMessage(Message * message) {
 }
 
 void Machine::print(const std::string out) {
+	std::cout << "[" << label << "] " << out << std::endl;
+}
+
+void Machine::say(const std::string out) {
 	std::cout << "[" << label << "] " << out << std::endl;
 }
 

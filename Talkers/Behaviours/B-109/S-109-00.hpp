@@ -1,32 +1,34 @@
 //
-//  S-102-00.hpp
+//  S-109-00.hpp
 //  Talkers
 //
 //  Created by Valentin Dufois on 2019-12-02.
 //
 
-#ifndef S_102_00_hpp
-#define S_102_00_hpp
+#ifndef S_109_00_hpp
+#define S_109_00_hpp
 
 #include "../Output.hpp"
 
-class S10200 : public Output {
+class S10900 : public Output {
 public:
-	S10200(): Output(10200,					// Output ID
+	S10900(): Output(10900,					// Output ID
 					 false,					// Is tree end ?
-					 103,					// Next Behaviour ID
+					 110,					// Next Behaviour ID
 					 DELAY_DEFAULT,			// Is delayed
 					 DELAY_VALUE_DEFAULT,		// Delay value (seconds)
 					 DELAY_VARIANCE_DEFAULT,	// Delay variance (seconds)
 					 {						// Output values
+		"NBR_QUESTIONS"
 	},
 					 {						// Captions
-		"Tu penses qu'elles l'ont fait intentionnellement ?"
+		"{NBR_QUESTIONS} précisément."
 	}) {}
 
 	inline bool isConditionValid(const State &behaviourState) {
+		_state["NBR_QUESTIONS"] = behaviourState.at("NBR_QUESTIONS");
 		return true;
 	};
 };
 
-#endif /* S_102_00_hpp */
+#endif /* S_109_00_hpp */
