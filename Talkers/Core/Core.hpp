@@ -9,7 +9,7 @@
 #define Core_hpp
 
 #include "Machine.hpp"
-#include "Message.hpp"
+#include "../Behaviours/Message.hpp"
 
 #include "../../Common/Network.hpp"
 

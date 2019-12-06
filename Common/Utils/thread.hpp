@@ -19,7 +19,7 @@ namespace thread {
 inline void setName(const std::string &threadName) {
 #ifdef __APPLE__
 	pthread_setname_np(threadName.c_str());
-#else
+#elif !defined(_WIN32)
 	pthread_setname_np(pthread_self(), threadName.c_str());
 #endif
 }

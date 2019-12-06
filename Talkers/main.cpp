@@ -7,9 +7,12 @@
 
 #include <iostream>
 
+#include "../Common/Utils/flags.hpp"
 #include "Core/Core.hpp"
 
 int main(int argc, const char * argv[]) {
+
+	pb::flags::parse(argc, argv, po::options_description("Talkers"));
 
 	Core core;
 	core.init();

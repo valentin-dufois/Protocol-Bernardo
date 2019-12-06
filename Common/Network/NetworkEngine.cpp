@@ -13,7 +13,10 @@
 #include "NetworkEngine.hpp"
 #include "../Utils/thread.hpp"
 
+#ifndef _WIN32
 #include <pthread.h>
+#endif
+
 // MARK: - Static informations
 
 namespace pb {

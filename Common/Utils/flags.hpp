@@ -8,12 +8,27 @@
 #ifndef flags_hpp
 #define flags_hpp
 
-#include <gflags/gflags.h>
+#include <boost/program_options.hpp>
 
-DECLARE_int32(loglevel);
-DECLARE_string(interface);
-DECLARE_string(broadcastInterface);
-DECLARE_bool(liveview);
-DECLARE_string(layout);
 
+namespace po = boost::program_options;
+
+namespace pb {
+namespace flags {
+
+	extern po::variables_map args;
+
+	inline void parse(const int &argc, const char * argv[], po::options_description &desc) {
+		// Insert common options
+		desc.add_options()
+			("help", "Display help message")
+			("loglevel", po::value<unsigned int>(), "Set log level (0 = no logs, 5 = dev logs)")
+			("interface", po::value<std::string>(), "Network interface to use");
+		
+		po::store(po::parse_command_line(argc, argv, desc), args);
+		po::notify(args);
+	}
+
+} /* ::flags */
+} /* ::pb */
 #endif /* flags_hpp */

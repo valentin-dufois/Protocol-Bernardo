@@ -213,7 +213,7 @@ void Socket::formatMessageToStream(const protobuf::Message *message, std::ostrea
 // MARK: - Reception
 
 void Socket::prepareReceive() {
-	_socket.async_receive(asio::buffer(_receptionBuffer), boost::bind(&Socket::handleReceive, this, boost::asio::placeholders::error(), boost::asio::placeholders::bytes_transferred()));
+	_socket.async_receive(asio::buffer(_receptionBuffer), boost::bind(&Socket::handleReceive, this, boost::asio::placeholders::error, boost::asio::placeholders::bytes_transferred));
 
 	Engine::instance()->runContext();
 }

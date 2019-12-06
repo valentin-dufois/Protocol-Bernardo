@@ -109,8 +109,8 @@ void Advertiser::setTimer() {
 
 asio::ip::address Advertiser::getOutboundInterfaceIP() {
 	// The user has specified a specific outbound interface
-	if(FLAGS_interface.size() > 0) {
-		return asio::ip::make_address_v4(FLAGS_interface);
+	if(flags::args.count("interface")) {
+		return asio::ip::make_address_v4(flags::args["interface"].as<std::string>());
 	}
 
 	std::vector<asio::ip::address> interfaces = Engine::instance()->getOutboundInterfaces();
@@ -129,7 +129,7 @@ asio::ip::address Advertiser::getOutboundInterfaceIP() {
 	LOG_INFO("Please select interface to use for advertising on port:" + std::to_string(_broadcastEndpoint.port()));
 
 	std::string queryInteraces = "";
-	for(int i = 0; i < interfaces.size(); ++i) {
+	for(unsigned int i = 0; i < interfaces.size(); ++i) {
 		queryInteraces += "(" + std::to_string(i) + ") " + interfaces[i].to_string() + "  ";
 	}
 

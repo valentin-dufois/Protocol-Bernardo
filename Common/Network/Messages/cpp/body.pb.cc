@@ -487,7 +487,7 @@ failure:
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* Joint::InternalSerializeWithCachedSizesToArray(
+::PROTOBUF_NAMESPACE_ID::uint8* Joint::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:pb.network.messages.Joint)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -495,37 +495,37 @@ failure:
 
   // .pb.network.messages.vec3 orientation = 1;
   if (this->has_orientation()) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessageToArray(
+      InternalWriteMessage(
         1, _Internal::orientation(this), target, stream);
   }
 
   // double orientationConfidence = 2;
   if (!(this->orientationconfidence() <= 0 && this->orientationconfidence() >= 0)) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(2, this->_internal_orientationconfidence(), target);
   }
 
   // .pb.network.messages.vec3 position = 3;
   if (this->has_position()) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessageToArray(
+      InternalWriteMessage(
         3, _Internal::position(this), target, stream);
   }
 
   // .pb.network.messages.vec2 position2D = 4;
   if (this->has_position2d()) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessageToArray(
+      InternalWriteMessage(
         4, _Internal::position2d(this), target, stream);
   }
 
   // double positionConfidence = 5;
   if (!(this->positionconfidence() <= 0 && this->positionconfidence() >= 0)) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(5, this->_internal_positionconfidence(), target);
   }
 
@@ -779,7 +779,7 @@ failure:
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* Skeleton::InternalSerializeWithCachedSizesToArray(
+::PROTOBUF_NAMESPACE_ID::uint8* Skeleton::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:pb.network.messages.Skeleton)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -788,16 +788,16 @@ failure:
   // repeated .pb.network.messages.Joint joints = 1;
   for (unsigned int i = 0,
       n = static_cast<unsigned int>(this->_internal_joints_size()); i < n; i++) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessageToArray(1, this->_internal_joints(i), target, stream);
+      InternalWriteMessage(1, this->_internal_joints(i), target, stream);
   }
 
   // .pb.network.messages.vec3 centerOfMass = 2;
   if (this->has_centerofmass()) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessageToArray(
+      InternalWriteMessage(
         2, _Internal::centerofmass(this), target, stream);
   }
 
@@ -1013,7 +1013,9 @@ const char* RawBody::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::in
       // string deviceUID = 4;
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParserUTF8(_internal_mutable_deviceuid(), ptr, ctx, "pb.network.messages.RawBody.deviceUID");
+          auto str = _internal_mutable_deviceuid();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "pb.network.messages.RawBody.deviceUID"));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -1037,7 +1039,7 @@ failure:
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* RawBody::InternalSerializeWithCachedSizesToArray(
+::PROTOBUF_NAMESPACE_ID::uint8* RawBody::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:pb.network.messages.RawBody)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -1045,21 +1047,21 @@ failure:
 
   // int32 uid = 1;
   if (this->uid() != 0) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(1, this->_internal_uid(), target);
   }
 
   // .pb.network.messages.Skeleton skeleton = 2;
   if (this->has_skeleton()) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessageToArray(
+      InternalWriteMessage(
         2, _Internal::skeleton(this), target, stream);
   }
 
   // .pb.network.messages.RawBody.State state = 3;
   if (this->state() != 0) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
       3, this->_internal_state(), target);
   }
@@ -1287,7 +1289,7 @@ failure:
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* RawBodies::InternalSerializeWithCachedSizesToArray(
+::PROTOBUF_NAMESPACE_ID::uint8* RawBodies::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:pb.network.messages.RawBodies)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -1296,9 +1298,9 @@ failure:
   // repeated .pb.network.messages.RawBody rawBodies = 1;
   for (unsigned int i = 0,
       n = static_cast<unsigned int>(this->_internal_rawbodies_size()); i < n; i++) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessageToArray(1, this->_internal_rawbodies(i), target, stream);
+      InternalWriteMessage(1, this->_internal_rawbodies(i), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -1465,7 +1467,9 @@ const char* Body::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::inter
       // string uid = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParserUTF8(_internal_mutable_uid(), ptr, ctx, "pb.network.messages.Body.uid");
+          auto str = _internal_mutable_uid();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "pb.network.messages.Body.uid"));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -1515,7 +1519,7 @@ failure:
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* Body::InternalSerializeWithCachedSizesToArray(
+::PROTOBUF_NAMESPACE_ID::uint8* Body::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:pb.network.messages.Body)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -1533,22 +1537,22 @@ failure:
 
   // bool isValid = 2;
   if (this->isvalid() != 0) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(2, this->_internal_isvalid(), target);
   }
 
   // uint32 frame = 5;
   if (this->frame() != 0) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(5, this->_internal_frame(), target);
   }
 
   // repeated .pb.network.messages.Skeleton skeletons = 10;
   for (unsigned int i = 0,
       n = static_cast<unsigned int>(this->_internal_skeletons_size()); i < n; i++) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessageToArray(10, this->_internal_skeletons(i), target, stream);
+      InternalWriteMessage(10, this->_internal_skeletons(i), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -1792,7 +1796,7 @@ failure:
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* TrackedBodies::InternalSerializeWithCachedSizesToArray(
+::PROTOBUF_NAMESPACE_ID::uint8* TrackedBodies::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:pb.network.messages.TrackedBodies)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -1801,16 +1805,16 @@ failure:
   // repeated .pb.network.messages.Body bodies = 10;
   for (unsigned int i = 0,
       n = static_cast<unsigned int>(this->_internal_bodies_size()); i < n; i++) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessageToArray(10, this->_internal_bodies(i), target, stream);
+      InternalWriteMessage(10, this->_internal_bodies(i), target, stream);
   }
 
   // .pb.network.messages.CalibrationValues calibrationValues = 20;
   if (this->has_calibrationvalues()) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessageToArray(
+      InternalWriteMessage(
         20, _Internal::calibrationvalues(this), target, stream);
   }
 
