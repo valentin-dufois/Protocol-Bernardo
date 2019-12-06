@@ -12,7 +12,8 @@
 
 int main(int argc, const char * argv[]) {
 
-	pb::flags::parse(argc, argv, po::options_description("Talkers"));
+	po::options_description desc("Talkers");
+	pb::flags::parse(argc, argv, desc);
 
 	Core core;
 	core.init();
