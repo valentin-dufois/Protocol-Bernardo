@@ -120,8 +120,10 @@ int Machine::getIntValue(const AccessibleValues &value) {
 double Machine::getDoubleValue(const AccessibleValues &value) {
 	switch (value) {
 			// Unimplemented variables fall back to manual mode
-//		case :
-//			return getDoubleValueManually(value);
+		case SUDDEN_MOVE_SPEED:
+		case AVG_MOVE_SPEED:
+			return getDoubleValueManually(value);
+
 			// Default value stops program to catch errors asap
 		default:
 			std::cout << "*** " << accessibleValueLabel(value) << " is not a double" << std::endl;
@@ -132,8 +134,8 @@ double Machine::getDoubleValue(const AccessibleValues &value) {
 bool Machine::getBoolValue(const AccessibleValues &value) {
 	switch (value) {
 			// Unimplemented variables fall back to manual mode
-//		case :
-//			return getBoolValueManually(value);
+		case SUDDEN_MOVE:
+			return getBoolValueManually(value);
 			// Default value stops program to catch errors asap
 		default:
 			std::cout << "*** " << accessibleValueLabel(value) << " is not a boolean" << std::endl;

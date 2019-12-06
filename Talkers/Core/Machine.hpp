@@ -41,6 +41,8 @@ public:
 
 	std::string getStringValue(const AccessibleValues &value);
 
+	inline Tree * getTree() { return _tree; }
+
 private:
 
 	// MARK: - Properties

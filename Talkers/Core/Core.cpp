@@ -5,10 +5,12 @@
 //  Created by Valentin Dufois on 2019-11-28.
 //
 
+#include <iostream>
+#include <ctime>
+
 #include "Core.hpp"
 #include "../Behaviours/Message.hpp"
 
-#include <iostream>
 
 void Core::init() {
 
@@ -26,6 +28,9 @@ void Core::init() {
 
 	_machineA.sendMessage = std::bind(&Core::onMessage, this, std::placeholders::_1);
 	_machineB.sendMessage = std::bind(&Core::onMessage, this, std::placeholders::_1);
+
+	// Init rand
+	srand(static_cast<unsigned> (time(0)));
 }
 
 void Core::run() {

@@ -23,10 +23,6 @@ struct StateValue{
 		set(v);
 	}
 
-	StateValue(const float v) {
-		set(v);
-	}
-
 	StateValue(const bool v) {
 		set(v);
 	}
@@ -41,29 +37,20 @@ struct StateValue{
 		_type = doubleType;
 	}
 
-	inline void set(const float v) {
-		_float = v;
-		_type = floatType;
-	}
-
 	inline void set(const bool v) {
 		_bool = v;
 		_type = boolType;
 	}
 
-	inline int getInt() {
+	inline int getInt() const {
 		return _int;
 	}
 
-	inline double getDouble() {
+	inline double getDouble() const {
 		return _double;
 	}
 
-	inline float getFloat() {
-		return _float;
-	}
-
-	inline bool getBool() {
+	inline bool getBool() const {
 		return _bool;
 	}
 
@@ -73,8 +60,6 @@ struct StateValue{
 				return std::to_string(_int);
 			case doubleType:
 				return std::to_string(_double);
-			case floatType:
-				return std::to_string(_float);
 			case boolType:
 				return _bool ? "Oui" : "Non";
 		}
@@ -90,11 +75,6 @@ struct StateValue{
 		return *this;
 	}
 
-	StateValue& operator = (float val) {
-		set(val);
-		return *this;
-	}
-
 	StateValue& operator = (bool val) {
 		set(val);
 		return *this;
@@ -106,23 +86,31 @@ struct StateValue{
 				return std::to_string(_int);
 			case doubleType:
 				return std::to_string(_double);
-			case floatType:
-				return std::to_string(_float);
 			case boolType:
 				return std::to_string(_bool);
 		}
 	}
 
+	operator int () const {
+		return _int;
+	}
+
+	operator double () const {
+		return _int;
+	}
+
+	operator bool () const {
+		return _int;
+	}
+
 private:
 	int _int;
 	double _double;
-	float _float;
 	bool _bool;
 
 	enum ValueType {
 		intType,
 		doubleType,
-		floatType,
 		boolType
 	};
 
