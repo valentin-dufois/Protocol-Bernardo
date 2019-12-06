@@ -4,3 +4,5 @@ build/
 .vs/
 Talkers/Debug/
 
+/Common/Debug
+/Debug

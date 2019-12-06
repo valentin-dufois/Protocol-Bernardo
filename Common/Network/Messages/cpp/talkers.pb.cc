@@ -151,14 +151,18 @@ const char* Machine::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::in
       // string label = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParserUTF8(_internal_mutable_label(), ptr, ctx, "messages.Machine.label");
+          auto str = _internal_mutable_label();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "messages.Machine.label"));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
       // string caption = 5;
       case 5:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 42)) {
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParserUTF8(_internal_mutable_caption(), ptr, ctx, "messages.Machine.caption");
+          auto str = _internal_mutable_caption();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "messages.Machine.caption"));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -182,7 +186,7 @@ failure:
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* Machine::InternalSerializeWithCachedSizesToArray(
+::PROTOBUF_NAMESPACE_ID::uint8* Machine::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:messages.Machine)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;

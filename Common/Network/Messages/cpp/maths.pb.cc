@@ -226,8 +226,6 @@ const char* Empty::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::inte
     ::PROTOBUF_NAMESPACE_ID::uint32 tag;
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     CHK_(ptr);
-    switch (tag >> 3) {
-      default: {
         if ((tag & 7) == 4 || tag == 0) {
           ctx->SetLastTag(tag);
           goto success;
@@ -235,8 +233,6 @@ const char* Empty::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::inte
         ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
-      }
-    }  // switch
   }  // while
 success:
   return ptr;
@@ -246,7 +242,7 @@ failure:
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* Empty::InternalSerializeWithCachedSizesToArray(
+::PROTOBUF_NAMESPACE_ID::uint8* Empty::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:pb.network.messages.Empty)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -428,7 +424,7 @@ failure:
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* vec2::InternalSerializeWithCachedSizesToArray(
+::PROTOBUF_NAMESPACE_ID::uint8* vec2::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:pb.network.messages.vec2)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -436,13 +432,13 @@ failure:
 
   // double x = 1;
   if (!(this->x() <= 0 && this->x() >= 0)) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(1, this->_internal_x(), target);
   }
 
   // double y = 2;
   if (!(this->y() <= 0 && this->y() >= 0)) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(2, this->_internal_y(), target);
   }
 
@@ -647,7 +643,7 @@ failure:
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* vec3::InternalSerializeWithCachedSizesToArray(
+::PROTOBUF_NAMESPACE_ID::uint8* vec3::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:pb.network.messages.vec3)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -655,19 +651,19 @@ failure:
 
   // double x = 1;
   if (!(this->x() <= 0 && this->x() >= 0)) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(1, this->_internal_x(), target);
   }
 
   // double y = 2;
   if (!(this->y() <= 0 && this->y() >= 0)) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(2, this->_internal_y(), target);
   }
 
   // double z = 3;
   if (!(this->z() <= 0 && this->z() >= 0)) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(3, this->_internal_z(), target);
   }
 
@@ -888,7 +884,7 @@ failure:
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* vec4::InternalSerializeWithCachedSizesToArray(
+::PROTOBUF_NAMESPACE_ID::uint8* vec4::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:pb.network.messages.vec4)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -896,25 +892,25 @@ failure:
 
   // double x = 1;
   if (!(this->x() <= 0 && this->x() >= 0)) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(1, this->_internal_x(), target);
   }
 
   // double y = 2;
   if (!(this->y() <= 0 && this->y() >= 0)) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(2, this->_internal_y(), target);
   }
 
   // double z = 3;
   if (!(this->z() <= 0 && this->z() >= 0)) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(3, this->_internal_z(), target);
   }
 
   // double w = 4;
   if (!(this->w() <= 0 && this->w() >= 0)) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(4, this->_internal_w(), target);
   }
 

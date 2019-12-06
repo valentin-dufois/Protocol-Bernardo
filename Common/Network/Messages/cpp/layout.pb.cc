@@ -358,7 +358,9 @@ const char* LayoutList::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID:
           ptr -= 1;
           do {
             ptr += 1;
-            ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParserUTF8(_internal_add_layoutname(), ptr, ctx, "pb.network.messages.LayoutList.layoutName");
+            auto str = _internal_add_layoutname();
+            ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+            CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "pb.network.messages.LayoutList.layoutName"));
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<82>(ptr));
@@ -384,7 +386,7 @@ failure:
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* LayoutList::InternalSerializeWithCachedSizesToArray(
+::PROTOBUF_NAMESPACE_ID::uint8* LayoutList::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:pb.network.messages.LayoutList)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -554,7 +556,9 @@ const char* LayoutName::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID:
       // string name = 10;
       case 10:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 82)) {
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParserUTF8(_internal_mutable_name(), ptr, ctx, "pb.network.messages.LayoutName.name");
+          auto str = _internal_mutable_name();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "pb.network.messages.LayoutName.name"));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -578,7 +582,7 @@ failure:
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* LayoutName::InternalSerializeWithCachedSizesToArray(
+::PROTOBUF_NAMESPACE_ID::uint8* LayoutName::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:pb.network.messages.LayoutName)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -866,14 +870,18 @@ const char* Device::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::int
       // string name = 10;
       case 10:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 82)) {
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParserUTF8(_internal_mutable_name(), ptr, ctx, "pb.network.messages.Device.name");
+          auto str = _internal_mutable_name();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "pb.network.messages.Device.name"));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
       // string uid = 20;
       case 20:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 162)) {
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParserUTF8(_internal_mutable_uid(), ptr, ctx, "pb.network.messages.Device.uid");
+          auto str = _internal_mutable_uid();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "pb.network.messages.Device.uid"));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -915,7 +923,9 @@ const char* Device::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::int
       // string physicaluid = 80;
       case 80:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 130)) {
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParserUTF8(_internal_mutable_physicaluid(), ptr, ctx, "pb.network.messages.Device.physicaluid");
+          auto str = _internal_mutable_physicaluid();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "pb.network.messages.Device.physicaluid"));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -953,7 +963,7 @@ failure:
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* Device::InternalSerializeWithCachedSizesToArray(
+::PROTOBUF_NAMESPACE_ID::uint8* Device::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:pb.network.messages.Device)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -981,35 +991,35 @@ failure:
 
   // double horizontalFOV = 30;
   if (!(this->horizontalfov() <= 0 && this->horizontalfov() >= 0)) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(30, this->_internal_horizontalfov(), target);
   }
 
   // double minDistance = 40;
   if (!(this->mindistance() <= 0 && this->mindistance() >= 0)) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(40, this->_internal_mindistance(), target);
   }
 
   // double maxDistance = 50;
   if (!(this->maxdistance() <= 0 && this->maxdistance() >= 0)) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(50, this->_internal_maxdistance(), target);
   }
 
   // .pb.network.messages.vec3 position = 60;
   if (this->has_position()) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessageToArray(
+      InternalWriteMessage(
         60, _Internal::position(this), target, stream);
   }
 
   // .pb.network.messages.vec3 orientation = 70;
   if (this->has_orientation()) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessageToArray(
+      InternalWriteMessage(
         70, _Internal::orientation(this), target, stream);
   }
 
@@ -1025,17 +1035,17 @@ failure:
 
   // .pb.network.messages.vec3 positionDelta = 90;
   if (this->has_positiondelta()) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessageToArray(
+      InternalWriteMessage(
         90, _Internal::positiondelta(this), target, stream);
   }
 
   // .pb.network.messages.vec3 orientationDelta = 100;
   if (this->has_orientationdelta()) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessageToArray(
+      InternalWriteMessage(
         100, _Internal::orientationdelta(this), target, stream);
   }
 
@@ -1372,14 +1382,18 @@ const char* Screen::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::int
       // string name = 10;
       case 10:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 82)) {
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParserUTF8(_internal_mutable_name(), ptr, ctx, "pb.network.messages.Screen.name");
+          auto str = _internal_mutable_name();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "pb.network.messages.Screen.name"));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
       // string uid = 20;
       case 20:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 162)) {
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParserUTF8(_internal_mutable_uid(), ptr, ctx, "pb.network.messages.Screen.uid");
+          auto str = _internal_mutable_uid();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "pb.network.messages.Screen.uid"));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -1424,7 +1438,7 @@ failure:
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* Screen::InternalSerializeWithCachedSizesToArray(
+::PROTOBUF_NAMESPACE_ID::uint8* Screen::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:pb.network.messages.Screen)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -1452,25 +1466,25 @@ failure:
 
   // .pb.network.messages.vec3 position = 30;
   if (this->has_position()) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessageToArray(
+      InternalWriteMessage(
         30, _Internal::position(this), target, stream);
   }
 
   // .pb.network.messages.vec3 orientation = 40;
   if (this->has_orientation()) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessageToArray(
+      InternalWriteMessage(
         40, _Internal::orientation(this), target, stream);
   }
 
   // .pb.network.messages.vec2 size = 50;
   if (this->has_size()) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessageToArray(
+      InternalWriteMessage(
         50, _Internal::size(this), target, stream);
   }
 
@@ -1681,7 +1695,9 @@ const char* Layout::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::int
       // string name = 10;
       case 10:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 82)) {
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParserUTF8(_internal_mutable_name(), ptr, ctx, "pb.network.messages.Layout.name");
+          auto str = _internal_mutable_name();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "pb.network.messages.Layout.name"));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -1729,7 +1745,7 @@ failure:
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* Layout::InternalSerializeWithCachedSizesToArray(
+::PROTOBUF_NAMESPACE_ID::uint8* Layout::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:pb.network.messages.Layout)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -1748,17 +1764,17 @@ failure:
   // repeated .pb.network.messages.Device devices = 20;
   for (unsigned int i = 0,
       n = static_cast<unsigned int>(this->_internal_devices_size()); i < n; i++) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessageToArray(20, this->_internal_devices(i), target, stream);
+      InternalWriteMessage(20, this->_internal_devices(i), target, stream);
   }
 
   // repeated .pb.network.messages.Screen screens = 30;
   for (unsigned int i = 0,
       n = static_cast<unsigned int>(this->_internal_screens_size()); i < n; i++) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessageToArray(30, this->_internal_screens(i), target, stream);
+      InternalWriteMessage(30, this->_internal_screens(i), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -2009,7 +2025,7 @@ failure:
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* CalibrationValues::InternalSerializeWithCachedSizesToArray(
+::PROTOBUF_NAMESPACE_ID::uint8* CalibrationValues::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:pb.network.messages.CalibrationValues)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -2017,17 +2033,17 @@ failure:
 
   // .pb.network.messages.vec3 angle = 10;
   if (this->has_angle()) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessageToArray(
+      InternalWriteMessage(
         10, _Internal::angle(this), target, stream);
   }
 
   // .pb.network.messages.vec3 position = 20;
   if (this->has_position()) {
-    stream->EnsureSpace(&target);
+    target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessageToArray(
+      InternalWriteMessage(
         20, _Internal::position(this), target, stream);
   }
 
@@ -2204,14 +2220,18 @@ const char* CalibrationDevices::_InternalParse(const char* ptr, ::PROTOBUF_NAMES
       // string deviceA = 10;
       case 10:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 82)) {
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParserUTF8(_internal_mutable_devicea(), ptr, ctx, "pb.network.messages.CalibrationDevices.deviceA");
+          auto str = _internal_mutable_devicea();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "pb.network.messages.CalibrationDevices.deviceA"));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
       // string deviceB = 20;
       case 20:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 162)) {
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParserUTF8(_internal_mutable_deviceb(), ptr, ctx, "pb.network.messages.CalibrationDevices.deviceB");
+          auto str = _internal_mutable_deviceb();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "pb.network.messages.CalibrationDevices.deviceB"));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -2235,7 +2255,7 @@ failure:
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* CalibrationDevices::InternalSerializeWithCachedSizesToArray(
+::PROTOBUF_NAMESPACE_ID::uint8* CalibrationDevices::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:pb.network.messages.CalibrationDevices)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
