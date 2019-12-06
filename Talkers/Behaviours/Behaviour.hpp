@@ -16,7 +16,7 @@
 
 class Tree;
 class Output;
-class Message;
+struct Message;
 class Machine;
 
 class Behaviour {

@@ -13,7 +13,7 @@
 #include "Tree.hpp"
 #include "../Utils/AccessibleValues.hpp"
 
-class Message;
+struct Message;
 class Behaviour;
 
 class Machine {
