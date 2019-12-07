@@ -27,7 +27,7 @@
 #include "T-01/B-112/S-112-00.hpp"
 #include "T-01/B-113/S-113-00.hpp"
 
-// TREE 1
+// TREE 2
 #include "T-02/B-200/S-200-00.hpp"
 #include "T-02/B-201/S-201-00.hpp"
 #include "T-02/B-201/S-201-01.hpp"
@@ -51,6 +51,19 @@
 #include "T-02/B-219/S-219-00.hpp"
 #include "T-02/B-220/S-220-00.hpp"
 #include "T-02/B-221/S-221-00.hpp"
+
+
+// TREE 4
+#include "T-04/B-400/S-400-00.hpp"
+#include "T-04/B-401/S-401-00.hpp"
+#include "T-04/B-402/S-402-00.hpp"
+#include "T-04/B-403/S-403-00.hpp"
+#include "T-04/B-404/S-404-00.hpp"
+#include "T-04/B-405/S-405-00.hpp"
+#include "T-04/B-406/S-406-00.hpp"
+
+
+
 
 Output * Output::get(const talkers::OutputID id) {
 	switch (id) {
@@ -95,6 +108,16 @@ Output * Output::get(const talkers::OutputID id) {
 		case 21900: return new S21900();
 		case 22000: return new S22000();
 		case 22100: return new S22100();
+
+		// MARK: - TREE 4
+		case 40000: return new S40000();
+		case 40100: return new S40100();
+		case 40200: return new S40200();
+		case 40300: return new S40300();
+		case 40400: return new S40400();
+		case 40500: return new S40500();
+		case 40600: return new S40600();
+
 		default:
 			std::cout << "*** No output " << id << std::endl;
 			return nullptr;

@@ -51,6 +51,18 @@
 #include "T-02/B-220/B-220.hpp"
 #include "T-02/B-221/B-221.hpp"
 
+
+// TREE 4
+#include "T-04/B-400/B-400.hpp"
+#include "T-04/B-401/B-401.hpp"
+#include "T-04/B-402/B-402.hpp"
+#include "T-04/B-403/B-403.hpp"
+#include "T-04/B-404/B-404.hpp"
+#include "T-04/B-405/B-405.hpp"
+#include "T-04/B-406/B-406.hpp"
+
+
+
 Behaviour * Behaviour::get(const talkers::BehaviourID behaviourID) {
 	switch (behaviourID) {
 		case   0: return new B000();
@@ -94,6 +106,16 @@ Behaviour * Behaviour::get(const talkers::BehaviourID behaviourID) {
 		case 219: return new B219();
 		case 220: return new B220();
 		case 221: return new B221();
+
+		// MARK: - TREE 4
+		case 400: return new B400();
+		case 401: return new B401();
+		case 402: return new B402();
+		case 403: return new B403();
+		case 404: return new B404();
+		case 405: return new B405();
+		case 406: return new B406();
+
 		default:
 			std::cout << "*** No behaviour " << behaviourID << std::endl;
 			return nullptr;
