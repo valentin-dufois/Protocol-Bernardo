@@ -53,15 +53,11 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "-interface 10.110.10.138"
+            argument = "--interface 10.110.10.138"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-loglevel 3"
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "-layout TestsUtilisateurs"
+            argument = "--layout TestsUtilisateurs"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

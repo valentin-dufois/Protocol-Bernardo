@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3900756323567A39007A0982 /* libprotobuf.21.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3937AE0223566528009E6021 /* libprotobuf.21.dylib */; };
 		3900756523567C50007A0982 /* libprotobuf.21.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3937AE0223566528009E6021 /* libprotobuf.21.dylib */; };
+		39012F07239C4B9600FE652B /* Arena.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39012F06239C4B9600FE652B /* Arena.cpp */; };
+		39012F08239C4BCF00FE652B /* Arena.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39012F06239C4B9600FE652B /* Arena.cpp */; };
+		39012F0A239C4E7E00FE652B /* Arena.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3933A6C1239C44020095B3AF /* Arena.hpp */; };
+		39012F0B239C4E7E00FE652B /* Arena.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3933A6C1239C44020095B3AF /* Arena.hpp */; };
+		39012F0C239C4EC500FE652B /* libpb-common.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 39C23841238309B300791E1E /* libpb-common.a */; };
 		3903C2762392FBC80061CFA8 /* TrackersServer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3903C2742392FBC80061CFA8 /* TrackersServer.hpp */; };
 		3903C2772392FC960061CFA8 /* TrackersServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3903C2732392FBC80061CFA8 /* TrackersServer.cpp */; };
 		391159092369E9BE00ED75C5 /* NewLayoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391159082369E9BE00ED75C5 /* NewLayoutViewController.swift */; };
@@ -35,7 +39,6 @@
 		3937ADFC23565E2F009E6021 /* NetworkEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3937ADFB23565E2F009E6021 /* NetworkEngine.swift */; };
 		3937ADFE23565E70009E6021 /* Browser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3937ADFD23565E70009E6021 /* Browser.swift */; };
 		3937AE0023565F0A009E6021 /* BrowserDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3937ADFF23565F0A009E6021 /* BrowserDelegate.swift */; };
-		3937AE0323566528009E6021 /* libprotobuf.21.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3937AE0223566528009E6021 /* libprotobuf.21.dylib */; };
 		3937AE0923566634009E6021 /* body.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3937AE0523566634009E6021 /* body.pb.swift */; };
 		3937AE0A23566634009E6021 /* layout.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3937AE0623566634009E6021 /* layout.pb.swift */; };
 		3937AE0B23566634009E6021 /* network.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3937AE0723566634009E6021 /* network.pb.swift */; };
@@ -50,11 +53,16 @@
 		393B9DB2238B2978008BA8D7 /* CPValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393B9DB1238B2978008BA8D7 /* CPValue.swift */; };
 		39469E8A2379E3A700E25030 /* CanvasBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39469E892379E3A700E25030 /* CanvasBody.swift */; };
 		394AE3AD239B0B39001AB4E4 /* libprotobuf.22.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 394AE3AC239B0B39001AB4E4 /* libprotobuf.22.dylib */; };
-		394AE3AE239B0B39001AB4E4 /* libprotobuf.22.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 394AE3AC239B0B39001AB4E4 /* libprotobuf.22.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		394AE3B1239B0BF4001AB4E4 /* libboost_program_options.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 394AE3B0239B0BF4001AB4E4 /* libboost_program_options.dylib */; };
-		394AE3B2239B0BF4001AB4E4 /* libboost_program_options.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 394AE3B0239B0BF4001AB4E4 /* libboost_program_options.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		394AE3B3239B0BFF001AB4E4 /* libboost_program_options.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 394AE3B0239B0BF4001AB4E4 /* libboost_program_options.dylib */; };
-		394AE3B4239B0BFF001AB4E4 /* libboost_program_options.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 394AE3B0239B0BF4001AB4E4 /* libboost_program_options.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		394AE3B9239B1483001AB4E4 /* libboost_program_options.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 394AE3B0239B0BF4001AB4E4 /* libboost_program_options.dylib */; };
+		394AE3BA239B1483001AB4E4 /* libboost_program_options.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 394AE3B0239B0BF4001AB4E4 /* libboost_program_options.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		394AE3BC239B1485001AB4E4 /* libprotobuf.22.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 394AE3AC239B0B39001AB4E4 /* libprotobuf.22.dylib */; };
+		394AE3BD239B1485001AB4E4 /* libprotobuf.22.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 394AE3AC239B0B39001AB4E4 /* libprotobuf.22.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		394AE3BE239B148D001AB4E4 /* libboost_system.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 39CA4ABF2331470200E528CD /* libboost_system.dylib */; };
+		394AE3BF239B148D001AB4E4 /* libboost_system.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 39CA4ABF2331470200E528CD /* libboost_system.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		394AE3C0239B1602001AB4E4 /* libboost_program_options.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 394AE3B0239B0BF4001AB4E4 /* libboost_program_options.dylib */; };
+		394AE3C2239B161C001AB4E4 /* libprotobuf.22.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 394AE3AC239B0B39001AB4E4 /* libprotobuf.22.dylib */; };
+		394AE3C4239B161E001AB4E4 /* libboost_system.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 39CA4ABF2331470200E528CD /* libboost_system.dylib */; };
 		3950170B2341689000E7F6BD /* Socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 395017092341689000E7F6BD /* Socket.cpp */; };
 		3950170C2341689000E7F6BD /* Socket.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3950170A2341689000E7F6BD /* Socket.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		3950170E23416C9C00E7F6BD /* SocketStatus.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3950170D23416C9C00E7F6BD /* SocketStatus.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -65,9 +73,7 @@
 		39580E882358E43800CD3CEC /* Socket in Frameworks */ = {isa = PBXBuildFile; productRef = 39580E872358E43800CD3CEC /* Socket */; };
 		39580E8A23591B0800CD3CEC /* MasterClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39580E8923591B0800CD3CEC /* MasterClient.swift */; };
 		39580E8D23591F7500CD3CEC /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39580E8C23591F7500CD3CEC /* Log.swift */; };
-		3958C23C239887ED008F908E /* talkers.proto in Sources */ = {isa = PBXBuildFile; fileRef = 3958C23B239887ED008F908E /* talkers.proto */; };
 		3958C24423988BA9008F908E /* talkers.pb.h in Headers */ = {isa = PBXBuildFile; fileRef = 3958C24223988BA9008F908E /* talkers.pb.h */; };
-		3958C24523988BB7008F908E /* talkers.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = 3958C24123988BA9008F908E /* talkers.pb.cc */; };
 		3958C24623988BB9008F908E /* talkers.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = 3958C24123988BA9008F908E /* talkers.pb.cc */; };
 		3958C24723988BBB008F908E /* talkers.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = 3958C24123988BA9008F908E /* talkers.pb.cc */; };
 		39593A83238F299200B8CF17 /* Behaviour.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 39593A81238F299200B8CF17 /* Behaviour.hpp */; };
@@ -110,7 +116,6 @@
 		3978A80B2336F7C300AF409D /* Core.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3978A7F42336BFCD00AF409D /* Core.cpp */; };
 		3987070A238C65C10047B32E /* libprotobuf.21.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 3937AE0223566528009E6021 /* libprotobuf.21.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		3987070C238C65CD0047B32E /* libboost_system.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 39CA4ABF2331470200E528CD /* libboost_system.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		398CADC023739D12001457D6 /* libprotobuf.21.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 3937AE0223566528009E6021 /* libprotobuf.21.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		399D167A23521E7600CEC2F0 /* flags.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 399D167823521E7600CEC2F0 /* flags.cpp */; };
 		399D167B23521E7600CEC2F0 /* flags.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 399D167923521E7600CEC2F0 /* flags.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		39ABB55B2337087900C5D147 /* NetworkManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39ABB5572336FE1200C5D147 /* NetworkManager.cpp */; };
@@ -122,20 +127,7 @@
 		39BF573923982FB5009F82BE /* libicudata.64.2.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 39BF573223982F97009F82BE /* libicudata.64.2.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		39BF573A23982FB5009F82BE /* libicui18n.64.2.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 39BF573023982F97009F82BE /* libicui18n.64.2.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		39BF573B23982FB5009F82BE /* libicuuc.64.2.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 39BF573123982F97009F82BE /* libicuuc.64.2.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		39BF574C23983DB2009F82BE /* Ping.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 391A20062342B6D300F00517 /* Ping.cpp */; };
-		39BF574D23983DB2009F82BE /* Socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 395017092341689000E7F6BD /* Socket.cpp */; };
-		39BF574E23983DB2009F82BE /* Advertiser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39CA4AC82331486D00E528CD /* Advertiser.cpp */; };
-		39BF574F23983DB2009F82BE /* Browser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39CA4AC42331486D00E528CD /* Browser.cpp */; };
-		39BF575023983DB2009F82BE /* layout.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = 3966E4182338018800710DD4 /* layout.pb.cc */; };
-		39BF575123983DB2009F82BE /* body.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = 395A79B42335BB2000499894 /* body.pb.cc */; };
-		39BF575223983DB2009F82BE /* maths.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = 395A79AE2335BB2000499894 /* maths.pb.cc */; };
-		39BF575323983DB2009F82BE /* network.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = 395A79B92335BB2000499894 /* network.pb.cc */; };
-		39BF575423983DB2009F82BE /* NetworkEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39CA4AC62331486D00E528CD /* NetworkEngine.cpp */; };
-		39BF575523983DB2009F82BE /* Endpoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 395A0C80237F5E2A00FB1D1D /* Endpoint.cpp */; };
-		39BF575623983DB2009F82BE /* Server.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 396C6A4E233C5643008FD842 /* Server.cpp */; };
-		39BF575723983DB2009F82BE /* flags.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 399D167823521E7600CEC2F0 /* flags.cpp */; };
 		39BF575D239856C2009F82BE /* libboost_regex.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 39BF573623982FAC009F82BE /* libboost_regex.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		39BF5760239856C2009F82BE /* libboost_system.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 39CA4ABF2331470200E528CD /* libboost_system.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		39C23809238309B300791E1E /* maths.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 395A79822333323500499894 /* maths.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		39C2380B238309B300791E1E /* thread.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 39387FA2237AE82C009E3FF2 /* thread.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		39C2380C238309B300791E1E /* RawBody.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 395A797D2333321600499894 /* RawBody.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -186,8 +178,6 @@
 		39CA4AA72331413A00E528CD /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CA4AA62331413A00E528CD /* MainViewController.swift */; };
 		39CA4AA92331413D00E528CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39CA4AA82331413D00E528CD /* Assets.xcassets */; };
 		39CA4AAC2331413D00E528CD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39CA4AAA2331413D00E528CD /* Main.storyboard */; };
-		39CA4AC02331470200E528CD /* libboost_system.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 39CA4ABF2331470200E528CD /* libboost_system.dylib */; };
-		39CA4AC12331470200E528CD /* libboost_system.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 39CA4ABF2331470200E528CD /* libboost_system.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		39CA4AD52331486D00E528CD /* NetworkEngine.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 39CA4AC32331486D00E528CD /* NetworkEngine.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		39CA4AD62331486D00E528CD /* Browser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39CA4AC42331486D00E528CD /* Browser.cpp */; };
 		39CA4AD72331486D00E528CD /* Advertiser.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 39CA4AC52331486D00E528CD /* Advertiser.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -254,14 +244,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		394AE3AF239B0B39001AB4E4 /* Embed Libraries */ = {
+		394AE3BB239B1483001AB4E4 /* Embed Libraries */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				394AE3B4239B0BFF001AB4E4 /* libboost_program_options.dylib in Embed Libraries */,
-				394AE3AE239B0B39001AB4E4 /* libprotobuf.22.dylib in Embed Libraries */,
+				394AE3BD239B1485001AB4E4 /* libprotobuf.22.dylib in Embed Libraries */,
+				394AE3BA239B1483001AB4E4 /* libboost_program_options.dylib in Embed Libraries */,
+				394AE3BF239B148D001AB4E4 /* libboost_system.dylib in Embed Libraries */,
 			);
 			name = "Embed Libraries";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -302,15 +293,6 @@
 			name = "Embed Libraries";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		39C238442384823400791E1E /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 7;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		39CA4A7F233140BE00E528CD /* Copy OpenNI + NiTE Support Files */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 12;
@@ -332,19 +314,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
-		39CA4ABE233145A200E528CD /* Embed Libraries */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				398CADC023739D12001457D6 /* libprotobuf.21.dylib in Embed Libraries */,
-				39CA4AC12331470200E528CD /* libboost_system.dylib in Embed Libraries */,
-				394AE3B2239B0BF4001AB4E4 /* libboost_program_options.dylib in Embed Libraries */,
-			);
-			name = "Embed Libraries";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		39F860DF239076C300A32146 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 12;
@@ -352,7 +321,6 @@
 			dstSubfolderSpec = 16;
 			files = (
 				39BF575D239856C2009F82BE /* libboost_regex.dylib in CopyFiles */,
-				39BF5760239856C2009F82BE /* libboost_system.dylib in CopyFiles */,
 				39BF573923982FB5009F82BE /* libicudata.64.2.dylib in CopyFiles */,
 				39BF573A23982FB5009F82BE /* libicui18n.64.2.dylib in CopyFiles */,
 				39BF573B23982FB5009F82BE /* libicuuc.64.2.dylib in CopyFiles */,
@@ -362,6 +330,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		39012F06239C4B9600FE652B /* Arena.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Arena.cpp; sourceTree = "<group>"; };
+		39012F0E239C7AB200FE652B /* Watcher.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Watcher.hpp; sourceTree = "<group>"; };
+		39012F10239C7CB000FE652B /* SuddenMoveWatcher.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SuddenMoveWatcher.hpp; sourceTree = "<group>"; };
+		39012F14239D718600FE652B /* Event.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Event.hpp; sourceTree = "<group>"; };
+		39012F15239D8E5A00FE652B /* MachineDelegate.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MachineDelegate.hpp; sourceTree = "<group>"; };
+		39012F16239D9A9600FE652B /* NoMovementsWatcher.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NoMovementsWatcher.hpp; sourceTree = "<group>"; };
 		3903C2732392FBC80061CFA8 /* TrackersServer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TrackersServer.cpp; sourceTree = "<group>"; };
 		3903C2742392FBC80061CFA8 /* TrackersServer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TrackersServer.hpp; sourceTree = "<group>"; };
 		39089E982335E24600D03D24 /* pb-tracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "pb-tracker.entitlements"; sourceTree = "<group>"; };
@@ -393,6 +367,8 @@
 		392DCCB023453B7700885C84 /* TerminalServer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TerminalServer.cpp; sourceTree = "<group>"; };
 		392DCCB123453B7700885C84 /* TerminalServer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TerminalServer.hpp; sourceTree = "<group>"; };
 		392DCCB52345471E00885C84 /* diskIO.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = diskIO.hpp; sourceTree = "<group>"; };
+		3933A6C1239C44020095B3AF /* Arena.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Arena.hpp; sourceTree = "<group>"; };
+		3933A6C2239C440E0095B3AF /* Bounds.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Bounds.hpp; sourceTree = "<group>"; };
 		3937ADF823565C6C009E6021 /* MainWindowContoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowContoller.swift; sourceTree = "<group>"; };
 		3937ADFB23565E2F009E6021 /* NetworkEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkEngine.swift; sourceTree = "<group>"; };
 		3937ADFD23565E70009E6021 /* Browser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Browser.swift; sourceTree = "<group>"; };
@@ -657,9 +633,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				39CA4AC02331470200E528CD /* libboost_system.dylib in Frameworks */,
-				3937AE0323566528009E6021 /* libprotobuf.21.dylib in Frameworks */,
-				394AE3B1239B0BF4001AB4E4 /* libboost_program_options.dylib in Frameworks */,
+				394AE3BC239B1485001AB4E4 /* libprotobuf.22.dylib in Frameworks */,
+				394AE3B9239B1483001AB4E4 /* libboost_program_options.dylib in Frameworks */,
+				394AE3BE239B148D001AB4E4 /* libboost_system.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -678,7 +654,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3900756323567A39007A0982 /* libprotobuf.21.dylib in Frameworks */,
+				394AE3C0239B1602001AB4E4 /* libboost_program_options.dylib in Frameworks */,
+				394AE3C4239B161E001AB4E4 /* libboost_system.dylib in Frameworks */,
+				394AE3C2239B161C001AB4E4 /* libprotobuf.22.dylib in Frameworks */,
 				395D8883238CAB0400FEC1EC /* libpb-common.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -696,6 +674,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39012F0C239C4EC500FE652B /* libpb-common.a in Frameworks */,
 				394AE3B3239B0BFF001AB4E4 /* libboost_program_options.dylib in Frameworks */,
 				39BF573723982FAC009F82BE /* libboost_regex.dylib in Frameworks */,
 				394AE3AD239B0B39001AB4E4 /* libprotobuf.22.dylib in Frameworks */,
@@ -706,6 +685,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		39012F0D239C7A2900FE652B /* Watchers */ = {
+			isa = PBXGroup;
+			children = (
+				39012F0E239C7AB200FE652B /* Watcher.hpp */,
+				39012F14239D718600FE652B /* Event.hpp */,
+				39012F16239D9A9600FE652B /* NoMovementsWatcher.hpp */,
+				39012F10239C7CB000FE652B /* SuddenMoveWatcher.hpp */,
+			);
+			path = Watchers;
+			sourceTree = "<group>";
+		};
 		391159072369E99C00ED75C5 /* LayoutsManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -1027,6 +1017,7 @@
 		39593A7E238F289500B8CF17 /* Talkers */ = {
 			isa = PBXGroup;
 			children = (
+				39012F0D239C7A2900FE652B /* Watchers */,
 				39F860EF2390775C00A32146 /* Talkers.entitlements */,
 				39BF56F62396FFC1009F82BE /* main.cpp */,
 				3958C24823989B9F008F908E /* main.hpp */,
@@ -1040,8 +1031,8 @@
 		39593A7F238F297900B8CF17 /* Behaviours */ = {
 			isa = PBXGroup;
 			children = (
-				39A3B18C2399C7E300D2B350 /* T-02 */,
 				39A3B18B2399C7D400D2B350 /* T-01 */,
+				39A3B18C2399C7E300D2B350 /* T-02 */,
 				39F860D8239067E500A32146 /* B-000 */,
 				39593A80238F299200B8CF17 /* Behaviour.cpp */,
 				39593A81238F299200B8CF17 /* Behaviour.hpp */,
@@ -1606,6 +1597,9 @@
 				39CA4AFC2332BDAB00E528CD /* Log.hpp */,
 				395A79822333323500499894 /* maths.hpp */,
 				39387FA2237AE82C009E3FF2 /* thread.hpp */,
+				39012F06239C4B9600FE652B /* Arena.cpp */,
+				3933A6C1239C44020095B3AF /* Arena.hpp */,
+				3933A6C2239C440E0095B3AF /* Bounds.hpp */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1674,6 +1668,7 @@
 				39F860D3239065D500A32146 /* Tree.hpp */,
 				39F860D42390667E00A32146 /* Machine.cpp */,
 				39F860D52390667E00A32146 /* Machine.hpp */,
+				39012F15239D8E5A00FE652B /* MachineDelegate.hpp */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -1704,6 +1699,7 @@
 				39C23812238309B300791E1E /* Socket.hpp in Headers */,
 				39C23814238309B300791E1E /* flags.hpp in Headers */,
 				39DA973A2387169700D611C8 /* CalibrationValues.hpp in Headers */,
+				39012F0B239C4E7E00FE652B /* Arena.hpp in Headers */,
 				39C23815238309B300791E1E /* Server.hpp in Headers */,
 				39C23817238309B300791E1E /* Advertiser.hpp in Headers */,
 				39C23819238309B300791E1E /* messages.hpp in Headers */,
@@ -1750,6 +1746,7 @@
 				393AD3EA23523D5600ECE95C /* diskIO.hpp in Headers */,
 				39CA4ADD2331486D00E528CD /* Browser.hpp in Headers */,
 				39F860D72390667E00A32146 /* Machine.hpp in Headers */,
+				39012F0A239C4E7E00FE652B /* Arena.hpp in Headers */,
 				3950170E23416C9C00E7F6BD /* SocketStatus.hpp in Headers */,
 				39CA4AD52331486D00E528CD /* NetworkEngine.hpp in Headers */,
 				39CA4AD92331486D00E528CD /* NetworkParameters.h in Headers */,
@@ -1771,6 +1768,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 39C2383E238309B300791E1E /* Build configuration list for PBXNativeTarget "pb-common (static)" */;
 			buildPhases = (
+				39012F05239C485C00FE652B /* Compile Protos */,
 				39C23808238309B300791E1E /* Headers */,
 				39C23826238309B300791E1E /* Sources */,
 				39C23836238309B300791E1E /* Frameworks */,
@@ -1811,8 +1809,7 @@
 				39CA4A732331407A00E528CD /* Headers */,
 				39CA4A742331407A00E528CD /* Sources */,
 				39CA4A752331407A00E528CD /* Frameworks */,
-				39CA4ABE233145A200E528CD /* Embed Libraries */,
-				39C238442384823400791E1E /* CopyFiles */,
+				394AE3BB239B1483001AB4E4 /* Embed Libraries */,
 			);
 			buildRules = (
 			);
@@ -1907,7 +1904,6 @@
 				39F860DE239076C300A32146 /* Frameworks */,
 				39F860DF239076C300A32146 /* CopyFiles */,
 				39BF570F239826CF009F82BE /* ShellScript */,
-				394AE3AF239B0B39001AB4E4 /* Embed Libraries */,
 			);
 			buildRules = (
 			);
@@ -2007,6 +2003,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		39012F05239C485C00FE652B /* Compile Protos */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Compile Protos";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "workdir=Common/Network/Messages\nprotoc -I=$workdir/protos --swift_out=$workdir/Swift $workdir/protos/*.proto  \nprotoc -I=$workdir/protos --cpp_out=$workdir/cpp $workdir/protos/*.proto\n";
+		};
 		3928CC282367B043006E8D9F /* Update Build Number */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2090,6 +2104,7 @@
 				39C23829238309B300791E1E /* Server.cpp in Sources */,
 				39C2382A238309B300791E1E /* NetworkEngine.cpp in Sources */,
 				39C2382C238309B300791E1E /* layout.pb.cc in Sources */,
+				39012F08239C4BCF00FE652B /* Arena.cpp in Sources */,
 				39C2382E238309B300791E1E /* maths.pb.cc in Sources */,
 				39C2382F238309B300791E1E /* flags.cpp in Sources */,
 				39C23830238309B300791E1E /* Browser.cpp in Sources */,
@@ -2125,10 +2140,10 @@
 			files = (
 				395A79C42335BB2000499894 /* body.pb.cc in Sources */,
 				3950170B2341689000E7F6BD /* Socket.cpp in Sources */,
-				3958C23C239887ED008F908E /* talkers.proto in Sources */,
 				396C6A50233C5643008FD842 /* Server.cpp in Sources */,
 				39CA4AD82331486D00E528CD /* NetworkEngine.cpp in Sources */,
 				3966E41C2338018800710DD4 /* layout.pb.cc in Sources */,
+				39012F07239C4B9600FE652B /* Arena.cpp in Sources */,
 				395A79BE2335BB2000499894 /* maths.pb.cc in Sources */,
 				399D167A23521E7600CEC2F0 /* flags.cpp in Sources */,
 				39CA4AD62331486D00E528CD /* Browser.cpp in Sources */,
@@ -2240,19 +2255,6 @@
 				39F860EB239076D900A32146 /* getBehaviour.cpp in Sources */,
 				39F860EC239076D900A32146 /* Output.cpp in Sources */,
 				39F860F32390800A00A32146 /* getOutput.cpp in Sources */,
-				39BF574C23983DB2009F82BE /* Ping.cpp in Sources */,
-				39BF574D23983DB2009F82BE /* Socket.cpp in Sources */,
-				39BF574E23983DB2009F82BE /* Advertiser.cpp in Sources */,
-				39BF574F23983DB2009F82BE /* Browser.cpp in Sources */,
-				3958C24523988BB7008F908E /* talkers.pb.cc in Sources */,
-				39BF575023983DB2009F82BE /* layout.pb.cc in Sources */,
-				39BF575123983DB2009F82BE /* body.pb.cc in Sources */,
-				39BF575223983DB2009F82BE /* maths.pb.cc in Sources */,
-				39BF575323983DB2009F82BE /* network.pb.cc in Sources */,
-				39BF575423983DB2009F82BE /* NetworkEngine.cpp in Sources */,
-				39BF575523983DB2009F82BE /* Endpoint.cpp in Sources */,
-				39BF575623983DB2009F82BE /* Server.cpp in Sources */,
-				39BF575723983DB2009F82BE /* flags.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2301,7 +2303,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_COMMA = NO;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
@@ -2337,7 +2339,6 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
 					"$(inherited)",
 					BOOST_ASIO_SEPARATE_COMPILATION,
 				);
@@ -2348,12 +2349,8 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INSTALL_PATH = /usr/local/lib/;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					/usr/local/Cellar/grpc/1.23.0_2/lib,
-					/usr/local/Cellar/gflags/2.2.2/lib,
-					/usr/local/Cellar/protobuf/3.10.0/lib,
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				MACHINE = PB_COMMON;
 				MACH_O_TYPE = staticlib;
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -2379,7 +2376,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_COMMA = NO;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
@@ -2412,7 +2409,10 @@
 				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = BOOST_ASIO_SEPARATE_COMPILATION;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					BOOST_ASIO_SEPARATE_COMPILATION,
+					"$(inherited)",
+				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -2420,12 +2420,8 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INSTALL_PATH = /usr/local/lib/;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					/usr/local/Cellar/grpc/1.23.0_2/lib,
-					/usr/local/Cellar/gflags/2.2.2/lib,
-					/usr/local/Cellar/protobuf/3.10.0/lib,
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				MACHINE = PB_COMMON;
 				MACH_O_TYPE = staticlib;
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -2464,7 +2460,6 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
 					"$(inherited)",
 					MACHINE_RECEIVER_TOUCH,
 					BOOST_ASIO_SEPARATE_COMPILATION,
@@ -2479,6 +2474,7 @@
 					/usr/local/Cellar/gflags/2.2.2/lib,
 					/usr/local/Cellar/protobuf/3.10.0/lib,
 				);
+				MACHINE = PB_RECEIVER_TOUCH;
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -2531,6 +2527,7 @@
 					/usr/local/Cellar/gflags/2.2.2/lib,
 					/usr/local/Cellar/protobuf/3.10.0/lib,
 				);
+				MACHINE = PB_RECEIVER_TOUCH;
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -2548,7 +2545,7 @@
 			buildSettings = {
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_COMMA = NO;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -2566,6 +2563,10 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"LOG_LEVEL=1",
+					"DEBUG=1",
+				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -2579,6 +2580,7 @@
 					/usr/local/Cellar/protobuf/3.11.1/lib,
 					/usr/local/Cellar/boost/1.71.0/lib,
 				);
+				MACHINE = "";
 				ONLY_ACTIVE_ARCH = YES;
 				SYSTEM_HEADER_SEARCH_PATHS = (
 					/usr/local/include/,
@@ -2593,7 +2595,7 @@
 			buildSettings = {
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_COMMA = NO;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -2610,6 +2612,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = "LOG_LEVEL=2";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -2623,6 +2626,7 @@
 					/usr/local/Cellar/protobuf/3.11.1/lib,
 					/usr/local/Cellar/boost/1.71.0/lib,
 				);
+				MACHINE = "";
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SYSTEM_HEADER_SEARCH_PATHS = (
 					/usr/local/include/,
@@ -2645,7 +2649,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_COMMA = NO;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
@@ -2679,22 +2683,15 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					/usr/local/Cellar/grpc/1.23.0_2/lib,
-					/usr/local/Cellar/gflags/2.2.2/lib,
-					/usr/local/Cellar/protobuf/3.10.0/lib,
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				MACHINE = PB_COMMON;
 				MACH_O_TYPE = mh_dylib;
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = "";
@@ -2719,7 +2716,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_COMMA = NO;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
@@ -2751,19 +2748,15 @@
 				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = "";
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					/usr/local/Cellar/grpc/1.23.0_2/lib,
-					/usr/local/Cellar/gflags/2.2.2/lib,
-					/usr/local/Cellar/protobuf/3.10.0/lib,
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				MACHINE = PB_COMMON;
 				MACH_O_TYPE = mh_dylib;
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -2820,7 +2813,6 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
 					"$(inherited)",
 					MACHINE_TRACKER,
 				);
@@ -2841,6 +2833,7 @@
 					/usr/local/Cellar/opencv/4.1.0_2/lib,
 					/usr/local/Cellar/protobuf/3.10.0/lib,
 				);
+				MACHINE = PB_TRACKER;
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -2910,6 +2903,7 @@
 					/usr/local/Cellar/opencv/4.1.0_2/lib,
 					/usr/local/Cellar/protobuf/3.10.0/lib,
 				);
+				MACHINE = PB_TRACKER;
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -2963,11 +2957,6 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-					MACHINE_MASTER,
-				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -2976,12 +2965,8 @@
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_PARAMETER = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					/usr/local/Cellar/grpc/1.23.0_2/lib,
-					/usr/local/Cellar/protobuf/3.10.0/lib,
-					/usr/local/Cellar/gflags/2.2.2/lib,
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				MACHINE = PB_MASTER;
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -3043,12 +3028,8 @@
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_PARAMETER = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					/usr/local/Cellar/grpc/1.23.0_2/lib,
-					/usr/local/Cellar/protobuf/3.10.0/lib,
-					/usr/local/Cellar/gflags/2.2.2/lib,
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				MACHINE = PB_MASTER;
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -3105,10 +3086,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -3120,6 +3098,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACHINE = PB_TERMINAL;
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -3189,6 +3168,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACHINE = PB_TERMINAL;
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -3246,10 +3226,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -3262,6 +3239,7 @@
 					/usr/local/lib/NiTE2,
 					/usr/local/Cellar/grpc/1.23.0_2/lib,
 				);
+				MACHINE = PB_TRACKER_LAUNCHER;
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -3326,6 +3304,7 @@
 					/usr/local/lib/NiTE2,
 					/usr/local/Cellar/grpc/1.23.0_2/lib,
 				);
+				MACHINE = PB_TRACKER_LAUNCHER;
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -3359,10 +3338,10 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
 					"$(inherited)",
-					"LOG_LEVEL=1",
+					PB_TALKER,
 				);
+				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_PEDANTIC = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
@@ -3373,6 +3352,7 @@
 					/usr/local/Cellar/icu4c/64.2/lib,
 					/usr/local/Cellar/protobuf/3.11.1/lib,
 				);
+				MACHINE = TALKERS;
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -3404,6 +3384,7 @@
 				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_PEDANTIC = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
@@ -3414,6 +3395,7 @@
 					/usr/local/Cellar/icu4c/64.2/lib,
 					/usr/local/Cellar/protobuf/3.11.1/lib,
 				);
+				MACHINE = TALKERS;
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;

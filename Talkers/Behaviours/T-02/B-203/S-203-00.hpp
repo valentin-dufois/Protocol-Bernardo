@@ -27,7 +27,7 @@ public:
 	}) {}
 
 	virtual bool isConditionValid(const State &behaviourState) override {
-		_state["SUDDEN_MOVE_SPEED"] = behaviourState.at("SUDDEN_MOVE_SPEED");
+		_state.insert_or_assign("SUDDEN_MOVE_SPEED", behaviourState.at("SUDDEN_MOVE_SPEED"));
 		return true;
 	};
 };

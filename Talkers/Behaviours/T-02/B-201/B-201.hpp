@@ -8,6 +8,7 @@
 #ifndef B_201_hpp
 #define B_201_hpp
 
+#include <chrono>
 
 #include "../../Behaviour.hpp"
 
@@ -25,10 +26,22 @@ public:
 	}) {}
 
 	virtual bool execute(Machine * machine) override {
-		_state["MOUVEMENT_SOUDAIN"] = machine->getBoolValue(SUDDEN_MOVE);
+		std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
 
-		if(_state["MOUVEMENT_SOUDAIN"].getBool()) {
-			machine->getTree()->state["SUDDEN_MOVE_SPEED"] = machine->getDoubleValue(SUDDEN_MOVE_SPEED);
+		_state.insert_or_assign("SUDDEN_MOVE", false);
+
+		// Parse past events to find a sudden move
+		for(const Event &event: machine->eventsHistory()) {
+			// Is this a sudden move event
+			if(event.name != "SUDDEN_MOVE")
+				continue;
+
+			// Did this happened less than five seconds ago ?
+			if(std::chrono::duration_cast<std::chrono::seconds>(now - event.time).count() < 5) {
+				_state.insert_or_assign("SUDDEN_MOVE", true);
+				machine->getTree()->state.insert_or_assign("SUDDEN_MOVE_SPEED", event.values.at("SUDDEN_MOVE_SPEED"));
+				return true;
+			}
 		}
 
 		return true;

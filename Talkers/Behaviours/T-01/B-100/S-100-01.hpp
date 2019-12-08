@@ -27,9 +27,9 @@ public:
 	}) {}
 
 	virtual bool isConditionValid(const State &behaviourState) override {
-		_state["NBR_BODY"] = behaviourState.at("NBR_BODY");
+		_state.insert_or_assign("NBR_BODY", behaviourState.at("NBR_BODY"));
 
-		return _state["NBR_BODY"].getInt() > 1;
+		return _state.at("NBR_BODY").getInt() > 1;
 	};
 };
 

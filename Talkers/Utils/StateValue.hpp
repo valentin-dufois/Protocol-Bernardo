@@ -8,113 +8,100 @@
 #ifndef StateValue_h
 #define StateValue_h
 
+#include <boost/variant.hpp>
+
 #include <string>
 #include <map>
 
-struct StateValue{
+struct StateValue {
 
-	StateValue() = default;
+	StateValue(const StateValue &s):
+	_v(s._v), type(s.type) {}
 
-	StateValue(const int v) {
-		set(v);
+	StateValue(const bool v):
+	_v(v), type(boolType) {}
+
+	StateValue(const int v):
+	_v(v), type(intType) {}
+
+	StateValue(const double v):
+	_v(v), type(doubleType) {}
+
+	inline const bool& getBool() const {
+		return *boost::get<bool>(&_v);
 	}
 
-	StateValue(const double v) {
-		set(v);
+	inline const int& getInt() const {
+		return *boost::get<int>(&_v);
 	}
 
-	StateValue(const bool v) {
-		set(v);
+	inline const double& getDouble() const {
+		return *boost::get<double>(&_v);
 	}
 
-	inline void set(const int v) {
-		_int = v;
-		_type = intType;
+	operator const bool& () const {
+		return getBool();
 	}
 
-	inline void set(const double v) {
-		_double = v;
-		_type = doubleType;
+	operator const int& () const {
+		return getInt();
 	}
 
-	inline void set(const bool v) {
-		_bool = v;
-		_type = boolType;
+	operator const double& () const {
+		return getDouble();
 	}
 
-	inline int getInt() const {
-		return _int;
-	}
+	StateValue& operator = (bool val) {
+		if(type == boolType)
+			*boost::get<bool>(&_v) = val;
 
-	inline double getDouble() const {
-		return _double;
-	}
-
-	inline bool getBool() const {
-		return _bool;
-	}
-
-	inline std::string asString() const {
-		switch(_type) {
-			case intType:
-				return std::to_string(_int);
-			case doubleType:
-				return std::to_string(_double);
-			case boolType:
-				return _bool ? "Oui" : "Non";
-		}
+		return *this;
 	}
 
 	StateValue& operator = (int val) {
-		set(val);
+		if(type == intType)
+			*boost::get<int>(&_v) = val;
+
 		return *this;
 	}
 
 	StateValue& operator = (double val) {
-		set(val);
+		if(type == doubleType)
+			*boost::get<double>(&_v) = val;
+
 		return *this;
 	}
 
-	StateValue& operator = (bool val) {
-		set(val);
-		return *this;
-	}
-
-	operator std::string () const {
-		switch(_type) {
+	inline std::string asString() const {
+		switch(type) {
 			case intType:
-				return std::to_string(_int);
+				return std::to_string(getInt());
 			case doubleType:
-				return std::to_string(_double);
+				return std::to_string(getDouble());
 			case boolType:
-				return std::to_string(_bool);
+				return std::to_string(getBool());
 		}
 	}
 
-	operator int () const {
-		return _int;
+	operator std::string () const {
+		return asString();
 	}
 
-	operator double () const {
-		return _int;
+	StateValue& operator = (const StateValue &s) {
+		if(type == s.type)
+			_v = s._v;
+
+		return *this;
 	}
 
-	operator bool () const {
-		return _int;
-	}
-
-private:
-	int _int;
-	double _double;
-	bool _bool;
-
-	enum ValueType {
+	const enum ValueType {
 		intType,
 		doubleType,
 		boolType
-	};
+	} type;
 
-	ValueType _type;
+private:
+	boost::variant<int, double, bool> _v;
 };
 
 using State = std::map<std::string, StateValue>;

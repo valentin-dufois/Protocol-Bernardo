@@ -26,7 +26,7 @@ public:
 	}) {}
 
 	virtual bool isConditionValid(const State &behaviourState) override {
-		return !behaviourState.at("MOUVEMENT_SOUDAIN").getBool();
+		return !behaviourState.at("SUDDEN_MOVE").getBool();
 	};
 };
 

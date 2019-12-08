@@ -5,8 +5,6 @@
 //  Created by Valentin Dufois on 2019-09-17.
 //
 
-#include <gflags/gflags.h>
-
 #include "../Common/Utils.hpp"
 #include "../Common/Network.hpp"
 
@@ -21,15 +19,17 @@ void signalHandler(int signum) {
 	exit(signum);
 }
 
-int main(int argc, char * argv[]) {
+int main(const int argc, const char * argv[]) {
 	// Register our closing mechanisms
 	signal(SIGINT, signalHandler);
 
 	// Set app parameters
-	gflags::ParseCommandLineFlags(&argc, &argv, true);
+	po::options_description desc("pb-master");
+	desc.add_options()("layout", po::value<std::string>(), "Layout to open on start");
+	pb::flags::parse(argc, argv, desc);
+
 	pb::thread::setName("pb.master");
 
-	pb::Log::level = pb::Log::Level::DEV;
 	pb::network::Engine::thisMachineType = pb::network::Endpoint::Type::master;
 
 	// Start the core

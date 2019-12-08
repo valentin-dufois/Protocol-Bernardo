@@ -10,6 +10,10 @@
 
 #include "../../Behaviour.hpp"
 
+#ifdef B110
+#undef B110
+#endif
+
 class B110: public Behaviour {
 public:
 	B110(): Behaviour(110,	// ID

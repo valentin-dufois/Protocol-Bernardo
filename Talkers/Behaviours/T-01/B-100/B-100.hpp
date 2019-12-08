@@ -26,7 +26,7 @@ public:
 	}) {}
 
 	virtual bool execute(Machine * machine) override {
-		_state["NBR_BODY"] = machine->getIntValue(BODY_COUNT);
+		_state.insert_or_assign("NBR_BODY", (int)machine->arena()->count());
 		return true;
 	}
 };

@@ -33,16 +33,23 @@ enum Level: int {
 	NONE = 5
 };
 
+#if LOG_LEVEL > 0
+
+/// Build the location prefix with the filename and line from where the logs are comming
+inline std::string locat(const std::string &, const int &) {
+	// Do not show the error location when not debugging
+		return "";
+}
+
+#else
+
 /// Build the location prefix with the filename and line from where the logs are comming
 inline std::string locat(const std::string &file, const int &line) {
-	// Do not show the error location when not debugging
-#if LOG_LEVEL > 0
-		return "";
-#else
 	std::string filename = std::filesystem::path(file).filename();
 	return " [" + filename + ":" + std::to_string(line) + "] ";
-#endif
 }
+
+#endif
 
 /// Raw method to log informations. Commonly used by all other logging methods.
 /// Supports all formats supported by `std::cout`

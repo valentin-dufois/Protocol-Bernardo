@@ -10,6 +10,7 @@
 #include <cstdlib>
 
 #include "Machine.hpp"
+#include "MachineDelegate.hpp"
 
 #include "../Behaviours/Output.hpp"
 #include "../Behaviours/Behaviour.hpp"
@@ -21,12 +22,12 @@ void Machine::onMessage(Message * message) {
 	if(message == nullptr)
 		return;
 
-	// Store message
-	// TODO:
+	// Remember the message
+	_receptionHistory.push_back(message->caption);
 
 	// Check behaviour value
 	if(message->behaviour == -1) {
-		sendMessage(nullptr);
+		delegate->machineSendsMessage(this, nullptr);
 		return;
 	}
 
@@ -35,13 +36,13 @@ void Machine::onMessage(Message * message) {
 
 	// Do we have a valid behaviour ?
 	if(behaviour == nullptr) {
-		sendMessage(nullptr);
+		delegate->machineSendsMessage(this, nullptr);
 		return onError();
 	}
 
 	if(behaviour->isTreeStart) {
 		if(_tree != nullptr && !behaviour->forceStart) {
-			sendMessage(nullptr);
+			delegate->machineSendsMessage(this, nullptr);
 			delete behaviour;
 			return onError();
 		}
@@ -53,13 +54,13 @@ void Machine::onMessage(Message * message) {
 	}
 
 	if(!behaviour->importMessage(message)) {
-		sendMessage(nullptr);
+		delegate->machineSendsMessage(this, nullptr);
 		delete behaviour;
 		return onError();
 	}
 
 	if(!behaviour->execute(this)) {
-		sendMessage(nullptr);
+		delegate->machineSendsMessage(this, nullptr);
 		delete behaviour;
 		return onError();
 	}
@@ -69,7 +70,7 @@ void Machine::onMessage(Message * message) {
 
 	if(output == nullptr) {
 		// No output
-		sendMessage(nullptr);
+		delegate->machineSendsMessage(this, nullptr);
 		return;
 	}
 	
@@ -90,7 +91,7 @@ void Machine::onMessage(Message * message) {
 	print(outMessage->caption);
 
 	// Send the message
-	sendMessage(outMessage);
+	delegate->machineSendsMessage(this, outMessage);
 }
 
 void Machine::print(const std::string out) {
@@ -98,74 +99,19 @@ void Machine::print(const std::string out) {
 }
 
 void Machine::say(const std::string out) {
-	std::cout << "[" << label << "] " << out << std::endl;
+	print(out);
+	delegate->machineSaysSomething(this, out);
 }
 
+// MARK: - Manual getters
 
-// MARK: - Data access
-
-int Machine::getIntValue(const AccessibleValues &value) {
-	switch (value) {
-		// Unimplemented variables fall back to manual mode
-		case BODY_COUNT:
-		case RECEIVED_QUESTIONS_COUNT:
-			return getIntValueManually(value);
-		// Default value stops program to catch errors asap
-		default:
-			std::cout << "*** " << accessibleValueLabel(value) << " is not an int" << std::endl;
-			exit(1);
-	}
-}
-
-double Machine::getDoubleValue(const AccessibleValues &value) {
-	switch (value) {
-			// Unimplemented variables fall back to manual mode
-		case SUDDEN_MOVE_SPEED:
-		case AVG_MOVE_SPEED:
-			return getDoubleValueManually(value);
-
-			// Default value stops program to catch errors asap
-		default:
-			std::cout << "*** " << accessibleValueLabel(value) << " is not a double" << std::endl;
-			exit(1);
-	}
-}
-
-bool Machine::getBoolValue(const AccessibleValues &value) {
-	switch (value) {
-			// Unimplemented variables fall back to manual mode
-		case SUDDEN_MOVE:
-			return getBoolValueManually(value);
-			// Default value stops program to catch errors asap
-		default:
-			std::cout << "*** " << accessibleValueLabel(value) << " is not a boolean" << std::endl;
-			exit(1);
-	}
-}
-
-std::string Machine::getStringValue(const AccessibleValues &value) {
-	switch (value) {
-			// Unimplemented variables fall back to manual mode
-//		case :
-//			return getStringValueManually(value);
-			// Default value stops program to catch errors asap
-		default:
-			std::cout << "*** " << accessibleValueLabel(value) << " is not a string" << std::endl;
-			exit(1);
-	}
-}
-
-
-// MARK: - Manual data access
-
-int Machine::getIntValueManually(const AccessibleValues &value) {
+int Machine::getIntValue(const std::string &value) {
 	int val;
-	bool valueSet = false;
 	std::string input;
 	char * end;
 
 	do {
-		std::cout << std::endl << "*** Manual input for " << accessibleValueLabel(value) << " (int) :" << std::endl;
+		std::cout << std::endl << "*** Manual input for " << value << " (int) :" << std::endl;
 		std::cout << "> ";
 
 		std::cin >> input;
@@ -173,22 +119,21 @@ int Machine::getIntValueManually(const AccessibleValues &value) {
 
 		val = (int)std::strtol(input.c_str(), &end, 10);
 
-		 if (errno != ERANGE)
-			 valueSet = true;
+		if (errno != ERANGE)
+			return val;
 
-	} while (!valueSet);
+		std::cout << "*** Error, please retry!" << std::endl;
 
-	return val;
+	} while (true);
 }
 
-double Machine::getDoubleValueManually(const AccessibleValues &value) {
+double Machine::getDoubleValue(const std::string &value) {
 	double val;
-	bool valueSet = false;
 	std::string input;
 	char * end;
 
 	do {
-		std::cout << std::endl << "*** Manual input for " << accessibleValueLabel(value) << " (float) :" << std::endl;
+		std::cout << std::endl << "*** Manual input for " << value << " (float) :" << std::endl;
 		std::cout << "> ";
 
 		std::cin >> input;
@@ -197,17 +142,17 @@ double Machine::getDoubleValueManually(const AccessibleValues &value) {
 		val = std::strtod(input.c_str(), &end);
 
 		if (errno != ERANGE)
-			valueSet = true;
+			return val;
 
-	} while (!valueSet);
+		std::cout << "*** Error, please retry!" << std::endl;
 
-	return val;
+	} while (true);
 }
 
-bool Machine::getBoolValueManually(const AccessibleValues &value) {
+bool Machine::getBoolValue(const std::string &value) {
 	std::string input;
 
-	std::cout << std::endl << "*** Manual input for " << accessibleValueLabel(value) << " (boolean: 0 = false; 1 = true) :" << std::endl;
+	std::cout << std::endl << "*** Manual input for " << value << " (boolean: 0 = false; 1 = true) :" << std::endl;
 	std::cout << "> ";
 
 	std::cin >> input;
@@ -216,19 +161,32 @@ bool Machine::getBoolValueManually(const AccessibleValues &value) {
 	return input != "0";
 }
 
-std::string Machine::getStringValueManually(const AccessibleValues &value) {
-	std::string input;
 
-	std::cout << std::endl << "*** Manual input for " << accessibleValueLabel(value) << " (string) :" << std::endl;
-	std::cout << "> ";
+// MARK: - Watchers
 
-	std::cin >> input;
-	std::cout << std::endl;
+bool Machine::executeWatchers() {
+	for(Watcher * watcher: _watchers) {
+		watcher->watch(&_arena);
 
-	return input;
+		if(!watcher->hasFoundEvent())
+			continue;
+
+		Event event = watcher->getEvent();
+		_events.push_back(event);
+
+		// Keep only the last 100 events
+		if(_events.size() > 100)
+			_events.pop_front();
+
+		if(_tree == nullptr) {
+			// Dispatch
+			delegate->machineExecuteEvent(this, event);
+			return true;
+		}
+	}
+
+	return false;
 }
-
-
 
 // MARK: - Properties
 

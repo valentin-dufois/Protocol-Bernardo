@@ -316,8 +316,8 @@
             filePath = "Talkers/Core/Machine.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
             landmarkName = "Machine::onMessage(message)"
             landmarkType = "7">
          </BreakpointContent>
@@ -637,22 +637,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "5424F06B-7CC5-497A-9644-E8AAA5D3C5B7"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Talkers/Core/Machine.cpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
-            landmarkName = "Machine::onMessage(message)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "BC863231-D39C-4FD1-8A90-7584AF7F0CE8"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -751,8 +735,8 @@
             filePath = "Talkers/Core/Machine.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "236"
-            endingLineNumber = "236"
+            startingLineNumber = "194"
+            endingLineNumber = "194"
             landmarkName = "Machine::onError()"
             landmarkType = "7">
          </BreakpointContent>

@@ -27,4 +27,8 @@ namespace pb {
 	using rawBodyUID = short int;
 	using bodyUID = std::string;
 }
+
+using uint = unsigned int;
+
+
 #endif /* common_h */

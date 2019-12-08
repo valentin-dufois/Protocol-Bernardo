@@ -9,39 +9,71 @@
 #define Machine_hpp
 
 #include <functional>
+#include <array>
+#include <deque>
 
 #include "Tree.hpp"
 #include "../Utils/AccessibleValues.hpp"
+#include "../../Common/Utils/Arena.hpp"
+
+// Watchers
+#include "../Watchers/NoMovementsWatcher.hpp"
+#include "../Watchers/SuddenMoveWatcher.hpp"
 
 struct Message;
 class Behaviour;
+class MachineDelegate;
 
 class Machine {
 public:
 
 	std::string label;
 
+	MachineDelegate * delegate = nullptr;
+
 	// MARK: - In
 	void onMessage(Message * message);
 
-	// MARK: - Out
-	std::function<void(Message * message)> sendMessage;
+	inline void
+	setArena(pb::Arena arena) {
+		_arena = arena;
+	}
 
+	// MARK: - Out
+	
 	void print(std::string);
 
 	void say(std::string);
 
 	// MARK: - Data access
 
-	int getIntValue(const AccessibleValues &value);
+	inline Tree * getTree() {
+		return _tree;
+	}
 
-	double getDoubleValue(const AccessibleValues &value);
+	inline pb::Arena * arena() {
+		return &_arena;
+	}
 
-	bool getBoolValue(const AccessibleValues &value);
+	inline const std::vector<std::string> & receptionHistory() {
+		return _receptionHistory;
+	}
 
-	std::string getStringValue(const AccessibleValues &value);
+	inline const std::deque<Event> & eventsHistory() {
+		return _events;
+	}
 
-	inline Tree * getTree() { return _tree; }
+	// MARK: - Manual getters
+
+	int getIntValue(const std::string &value);
+
+	double getDoubleValue(const std::string &value);
+
+	bool getBoolValue(const std::string &value);
+
+	// MARK: - Watchers
+
+	bool executeWatchers();
 
 private:
 
@@ -51,15 +83,18 @@ private:
 
 	void onError();
 
-	// MARK: - Manual data access
+	pb::Arena _arena;
 
-	int getIntValueManually(const AccessibleValues &value);
+	std::vector<std::string> _receptionHistory;
 
-	double getDoubleValueManually(const AccessibleValues &value);
+	std::deque<Event> _events;
 
-	bool getBoolValueManually(const AccessibleValues &value);
+	// MARK: - Watchers
 
-	std::string getStringValueManually(const AccessibleValues &value);
+	std::array<Watcher *, 2> _watchers = {
+		new SuddenMoveWatcher(200, 2000, 1.0),
+		new NoMovementsWatcher(100, 100, 1.0)
+	};
 };
 
 #endif /* Machine_hpp */

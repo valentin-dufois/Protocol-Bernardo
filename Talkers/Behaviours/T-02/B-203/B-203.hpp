@@ -24,7 +24,7 @@ public:
 	}) {}
 
 	virtual bool execute(Machine * machine) override {
-		_state["SUDDEN_MOVE_SPEED"] = machine->getTree()->state["SUDDEN_MOVE_SPEED"];
+		_state.insert_or_assign("SUDDEN_MOVE_SPEED", machine->getTree()->state.at("SUDDEN_MOVE_SPEED"));
 		return true;
 	}
 };

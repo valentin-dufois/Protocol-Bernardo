@@ -26,8 +26,11 @@ void Core::init() {
 	_machineA.label = "A";
 	_machineB.label = "B";
 
-	_machineA.sendMessage = std::bind(&Core::onMessage, this, std::placeholders::_1);
-	_machineB.sendMessage = std::bind(&Core::onMessage, this, std::placeholders::_1);
+	_machineA.delegate = this;
+	_machineB.delegate = this;
+
+	_machineA.setArena(_PBReceiver.arena());
+	_machineB.setArena(_PBReceiver.arena());
 
 	// Init rand
 	srand(static_cast<unsigned> (time(0)));
@@ -38,7 +41,16 @@ void Core::run() {
 
 	manualStart();
 
-	talk();
+
+	do {
+		std::unique_lock<std::mutex> lk(_talkMutex);
+		_cv.wait(lk, [&]{ return _nextMessage != nullptr; });
+
+		talk();
+
+		lk.unlock();
+
+	} while(_isRunning);
 }
 
 void Core::manualStart() {
@@ -66,7 +78,7 @@ void Core::manualStart() {
 		std::cout << "*** Variable " << i << " value : ";
 		std::cin >> varVal;
 
-		message->values[varName] = std::atof(varVal.c_str());
+		message->values.insert_or_assign(varName, std::atof(varVal.c_str()));
 	}
 
 	_nextMessage = message;
@@ -97,14 +109,16 @@ Core::~Core() {
 	terminate();
 }
 
+
 // MARK: - Receiver Delegate
 
 void Core::receiverDidConnect(pb::network::PBReceiver *) {
 
 }
 
-void Core::receiverDidReceive(pb::network::PBReceiver *, pb::network::messages::TrackedBodies *) {
-
+void Core::receiverDidUpdate(pb::network::PBReceiver *) {
+	if(!_machineA.executeWatchers())
+		_machineB.executeWatchers();
 }
 
 void Core::receiverDidClose(pb::network::PBReceiver *) {
@@ -112,12 +126,39 @@ void Core::receiverDidClose(pb::network::PBReceiver *) {
 }
 
 
+// MARK: - Machine Delegate
 
-void Core::onMessage(Message * message) {
+void Core::machineSendsMessage(Machine *, Message * aMessage) {
 	if(_nextMessage != nullptr)
 		delete _nextMessage;
 
+	_nextMessage = aMessage;
+}
+
+void Core::machineSaysSomething(Machine *, const std::string &caption) {
+	Message message;
+	message.caption = caption;
+	message.behaviour = -1;
+
+	send(&message);
+}
+
+void Core::machineExecuteEvent(Machine * aMachine, const Event &event) {
+	Message * message = new Message();
+	message->behaviour = event.behaviour;
+	message->values = event.values;
+
+	if(aMachine->label == "A")
+		_currentMachine = &_machineB;
+	else
+		_currentMachine = &_machineA;
+
+	_talkMutex.lock();
+
 	_nextMessage = message;
+
+	_talkMutex.unlock();
+	_cv.notify_all();
 }
 
 void Core::send(Message * message) {

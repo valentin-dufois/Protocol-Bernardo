@@ -16,7 +16,9 @@
 
 #include "cpp/network.pb.h"
 
+#ifdef PB_TALKER
 #include "cpp/talkers.pb.h"
+#endif
 
 /// Convenient namespace alias
 namespace protobuf = google::protobuf;

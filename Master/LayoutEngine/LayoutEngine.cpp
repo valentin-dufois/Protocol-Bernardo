@@ -19,8 +19,8 @@ LayoutEngine::LayoutEngine():
 _savePath(std::string(getenv("HOME")) + "/pb-layouts/") {
 	LOG_DEBUG("Save path is " + std::string(_savePath));
 
-	if(FLAGS_layout.size() > 0) {
-		openLayout(FLAGS_layout);
+	if(flags::args.count("layout") > 0) {
+		openLayout(flags::args["layout"].as<std::string>());
 	}
 }
 

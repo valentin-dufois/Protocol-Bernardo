@@ -27,7 +27,7 @@ public:
 	}) {}
 
 	virtual bool isConditionValid(const State &behaviourState) override {
-		_state["SUDDEN_MOVE_SPEED_TIMES_FROM_AVERAGE"] = behaviourState.at("SUDDEN_MOVE_SPEED_TIMES_FROM_AVERAGE");
+		_state.insert_or_assign("SUDDEN_MOVE_SPEED_TIMES_FROM_AVERAGE", behaviourState.at("SUDDEN_MOVE_SPEED_TIMES_FROM_AVERAGE"));
 		return true;
 	};
 };

@@ -24,7 +24,7 @@ public:
 	}) {}
 
 	virtual bool execute(Machine * machine) override {
-		_state["SUDDEN_MOVE_SPEED_TIMES_FROM_AVERAGE"] = machine->getTree()->state["SUDDEN_MOVE_SPEED"].getDouble() / machine->getDoubleValue(AVG_MOVE_SPEED);
+		_state.insert_or_assign("SUDDEN_MOVE_SPEED_TIMES_FROM_AVERAGE", machine->getTree()->state.at("SUDDEN_MOVE_SPEED").getDouble() / machine->arena()->averageMoveSpeed());
 		return true;
 	}
 };

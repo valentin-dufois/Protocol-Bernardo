@@ -30,7 +30,7 @@ Message * Output::getMessage() const {
 	message->behaviour = _nextBehaviour;
 
 	for(const std::string &valueName: _outputValues) {
-		message->values[valueName] = _state.at(valueName);
+		message->values.insert_or_assign(valueName, _state.at(valueName));
 	}
 
 	message->caption = getCaption();

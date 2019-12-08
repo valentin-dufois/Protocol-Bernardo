@@ -22,7 +22,6 @@ namespace flags {
 		// Insert common options
 		desc.add_options()
 			("help", "Display help message")
-			("loglevel", po::value<unsigned int>(), "Set log level (0 = no logs, 5 = dev logs)")
 			("interface", po::value<std::string>(), "Network interface to use");
 		
 		po::store(po::parse_command_line(argc, argv, desc), args);

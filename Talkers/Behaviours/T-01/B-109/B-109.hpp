@@ -23,7 +23,13 @@ public:
 	}) {}
 	
 	virtual bool execute(Machine * machine) override {
-		_state["NBR_QUESTIONS"] = machine->getIntValue(RECEIVED_QUESTIONS_COUNT);
+		uint questionCount = 0;
+
+		for(const std::string &caption: machine->receptionHistory()) {
+			questionCount += std::count(caption.begin(), caption.end(), '?');
+		}
+
+		_state.insert_or_assign("NBR_QUESTIONS", (int)questionCount);
 		return true;
 	};
 };
