@@ -71,7 +71,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PreprocessorDefinitions>_SILENCE_CXX17_ALLOCATOR_VOID_DEPRECATION_WARNIN;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>LOG_LEVEL=1;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -193,12 +193,31 @@
     <ClInclude Include="Behaviours\T-02\B-220\S-220-00.hpp" />
     <ClInclude Include="Behaviours\T-02\B-221\B-221.hpp" />
     <ClInclude Include="Behaviours\T-02\B-221\S-221-00.hpp" />
+    <ClInclude Include="Behaviours\T-04\B-400\B-400.hpp" />
+    <ClInclude Include="Behaviours\T-04\B-400\S-400-00.hpp" />
+    <ClInclude Include="Behaviours\T-04\B-401\B-401.hpp" />
+    <ClInclude Include="Behaviours\T-04\B-401\S-401-00.hpp" />
+    <ClInclude Include="Behaviours\T-04\B-402\B-402.hpp" />
+    <ClInclude Include="Behaviours\T-04\B-402\S-402-00.hpp" />
+    <ClInclude Include="Behaviours\T-04\B-403\B-403.hpp" />
+    <ClInclude Include="Behaviours\T-04\B-403\S-403-00.hpp" />
+    <ClInclude Include="Behaviours\T-04\B-404\B-404.hpp" />
+    <ClInclude Include="Behaviours\T-04\B-404\S-404-00.hpp" />
+    <ClInclude Include="Behaviours\T-04\B-405\B-405.hpp" />
+    <ClInclude Include="Behaviours\T-04\B-405\S-405-00.hpp" />
+    <ClInclude Include="Behaviours\T-04\B-406\B-406.hpp" />
+    <ClInclude Include="Behaviours\T-04\B-406\S-406-00.hpp" />
     <ClInclude Include="core\Core.hpp" />
     <ClInclude Include="core\Machine.hpp" />
     <ClInclude Include="core\Tree.hpp" />
     <ClInclude Include="main.hpp" />
     <ClInclude Include="utils\Random.hpp" />
     <ClInclude Include="utils\StateValue.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.vcxproj">
+      <Project>{8ecac316-3d57-4642-af8e-7a0bc601574f}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
