@@ -9,7 +9,6 @@
 #define B403_h
 
 #include "../../Behaviour.hpp"
-#include "../../Core/Machine.hpp"
 
 class B403 : public Behaviour {
 public:

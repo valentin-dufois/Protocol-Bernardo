@@ -52,6 +52,30 @@
 #include "T-02/B-220/S-220-00.hpp"
 #include "T-02/B-221/S-221-00.hpp"
 
+// TREE 3
+#include "T-03/B-300/S-300-00.hpp"
+#include "T-03/B-301/S-301-00.hpp"
+#include "T-03/B-302/S-302-00.hpp"
+#include "T-03/B-303/S-303-00.hpp"
+#include "T-03/B-304/S-304-00.hpp"
+#include "T-03/B-304/S-304-01.hpp"
+#include "T-03/B-305/S-305-00.hpp"
+#include "T-03/B-306/S-306-00.hpp"
+#include "T-03/B-307/S-307-00.hpp"
+#include "T-03/B-307/S-307-01.hpp"
+#include "T-03/B-308/S-308-00.hpp"
+#include "T-03/B-309/S-309-00.hpp"
+#include "T-03/B-310/S-310-00.hpp"
+#include "T-03/B-311/S-311-00.hpp"
+#include "T-03/B-312/S-312-00.hpp"
+#include "T-03/B-313/S-313-00.hpp"
+#include "T-03/B-314/S-314-00.hpp"
+#include "T-03/B-315/S-315-00.hpp"
+#include "T-03/B-316/S-316-00.hpp"
+#include "T-03/B-317/S-317-00.hpp"
+#include "T-03/B-318/S-318-00.hpp"
+#include "T-03/B-319/S-319-00.hpp"
+
 
 // TREE 4
 #include "T-04/B-400/S-400-00.hpp"
@@ -108,6 +132,30 @@ Output * Output::get(const talkers::OutputID id) {
 		case 21900: return new S21900();
 		case 22000: return new S22000();
 		case 22100: return new S22100();
+
+			// MARK: - TREE 2
+		case 30000: return new S30000();
+		case 30100: return new S30100();
+		case 30200: return new S30200();
+		case 30300: return new S30300();
+		case 30400: return new S30400();
+		case 30401: return new S30401();
+		case 30500: return new S30500();
+		case 30600: return new S30600();
+		case 30700: return new S30700();
+		case 30701: return new S30701();
+		case 30800: return new S30800();
+		case 30900: return new S30900();
+		case 31000: return new S31000();
+		case 31100: return new S31100();
+		case 31200: return new S31200();
+		case 31300: return new S31300();
+		case 31400: return new S31400();
+		case 31500: return new S31500();
+		case 31600: return new S31600();
+		case 31700: return new S31700();
+		case 31800: return new S31800();
+		case 31900: return new S31900();
 
 		// MARK: - TREE 4
 		case 40000: return new S40000();

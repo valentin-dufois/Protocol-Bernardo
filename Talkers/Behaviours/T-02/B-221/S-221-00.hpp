@@ -18,7 +18,7 @@ public:
 					 -1,		// Next Behaviour ID
 					 DELAY_DEFAULT,	// Is delayed
 					 DELAY_VALUE_DEFAULT,		// Delay value (seconds)
-					 DELAY_VARIANCE_DEFAULT ,		// Delay variance (seconds)
+					 DELAY_VARIANCE_DEFAULT,		// Delay variance (seconds)
 					 {		// Output values
 	},
 					 {		// Captions

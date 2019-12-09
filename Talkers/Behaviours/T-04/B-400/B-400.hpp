@@ -9,7 +9,6 @@
 #define B400_h
 
 #include "../../Behaviour.hpp"
-#include "../../Core/Machine.hpp"
 
 class B400 : public Behaviour {
 public:

@@ -8,6 +8,7 @@
 #ifndef SuddenMoveWatcher_hpp
 #define SuddenMoveWatcher_hpp
 
+#include <vector>
 #include "../../Common/Utils/Arena.hpp"
 #include "Watcher.hpp"
 

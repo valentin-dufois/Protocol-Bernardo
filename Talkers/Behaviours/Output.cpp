@@ -7,6 +7,7 @@
 
 #include <cstdlib>
 #include <ctime>
+#include <codecvt>
 
 #include <boost/regex.hpp>
 
@@ -49,7 +50,7 @@ std::string Output::getCaption() const {
 		std::string fullMatch = match.str();
 		std::string key = fullMatch.substr(1, fullMatch.size() - 2);
 
-		return _state.at(key);
+		return _state.at(key).asString();
 	});
 
 	return builtCaption;

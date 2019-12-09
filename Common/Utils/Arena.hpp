@@ -49,6 +49,10 @@ public:
 	/// Gives the user who's the most active
 	std::tuple<Body *, double> mostActiveBody() const;
 
+	std::vector<Body *> getSubset() const;
+
+	Body * getBody(const bodyUID &uid);
+
 	// MARK: - Properties
 private:
 	std::map<bodyUID, Body *> * _bodies = nullptr;
@@ -56,8 +60,6 @@ private:
 	std::mutex * _mutex = nullptr;
 
 	Bounds _bounds;
-
-	std::vector<Body *> getSubset() const;
 };
 
 } /* ::pb */

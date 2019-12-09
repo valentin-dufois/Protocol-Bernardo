@@ -9,7 +9,6 @@
 #define B402_h
 
 #include "../../Behaviour.hpp"
-#include "../../Core/Machine.hpp"
 
 class B402 : public Behaviour {
 public:

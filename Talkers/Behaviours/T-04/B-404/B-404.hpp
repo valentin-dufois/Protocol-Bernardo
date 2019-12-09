@@ -9,7 +9,7 @@
 #define B404_h
 
 #include "../../Behaviour.hpp"
-#include "../../Core/Machine.hpp"
+#include "../../../Core/Machine.hpp"
 
 class B404 : public Behaviour {
 public:

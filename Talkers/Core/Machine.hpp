@@ -13,11 +13,12 @@
 #include <deque>
 
 #include "Tree.hpp"
-#include "../Utils/AccessibleValues.hpp"
 #include "../../Common/Utils/Arena.hpp"
 
 // Watchers
+#include "../Watchers/ClosePeopleWatcher.hpp"
 #include "../Watchers/NoMovementsWatcher.hpp"
+#include "../Watchers/RandomWatcher.hpp"
 #include "../Watchers/SuddenMoveWatcher.hpp"
 
 struct Message;
@@ -91,9 +92,11 @@ private:
 
 	// MARK: - Watchers
 
-	std::array<Watcher *, 2> _watchers = {
+	std::array<Watcher *, 4> _watchers = {
+		new NoMovementsWatcher(100, 100, 1.0),
 		new SuddenMoveWatcher(200, 2000, 1.0),
-		new NoMovementsWatcher(100, 100, 1.0)
+		new ClosePeopleWatcher(300, 1000, 1.0),
+		new RandomWatcher(400, 0.001)
 	};
 };
 

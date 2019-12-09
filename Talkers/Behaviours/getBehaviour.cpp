@@ -51,6 +51,27 @@
 #include "T-02/B-220/B-220.hpp"
 #include "T-02/B-221/B-221.hpp"
 
+// TREE 3
+#include "T-03/B-300/B-300.hpp"
+#include "T-03/B-301/B-301.hpp"
+#include "T-03/B-302/B-302.hpp"
+#include "T-03/B-303/B-303.hpp"
+#include "T-03/B-304/B-304.hpp"
+#include "T-03/B-305/B-305.hpp"
+#include "T-03/B-306/B-306.hpp"
+#include "T-03/B-307/B-307.hpp"
+#include "T-03/B-308/B-308.hpp"
+#include "T-03/B-309/B-309.hpp"
+#include "T-03/B-310/B-310.hpp"
+#include "T-03/B-311/B-311.hpp"
+#include "T-03/B-312/B-312.hpp"
+#include "T-03/B-313/B-313.hpp"
+#include "T-03/B-314/B-314.hpp"
+#include "T-03/B-315/B-315.hpp"
+#include "T-03/B-316/B-316.hpp"
+#include "T-03/B-317/B-317.hpp"
+#include "T-03/B-318/B-318.hpp"
+#include "T-03/B-319/B-319.hpp"
 
 // TREE 4
 #include "T-04/B-400/B-400.hpp"
@@ -106,6 +127,28 @@ Behaviour * Behaviour::get(const talkers::BehaviourID behaviourID) {
 		case 219: return new B219();
 		case 220: return new B220();
 		case 221: return new B221();
+
+			// MARK: - TREE 2
+		case 300: return new B300();
+		case 301: return new B301();
+		case 302: return new B302();
+		case 303: return new B303();
+		case 304: return new B304();
+		case 305: return new B305();
+		case 306: return new B306();
+		case 307: return new B307();
+		case 308: return new B308();
+		case 309: return new B309();
+		case 310: return new B310();
+		case 311: return new B311();
+		case 312: return new B312();
+		case 313: return new B313();
+		case 314: return new B314();
+		case 315: return new B315();
+		case 316: return new B316();
+		case 317: return new B317();
+		case 318: return new B318();
+		case 319: return new B319();
 
 		// MARK: - TREE 4
 		case 400: return new B400();

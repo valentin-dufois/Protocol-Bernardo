@@ -9,7 +9,6 @@
 #define B401_h
 
 #include "../../Behaviour.hpp"
-#include "../../Core/Machine.hpp"
 
 class B401 : public Behaviour {
 public:

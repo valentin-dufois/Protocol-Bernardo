@@ -125,6 +125,17 @@ std::vector<Body *> Arena::getSubset() const {
 	return bodies;
 }
 
+Body * Arena::getBody(const bodyUID &uid) {
+	if(_bodies->find(uid) == _bodies->end())
+		return nullptr;
+
+	Body * body = _bodies->at(uid);
+
+	if(_bounds.fit(body->skeleton()->centerOfMass))
+		return body;
+
+	return nullptr;
+}
 
 
 } /* ::pb */

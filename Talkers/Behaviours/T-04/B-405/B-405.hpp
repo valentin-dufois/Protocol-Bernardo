@@ -9,7 +9,6 @@
 #define B405_h
 
 #include "../../Behaviour.hpp"
-#include "../../Core/Machine.hpp"
 
 class B405 : public Behaviour {
 public:

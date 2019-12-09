@@ -8,6 +8,9 @@
 #ifndef Watcher_h
 #define Watcher_h
 
+#include <cstdlib>
+#include <ctime>
+
 #include "../main.hpp"
 #include "Event.hpp"
 
@@ -26,7 +29,7 @@ public:
 	virtual void watch(const pb::Arena *) = 0;
 
 	virtual bool hasFoundEvent() {
-		return _foundEvent;
+		return _foundEvent ? (rand() / RAND_MAX) < _triggerLuck : false;
 	}
 
 	virtual Event getEvent() = 0;

@@ -27,6 +27,9 @@ struct StateValue {
 	StateValue(const double v):
 	_v(v), type(doubleType) {}
 
+	StateValue(const std::string v):
+	_v(v), type(stringType) {}
+
 	inline const bool& getBool() const {
 		return *boost::get<bool>(&_v);
 	}
@@ -39,6 +42,10 @@ struct StateValue {
 		return *boost::get<double>(&_v);
 	}
 
+	inline const std::string& getString() const {
+		return *boost::get<std::string>(&_v);
+	}
+
 	operator const bool& () const {
 		return getBool();
 	}
@@ -49,6 +56,10 @@ struct StateValue {
 
 	operator const double& () const {
 		return getDouble();
+	}
+
+	operator const std::string& () const {
+		return getString();
 	}
 
 	StateValue& operator = (bool val) {
@@ -72,6 +83,13 @@ struct StateValue {
 		return *this;
 	}
 
+	StateValue& operator = (std::string val) {
+		if(type == stringType)
+			*boost::get<std::string>(&_v) = val;
+
+		return *this;
+	}
+
 	inline std::string asString() const {
 		switch(type) {
 			case intType:
@@ -80,11 +98,9 @@ struct StateValue {
 				return std::to_string(getDouble());
 			case boolType:
 				return std::to_string(getBool());
+			case stringType:
+				return getString();
 		}
-	}
-
-	operator std::string () const {
-		return asString();
 	}
 
 	StateValue& operator = (const StateValue &s) {
@@ -97,11 +113,12 @@ struct StateValue {
 	const enum ValueType {
 		intType,
 		doubleType,
-		boolType
+		boolType,
+		stringType
 	} type;
 
 private:
-	boost::variant<int, double, bool> _v;
+	boost::variant<int, double, bool, std::string> _v;
 };
 
 using State = std::map<std::string, StateValue>;

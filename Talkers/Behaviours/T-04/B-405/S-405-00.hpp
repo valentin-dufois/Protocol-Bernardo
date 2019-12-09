@@ -21,9 +21,9 @@ public:
 		DELAY_VARIANCE_DEFAULT,		// Delay variance (seconds)
 		{		// Output values
 		},
-					 {		// Captions
-		"C'est probablement pour ça que nous travaillons à deux."
-					 }) {}
+		{		// Captions
+			"C'est probablement pour ca que nous travaillons a deux."
+		}) {}
 
 	virtual bool isConditionValid(const State &behaviourState) override {
 		return true;
