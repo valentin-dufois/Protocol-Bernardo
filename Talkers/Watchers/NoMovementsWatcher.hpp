@@ -17,8 +17,10 @@ public:
 	Watcher(behaviour, triggerLuck), _threshold(threshold) {}
 
 	virtual void watch(const pb::Arena * arena) override {
-		if(arena->count() == 0)
+		if(arena->count() == 0) {
+			_foundEvent = false;
 			return;
+		}
 
 		_foundEvent = arena->averageMoveSpeed() < _threshold;
 	}

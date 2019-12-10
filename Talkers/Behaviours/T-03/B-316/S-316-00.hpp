@@ -14,7 +14,7 @@ class S31600: public Output {
 public:
 
 	S31600(): Output(31600,	// Output ID
-					 true,	// Is tree end ?
+					 false,	// Is tree end ?
 					 317,	// Next Behaviour ID
 					 DELAY_DEFAULT,	// Is delayed
 					 DELAY_VALUE_DEFAULT,		// Delay value (seconds)

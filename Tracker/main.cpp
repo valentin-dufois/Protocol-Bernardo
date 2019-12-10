@@ -29,7 +29,6 @@ int main(int argc, const char * argv[]) {
 
 	// Init the flags
 	po::options_description desc("pb-master");
-	desc.add_options()("layout", po::value<std::string>(), "Layout to open on start");
 	pb::flags::parse(argc, argv, desc);
 
 	// Set the application type on the Network

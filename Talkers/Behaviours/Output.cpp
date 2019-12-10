@@ -35,6 +35,7 @@ Message * Output::getMessage() const {
 	}
 
 	message->caption = getCaption();
+	message->isTreeEnd = isTreeEnd;
 
 	return message;
 }

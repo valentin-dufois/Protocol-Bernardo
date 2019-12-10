@@ -11,18 +11,18 @@ namespace pb {
 namespace network {
 
 Endpoint::Endpoint(const Type &aType):
-type(aType) {};
+type(aType) {}
 
 Endpoint::Endpoint(const std::string &aIP, const unsigned int &aPort):
 ip(aIP),
-port(aPort) {};
+port(aPort) {}
 
 Endpoint::Endpoint(const std::string &aIP,
 				  const std::string &aName,
 				  const Type &aType):
 ip(aIP),
 name(aName),
-type(aType) {};
+type(aType) {}
 
 Endpoint::Endpoint(const messages::Endpoint message):
 	name(std::string(message.name()))

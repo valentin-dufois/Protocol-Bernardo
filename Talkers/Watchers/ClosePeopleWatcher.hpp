@@ -21,10 +21,16 @@ public:
 	virtual void watch(const pb::Arena * arena) override {
 		std::vector<pb::Body *> bodies = arena->getSubset();
 
-		for(int i = 0; i < bodies.size()-1; ++i) {
+
+		if(bodies.size() < 2) {
+			_foundEvent = false;
+			return;
+		}
+
+		for(long unsigned int i = 0; i < bodies.size()-1; ++i) {
 			pb::Body * bA = bodies[i];
 
-			for(int j = i+1; j < bodies.size(); ++j) {
+			for(long unsigned int j = i+1; j < bodies.size(); ++j) {
 				if(glm::distance(bA->skeleton()->centerOfMass, bodies[j]->skeleton()->centerOfMass) < _threshold) {
 
 					_bodyIDA = bA->uid;

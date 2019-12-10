@@ -27,6 +27,11 @@ void Machine::onMessage(Message * message) {
 
 	// Check behaviour value
 	if(message->behaviour == -1) {
+		if(message->isTreeEnd) {
+			delete _tree;
+			_tree = nullptr;
+		}
+
 		delegate->machineSendsMessage(this, nullptr);
 		return;
 	}
@@ -182,6 +187,8 @@ bool Machine::executeWatchers() {
 
 		Event event = watcher->getEvent();
 		_events.push_back(event);
+
+		LOG_DEBUG("Registered event " + event.name);
 
 		// Keep only the last 100 events
 		if(_events.size() > 100)
