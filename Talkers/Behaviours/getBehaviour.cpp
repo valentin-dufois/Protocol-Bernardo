@@ -6,10 +6,9 @@
 //
 
 #include "Behaviour.hpp"
+#include "../Core/Machine.hpp"
 
 #include <iostream>
-
-#include "B-000/B-000.hpp"
 
 // TREE 1
 #include "T-01/B-100/B-100.hpp"
@@ -82,12 +81,43 @@
 #include "T-04/B-405/B-405.hpp"
 #include "T-04/B-406/B-406.hpp"
 
+// TREE 5
+#include "T-05/B-500/B-500.hpp"
+#include "T-05/B-501/B-501.hpp"
+#include "T-05/B-502/B-502.hpp"
+#include "T-05/B-503/B-503.hpp"
+#include "T-05/B-504/B-504.hpp"
+#include "T-05/B-505/B-505.hpp"
+#include "T-05/B-506/B-506.hpp"
+#include "T-05/B-507/B-507.hpp"
+#include "T-05/B-508/B-508.hpp"
+#include "T-05/B-509/B-509.hpp"
+#include "T-05/B-510/B-510.hpp"
+#include "T-05/B-511/B-511.hpp"
+#include "T-05/B-512/B-512.hpp"
+#include "T-05/B-513/B-513.hpp"
+#include "T-05/B-514/B-514.hpp"
+
+// TREE 6
+#include "T-06/B-600/B-600.hpp"
+#include "T-06/B-601/B-601.hpp"
+#include "T-06/B-602/B-602.hpp"
+#include "T-06/B-603/B-603.hpp"
+#include "T-06/B-604/B-604.hpp"
+#include "T-06/B-605/B-605.hpp"
+#include "T-06/B-606/B-606.hpp"
+#include "T-06/B-607/B-607.hpp"
+#include "T-06/B-608/B-608.hpp"
+#include "T-06/B-609/B-609.hpp"
+#include "T-06/B-610/B-610.hpp"
+#include "T-06/B-611/B-611.hpp"
+#include "T-06/B-612/B-612.hpp"
+#include "T-06/B-613/B-613.hpp"
+
 
 
 Behaviour * Behaviour::get(const talkers::BehaviourID behaviourID) {
 	switch (behaviourID) {
-		case   0: return new B000();
-
 		// MARK: - TREE 1
 		case 100: return new B100();
 		case 101: return new B101();
@@ -158,6 +188,39 @@ Behaviour * Behaviour::get(const talkers::BehaviourID behaviourID) {
 		case 404: return new B404();
 		case 405: return new B405();
 		case 406: return new B406();
+
+		// MARK: - TREE 5
+		case 500: return new B500();
+		case 501: return new B501();
+		case 502: return new B502();
+		case 503: return new B503();
+		case 504: return new B504();
+		case 505: return new B505();
+		case 506: return new B506();
+		case 507: return new B507();
+		case 508: return new B508();
+		case 509: return new B509();
+		case 510: return new B510();
+		case 511: return new B511();
+		case 512: return new B512();
+		case 513: return new B513();
+		case 514: return new B514();
+
+		// MARK: - TREE 6
+		case 600: return new B600();
+		case 601: return new B601();
+		case 602: return new B602();
+		case 603: return new B603();
+		case 604: return new B604();
+		case 605: return new B605();
+		case 606: return new B606();
+		case 607: return new B607();
+		case 608: return new B608();
+		case 609: return new B609();
+		case 610: return new B610();
+		case 611: return new B611();
+		case 612: return new B612();
+		case 613: return new B613();
 
 		default:
 			std::cout << "*** No behaviour " << behaviourID << std::endl;

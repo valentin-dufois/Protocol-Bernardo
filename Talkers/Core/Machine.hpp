@@ -35,6 +35,8 @@ public:
 	// MARK: - In
 	void onMessage(Message * message);
 
+	void onSay(const std::string &caption);
+
 	inline void
 	setArena(pb::Arena arena) {
 		_arena = arena;
@@ -64,6 +66,10 @@ public:
 		return _events;
 	}
 
+	inline std::set<pb::bodyUID> getAllBodyUID() {
+		return _bodyUIDHistory;
+	}
+
 	// MARK: - Manual getters
 
 	int getIntValue(const std::string &value);
@@ -90,13 +96,17 @@ private:
 
 	std::deque<Event> _events;
 
+	std::set<pb::bodyUID> _bodyUIDHistory;
+
 	// MARK: - Watchers
 
-	std::array<Watcher *, 4> _watchers = {
+	std::array<Watcher *, 6> _watchers = {
 		new NoMovementsWatcher(100, 100, 1.0),
 		new SuddenMoveWatcher(200, 2000, 1.0),
 		new ClosePeopleWatcher(300, 1000, 1.0),
-		new RandomWatcher(400, 0.001)
+		new RandomWatcher(400, 0.001),
+		new RandomWatcher(500, 0.001),
+		new RandomWatcher(600, 0.001)
 	};
 };
 

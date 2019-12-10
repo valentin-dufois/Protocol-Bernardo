@@ -94,6 +94,10 @@ void Machine::onMessage(Message * message) {
 	delegate->machineSendsMessage(this, outMessage);
 }
 
+void Machine::onSay(const std::string &caption) {
+	_receptionHistory.push_back(caption);
+}
+
 void Machine::print(const std::string out) {
 	std::cout << "[" << label << "] " << out << std::endl;
 }
@@ -165,6 +169,11 @@ bool Machine::getBoolValue(const std::string &value) {
 // MARK: - Watchers
 
 bool Machine::executeWatchers() {
+	// Store UIDS
+	for(pb::Body * body: arena()->getSubset()) {
+		_bodyUIDHistory.insert(body->uid);
+	}
+
 	for(Watcher * watcher: _watchers) {
 		watcher->watch(&_arena);
 

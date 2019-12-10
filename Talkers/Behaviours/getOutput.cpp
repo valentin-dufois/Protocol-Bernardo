@@ -76,7 +76,6 @@
 #include "T-03/B-318/S-318-00.hpp"
 #include "T-03/B-319/S-319-00.hpp"
 
-
 // TREE 4
 #include "T-04/B-400/S-400-00.hpp"
 #include "T-04/B-401/S-401-00.hpp"
@@ -85,6 +84,40 @@
 #include "T-04/B-404/S-404-00.hpp"
 #include "T-04/B-405/S-405-00.hpp"
 #include "T-04/B-406/S-406-00.hpp"
+
+// TREE 5
+#include "T-05/B-500/S-500-00.hpp"
+#include "T-05/B-501/S-501-00.hpp"
+#include "T-05/B-502/S-502-00.hpp"
+#include "T-05/B-503/S-503-00.hpp"
+#include "T-05/B-504/S-504-00.hpp"
+#include "T-05/B-505/S-505-00.hpp"
+#include "T-05/B-506/S-506-00.hpp"
+#include "T-05/B-507/S-507-00.hpp"
+#include "T-05/B-508/S-508-00.hpp"
+#include "T-05/B-509/S-509-00.hpp"
+#include "T-05/B-510/S-510-00.hpp"
+#include "T-05/B-511/S-511-00.hpp"
+#include "T-05/B-512/S-512-00.hpp"
+#include "T-05/B-513/S-513-00.hpp"
+#include "T-05/B-514/S-514-00.hpp"
+
+// TREE 5
+#include "T-06/B-600/S-600-00.hpp"
+#include "T-06/B-601/S-601-00.hpp"
+#include "T-06/B-601/S-601-01.hpp"
+#include "T-06/B-602/S-602-00.hpp"
+#include "T-06/B-603/S-603-00.hpp"
+#include "T-06/B-604/S-604-00.hpp"
+#include "T-06/B-605/S-605-00.hpp"
+#include "T-06/B-606/S-606-00.hpp"
+#include "T-06/B-607/S-607-00.hpp"
+#include "T-06/B-608/S-608-00.hpp"
+#include "T-06/B-609/S-609-00.hpp"
+#include "T-06/B-610/S-610-00.hpp"
+#include "T-06/B-611/S-611-00.hpp"
+#include "T-06/B-612/S-612-00.hpp"
+#include "T-06/B-613/S-613-00.hpp"
 
 
 
@@ -165,6 +198,40 @@ Output * Output::get(const talkers::OutputID id) {
 		case 40400: return new S40400();
 		case 40500: return new S40500();
 		case 40600: return new S40600();
+
+			// MARK: - TREE 4
+		case 50000: return new S50000();
+		case 50100: return new S50100();
+		case 50200: return new S50200();
+		case 50300: return new S50300();
+		case 50400: return new S50400();
+		case 50500: return new S50500();
+		case 50600: return new S50600();
+		case 50700: return new S50700();
+		case 50800: return new S50800();
+		case 50900: return new S50900();
+		case 51000: return new S51000();
+		case 51100: return new S51100();
+		case 51200: return new S51200();
+		case 51300: return new S51300();
+		case 51400: return new S51400();
+
+			// MARK: - TREE 4
+		case 60000: return new S60000();
+		case 60100: return new S60100();
+		case 60101: return new S60101();
+		case 60200: return new S60200();
+		case 60300: return new S60300();
+		case 60400: return new S60400();
+		case 60500: return new S60500();
+		case 60600: return new S60600();
+		case 60700: return new S60700();
+		case 60800: return new S60800();
+		case 60900: return new S60900();
+		case 61000: return new S61000();
+		case 61100: return new S61100();
+		case 61200: return new S61200();
+		case 61300: return new S61300();
 
 		default:
 			std::cout << "*** No output " << id << std::endl;

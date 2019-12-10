@@ -39,9 +39,10 @@ void Core::init() {
 void Core::run() {
 	_isRunning = true;
 
+#ifdef DEBUG
 	manualStart();
-
-
+#endif
+	
 	do {
 		std::unique_lock<std::mutex> lk(_talkMutex);
 		_cv.wait(lk, [&]{ return _nextMessage != nullptr; });
@@ -135,7 +136,12 @@ void Core::machineSendsMessage(Machine *, Message * aMessage) {
 	_nextMessage = aMessage;
 }
 
-void Core::machineSaysSomething(Machine *, const std::string &caption) {
+void Core::machineSaysSomething(Machine * machine, const std::string &caption) {
+	if(machine->label == "A")
+		_machineB.onSay(caption);
+	else
+		_machineA.onSay(caption);
+
 	Message message;
 	message.caption = caption;
 	message.behaviour = -1;
