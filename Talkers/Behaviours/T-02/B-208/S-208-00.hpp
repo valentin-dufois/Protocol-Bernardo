@@ -14,7 +14,7 @@ class S20800: public Output {
 public:
 
 	S20800(): Output(20800,	// Output ID
-					 true,	// Is tree end ?
+					 false,	// Is tree end ?
 					 209,	// Next Behaviour ID
 					 DELAY_DEFAULT,	// Is delayed
 					 DELAY_VALUE_DEFAULT,		// Delay value (seconds)

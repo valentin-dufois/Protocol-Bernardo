@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3900756523567C50007A0982 /* libprotobuf.21.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3937AE0223566528009E6021 /* libprotobuf.21.dylib */; };
 		39012F07239C4B9600FE652B /* Arena.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39012F06239C4B9600FE652B /* Arena.cpp */; };
 		39012F08239C4BCF00FE652B /* Arena.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39012F06239C4B9600FE652B /* Arena.cpp */; };
 		39012F0A239C4E7E00FE652B /* Arena.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3933A6C1239C44020095B3AF /* Arena.hpp */; };
@@ -50,6 +49,8 @@
 		393B9DAE238B15D0008BA8D7 /* CalibrationValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393B9DAD238B15D0008BA8D7 /* CalibrationValues.swift */; };
 		393B9DB0238B18DC008BA8D7 /* CPPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393B9DAF238B18DC008BA8D7 /* CPPopUp.swift */; };
 		393B9DB2238B2978008BA8D7 /* CPValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393B9DB1238B2978008BA8D7 /* CPValue.swift */; };
+		393C55D123A018E700F8063A /* libprotobuf.22.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 394AE3AC239B0B39001AB4E4 /* libprotobuf.22.dylib */; };
+		393C55D223A018E700F8063A /* libprotobuf.22.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 394AE3AC239B0B39001AB4E4 /* libprotobuf.22.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		39469E8A2379E3A700E25030 /* CanvasBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39469E892379E3A700E25030 /* CanvasBody.swift */; };
 		394AE3AD239B0B39001AB4E4 /* libprotobuf.22.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 394AE3AC239B0B39001AB4E4 /* libprotobuf.22.dylib */; };
 		394AE3B3239B0BFF001AB4E4 /* libboost_program_options.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 394AE3B0239B0BF4001AB4E4 /* libboost_program_options.dylib */; };
@@ -103,7 +104,6 @@
 		395D8883238CAB0400FEC1EC /* libpb-common.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 39CA4A772331407A00E528CD /* libpb-common.dylib */; };
 		395E05122370C91900C58971 /* TrackingEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 395E05102370C91900C58971 /* TrackingEngine.cpp */; };
 		395E05142370CDD200C58971 /* Body.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 395E05132370CCD700C58971 /* Body.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
-		3962032A238DE5E800CB1E76 /* libprotobuf.21.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3937AE0223566528009E6021 /* libprotobuf.21.dylib */; };
 		3962032C238DE5E800CB1E76 /* libboost_system.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 39CA4ABF2331470200E528CD /* libboost_system.dylib */; };
 		3966E41C2338018800710DD4 /* layout.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = 3966E4182338018800710DD4 /* layout.pb.cc */; };
 		3966E41F2338018800710DD4 /* layout.pb.h in Headers */ = {isa = PBXBuildFile; fileRef = 3966E41B2338018800710DD4 /* layout.pb.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -113,7 +113,6 @@
 		3978A8072336D96B00AF409D /* libOpenNI2.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 395A79672332C04D00499894 /* libOpenNI2.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		3978A80A2336F7BC00AF409D /* LayoutEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3978A8032336D62A00AF409D /* LayoutEngine.cpp */; };
 		3978A80B2336F7C300AF409D /* Core.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3978A7F42336BFCD00AF409D /* Core.cpp */; };
-		3987070A238C65C10047B32E /* libprotobuf.21.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 3937AE0223566528009E6021 /* libprotobuf.21.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		3987070C238C65CD0047B32E /* libboost_system.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 39CA4ABF2331470200E528CD /* libboost_system.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		398B35D7239F460300476B00 /* libpb-common.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 39CA4A772331407A00E528CD /* libpb-common.dylib */; };
 		399D167A23521E7600CEC2F0 /* flags.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 399D167823521E7600CEC2F0 /* flags.cpp */; };
@@ -276,7 +275,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				3987070A238C65C10047B32E /* libprotobuf.21.dylib in Embed Libraries */,
+				393C55D223A018E700F8063A /* libprotobuf.22.dylib in Embed Libraries */,
 				3987070C238C65CD0047B32E /* libboost_system.dylib in Embed Libraries */,
 			);
 			name = "Embed Libraries";
@@ -465,7 +464,6 @@
 		3937ADFB23565E2F009E6021 /* NetworkEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkEngine.swift; sourceTree = "<group>"; };
 		3937ADFD23565E70009E6021 /* Browser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Browser.swift; sourceTree = "<group>"; };
 		3937ADFF23565F0A009E6021 /* BrowserDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserDelegate.swift; sourceTree = "<group>"; };
-		3937AE0223566528009E6021 /* libprotobuf.21.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libprotobuf.21.dylib; path = ../../../../../usr/local/Cellar/protobuf/3.10.0/lib/libprotobuf.21.dylib; sourceTree = "<group>"; };
 		3937AE0523566634009E6021 /* body.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = body.pb.swift; sourceTree = "<group>"; };
 		3937AE0623566634009E6021 /* layout.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = layout.pb.swift; sourceTree = "<group>"; };
 		3937AE0723566634009E6021 /* network.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = network.pb.swift; sourceTree = "<group>"; };
@@ -707,8 +705,6 @@
 		39F4F8DB239EF56E007271C0 /* S-504-00.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "S-504-00.hpp"; sourceTree = "<group>"; };
 		39F4F8DD239EF5CC007271C0 /* B-505.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "B-505.hpp"; sourceTree = "<group>"; };
 		39F4F8DE239EF5CC007271C0 /* S-505-00.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "S-505-00.hpp"; sourceTree = "<group>"; };
-		39F4F8E1239EF649007271C0 /* S-505-00.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "S-505-00.hpp"; sourceTree = "<group>"; };
-		39F4F8E2239EF649007271C0 /* B-505.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "B-505.hpp"; sourceTree = "<group>"; };
 		39F860CF2390657600A32146 /* Core.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Core.cpp; sourceTree = "<group>"; };
 		39F860D02390657600A32146 /* Core.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Core.hpp; sourceTree = "<group>"; };
 		39F860D3239065D500A32146 /* Tree.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Tree.hpp; sourceTree = "<group>"; };
@@ -741,7 +737,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3962032A238DE5E800CB1E76 /* libprotobuf.21.dylib in Frameworks */,
+				393C55D123A018E700F8063A /* libprotobuf.22.dylib in Frameworks */,
 				3962032C238DE5E800CB1E76 /* libboost_system.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -762,7 +758,6 @@
 			files = (
 				395A79682332C04D00499894 /* libOpenNI2.dylib in Frameworks */,
 				395A79702332D5E900499894 /* libpb-common.dylib in Frameworks */,
-				3900756523567C50007A0982 /* libprotobuf.21.dylib in Frameworks */,
 				395A79862335508E00499894 /* libNiTE2.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2165,7 +2160,6 @@
 				39C2384923848D5E00791E1E /* libprotobuf.a */,
 				39C2384B23848EDA00791E1E /* libgflags.a */,
 				39C2384523848D1200791E1E /* libboost_system.a */,
-				3937AE0223566528009E6021 /* libprotobuf.21.dylib */,
 				395A79CF2335BE3B00499894 /* Protocol Bernardo.xcodeproj */,
 				395A79852335508E00499894 /* libNiTE2.dylib */,
 				395A79672332C04D00499894 /* libOpenNI2.dylib */,
@@ -2359,7 +2353,6 @@
 			children = (
 				39F4F8DA239EF56E007271C0 /* B-504.hpp */,
 				39F4F8DB239EF56E007271C0 /* S-504-00.hpp */,
-				39F4F8E0239EF649007271C0 /* B-506 */,
 			);
 			path = "B-504";
 			sourceTree = "<group>";
@@ -2371,15 +2364,6 @@
 				39F4F8DE239EF5CC007271C0 /* S-505-00.hpp */,
 			);
 			path = "B-505";
-			sourceTree = "<group>";
-		};
-		39F4F8E0239EF649007271C0 /* B-506 */ = {
-			isa = PBXGroup;
-			children = (
-				39F4F8E1239EF649007271C0 /* S-505-00.hpp */,
-				39F4F8E2239EF649007271C0 /* B-505.hpp */,
-			);
-			path = "B-506";
 			sourceTree = "<group>";
 		};
 		39F860CE2390656D00A32146 /* Core */ = {

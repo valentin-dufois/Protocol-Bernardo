@@ -1,25 +1,25 @@
 //
-//  B-505.hpp
+//  B-606.hpp
 //  pb-common (shared)
 //
 //  Created by Marie-Lou on 2019-12-07.
 //
 
-#ifndef B505_h
-#define B505_h
+#ifndef B606_h
+#define B606_h
 
 #include "../../Behaviour.hpp"
 
-class B505 : public Behaviour {
+class B606 : public Behaviour {
 public:
-	B505() : Behaviour(505,		// ID
-		5,		// Tree ID
+	B606() : Behaviour(606,		// ID
+		6,		// Tree ID
 		false,	// Is tree start ?
 		false,	// Force start ?
 		{		// Expected inputs
 		},
 		{		// Expected outputs
-		50500 // S-505-00
+		60600 // S-606-00
 		}) {}
 
 	virtual bool execute(Machine * machine) override {
@@ -28,4 +28,4 @@ public:
 };
 
 
-#endif /* B505_h */
+#endif /* B606_h */

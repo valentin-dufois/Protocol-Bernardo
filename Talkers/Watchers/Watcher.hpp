@@ -29,7 +29,8 @@ public:
 	virtual void watch(const pb::Arena *) = 0;
 
 	virtual bool hasFoundEvent() {
-		return _foundEvent ? (rand() / RAND_MAX) < _triggerLuck : false;
+		float randRes = (float)rand() / (float)RAND_MAX;
+		return _foundEvent ? randRes < _triggerLuck : false;
 	}
 
 	virtual Event getEvent() = 0;

@@ -175,7 +175,10 @@ void Core::send(Message * message) {
 	machineMessage.set_caption(message->caption);
 
 	// Add the machine state
-
+	// Nb de personnes
+	// Most active
+	// Average speed
+	// Conversation yes no
 
 	// send
 	_receiversServer.sendToAll(&machineMessage);

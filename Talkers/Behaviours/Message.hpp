@@ -18,6 +18,8 @@ struct Message {
 	talkers::BehaviourID behaviour;
 
 	std::string caption;
+
+	bool isTreeEnd;
 };
 
 #endif /* Message_h */

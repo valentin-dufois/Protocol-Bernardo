@@ -14,7 +14,7 @@ class S31200: public Output {
 public:
 
 	S31200(): Output(31200,	// Output ID
-					 true,	// Is tree end ?
+					 false,	// Is tree end ?
 					 313,	// Next Behaviour ID
 					 DELAY_DEFAULT,	// Is delayed
 					 DELAY_VALUE_DEFAULT,		// Delay value (seconds)

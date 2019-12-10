@@ -14,7 +14,7 @@ class S40500 : public Output {
 public:
 
 	S40500() : Output(40500,	// Output ID
-		true,	// Is tree end ?
+		false,	// Is tree end ?
 		406,	// Next Behaviour ID
 		DELAY_DEFAULT,	// Is delayed
 		DELAY_VALUE_DEFAULT,		// Delay value (seconds)
