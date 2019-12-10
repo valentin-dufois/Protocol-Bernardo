@@ -48,9 +48,10 @@ LDFLAGS = -L/usr/local/lib
 
 # Libraries
 LDLIBS = -lpb-common \
-		-lboost_system \
+		 -lboost_system \
+		 -lboost_program_options \
          -lOpenNI2 \
-		-lNiTE2
+		 -lNiTE2
 
 
 # #######################
@@ -85,13 +86,12 @@ LDFLAGS += -std=c++17
 
 LDLIBS += `pkg-config libopenni2 --libs` \
 	  `pkg-config protobuf --libs` \
-	  `pkg-config gflags --libs` \
 	  -lstdc++fs 
 
 endif
 
 
-CXXFLAGS := $(GCCOPTIONS) -I$(LIBDIR) -I. $(INCFLAGS)
+CXXFLAGS := $(GCCOPTIONS) -I$(LIBDIR) -I. $(INCFLAGS)  -DMACHINE_TRACKER -DDEBUG -DLOG_LEVEL=1
 
 # #######################
 # MARK: - Build Sequence

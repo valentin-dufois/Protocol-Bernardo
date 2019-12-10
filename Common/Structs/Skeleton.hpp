@@ -100,10 +100,9 @@ struct Skeleton  {
 		network::messages::Skeleton * message = new network::messages::Skeleton();
 
 		// Converts the joints
-		std::vector<network::messages::Joint> jointsMessages;
-
 		for(const pb::Joint &joint: joints) {
-			message->mutable_joints()->Add(joint);
+			network::messages::Joint * jointMessage = message->mutable_joints()->Add();
+			jointMessage->CopyFrom(joint);
 		}
 
 		// Fill in the message
@@ -116,7 +115,7 @@ struct Skeleton  {
 
 	Skeleton& operator += (const Skeleton &s2) {
 		// Sum all joints
-		for(int i = 0; i < joints.size(); ++i) {
+		for(long unsigned int i = 0; i < joints.size(); ++i) {
 			joints[i] += s2.joints[i];
 		}
 
@@ -129,7 +128,7 @@ struct Skeleton  {
 	Skeleton operator - (const Skeleton &s2) {
 		Skeleton s;
 		// Substract all joints
-		for(int i = 0; i < joints.size(); ++i) {
+		for(long unsigned int i = 0; i < joints.size(); ++i) {
 			s.joints[i] = joints[i] - s2.joints[i];
 		}
 
@@ -143,7 +142,7 @@ struct Skeleton  {
 		Skeleton s;
 
 		// Divide each joints
-		for(int i = 0; i < joints.size(); ++i) {
+		for(long unsigned int i = 0; i < joints.size(); ++i) {
 			s.joints[i] = joints[i] / div;
 		}
 

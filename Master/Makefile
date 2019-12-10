@@ -9,7 +9,7 @@
 
 # MARK: The Target
 
-TARGETNAME := pb-acquisitor
+TARGETNAME := pb-master
 BUILDDIR := build/
 TARGET := $(BUILDDIR)$(TARGETNAME)
 
@@ -47,7 +47,8 @@ LDFLAGS = -L/usr/local/lib
 
 # Libraries
 LDLIBS = -lpb-common \
-	 -lboost_system \
+	 	 -lboost_system \
+		 -lboost_program_options
 
 # #######################
 # OS-Dependant Properties
@@ -75,13 +76,12 @@ INCFLAGS +=
 LDFLAGS += -std=c++17
 
 LDLIBS += `pkg-config protobuf --libs` \
-	  `pkg-config gflags --libs` \
-	  -lstdc++fs 
+	  	  -lstdc++fs 
 
 endif
 
 
-CXXFLAGS := $(GCCOPTIONS) -I$(LIBDIR) -I. $(INCFLAGS)
+CXXFLAGS := $(GCCOPTIONS) -I$(LIBDIR) -I. $(INCFLAGS) -DLOG_LEVEL=1 -DDEBUG=1 -DMACHINE_MASTER
 
 # #######################
 # MARK: - Build Sequence

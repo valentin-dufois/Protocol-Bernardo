@@ -45,9 +45,9 @@ OBJECTS := $(OBJECTS:.cc=.o)
 
 
 # Protos
-PROTOSRCDIR := ./Messages/protos
+PROTOSRCDIR := ./Network/Messages/protos
 PROTOEXT := proto
-PROTOOUTDIR := ./Messages/cpp/
+PROTOOUTDIR := ./Network/Messages/cpp/
 
 PROTOS := $(shell find $(PROTOSSRCDIR) -type f -name "**.$(PROTOSEXT)")
 PROTOSCC := $(SOURCES:.$(PROTOS)=.cc)
@@ -89,7 +89,7 @@ LDLIBS +=
 
 endif
 
-CXXFLAGS := $(GCCOPTIONS) -I. $(INCFLAGS)
+CXXFLAGS := $(GCCOPTIONS) -I. $(INCFLAGS) -DLOG_LEVEL=1
 
 # #######################
 # MARK: - Build Sequence
@@ -120,7 +120,7 @@ linker: protos $(OBJECTS)
 	@echo "========================================\n"
 
 protos:
-	protoc --cpp_out=./Messages/cpp --proto_path=./Messages/protos/ ./Messages/protos/*
+	protoc --cpp_out=./Network/Messages/cpp --proto_path=./Network/Messages/protos/ ./Network/Messages/protos/*
 #	$(OBJECTS) += $(shell find ./Messages/cpp/ -type f -name "**.$(cc)")
 
 

@@ -14,11 +14,16 @@
 /// easily switching the entire app to another scalar type.
 #define SCALAR double
 
+#define GLM_ENABLE_EXPERIMENTAL
 #define GLM_SWIZZLE_XYZW
 #include <glm/glm.hpp>
 #include <glm/gtx/vector_angle.hpp>
 
 #include "../Network/Messages/messages.hpp"
+
+#ifdef MACHINE_TRACKER
+#include <nite2/NiTE.h>
+#endif
 
 namespace pb {
 namespace maths {
@@ -45,8 +50,6 @@ inline T rad2deg(const T &rad) {
 
 
 #ifdef MACHINE_TRACKER
-
-#include <nite2/NiTE.h>
 
 /// Converts a nite float3 to a `vec3`
 /// @param p3f The float3 to convert

@@ -44,9 +44,9 @@ void TrackersServer::onBodyStream(const protobuf::Any * data) {
 
 	try {
 		data->UnpackTo(&messageBody);
-	} catch (protobuf::FatalException e) {
+	} catch (protobuf::FatalException * e) {
 		LOG_ERROR("Error while deserializing a body. Ignoring...");
-		LOG_DEBUG(e.message());
+		LOG_DEBUG(e->message());
 
 		return;
 	}

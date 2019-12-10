@@ -169,7 +169,7 @@ Skeleton LayoutEngine::
 inGlobalCoordinates(const Skeleton &s, const pb::deviceUID deviceUID) {
 	Skeleton skeleton;
 
-	for(int i = 0; i < s.joints.size(); ++i) {
+	for(long unsigned int i = 0; i < s.joints.size(); ++i) {
 		skeleton.joints[i] = inGlobalCoordinates(s.joints[i], deviceUID);
 	}
 

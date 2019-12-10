@@ -8,7 +8,7 @@
 #include <csignal>
 
 #include "../Common/Network.hpp"
-#include "../Common/Utils/Log.hpp"
+#include "../Common/Utils.hpp"
 
 #include "libraries.hpp"
 #include "Core/Core.hpp"
@@ -22,13 +22,15 @@ void signalHandler(int signum) {
 	exit(signum);
 }
 
-int main(int argc, char * argv[]) {
+int main(int argc, const char * argv[]) {
 
 	// Register our closing mechanisms
 	signal(SIGINT, signalHandler);
 
 	// Init the flags
-	gflags::ParseCommandLineFlags(&argc, &argv, true);
+	po::options_description desc("pb-master");
+	desc.add_options()("layout", po::value<std::string>(), "Layout to open on start");
+	pb::flags::parse(argc, argv, desc);
 
 	// Set the application type on the Network
 	pb::network::Engine::thisMachineType = pb::network::Endpoint::Type::tracker;

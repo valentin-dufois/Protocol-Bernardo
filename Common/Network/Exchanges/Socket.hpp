@@ -44,8 +44,8 @@ public:
 
 	Socket():
 		_socket(Engine::instance()->getContext()),
-		_outputStream(&_outputBuffer),
-		_timer(Engine::instance()->getContext()) {}
+		_timer(Engine::instance()->getContext()),
+		_outputStream(&_outputBuffer) {}
 
 	/// Connects the socket to the given ip and port
 	void connectTo(const std::string &ip, const NetworkPort &port);

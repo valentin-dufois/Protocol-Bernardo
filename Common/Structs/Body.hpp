@@ -66,7 +66,7 @@ struct Body {
 
 		unsigned int skeletonCount = body.skeletons_size();
 
-		for(int i = 0; i < skeletonCount; ++i) {
+		for(unsigned int i = 0; i < skeletonCount; ++i) {
 			skeletons.push_back(new Skeleton(body.skeletons(i)));
 		}
 	}
@@ -110,7 +110,7 @@ struct Body {
 		Skeleton skeleton;
 
 		// Add all the rawSkeletons
-		for(int i = 0; i < rawSkeletons.size(); ++i) {
+		for(long unsigned int i = 0; i < rawSkeletons.size(); ++i) {
 			// TODO: Make sure the skeletons are in the same direction (front back, check the hands)
 
 			skeleton += *rawSkeletons[i];

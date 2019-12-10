@@ -13,6 +13,7 @@
 #endif
 
 #if LOG_LEVEL == 1
+// #warning "All logs are activated. This can reduce the app performances."
 #include <filesystem>
 #endif
 
@@ -61,7 +62,7 @@ void raw(const T &log) {
 /// Log something as a debug statement
 inline void debug(const std::string &log, const std::string &file = "", const int &line = -1) {
 	if(LOG_LEVEL <= 1)
-		raw("➡️ " + locat(file, line) + log);
+		raw("➡️  " + locat(file, line) + log);
 }
 
 /// Log something as informative
