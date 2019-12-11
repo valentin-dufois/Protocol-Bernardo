@@ -104,7 +104,12 @@ public:
 
 		// For each received body
 		for(int i = 0; i < bodiesCount; ++i) {
-			Body * body = new Body(trackedBodies.bodies(i));
+			Body * body;
+			try {
+				body = new Body(trackedBodies.bodies(i));
+			} catch (std::runtime_error &e) {
+				continue;
+			}
 
 			// Is there already a body with the same uid in the buffer ?
 			if(_bodies.find(body->uid) != _bodies.end()) {
@@ -115,7 +120,7 @@ public:
 			if(!body->isValid) {
 				_bodies.erase(body->uid);
 				delete body;
-				return;
+				continue;
 			}
 
 			// Store the body
