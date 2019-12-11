@@ -79,7 +79,8 @@ public:
 			_calibrationBodies.second != nullptr;
 	}
 
-	inline CalibrationValues getCalibrationValues() {
+	inline
+	CalibrationValues getCalibrationValues() {
 		return _calibrationValues;
 	}
 

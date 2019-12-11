@@ -51,6 +51,10 @@
 		393B9DB2238B2978008BA8D7 /* CPValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393B9DB1238B2978008BA8D7 /* CPValue.swift */; };
 		393C55D123A018E700F8063A /* libprotobuf.22.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 394AE3AC239B0B39001AB4E4 /* libprotobuf.22.dylib */; };
 		393C55D223A018E700F8063A /* libprotobuf.22.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 394AE3AC239B0B39001AB4E4 /* libprotobuf.22.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		393C55D323A0656100F8063A /* libboost_program_options.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 394AE3B0239B0BF4001AB4E4 /* libboost_program_options.dylib */; };
+		393C55D523A0658000F8063A /* libboost_system.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 39CA4ABF2331470200E528CD /* libboost_system.dylib */; };
+		393C55D723A0658400F8063A /* libprotobuf.22.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 394AE3AC239B0B39001AB4E4 /* libprotobuf.22.dylib */; };
+		393C55D923A0659900F8063A /* libNiTE2.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 395A79852335508E00499894 /* libNiTE2.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		39469E8A2379E3A700E25030 /* CanvasBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39469E892379E3A700E25030 /* CanvasBody.swift */; };
 		394AE3AD239B0B39001AB4E4 /* libprotobuf.22.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 394AE3AC239B0B39001AB4E4 /* libprotobuf.22.dylib */; };
 		394AE3B3239B0BFF001AB4E4 /* libboost_program_options.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 394AE3B0239B0BF4001AB4E4 /* libboost_program_options.dylib */; };
@@ -91,7 +95,6 @@
 		395A79812333321600499894 /* Joint.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 395A797E2333321600499894 /* Joint.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		395A7983233332CB00499894 /* maths.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 395A79822333323500499894 /* maths.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		395A79862335508E00499894 /* libNiTE2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 395A79852335508E00499894 /* libNiTE2.dylib */; };
-		395A79872335508E00499894 /* libNiTE2.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 395A79852335508E00499894 /* libNiTE2.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		395A799623359B2D00499894 /* PoseEstimationEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 395A798F2335907C00499894 /* PoseEstimationEngine.cpp */; };
 		395A79BE2335BB2000499894 /* maths.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = 395A79AE2335BB2000499894 /* maths.pb.cc */; };
 		395A79C12335BB2000499894 /* maths.pb.h in Headers */ = {isa = PBXBuildFile; fileRef = 395A79B12335BB2000499894 /* maths.pb.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -263,8 +266,8 @@
 			dstSubfolderSpec = 10;
 			files = (
 				395A79712332D5E900499894 /* libpb-common.dylib in Embed Libraries */,
-				395A79872335508E00499894 /* libNiTE2.dylib in Embed Libraries */,
 				3978A8072336D96B00AF409D /* libOpenNI2.dylib in Embed Libraries */,
+				393C55D923A0659900F8063A /* libNiTE2.dylib in Embed Libraries */,
 			);
 			name = "Embed Libraries";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -756,8 +759,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				393C55D323A0656100F8063A /* libboost_program_options.dylib in Frameworks */,
 				395A79682332C04D00499894 /* libOpenNI2.dylib in Frameworks */,
+				393C55D523A0658000F8063A /* libboost_system.dylib in Frameworks */,
 				395A79702332D5E900499894 /* libpb-common.dylib in Frameworks */,
+				393C55D723A0658400F8063A /* libprotobuf.22.dylib in Frameworks */,
 				395A79862335508E00499894 /* libNiTE2.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

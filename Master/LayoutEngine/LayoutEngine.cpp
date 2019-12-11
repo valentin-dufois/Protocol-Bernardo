@@ -200,19 +200,22 @@ maths::vec3 LayoutEngine::inGlobalCoordinates(const maths::vec3 &local, const pb
 		return maths::vec3(0, 0, 0);
 	}
 
-	maths::vec3 global(0, 0, 0);
-	SCALAR orientation = maths::deg2rad(device->orientation.z);
 
-	// X and Z coordinates takes into account the angle of the device
-	global.x = local.x * cos(orientation) - local.z * sin(orientation);
-	global.z = local.x * sin(orientation) + local.z * cos(orientation);
+	// Rotate the device
+	SCALAR yaw = maths::deg2rad(device->orientation.z);
+	SCALAR pitch = maths::deg2rad(device->orientation.x);
+	SCALAR roll = maths::deg2rad(device->orientation.y);
+
+	glm::mat4 rotationMatrix = glm::rotate(glm::mat4(1.0), (float)yaw, glm::vec3(0.0, 1.0, 0.0));
+	rotationMatrix = glm::rotate(rotationMatrix, (float)pitch, glm::vec3(1.0, 0.0, 0.0));
+	rotationMatrix = glm::rotate(rotationMatrix, (float)roll, glm::vec3(0.0, 0.0, 1.0));
+
+	glm::vec4 global = glm::vec4(local, 0) * rotationMatrix;
 
 	// Take into account the device position
 	global.x += device->position.x * 10.0; // cm to mm
 	global.z += device->position.y * 10.0; // cm to mm
-
-	// Y position (Height) is not affected by the angle of capture
-	global.y = local.y + device->position.z * 10.0; // cm to mm
+	global.y += device->position.z * 10.0; // cm to mm
 
 	return global;
 }

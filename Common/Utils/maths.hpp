@@ -19,6 +19,11 @@
 #include <glm/glm.hpp>
 #include <glm/gtx/vector_angle.hpp>
 
+#ifdef MACHINE_TRACKER
+#include <nite2/NiTE.h>
+#endif
+
+
 #include "../Network/Messages/messages.hpp"
 
 #ifdef MACHINE_TRACKER

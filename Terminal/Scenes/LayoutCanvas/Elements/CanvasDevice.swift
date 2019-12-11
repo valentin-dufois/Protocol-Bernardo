@@ -48,7 +48,8 @@ class CanvasDevice: SKNode {
 	weak var positionXDelta: CPValue?
 	weak var positionYDelta: CPValue?
 	weak var positionZDelta: CPValue?
-	weak var orientationZDelta: CPValue?
+	weak var yawDelta: CPValue?
+	weak var pitchDelta: CPValue?
 
 }
 
@@ -130,9 +131,13 @@ extension CanvasDevice: CanvasElement {
 									   delegate: self)
 		views.append(positionParameters!)
 
-		views.append(CPDouble.make(label: "Orientation",
+		views.append(CPDouble.make(label: "Yaw",
 								   unit: "º",
 								   defaultValue: device.orientation.z,
+								   delegate: self))
+		views.append(CPDouble.make(label: "Pitch",
+								   unit: "º",
+								   defaultValue: device.orientation.x,
 								   delegate: self))
 		views.append(CPDouble.make(label: "Height",
 								  unit: "cm",
@@ -175,12 +180,14 @@ extension CanvasDevice: CanvasElement {
 		positionXDelta = CPValue.make(label: "Position X", value: nil)
 		positionYDelta = CPValue.make(label: "Position Y", value: nil)
 		positionZDelta = CPValue.make(label: "Position Z", value: nil)
-		orientationZDelta = CPValue.make(label: "Orientation Z", value: nil)
+		yawDelta = CPValue.make(label: "Yaw", value: nil)
+		pitchDelta = CPValue.make(label: "Pitch", value: nil)
 
 		views.append(positionXDelta!);
 		views.append(positionYDelta!);
 		views.append(positionZDelta!);
-		views.append(orientationZDelta!);
+		views.append(yawDelta!);
+		views.append(pitchDelta!);
 
 		return views
 	}
@@ -191,7 +198,8 @@ extension CanvasDevice: CPDelegate {
 		switch pName {
 		case "posX": position.x = CGFloat(newValue)
 		case "posY": position.y = CGFloat(newValue)
-		case "Orientation": device.orientation.z = newValue
+		case "Yaw": device.orientation.z = newValue
+		case "Pitch": device.orientation.x = newValue
 		case "Height": device.position.z = newValue
 		case "Field of View": device.horizontalFOV = newValue
 		case "Min. Dist.": device.minDistance = newValue
