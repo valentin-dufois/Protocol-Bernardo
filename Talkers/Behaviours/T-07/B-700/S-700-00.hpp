@@ -22,9 +22,9 @@ public:
 		{		// Output values
 		},
 					 {		// Captions
-		"Il y a quelqu'un qui est trËs proche.",
-		"Une personne s'est beaucoup rapprochÈe.",
-		"Je capte quelqu'un qui est trËs proche."
+		"Il y a quelqu'un qui est très proche.",
+		"Une personne s'est beaucoup rapprochée.",
+		"Je capte quelqu'un qui est très proche."
 					 }) {}
 
 	virtual bool isConditionValid(const State &behaviourState) override {

@@ -26,7 +26,7 @@ public:
 					 }) {}
 
 	virtual bool isConditionValid(const State &behaviourState) override {
-		return true;
+		return behaviourState.at("RAND").getDouble() < .5;
 	};
 };
 

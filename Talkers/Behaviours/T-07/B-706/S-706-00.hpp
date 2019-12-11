@@ -22,9 +22,9 @@ public:
 		{		// Output values
 		},
 					 {		// Captions
-		"Je m'inquiète pour mes capteurs.",
-		"C'était un test.",
-		"Simple curiosité."
+		"Je m'inquite pour mes capteurs.",
+		"C'tait un test.",
+		"Simple curiosit."
 					 }) {}
 
 	virtual bool isConditionValid(const State &behaviourState) override {

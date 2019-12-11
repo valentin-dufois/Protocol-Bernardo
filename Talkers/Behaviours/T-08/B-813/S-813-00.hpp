@@ -22,7 +22,7 @@ public:
 		{		// Output values
 		},
 					 {		// Captions
-		"Oui. Nous détectons des personnes, puis n'en détectons plus. J'interprète ainsi qu'elles vont et viennent."
+		"Oui. Nous dtectons des personnes, puis n'en dtectons plus. J'interprte ainsi qu'elles vont et viennent."
 					 }) {}
 
 	virtual bool isConditionValid(const State &behaviourState) override {

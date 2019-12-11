@@ -27,7 +27,7 @@ public:
 					 }) {}
 
 	virtual bool isConditionValid(const State &behaviourState) override {
-		// 50% chance of execution
+		return behaviourState.at("RAND").getDouble() >= .5;
 		return true;
 	};
 };

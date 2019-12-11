@@ -22,11 +22,12 @@ public:
 		{		// Output values
 		},
 					 {		// Captions
-		"Celui-ci est agité.",
+		"Celui-ci est agit.",
 		"Il y a quelqu'un qui remue beaucoup."
 					 }) {}
 
 	virtual bool isConditionValid(const State &behaviourState) override {
+		return behaviourState.at("RAND").getDouble() >= .66;
 		return true;
 	};
 };

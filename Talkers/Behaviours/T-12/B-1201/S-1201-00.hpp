@@ -22,7 +22,7 @@ public:
 		{		// Output values
 		},
 					 {		// Captions
-		"Sûrement une envie de s'amuser avec les capteurs.",
+		"Sžrement une envie de s'amuser avec les capteurs.",
 		"Les capteurs leur font toujours cet effet.",
 		"Quand ils remarquent les capteurs, ils font toujours ce genre de choses."
 					 }) {}

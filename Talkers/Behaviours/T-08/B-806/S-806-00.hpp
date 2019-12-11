@@ -22,7 +22,7 @@ public:
 		{		// Output values
 		},
 					 {		// Captions
-		"Si elles y ont été conviées, c'est que cet endroit présente un intérêt pour elles."
+		"Si elles y ont t convies, c'est que cet endroit prsente un intrt pour elles."
 					 }) {}
 
 	virtual bool isConditionValid(const State &behaviourState) override {

@@ -22,7 +22,7 @@ public:
 		{		// Output values
 		},
 					 {		// Captions
-		"L'endroit où nous nous trouvons semble n'être qu'un lieu de passage."
+		"L'endroit o nous nous trouvons semble n'tre qu'un lieu de passage."
 					 }) {}
 
 	virtual bool isConditionValid(const State &behaviourState) override {

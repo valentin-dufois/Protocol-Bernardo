@@ -8,6 +8,9 @@
 #ifndef B_1200_hpp
 #define B_1200_hpp
 
+#ifdef B1200
+#undef B1200
+#endif
 
 #include "../../Behaviour.hpp"
 

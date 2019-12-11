@@ -22,11 +22,11 @@ public:
 		{		// Output values
 		},
 					 {		// Captions
-		"Peut-être sont-elles toujours les mêmes."
+		"Peut-tre sont-elles toujours les mmes."
 					 }) {}
 
 	virtual bool isConditionValid(const State &behaviourState) override {
-		return true;
+		return behaviourState.at("RAND").getDouble() >= .5;
 	};
 };
 

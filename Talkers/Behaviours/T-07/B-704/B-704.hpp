@@ -10,6 +10,7 @@
 
 
 #include "../../Behaviour.hpp"
+#include "../../../Utils/Random.hpp"
 
 class B704 : public Behaviour {
 public:
@@ -21,10 +22,12 @@ public:
 
 		},
 					  {		// Expected outputs
-		70400 // S-704-00
+		70400, // S-704-00
+		70401 // S-704-01
 					  }) {}
 
 	virtual bool execute(Machine * machine) override {
+		_state.insert_or_assign("RAND", (double)rand() / (double)RAND_MAX);
 		return true;
 	}
 };

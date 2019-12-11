@@ -22,7 +22,7 @@ public:
 		{		// Output values
 		},
 					 {		// Captions
-		"Peux-tu développer ?"
+		"Peux-tu dŽvelopper ?"
 					 }) {}
 
 	virtual bool isConditionValid(const State &behaviourState) override {

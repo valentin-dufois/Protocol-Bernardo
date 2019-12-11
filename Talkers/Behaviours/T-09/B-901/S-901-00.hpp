@@ -22,7 +22,7 @@ public:
 		},
 					 {						// Captions
 		"C'est fait.",
-		"C'est déjà fait."
+		"C'est djˆ fait."
 					 }) {}
 
 	inline bool isConditionValid(const State &behaviourState) {

@@ -22,12 +22,11 @@ public:
 		{		// Output values
 		},
 					 {		// Captions
-		"Pouvez-vous reculer s'il-vous-plaît ?"
+		"Pouvez-vous reculer s'il-vous-pla”t ?"
 					 }) {}
 
 	virtual bool isConditionValid(const State &behaviourState) override {
-		// 50% chance of execution
-		return true;
+		return behaviourState.at("RAND").getDouble() < .5;
 	};
 };
 

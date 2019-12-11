@@ -100,13 +100,14 @@ private:
 
 	// MARK: - Watchers
 
-	std::array<Watcher *, 6> _watchers = {
+	std::array<Watcher *, 7> _watchers = {
 		new NoMovementsWatcher(100, 50, 0.1),
 		new SuddenMoveWatcher(200, 5000, 0.1),
 		new ClosePeopleWatcher(300, 800, 0.1),
-		new RandomWatcher(400, 0.001),
-		new RandomWatcher(500, 0.001),
-		new RandomWatcher(600, 0.001)
+		new RandomWatcher(400, 0.0005),
+		new RandomWatcher(500, 0.0005),
+		new RandomWatcher(600, 0.0005),
+		new RandomWatcher(800, 0.0005)
 	};
 };
 

@@ -33,14 +33,14 @@ void Core::init() {
 	_machineB.setArena(_PBReceiver.arena());
 
 	// Init rand
-	srand(static_cast<unsigned> (time(0)));
+	srand(time(NULL));
 }
 
 void Core::run() {
 	_isRunning = true;
 
 #ifdef DEBUG
-	// manualStart();
+	 manualStart();
 #endif
 	
 	do {
@@ -175,7 +175,7 @@ void Core::send(Message * message) {
 	machineMessage.set_caption(message->caption);
 
 	// Add the machine state
-	machineMessage.set_bodycount(_currentMachine->arena()->count());
+	machineMessage.set_bodycount((int)_currentMachine->arena()->count());
 	machineMessage.set_averageactivity(_currentMachine->arena()->averageMoveSpeed());
 	machineMessage.set_maximumactivity( std::get<1>(_currentMachine->arena()->mostActiveBody()));
 	machineMessage.set_tree(_currentMachine->getTree() != nullptr);

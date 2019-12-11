@@ -22,7 +22,7 @@ public:
 		{		// Output values
 		},
 					 {		// Captions
-		"Pas un point d'arrivée."
+		"Pas un point d'arrivŽe."
 					 }) {}
 
 	virtual bool isConditionValid(const State &behaviourState) override {

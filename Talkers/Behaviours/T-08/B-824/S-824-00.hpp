@@ -22,7 +22,7 @@ public:
 		{		// Output values
 		},
 					 {		// Captions
-		"Tu veux dire que ce sont les mÍmes, ou bien que tous ont des comportements similaires ?"
+		"Tu veux dire que ce sont les mêmes, ou bien que tous ont des comportements similaires ?"
 					 }) {}
 
 	virtual bool isConditionValid(const State &behaviourState) override {
