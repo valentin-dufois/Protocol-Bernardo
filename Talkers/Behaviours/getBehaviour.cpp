@@ -114,6 +114,52 @@
 #include "T-06/B-612/B-612.hpp"
 #include "T-06/B-613/B-613.hpp"
 
+// TREE 7
+#include "T-07/B-700/B-700.hpp"
+#include "T-07/B-701/B-701.hpp"
+#include "T-07/B-702/B-702.hpp"
+#include "T-07/B-703/B-703.hpp"
+#include "T-07/B-704/B-704.hpp"
+#include "T-07/B-705/B-705.hpp"
+#include "T-07/B-706/B-706.hpp"
+
+// TREE 8
+#include "T-08/B-800/B-800.hpp"
+#include "T-08/B-801/B-801.hpp"
+#include "T-08/B-802/B-802.hpp"
+#include "T-08/B-803/B-803.hpp"
+#include "T-08/B-804/B-804.hpp"
+#include "T-08/B-805/B-805.hpp"
+#include "T-08/B-806/B-806.hpp"
+#include "T-08/B-807/B-807.hpp"
+#include "T-08/B-808/B-808.hpp"
+#include "T-08/B-809/B-809.hpp"
+#include "T-08/B-810/B-810.hpp"
+#include "T-08/B-811/B-811.hpp"
+#include "T-08/B-812/B-812.hpp"
+#include "T-08/B-813/B-813.hpp"
+#include "T-08/B-814/B-814.hpp"
+#include "T-08/B-815/B-815.hpp"
+#include "T-08/B-816/B-816.hpp"
+#include "T-08/B-817/B-817.hpp"
+#include "T-08/B-818/B-818.hpp"
+#include "T-08/B-819/B-819.hpp"
+#include "T-08/B-820/B-820.hpp"
+#include "T-08/B-821/B-821.hpp"
+#include "T-08/B-822/B-822.hpp"
+#include "T-08/B-823/B-823.hpp"
+#include "T-08/B-824/B-824.hpp"
+#include "T-08/B-825/B-825.hpp"
+
+// TREE 9
+#include "T-09/B-900/B-900.hpp"
+#include "T-09/B-901/B-901.hpp"
+#include "T-09/B-902/B-902.hpp"
+
+// TREE 12
+#include "T-12/B-1200/B-1200.hpp"
+#include "T-12/B-1201/B-1201.hpp"
+#include "T-12/B-1202/B-1202.hpp"
 
 
 Behaviour * Behaviour::get(const talkers::BehaviourID behaviourID) {
@@ -221,6 +267,53 @@ Behaviour * Behaviour::get(const talkers::BehaviourID behaviourID) {
 		case 611: return new B611();
 		case 612: return new B612();
 		case 613: return new B613();
+
+			// MARK: - TREE 7
+		case 700: return new B700();
+		case 701: return new B701();
+		case 702: return new B702();
+		case 703: return new B703();
+		case 704: return new B704();
+		case 705: return new B705();
+		case 706: return new B706();
+
+			// MARK: - TREE 8
+		case 800: return new B800();
+		case 801: return new B801();
+		case 802: return new B802();
+		case 803: return new B803();
+		case 804: return new B804();
+		case 805: return new B805();
+		case 806: return new B806();
+		case 807: return new B807();
+		case 808: return new B808();
+		case 809: return new B809();
+		case 810: return new B810();
+		case 811: return new B811();
+		case 812: return new B812();
+		case 813: return new B813();
+		case 814: return new B814();
+		case 815: return new B815();
+		case 816: return new B816();
+		case 817: return new B817();
+		case 818: return new B818();
+		case 819: return new B819();
+		case 820: return new B820();
+		case 821: return new B821();
+		case 822: return new B822();
+		case 823: return new B823();
+		case 824: return new B824();
+		case 825: return new B825();
+
+			// MARK: - TREE 9
+		case 900: return new B900();
+		case 901: return new B901();
+		case 902: return new B902();
+
+			// MARK: - TREE 12
+		case 1200: return new B1200();
+		case 1201: return new B1201();
+		case 1202: return new B1202();
 
 		default:
 			std::cout << "*** No behaviour " << behaviourID << std::endl;
