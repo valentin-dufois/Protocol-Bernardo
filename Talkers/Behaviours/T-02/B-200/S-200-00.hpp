@@ -16,17 +16,17 @@ public:
 	S20000(): Output(20000,	// Output ID
 					 false,	// Is tree end ?
 					 201,	// Next Behaviour ID
-					 false,	// Is delayed
-					 0,		// Delay value (seconds)
-					 0,		// Delay variance (seconds)
+					 DELAY_DEFAULT,	// Is delayed
+					 DELAY_VALUE_DEFAULT,		// Delay value (seconds)
+					 DELAY_VARIANCE_DEFAULT,		// Delay variance (seconds)
 					 {		// Output values
 	},
 					 {		// Captions
-		"As-tu détecté ça ?."
+		"As-tu détecté ça ?"
 	}) {}
 
 	virtual bool isConditionValid(const State &behaviourState) override {
-		return true;
+		return behaviourState.at("RAND").getDouble() < .33;
 	};
 };
 
