@@ -16,9 +16,9 @@ public:
 	S10000(): Output(10000,	// Output ID
 					 false,	// Is tree end ?
 					 101,	// Next Behaviour ID
-					 false,	// Is delayed
-					 0,		// Delay value (seconds)
-					 0,		// Delay variance (seconds)
+		DELAY_DEFAULT,	// Is delayed
+		DELAY_VALUE_DEFAULT,		// Delay value (seconds)
+		DELAY_VARIANCE_DEFAULT,		// Delay variance (seconds)
 					 {		// Output values
 		"NBR_BODY"
 	},
