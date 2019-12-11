@@ -175,10 +175,10 @@ void Core::send(Message * message) {
 	machineMessage.set_caption(message->caption);
 
 	// Add the machine state
-	// Nb de personnes
-	// Most active
-	// Average speed
-	// Conversation yes no
+	machineMessage.set_bodycount(_currentMachine->arena()->count());
+	machineMessage.set_averageactivity(_currentMachine->arena()->averageMoveSpeed());
+	machineMessage.set_maximumactivity( std::get<1>(_currentMachine->arena()->mostActiveBody()));
+	machineMessage.set_tree(_currentMachine->getTree() != nullptr);
 
 	// send
 	_receiversServer.sendToAll(&machineMessage);

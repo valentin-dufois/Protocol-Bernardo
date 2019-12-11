@@ -22,8 +22,8 @@ public:
 		{		// Output values
 		},
 					 {		// Captions
-		"Penses-tu que je pourrais t'etre utile ?",
-		"Je pourrais peut-etre t'aider."
+		"Penses-tu que je pourrais t'être utile ?",
+		"Je pourrais peut-être t'aider."
 					 }) {}
 
 	virtual bool isConditionValid(const State &behaviourState) override {

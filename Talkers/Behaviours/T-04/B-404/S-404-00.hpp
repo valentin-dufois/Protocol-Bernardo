@@ -22,8 +22,8 @@ public:
 		{		// Output values
 		},
 					 {		// Captions
-		"Meme en prenant en compte un seuil de tolerance, comment savoir si nos operations ne causeront pas d'erreurs irreparables ?",
-		"Comment savoir si nous faisons le bon choix en faisant confiance a nos resultats, si ceux-ci sont sensibles a une marge d'erreur ?"
+		"Même en prenant en compte un seuil de tolérance, comment savoir si nos opérations ne causeront pas d'erreurs irréparables ?",
+		"Comment savoir si nous faisons le bon choix en faisant confiance à nos resultats, si ceux-ci sont sensibles à une marge d'erreur ?"
 					 }) {}
 
 	virtual bool isConditionValid(const State &behaviourState) override {

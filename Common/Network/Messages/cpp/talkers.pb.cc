@@ -36,9 +36,13 @@ void protobuf_AssignDesc_talkers_2eproto() {
       "talkers.proto");
   GOOGLE_CHECK(file != NULL);
   Machine_descriptor_ = file->message_type(0);
-  static const int Machine_offsets_[2] = {
+  static const int Machine_offsets_[6] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Machine, label_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Machine, caption_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Machine, bodycount_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Machine, averageactivity_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Machine, maximumactivity_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Machine, tree_),
   };
   Machine_reflection_ =
     ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
@@ -83,8 +87,10 @@ void protobuf_AddDesc_talkers_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\rtalkers.proto\022\010messages\")\n\007Machine\022\r\n\005"
-    "label\030\001 \001(\t\022\017\n\007caption\030\005 \001(\tb\006proto3", 76);
+    "\n\rtalkers.proto\022\010messages\"|\n\007Machine\022\r\n\005"
+    "label\030\001 \001(\t\022\017\n\007caption\030\005 \001(\t\022\021\n\tbodyCoun"
+    "t\030\n \001(\005\022\027\n\017averageActivity\030\013 \001(\002\022\027\n\017maxi"
+    "mumActivity\030\014 \001(\002\022\014\n\004tree\030\r \001(\010b\006proto3", 159);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "talkers.proto", &protobuf_RegisterTypes);
   Machine::default_instance_ = new Machine();
@@ -104,6 +110,10 @@ struct StaticDescriptorInitializer_talkers_2eproto {
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int Machine::kLabelFieldNumber;
 const int Machine::kCaptionFieldNumber;
+const int Machine::kBodyCountFieldNumber;
+const int Machine::kAverageActivityFieldNumber;
+const int Machine::kMaximumActivityFieldNumber;
+const int Machine::kTreeFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 Machine::Machine()
@@ -130,6 +140,10 @@ void Machine::SharedCtor() {
   _cached_size_ = 0;
   label_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   caption_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  bodycount_ = 0;
+  averageactivity_ = 0;
+  maximumactivity_ = 0;
+  tree_ = false;
 }
 
 Machine::~Machine() {
@@ -171,8 +185,29 @@ Machine* Machine::New(::google::protobuf::Arena* arena) const {
 
 void Machine::Clear() {
 // @@protoc_insertion_point(message_clear_start:messages.Machine)
+#if defined(__clang__)
+#define ZR_HELPER_(f) \
+  _Pragma("clang diagnostic push") \
+  _Pragma("clang diagnostic ignored \"-Winvalid-offsetof\"") \
+  __builtin_offsetof(Machine, f) \
+  _Pragma("clang diagnostic pop")
+#else
+#define ZR_HELPER_(f) reinterpret_cast<char*>(\
+  &reinterpret_cast<Machine*>(16)->f)
+#endif
+
+#define ZR_(first, last) do {\
+  ::memset(&first, 0,\
+           ZR_HELPER_(last) - ZR_HELPER_(first) + sizeof(last));\
+} while (0)
+
+  ZR_(bodycount_, tree_);
   label_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   caption_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+
+#undef ZR_HELPER_
+#undef ZR_
+
 }
 
 bool Machine::MergePartialFromCodedStream(
@@ -211,6 +246,66 @@ bool Machine::MergePartialFromCodedStream(
             this->caption().data(), this->caption().length(),
             ::google::protobuf::internal::WireFormatLite::PARSE,
             "messages.Machine.caption"));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(80)) goto parse_bodyCount;
+        break;
+      }
+
+      // optional int32 bodyCount = 10;
+      case 10: {
+        if (tag == 80) {
+         parse_bodyCount:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &bodycount_)));
+
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(93)) goto parse_averageActivity;
+        break;
+      }
+
+      // optional float averageActivity = 11;
+      case 11: {
+        if (tag == 93) {
+         parse_averageActivity:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
+                 input, &averageactivity_)));
+
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(101)) goto parse_maximumActivity;
+        break;
+      }
+
+      // optional float maximumActivity = 12;
+      case 12: {
+        if (tag == 101) {
+         parse_maximumActivity:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
+                 input, &maximumactivity_)));
+
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(104)) goto parse_tree;
+        break;
+      }
+
+      // optional bool tree = 13;
+      case 13: {
+        if (tag == 104) {
+         parse_tree:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
+                 input, &tree_)));
+
         } else {
           goto handle_unusual;
         }
@@ -262,6 +357,26 @@ void Machine::SerializeWithCachedSizes(
       5, this->caption(), output);
   }
 
+  // optional int32 bodyCount = 10;
+  if (this->bodycount() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(10, this->bodycount(), output);
+  }
+
+  // optional float averageActivity = 11;
+  if (this->averageactivity() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteFloat(11, this->averageactivity(), output);
+  }
+
+  // optional float maximumActivity = 12;
+  if (this->maximumactivity() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteFloat(12, this->maximumactivity(), output);
+  }
+
+  // optional bool tree = 13;
+  if (this->tree() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteBool(13, this->tree(), output);
+  }
+
   // @@protoc_insertion_point(serialize_end:messages.Machine)
 }
 
@@ -290,6 +405,26 @@ void Machine::SerializeWithCachedSizes(
         5, this->caption(), target);
   }
 
+  // optional int32 bodyCount = 10;
+  if (this->bodycount() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(10, this->bodycount(), target);
+  }
+
+  // optional float averageActivity = 11;
+  if (this->averageactivity() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteFloatToArray(11, this->averageactivity(), target);
+  }
+
+  // optional float maximumActivity = 12;
+  if (this->maximumactivity() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteFloatToArray(12, this->maximumactivity(), target);
+  }
+
+  // optional bool tree = 13;
+  if (this->tree() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(13, this->tree(), target);
+  }
+
   // @@protoc_insertion_point(serialize_to_array_end:messages.Machine)
   return target;
 }
@@ -310,6 +445,28 @@ int Machine::ByteSize() const {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->caption());
+  }
+
+  // optional int32 bodyCount = 10;
+  if (this->bodycount() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int32Size(
+        this->bodycount());
+  }
+
+  // optional float averageActivity = 11;
+  if (this->averageactivity() != 0) {
+    total_size += 1 + 4;
+  }
+
+  // optional float maximumActivity = 12;
+  if (this->maximumactivity() != 0) {
+    total_size += 1 + 4;
+  }
+
+  // optional bool tree = 13;
+  if (this->tree() != 0) {
+    total_size += 1 + 1;
   }
 
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
@@ -348,6 +505,18 @@ void Machine::MergeFrom(const Machine& from) {
 
     caption_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.caption_);
   }
+  if (from.bodycount() != 0) {
+    set_bodycount(from.bodycount());
+  }
+  if (from.averageactivity() != 0) {
+    set_averageactivity(from.averageactivity());
+  }
+  if (from.maximumactivity() != 0) {
+    set_maximumactivity(from.maximumactivity());
+  }
+  if (from.tree() != 0) {
+    set_tree(from.tree());
+  }
 }
 
 void Machine::CopyFrom(const ::google::protobuf::Message& from) {
@@ -376,6 +545,10 @@ void Machine::Swap(Machine* other) {
 void Machine::InternalSwap(Machine* other) {
   label_.Swap(&other->label_);
   caption_.Swap(&other->caption_);
+  std::swap(bodycount_, other->bodycount_);
+  std::swap(averageactivity_, other->averageactivity_);
+  std::swap(maximumactivity_, other->maximumactivity_);
+  std::swap(tree_, other->tree_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
 }
@@ -477,6 +650,62 @@ void Machine::clear_caption() {
   }
   caption_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), caption);
   // @@protoc_insertion_point(field_set_allocated:messages.Machine.caption)
+}
+
+// optional int32 bodyCount = 10;
+void Machine::clear_bodycount() {
+  bodycount_ = 0;
+}
+ ::google::protobuf::int32 Machine::bodycount() const {
+  // @@protoc_insertion_point(field_get:messages.Machine.bodyCount)
+  return bodycount_;
+}
+ void Machine::set_bodycount(::google::protobuf::int32 value) {
+  
+  bodycount_ = value;
+  // @@protoc_insertion_point(field_set:messages.Machine.bodyCount)
+}
+
+// optional float averageActivity = 11;
+void Machine::clear_averageactivity() {
+  averageactivity_ = 0;
+}
+ float Machine::averageactivity() const {
+  // @@protoc_insertion_point(field_get:messages.Machine.averageActivity)
+  return averageactivity_;
+}
+ void Machine::set_averageactivity(float value) {
+  
+  averageactivity_ = value;
+  // @@protoc_insertion_point(field_set:messages.Machine.averageActivity)
+}
+
+// optional float maximumActivity = 12;
+void Machine::clear_maximumactivity() {
+  maximumactivity_ = 0;
+}
+ float Machine::maximumactivity() const {
+  // @@protoc_insertion_point(field_get:messages.Machine.maximumActivity)
+  return maximumactivity_;
+}
+ void Machine::set_maximumactivity(float value) {
+  
+  maximumactivity_ = value;
+  // @@protoc_insertion_point(field_set:messages.Machine.maximumActivity)
+}
+
+// optional bool tree = 13;
+void Machine::clear_tree() {
+  tree_ = false;
+}
+ bool Machine::tree() const {
+  // @@protoc_insertion_point(field_get:messages.Machine.tree)
+  return tree_;
+}
+ void Machine::set_tree(bool value) {
+  
+  tree_ = value;
+  // @@protoc_insertion_point(field_set:messages.Machine.tree)
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS

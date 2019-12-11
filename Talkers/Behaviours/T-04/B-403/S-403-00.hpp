@@ -23,7 +23,7 @@ public:
 		},
 					 {		// Captions
 		"Certainement. Quelle est ta question ?",
-		"C'est surement le cas. Quelle etait ta question ?"
+		"C'est surement le cas. Quelle était ta question ?"
 					 }) {}
 
 	virtual bool isConditionValid(const State &behaviourState) override {

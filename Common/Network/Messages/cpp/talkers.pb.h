@@ -122,6 +122,30 @@ class Machine : public ::google::protobuf::Message /* @@protoc_insertion_point(c
   ::std::string* release_caption();
   void set_allocated_caption(::std::string* caption);
 
+  // optional int32 bodyCount = 10;
+  void clear_bodycount();
+  static const int kBodyCountFieldNumber = 10;
+  ::google::protobuf::int32 bodycount() const;
+  void set_bodycount(::google::protobuf::int32 value);
+
+  // optional float averageActivity = 11;
+  void clear_averageactivity();
+  static const int kAverageActivityFieldNumber = 11;
+  float averageactivity() const;
+  void set_averageactivity(float value);
+
+  // optional float maximumActivity = 12;
+  void clear_maximumactivity();
+  static const int kMaximumActivityFieldNumber = 12;
+  float maximumactivity() const;
+  void set_maximumactivity(float value);
+
+  // optional bool tree = 13;
+  void clear_tree();
+  static const int kTreeFieldNumber = 13;
+  bool tree() const;
+  void set_tree(bool value);
+
   // @@protoc_insertion_point(class_scope:messages.Machine)
  private:
 
@@ -129,6 +153,10 @@ class Machine : public ::google::protobuf::Message /* @@protoc_insertion_point(c
   bool _is_default_instance_;
   ::google::protobuf::internal::ArenaStringPtr label_;
   ::google::protobuf::internal::ArenaStringPtr caption_;
+  ::google::protobuf::int32 bodycount_;
+  float averageactivity_;
+  float maximumactivity_;
+  bool tree_;
   mutable int _cached_size_;
   friend void  protobuf_AddDesc_talkers_2eproto();
   friend void protobuf_AssignDesc_talkers_2eproto();
@@ -231,6 +259,62 @@ inline void Machine::set_allocated_caption(::std::string* caption) {
   }
   caption_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), caption);
   // @@protoc_insertion_point(field_set_allocated:messages.Machine.caption)
+}
+
+// optional int32 bodyCount = 10;
+inline void Machine::clear_bodycount() {
+  bodycount_ = 0;
+}
+inline ::google::protobuf::int32 Machine::bodycount() const {
+  // @@protoc_insertion_point(field_get:messages.Machine.bodyCount)
+  return bodycount_;
+}
+inline void Machine::set_bodycount(::google::protobuf::int32 value) {
+  
+  bodycount_ = value;
+  // @@protoc_insertion_point(field_set:messages.Machine.bodyCount)
+}
+
+// optional float averageActivity = 11;
+inline void Machine::clear_averageactivity() {
+  averageactivity_ = 0;
+}
+inline float Machine::averageactivity() const {
+  // @@protoc_insertion_point(field_get:messages.Machine.averageActivity)
+  return averageactivity_;
+}
+inline void Machine::set_averageactivity(float value) {
+  
+  averageactivity_ = value;
+  // @@protoc_insertion_point(field_set:messages.Machine.averageActivity)
+}
+
+// optional float maximumActivity = 12;
+inline void Machine::clear_maximumactivity() {
+  maximumactivity_ = 0;
+}
+inline float Machine::maximumactivity() const {
+  // @@protoc_insertion_point(field_get:messages.Machine.maximumActivity)
+  return maximumactivity_;
+}
+inline void Machine::set_maximumactivity(float value) {
+  
+  maximumactivity_ = value;
+  // @@protoc_insertion_point(field_set:messages.Machine.maximumActivity)
+}
+
+// optional bool tree = 13;
+inline void Machine::clear_tree() {
+  tree_ = false;
+}
+inline bool Machine::tree() const {
+  // @@protoc_insertion_point(field_get:messages.Machine.tree)
+  return tree_;
+}
+inline void Machine::set_tree(bool value) {
+  
+  tree_ = value;
+  // @@protoc_insertion_point(field_set:messages.Machine.tree)
 }
 
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS

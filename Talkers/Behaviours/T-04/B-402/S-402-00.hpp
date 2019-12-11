@@ -22,7 +22,7 @@ public:
 		{		// Output values
 		},
 					 {		// Captions
-		"Peut-etre. Nous serons probablement plus efficaces a deux.",
+		"Peut-etre. Nous serons probablement plus efficaces à deux.",
 		"Il est fort probable que nous soyons plus efficaces."
 					 }) {}
 

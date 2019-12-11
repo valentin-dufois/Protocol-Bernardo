@@ -5,4 +5,9 @@ package messages;
 message Machine {
 	string label = 1;
 	string caption = 5;
+
+	int32 bodyCount = 10;
+	float averageActivity = 11;
+	float maximumActivity = 12;
+	bool tree = 13;
 }

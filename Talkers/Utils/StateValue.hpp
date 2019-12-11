@@ -16,19 +16,19 @@
 struct StateValue {
 
 	StateValue(const StateValue &s):
-	_v(s._v), type(s.type) {}
+	type(s.type), _v(s._v) {}
 
 	StateValue(const bool v):
-	_v(v), type(boolType) {}
+	type(boolType), _v(v) {}
 
 	StateValue(const int v):
-	_v(v), type(intType) {}
+	type(intType), _v(v) {}
 
 	StateValue(const double v):
-	_v(v), type(doubleType) {}
+	type(doubleType), _v(v) {}
 
 	StateValue(const std::string v):
-	_v(v), type(stringType) {}
+	type(stringType), _v(v) {}
 
 	inline const bool& getBool() const {
 		return *boost::get<bool>(&_v);
@@ -101,6 +101,9 @@ struct StateValue {
 			case stringType:
 				return getString();
 		}
+
+		// Prevent warnings
+		return "";
 	}
 
 	StateValue& operator = (const StateValue &s) {

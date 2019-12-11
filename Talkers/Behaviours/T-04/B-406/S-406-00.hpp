@@ -23,7 +23,7 @@ public:
 		},
 					 {		// Captions
 		"Certes.",
-		"Interessant."
+		"Intéressant."
 					 }) {}
 
 	virtual bool isConditionValid(const State &behaviourState) override {
