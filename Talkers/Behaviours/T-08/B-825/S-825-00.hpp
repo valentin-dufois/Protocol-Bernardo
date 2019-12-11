@@ -10,7 +10,7 @@
 
 #include "../../Output.hpp"
 
-class S8250 : public Output {
+class S82500 : public Output {
 public:
 
 	S82500() : Output(82500,	// Output ID

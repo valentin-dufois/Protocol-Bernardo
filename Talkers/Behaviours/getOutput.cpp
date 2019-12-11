@@ -170,6 +170,12 @@
 #include "T-12/B-1201/S-1201-00.hpp"
 #include "T-12/B-1202/S-1202-00.hpp"
 
+// TREE 13
+#include "T-13/B-1300/S-1300-00.hpp"
+#include "T-13/B-1301/S-1301-00.hpp"
+#include "T-13/B-1302/S-1302-00.hpp"
+#include "T-13/B-1303/S-1303-00.hpp"
+
 
 Output * Output::get(const talkers::OutputID id) {
 	switch (id) {
@@ -331,6 +337,12 @@ Output * Output::get(const talkers::OutputID id) {
 		case 120000: return new S120000();
 		case 120100: return new S120100();
 		case 120200: return new S120200();
+
+			// MARK: - TREE 13
+		case 130000: return new S130000();
+		case 130100: return new S130100();
+		case 130200: return new S130200();
+		case 130300: return new S130300();
 
 		default:
 			std::cout << "*** No output " << id << std::endl;

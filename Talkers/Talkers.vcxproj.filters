@@ -890,6 +890,30 @@
     <ClInclude Include="Behaviours\T-08\B-812\S-812-00.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Behaviours\T-13\B-1300\B-1300.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Behaviours\T-13\B-1301\B-1301.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Behaviours\T-13\B-1301\S-1301-00.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Behaviours\T-13\B-1302\B-1302.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Behaviours\T-13\B-1302\S-1302-00.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Behaviours\T-13\B-1303\B-1303.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Behaviours\T-13\B-1303\S-1303-00.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Behaviours\T-13\B-1300\S-1300-00.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Debug\vcpkg.applocal.log" />

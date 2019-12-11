@@ -402,6 +402,14 @@
     <ClInclude Include="Behaviours\T-12\B-1201\S-1201-00.hpp" />
     <ClInclude Include="Behaviours\T-12\B-1202\B-1202.hpp" />
     <ClInclude Include="Behaviours\T-12\B-1202\S-1202-00.hpp" />
+    <ClInclude Include="Behaviours\T-13\B-1300\B-1300.hpp" />
+    <ClInclude Include="Behaviours\T-13\B-1300\S-1300-00.hpp" />
+    <ClInclude Include="Behaviours\T-13\B-1301\B-1301.hpp" />
+    <ClInclude Include="Behaviours\T-13\B-1301\S-1301-00.hpp" />
+    <ClInclude Include="Behaviours\T-13\B-1302\B-1302.hpp" />
+    <ClInclude Include="Behaviours\T-13\B-1302\S-1302-00.hpp" />
+    <ClInclude Include="Behaviours\T-13\B-1303\B-1303.hpp" />
+    <ClInclude Include="Behaviours\T-13\B-1303\S-1303-00.hpp" />
     <ClInclude Include="core\Core.hpp" />
     <ClInclude Include="core\Machine.hpp" />
     <ClInclude Include="core\Tree.hpp" />

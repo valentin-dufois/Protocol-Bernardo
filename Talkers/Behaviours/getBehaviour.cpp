@@ -161,6 +161,12 @@
 #include "T-12/B-1201/B-1201.hpp"
 #include "T-12/B-1202/B-1202.hpp"
 
+// TREE 13
+#include "T-13/B-1300/B-1300.hpp"
+#include "T-13/B-1301/B-1301.hpp"
+#include "T-13/B-1302/B-1302.hpp"
+#include "T-13/B-1303/B-1303.hpp"
+
 
 Behaviour * Behaviour::get(const talkers::BehaviourID behaviourID) {
 	switch (behaviourID) {
@@ -314,6 +320,12 @@ Behaviour * Behaviour::get(const talkers::BehaviourID behaviourID) {
 		case 1200: return new B1200();
 		case 1201: return new B1201();
 		case 1202: return new B1202();
+
+			// MARK: - TREE 13
+		case 1300: return new B1300();
+		case 1301: return new B1301();
+		case 1302: return new B1302();
+		case 1303: return new B1303();
 
 		default:
 			std::cout << "*** No behaviour " << behaviourID << std::endl;
