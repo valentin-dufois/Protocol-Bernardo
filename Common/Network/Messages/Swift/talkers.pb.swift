@@ -28,6 +28,14 @@ struct Messages_Machine {
 
   var caption: String = String()
 
+  var bodyCount: Int32 = 0
+
+  var averageActivity: Float = 0
+
+  var maximumActivity: Float = 0
+
+  var tree: Bool = false
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
@@ -42,6 +50,10 @@ extension Messages_Machine: SwiftProtobuf.Message, SwiftProtobuf._MessageImpleme
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "label"),
     5: .same(proto: "caption"),
+    10: .same(proto: "bodyCount"),
+    11: .same(proto: "averageActivity"),
+    12: .same(proto: "maximumActivity"),
+    13: .same(proto: "tree"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -49,6 +61,10 @@ extension Messages_Machine: SwiftProtobuf.Message, SwiftProtobuf._MessageImpleme
       switch fieldNumber {
       case 1: try decoder.decodeSingularStringField(value: &self.label)
       case 5: try decoder.decodeSingularStringField(value: &self.caption)
+      case 10: try decoder.decodeSingularInt32Field(value: &self.bodyCount)
+      case 11: try decoder.decodeSingularFloatField(value: &self.averageActivity)
+      case 12: try decoder.decodeSingularFloatField(value: &self.maximumActivity)
+      case 13: try decoder.decodeSingularBoolField(value: &self.tree)
       default: break
       }
     }
@@ -61,12 +77,28 @@ extension Messages_Machine: SwiftProtobuf.Message, SwiftProtobuf._MessageImpleme
     if !self.caption.isEmpty {
       try visitor.visitSingularStringField(value: self.caption, fieldNumber: 5)
     }
+    if self.bodyCount != 0 {
+      try visitor.visitSingularInt32Field(value: self.bodyCount, fieldNumber: 10)
+    }
+    if self.averageActivity != 0 {
+      try visitor.visitSingularFloatField(value: self.averageActivity, fieldNumber: 11)
+    }
+    if self.maximumActivity != 0 {
+      try visitor.visitSingularFloatField(value: self.maximumActivity, fieldNumber: 12)
+    }
+    if self.tree != false {
+      try visitor.visitSingularBoolField(value: self.tree, fieldNumber: 13)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   static func ==(lhs: Messages_Machine, rhs: Messages_Machine) -> Bool {
     if lhs.label != rhs.label {return false}
     if lhs.caption != rhs.caption {return false}
+    if lhs.bodyCount != rhs.bodyCount {return false}
+    if lhs.averageActivity != rhs.averageActivity {return false}
+    if lhs.maximumActivity != rhs.maximumActivity {return false}
+    if lhs.tree != rhs.tree {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

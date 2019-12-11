@@ -23,7 +23,7 @@ public:
 		"SUDDEN_MOVE_SPEED"
 	},
 					 {		// Captions
-		"À {SUDDEN_MOVE_SPEED} m/s exactement. Enfin d’après mes calculs."
+		"À {SUDDEN_MOVE_SPEED} mm/s exactement. Enfin d’après mes calculs."
 	}) {}
 
 	virtual bool isConditionValid(const State &behaviourState) override {
