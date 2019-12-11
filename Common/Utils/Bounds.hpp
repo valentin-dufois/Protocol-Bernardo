@@ -21,7 +21,8 @@ struct Bounds {
 	double maxZ = std::numeric_limits<double>::max();
 
 	bool fit(const maths::vec3 &v) const {
-		return v.x > minX && v.x < maxX && v.z > minZ && v.z < maxZ;
+		return true;
+		// return v.x > minX && v.x < maxX && v.z > minZ && v.z < maxZ;
 	}
 };
 

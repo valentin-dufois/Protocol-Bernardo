@@ -1,6 +1,6 @@
-########################
-### Talkers Makefile ###
-########################
+###################################################
+### Protocol Bernardo Tracker Launcher Makefile ###
+###################################################
 
 # This makefiles compile all available sources (cpp) starting fron this directory and
 # including child directories recursively.
@@ -9,7 +9,7 @@
 
 # MARK: The Target
 
-TARGETNAME := talkers
+TARGETNAME := pb-tracker-launcher
 BUILDDIR := build/
 TARGET := $(BUILDDIR)$(TARGETNAME)
 
@@ -33,6 +33,7 @@ endif
 
 OBJECTS := $(SOURCES:.$(SRCEXT)=.o)
 
+
 ################
 # MARK: - Cross-Plateform Build Settings
 
@@ -46,10 +47,9 @@ INCFLAGS = -I/usr/local/include/
 LDFLAGS = -L/usr/local/lib
 
 # Libraries
-LDLIBS = -lpb-common \
-	 	 -lboost_system \
-		 -lboost_program_options \
-	 	 -lboost_regex
+LDLIBS =  -lpb-common \
+		  -lboost_system
+
 
 # #######################
 # OS-Dependant Properties
@@ -61,29 +61,28 @@ ifeq ($(UNAME_S),Darwin)
 
 CXX := clang++
 
-INCFLAGS += 
+INCFLAGS += -I/usr/local/include/ni2/ \
 
 LDFLAGS += -L/usr/local/lib/
 
 LDLIBS += 
+
 
 # MARK: - UNIX Build Settings
 else
 
 CXX := g++
 
-INCFLAGS += -fsanitize=address
+INCFLAGS += 
 
-LDFLAGS += -std=c++17
+LDFLAGS += -std=c++17 -pthread
 
-LDLIBS += `pkg-config protobuf --libs` \
-	  	  -lstdc++fs \
-		  -fsanitize=address
+LDLIBS += -lstdc++fs 
 
 endif
 
 
-CXXFLAGS := $(GCCOPTIONS) -I$(LIBDIR) -I. $(INCFLAGS) -DLOG_LEVEL=1 -DDEBUG=1 -DMACHINE_TALKER
+CXXFLAGS := $(GCCOPTIONS) -I$(LIBDIR) -I. $(INCFLAGS)  -DMACHINE_TRACKER -DDEBUG -DLOG_LEVEL=1
 
 # #######################
 # MARK: - Build Sequence

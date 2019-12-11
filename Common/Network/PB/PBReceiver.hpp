@@ -8,6 +8,7 @@
 #ifndef PBReceiver_hpp
 #define PBReceiver_hpp
 
+#include <iostream>
 #include <vector>
 #include <mutex>
 

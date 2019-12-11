@@ -25,13 +25,13 @@ void Machine::onMessage(Message * message) {
 	// Remember the message
 	_receptionHistory.push_back(message->caption);
 
+	if(message->isTreeEnd) {
+		delete _tree;
+		_tree = nullptr;
+	}
+
 	// Check behaviour value
 	if(message->behaviour == -1) {
-		if(message->isTreeEnd) {
-			delete _tree;
-			_tree = nullptr;
-		}
-
 		delegate->machineSendsMessage(this, nullptr);
 		return;
 	}

@@ -40,7 +40,7 @@ void Core::run() {
 	_isRunning = true;
 
 #ifdef DEBUG
-	manualStart();
+	// manualStart();
 #endif
 	
 	do {

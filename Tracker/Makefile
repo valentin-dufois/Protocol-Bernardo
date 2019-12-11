@@ -1,5 +1,5 @@
 #############################################
-### Protocol Bernardo Acquisitor Makefile ###
+### Protocol Bernardo Tracker Makefile ###
 #############################################
 
 # This makefiles compile all available sources (cpp) starting fron this directory and
@@ -9,7 +9,7 @@
 
 # MARK: The Target
 
-TARGETNAME := pb-acquisitor
+TARGETNAME := pb-tracker
 BUILDDIR := build/
 TARGET := $(BUILDDIR)$(TARGETNAME)
 
@@ -116,7 +116,7 @@ linker: $(OBJECTS)
 	@echo " Working... "; 
 	$(CXX) $^ -o $(TARGET) $(LDFLAGS) $(LDLIBS) 
 	@echo " Done!\n"
-	@echo " Copying Files 1/2"; cp -R "libs/NiTE2/." "$(BUILDDIR)"
+	@echo " Copying Files 1/2"; cp -R "libs/NiTE2" "$(BUILDDIR)"
 #	@echo " Copying Files 2/2\n"; cp -R "../libs/OpenNI2/." "$(BUILDDIR)"
 	@echo "\n========================================"
 	@echo "   $(TARGETNAME) successfully compiled!"

@@ -32,7 +32,7 @@ int main(int argc, const char * argv[]) {
 		LOG_INFO("Starting the Tracker...");
 
 		// Start the tracker
-		tracker = boost::process::child("./pb-tracker", "--log-level=0");
+		tracker = boost::process::child("./pb-tracker");
 		tracker.wait();
 
 		// Get its exit code

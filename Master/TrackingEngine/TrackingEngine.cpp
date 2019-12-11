@@ -178,13 +178,6 @@ void TrackingEngine::updateCalibrationValues() {
 	// Compare the two skeletons
 	Skeleton deltas = *_calibrationBodies.first - *_calibrationBodies.second;
 
-	// Get the position delta with the spine
-//	maths::vec3 posDeltaAcc = deltas.joints[Skeleton::head].position;
-//	posDeltaAcc += deltas.joints[Skeleton::neck].position;
-//	posDeltaAcc += deltas.joints[Skeleton::torso].position;
-//
-//	_calibrationValues.position = posDeltaAcc / maths::vec3(3, 3, 3);
-
 	_calibrationValues.position = deltas.centerOfMass ;
 
 	// Get the orientation delta using the shoulders

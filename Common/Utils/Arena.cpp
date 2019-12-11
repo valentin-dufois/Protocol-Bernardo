@@ -43,9 +43,9 @@ double Arena::averageMoveSpeed() const {
 		acc += abs(glm::distance(a->joints[Skeleton::torso].position, b->joints[Skeleton::torso].position));
 	}
 
-	constexpr double trackingEngineFreq = 1 / TRACKING_ENGINE_RUN_SPEED;
+	constexpr double trackingEngineFreq = 1.0 / TRACKING_ENGINE_RUN_SPEED;
 
-	return (acc / (bodiesUsedCount * 6)) / trackingEngineFreq;
+	return (acc / (bodiesUsedCount * 6.0)) / trackingEngineFreq;
 }
 
 std::tuple<Body *, double> Arena::mostActiveBody() const {
@@ -59,6 +59,9 @@ std::tuple<Body *, double> Arena::mostActiveBody() const {
 		return {nullptr, 0};
 
 	for(Body * body: bodies) {
+		if(body->skeletons.size() < 2)
+			continue; // Ignore
+
 		std::list<Skeleton *>::iterator it = body->skeletons.begin();
 
 		Skeleton * a = *it;
