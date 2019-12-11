@@ -64,7 +64,8 @@ class LayoutCanvasView: SKView {
 		el.positionXDelta?.set(value: values.position.x / 10.0); // mm to cm
 		el.positionYDelta?.set(value: values.position.y / 10.0);
 		el.positionZDelta?.set(value: values.position.z / 10.0);
-		el.orientationZDelta?.set(value: values.angle.z / 10.0);
+		el.yawDelta?.set(value: values.angle.z / 10.0);
+		el.pitchDelta?.set(value: values.angle.x / 10.0);
 	}
 }
 
