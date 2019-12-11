@@ -25,7 +25,7 @@ void Machine::onMessage(Message * message) {
 	// Remember the message
 	_receptionHistory.push_back(message->caption);
 
-	if(message->isTreeEnd) {
+	if(message->isTreeEnd && _tree != nullptr) {
 		delete _tree;
 		_tree = nullptr;
 	}
@@ -188,14 +188,13 @@ bool Machine::executeWatchers() {
 		Event event = watcher->getEvent();
 		_events.push_back(event);
 
-		LOG_DEBUG("Registered event " + event.name);
-
 		// Keep only the last 100 events
 		if(_events.size() > 100)
 			_events.pop_front();
 
 		if(_tree == nullptr) {
 			// Dispatch
+			LOG_DEBUG("Event " + event.name);
 			delegate->machineExecuteEvent(this, event);
 			return true;
 		}

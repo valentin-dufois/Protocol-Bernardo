@@ -147,6 +147,7 @@
 #include "T-08/B-812/S-812-00.hpp"
 #include "T-08/B-813/S-813-00.hpp"
 #include "T-08/B-814/S-814-00.hpp"
+#include "T-08/B-814/S-814-01.hpp"
 #include "T-08/B-815/S-815-00.hpp"
 #include "T-08/B-816/S-816-00.hpp"
 #include "T-08/B-817/S-817-00.hpp"
@@ -310,6 +311,7 @@ Output * Output::get(const talkers::OutputID id) {
 		case 81200: return new S81200();
 		case 81300: return new S81300();
 		case 81400: return new S81400();
+		case 81401: return new S81401();
 		case 81500: return new S81500();
 		case 81600: return new S81600();
 		case 81700: return new S81700();

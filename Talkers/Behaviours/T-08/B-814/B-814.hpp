@@ -22,7 +22,8 @@ public:
 
 		},
 					  {		// Expected outputs
-		81400 // S-814-00
+		81400, // S-814-00
+		81401 // S-814-01
 					  }) {}
 
 	virtual bool execute(Machine * machine) override {

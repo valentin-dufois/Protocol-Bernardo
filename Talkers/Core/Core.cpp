@@ -40,7 +40,7 @@ void Core::run() {
 	_isRunning = true;
 
 #ifdef DEBUG
-	 manualStart();
+	//  manualStart();
 #endif
 	
 	do {
@@ -145,7 +145,6 @@ void Core::machineSaysSomething(Machine * machine, const std::string &caption) {
 	Message message;
 	message.caption = caption;
 	message.behaviour = -1;
-
 	send(&message);
 }
 
@@ -153,6 +152,7 @@ void Core::machineExecuteEvent(Machine * aMachine, const Event &event) {
 	Message * message = new Message();
 	message->behaviour = event.behaviour;
 	message->values = event.values;
+	message->isTreeEnd = false;
 
 	if(aMachine->label == "A")
 		_currentMachine = &_machineB;

@@ -22,7 +22,7 @@ public:
 		},
 					 {						// Captions
 		"Parfait.",
-		"Très bien."
+		"Tr√®s bien."
 					 }) {}
 
 	inline bool isConditionValid(const State &behaviourState) {

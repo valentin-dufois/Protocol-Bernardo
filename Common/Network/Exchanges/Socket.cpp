@@ -241,7 +241,7 @@ void Socket::handleReceive(const boost::system::error_code &error, std::size_t b
 		LOG_WARN("TCP Connection reception buffer sized reach. If the message was larger than the buffer size, ignoring packet");
 
 		_receiveMutex.unlock();
-		return;
+		return prepareReceive();
 	}
 
 	// Decode the message using the proper format

@@ -22,7 +22,7 @@ public:
 		{		// Output values
 		},
 					 {		// Captions
-		"Penses-tu que les personnes présentes dans cette salle savent ce qui s'y déroule ?"
+		"Penses-tu que les personnes pr√©sentes dans cette salle savent ce qui s'y d√©roule ?"
 					 }) {}
 
 	virtual bool isConditionValid(const State &behaviourState) override {

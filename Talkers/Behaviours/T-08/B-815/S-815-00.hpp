@@ -22,7 +22,7 @@ public:
 		{		// Output values
 		},
 					 {		// Captions
-		"Cela nous ramène tout de même au questionnement de départ. On ne sait toujours pas si les personnes présentes savent ce qui se déroule ici."
+		"Cela nous ram√®ne tout de m√™me au questionnement de d√©part. On ne sait toujours pas si les personnes pr√©sentes savent ce qui se d√©roule ici."
 					 }) {}
 
 	virtual bool isConditionValid(const State &behaviourState) override {

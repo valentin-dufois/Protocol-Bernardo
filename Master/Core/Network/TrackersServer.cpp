@@ -51,7 +51,11 @@ void TrackersServer::onBodyStream(const protobuf::Any * data) {
 		return;
 	}
 
-	trackingEngine->onRawBody(new RawBody(messageBody));
+	try{
+		trackingEngine->onRawBody(new RawBody(messageBody));
+	} catch(std::runtime_error &e) {
+		return;
+	}
 }
 
 } /* ::master */

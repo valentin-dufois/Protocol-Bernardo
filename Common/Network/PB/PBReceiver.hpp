@@ -107,7 +107,7 @@ public:
 			Body * body;
 			try {
 				body = new Body(trackedBodies.bodies(i));
-			} catch (std::runtime_error &e) {
+			} aa0000catch (std::runtime_error &e) {
 				continue;
 			}
 
