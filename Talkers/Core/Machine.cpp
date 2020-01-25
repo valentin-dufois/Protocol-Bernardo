@@ -106,6 +106,17 @@ void Machine::print(const std::string &caption, const double &aDelay) {
 	delegate->machineSaysSomething(this, caption);
 }
 
+void Machine::fillInMessage(messages::Talkers * message) {
+	// Set label
+	message->set_label(this->label);
+
+	// Add the machine state
+	message->set_bodycount((int)_arena->count());
+	message->set_averageactivity(_arena->averageMoveSpeed());
+	message->set_maximumactivity( std::get<1>(_arena->mostActiveBody()));
+	message->set_tree(_tree != nullptr);
+}
+
 // MARK: - Manual getters
 
 int Machine::getIntValue(const std::string &value) {

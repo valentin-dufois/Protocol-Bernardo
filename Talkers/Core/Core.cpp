@@ -144,6 +144,10 @@ void Core::machineExecuteEvent(Machine * aMachine, const Event &event) {
 	message->values = event.values;
 	message->isTreeEnd = false;
 
+	// Send the event
+	send(event, aMachine);
+
+	// Inverse machines as the talk loop will do the same
 	if(aMachine->label == "A")
 		_currentMachine = &_machineB;
 	else
@@ -158,17 +162,28 @@ void Core::machineExecuteEvent(Machine * aMachine, const Event &event) {
 }
 
 void Core::send(Message * message) {
-	messages::Machine machineMessage;
+	messages::Talkers machineMessage;
 
 	// Fill in message content
-	machineMessage.set_label(_currentMachine->label);
+	machineMessage.set_type("caption");
 	machineMessage.set_caption(message->caption);
 
 	// Add the machine state
-	machineMessage.set_bodycount((int)_currentMachine->arena()->count());
-	machineMessage.set_averageactivity(_currentMachine->arena()->averageMoveSpeed());
-	machineMessage.set_maximumactivity( std::get<1>(_currentMachine->arena()->mostActiveBody()));
-	machineMessage.set_tree(_currentMachine->getTree() != nullptr);
+	_currentMachine->fillInMessage(&machineMessage);
+
+	// send
+	_receiversServer.sendToAll(&machineMessage);
+}
+
+void Core::send(const Event &event, Machine * aMachine) {
+	messages::Talkers machineMessage;
+
+	// Fill in message content
+	machineMessage.set_type("event");
+	machineMessage.set_event(event.name);
+
+	// Add the machine state
+	aMachine->fillInMessage(&machineMessage);
 
 	// send
 	_receiversServer.sendToAll(&machineMessage);

@@ -47,7 +47,7 @@ public:
 	/// If a delay is added, it will block the current thread for the specified time.
 	///Printed messages are added to the other machine reception history as a way to be coherant when giving information about past exchanges
 	///
-	/// @param message The message to print on the screen
+	/// @param caption The message to print on the screen
 	/// @param delay Delay before printing (in seconds)
 	void print(const std::string &caption, const double &delay = 0);
 
@@ -72,6 +72,8 @@ public:
 	inline std::set<pb::bodyUID> getAllBodyUID() const {
 		return _bodyUIDHistory;
 	}
+
+	void fillInMessage(messages::Talkers * message);
 
 	// MARK: - Manual getters
 

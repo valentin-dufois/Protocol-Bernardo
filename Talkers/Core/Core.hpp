@@ -75,6 +75,7 @@ private:
 	pb::network::Server _receiversServer;
 
 	void send(Message * message);
+	void send(const Event &event, Machine * aMachine);
 
 	// MARK: Machines
 
