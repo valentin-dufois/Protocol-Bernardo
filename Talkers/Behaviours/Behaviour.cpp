@@ -15,7 +15,7 @@ bool Behaviour::importMessage(Message * message) {
 			return false;
 		}
 
-		_state.insert_or_assign(valueName, message->values.at(valueName));
+		_state[valueName] = message->values[valueName];
 	}
 
 	return true;

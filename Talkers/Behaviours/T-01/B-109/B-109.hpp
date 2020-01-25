@@ -29,7 +29,7 @@ public:
 			questionCount += std::count(caption.begin(), caption.end(), '?');
 		}
 
-		_state.insert_or_assign("NBR_QUESTIONS", (int)questionCount);
+		_state["NBR_QUESTIONS"] = (int)questionCount;
 		return true;
 	};
 };

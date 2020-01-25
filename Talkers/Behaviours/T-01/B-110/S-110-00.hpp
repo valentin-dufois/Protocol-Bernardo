@@ -24,7 +24,7 @@ public:
 		"Et bien."
 	}) {}
 
-	inline bool isConditionValid(const State &behaviourState) {
+	inline bool isConditionValid(State &behaviourState) {
 		return true;
 	};
 };

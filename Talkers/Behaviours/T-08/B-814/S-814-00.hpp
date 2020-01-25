@@ -25,9 +25,9 @@ public:
 		"Je comprends."
 					 }) {}
 
-	virtual bool isConditionValid(const State &behaviourState) override {
-		return behaviourState.at("RAND").getDouble() < .5;
-	};
+	virtual bool isConditionValid(State &behaviourState) override {
+		return std::get<double>(behaviourState["RAND"]) < .5;
+	}
 };
 
 #endif /* S_814_00_hpp */

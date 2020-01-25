@@ -72,8 +72,8 @@ public:
 		return _socket.getStatus() == SocketStatus::ready;
 	}
 
-	inline Arena arena() {
-		return Arena(&_bodies, &_arenaMutex);
+	inline Arena * arena() {
+		return &_arena;
 	}
 
 	// MARK: - Socket Delegate
@@ -101,6 +101,16 @@ public:
 		int bodiesCount = trackedBodies.bodies_size();
 
 		_arenaMutex.lock();
+
+		// Check for outdated bodies
+		for(auto it = _bodies.begin(); it != _bodies.end();) {
+			it->second->inactivityCount += 1;
+
+			if(it->second->inactivityCount > 30)
+				it = _bodies.erase(it);
+			else
+				++it;
+		}
 
 		// For each received body
 		for(int i = 0; i < bodiesCount; ++i) {
@@ -162,6 +172,8 @@ private:
 	std::mutex _arenaMutex;
 
 	std::map<bodyUID, Body *> _bodies;
+
+	Arena _arena = Arena(&_bodies, &_arenaMutex);
 };
 
 } /* ::network */

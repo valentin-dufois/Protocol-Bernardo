@@ -13,7 +13,6 @@ class Message;
 
 class MachineDelegate {
 public:
-	virtual void machineSendsMessage(Machine * aMachine, Message * aMessage) = 0;
 	virtual void machineSaysSomething(Machine * aMachine, const std::string &caption) = 0;
 	virtual void machineExecuteEvent(Machine * aMachine, const Event &event) = 0;
 };

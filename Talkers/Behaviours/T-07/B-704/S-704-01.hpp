@@ -26,10 +26,9 @@ public:
 		"Soit."
 					 }) {}
 
-	virtual bool isConditionValid(const State &behaviourState) override {
-		return behaviourState.at("RAND").getDouble() >= .5;
-		return true;
-	};
+	virtual bool isConditionValid(State &behaviourState) override {
+		return std::get<double>(behaviourState["RAND"]) >= .5;
+	}
 };
 
 #endif /* S_704_01_hpp */

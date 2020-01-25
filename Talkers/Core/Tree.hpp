@@ -9,18 +9,16 @@
 #define Tree_h
 
 #include "../main.hpp"
-#include "../Utils/StateValue.hpp"
 
-class Tree {
-public:
-	Tree(talkers::TreeID treeID): _id(treeID) {};
+/// A tree is used in a conversation to store information that may be used later on in the same conversation. Additionally, Tree are used to check for error when going through a conversation
+struct Tree {
+	Tree(talkers::TreeID treeID): id(treeID) {};
 
-	inline talkers::TreeID getID() const { return _id; }
+	/// ID of the tree
+	const talkers::TreeID id;
 
+	/// Internal state of the tree
 	State state;
-
-private:
-	talkers::TreeID _id;
 };
 
 #endif /* Tree_h */

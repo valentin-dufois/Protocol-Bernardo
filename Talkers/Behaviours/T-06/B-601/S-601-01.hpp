@@ -25,8 +25,8 @@ public:
 			"Tout de même."
 		}) {}
 
-	virtual bool isConditionValid(const State &behaviourState) override {
-		return behaviourState.at("TOTAL_BODY_COUNT").getInt() >= 10;
+	virtual bool isConditionValid(State &behaviourState) override {
+		return std::get<int>(behaviourState["TOTAL_BODY_COUNT"]) >= 10;
 	};
 };
 

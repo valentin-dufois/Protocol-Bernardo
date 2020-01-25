@@ -27,9 +27,9 @@ public:
 		"As-tu détecté ça ?."
 	}) {}
 
-	virtual bool isConditionValid(const State &behaviourState) override {
-		_state.insert_or_assign("BODY_ID_A", behaviourState.at("BODY_ID_A"));
-		_state.insert_or_assign("BODY_ID_B", behaviourState.at("BODY_ID_B"));
+	virtual bool isConditionValid(State &behaviourState) override {
+		_state["BODY_ID_A"] = behaviourState["BODY_ID_A"];
+		_state["BODY_ID_B"] = behaviourState["BODY_ID_B"];
 		return true;
 	};
 };

@@ -173,9 +173,9 @@ extension CanvasDevice: CanvasElement {
 		views.append(CPSeparator.make())
 		views.append(CPSection.make(title: "Calibration"))
 
-		var devicesNames = delegate?.getDevicesList().map({ $0.device.name });
-		devicesNames?.insert("", at: 0);
-		views.append(CPPopUp.make(label: "Reference", values: devicesNames!.filter({ $0 != device.name }), delegate: self));
+		var devicesNames = delegate?.getDevicesList().map({ $0.device.name }) ?? [];
+		devicesNames.insert("", at: 0);
+		views.append(CPPopUp.make(label: "Reference", values: devicesNames.filter({ $0 != device.name }), delegate: self));
 
 		positionXDelta = CPValue.make(label: "Position X", value: nil)
 		positionYDelta = CPValue.make(label: "Position Y", value: nil)

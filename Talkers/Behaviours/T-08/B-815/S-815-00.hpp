@@ -25,7 +25,7 @@ public:
 		"Cela nous ramène tout de même au questionnement de départ. On ne sait toujours pas si les personnes présentes savent ce qui se déroule ici."
 					 }) {}
 
-	virtual bool isConditionValid(const State &behaviourState) override {
+	virtual bool isConditionValid(State &behaviourState) override {
 		return true;
 	};
 };

@@ -26,7 +26,7 @@ public:
 		"C'est surement le cas. Quelle était ta question ?"
 					 }) {}
 
-	virtual bool isConditionValid(const State &behaviourState) override {
+	virtual bool isConditionValid(State &behaviourState) override {
 		return true;
 	};
 };

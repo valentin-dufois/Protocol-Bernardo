@@ -25,7 +25,7 @@ public:
 		"Cette question t'intéresse t-elle ?"
 					 }) {}
 
-	virtual bool isConditionValid(const State &behaviourState) override {
+	virtual bool isConditionValid(State &behaviourState) override {
 		return true;
 	};
 };

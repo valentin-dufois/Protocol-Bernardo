@@ -24,7 +24,7 @@ public:
 		"Ça n'est pas un reproche."
 	}) {}
 
-	inline bool isConditionValid(const State &behaviourState) {
+	inline bool isConditionValid(State &behaviourState) {
 		return true;
 	};
 };

@@ -14,6 +14,8 @@
 #include "../../Common/Utils.hpp"
 #include "../../Common/Network.hpp"
 
+#include "../../Common/UI/Scene.hpp"
+
 namespace pb {
 namespace tracker {
 
@@ -24,6 +26,10 @@ void Core::init() {
 	pb::thread::setName("pb.tracker.main");
 
 	// Setup the Pose estimation engine
+	_poseEngine.onDevice = [&] (const Device * device) {
+		_interface.registerDevice(device);
+	};
+
 	_poseEngine.onRawBodies = [&] (const std::set<pb::RawBody *, pb::RawBodyComparator> &rawBodies) {
 		onRawBodies(rawBodies);
 	};
@@ -38,12 +44,18 @@ void Core::init() {
 	};
 
 	_browser.startBrowsing(network::discoveryPortTracker);
+
+	// Init our display
+	_interface.display();
 }
 
 void Core::run() {
 	while(true) {
 		std::string input;
 		std::cin >> input;
+
+		if(input == "q")
+			return;
 	}
 }
 
@@ -70,7 +82,12 @@ void Core::onRawBodies(const std::set<pb::RawBody *, pb::RawBodyComparator> &raw
 
 Core::~Core() {}
 
+void Core::socketDidOpen(network::Socket *) {
+	_interface.setSocketConnected(true);
+}
+
 void Core::socketDidClose(network::Socket *) {
+	_interface.setSocketConnected(false);
 	_browser.startBrowsing(network::discoveryPortTracker);
 }
 

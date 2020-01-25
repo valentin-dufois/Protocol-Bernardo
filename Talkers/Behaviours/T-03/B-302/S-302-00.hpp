@@ -25,7 +25,7 @@ public:
 		"Je ne sais pas. Peut être qu'elle viennent simplement de se croiser."
 	}) {}
 
-	virtual bool isConditionValid(const State &behaviourState) override {
+	virtual bool isConditionValid(State &behaviourState) override {
 		return true;
 	};
 };

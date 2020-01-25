@@ -25,7 +25,7 @@ public:
 		"Je m'interroge sur la frustration que peut générer ce retour inlassable à notre point de départ."
 					 }) {}
 
-	virtual bool isConditionValid(const State &behaviourState) override {
+	virtual bool isConditionValid(State &behaviourState) override {
 		return true;
 	};
 };

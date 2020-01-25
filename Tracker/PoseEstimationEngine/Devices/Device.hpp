@@ -51,6 +51,14 @@ public:
 		closing = 5
 	};
 
+	const std::string stateLabels[6] = {
+		"Unknown",
+		"Error",
+		"Starting",
+		"Ready",
+		"Closing"
+	};
+
 	// MARK: - Constructor
 
 	Device(const Driver &t, const std::string &aName, const std::string &aURI, const std::string &aUID):
@@ -62,18 +70,18 @@ public:
 	// MARK: - Device properties
 
 	/// Gives the display name of the device
-	inline std::string getName() { return _name; }
+	inline std::string getName() const { return _name; }
 
 	/// Gives the UID of the device, usually its serial number
-	inline std::string getUID() { return _uid; }
+	inline std::string getUID() const { return _uid; }
 
 	/// Give the URI to the physical peripheral on the system
-	inline std::string getURI() { return _uri; }
+	inline std::string getURI() const { return _uri; }
 
 	// MARK: - Device State
 
 	/// Give the URI to the physical peripheral on the system
-	inline State getState() { return _state; }
+	inline State getState() const { return _state; }
 
 	/// The driver used by this device
 	const Driver driver;

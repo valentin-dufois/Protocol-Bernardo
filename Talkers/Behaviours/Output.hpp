@@ -16,7 +16,7 @@
 #include "Behaviour.hpp"
 
 #define DELAY_DEFAULT true
-#define DELAY_VALUE_DEFAULT 2.5
+#define DELAY_VALUE_DEFAULT 4.0
 #define DELAY_VARIANCE_DEFAULT 1.0
 
 struct Message;
@@ -41,15 +41,17 @@ public:
 	_outputValues(outputValues),
 	_captions(captions) {}
 
+	/// Gives the requested output
 	static Output * get(const talkers::OutputID id);
 
+	/// ID of the current output
 	const talkers::OutputID id;
 
 	/// Tell if this output means the end of the tree on this machine
 	const bool isTreeEnd;
 
 	/// Tell if the current behaviour state match the condition of this output
-	virtual bool isConditionValid(const State &behaviourState) = 0;
+	virtual bool isConditionValid(State &behaviourState) = 0;
 
 	/// Gives the delay before sending the message
 	virtual double getDelay() const;
@@ -63,7 +65,7 @@ public:
 protected:
 
 	/// The inner state of the output
-	State _state;
+	mutable State _state;
 
 	/// The next behaviour id, if any
 	const talkers::BehaviourID _nextBehaviour;

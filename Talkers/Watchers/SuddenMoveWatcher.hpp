@@ -36,7 +36,7 @@ public:
 		Event event;
 		event.name = "SUDDEN_MOVE";
 		event.behaviour = _behaviour;
-		event.values.insert_or_assign("SUDDEN_MOVE_SPEED", _lastMoveSpeed);
+		event.values["SUDDEN_MOVE_SPEED"] = _lastMoveSpeed;
 
 		return event;
 	}

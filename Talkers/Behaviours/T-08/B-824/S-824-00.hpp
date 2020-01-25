@@ -25,7 +25,7 @@ public:
 		"Tu veux dire que ce sont les mêmes, ou bien que tous ont des comportements similaires ?"
 					 }) {}
 
-	virtual bool isConditionValid(const State &behaviourState) override {
+	virtual bool isConditionValid(State &behaviourState) override {
 		return true;
 	};
 };

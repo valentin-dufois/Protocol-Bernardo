@@ -25,7 +25,7 @@ public:
 		"Les personnes présentes ont stabilisé leur position en même temps. Intéressant."
 	}) {}
 
-	virtual bool isConditionValid(const State &behaviourState) override {
+	virtual bool isConditionValid(State &behaviourState) override {
 		return true;
 	};
 };

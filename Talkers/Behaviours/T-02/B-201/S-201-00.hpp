@@ -25,8 +25,8 @@ public:
 		"Oui. C’était soudain. Une personne s’est certainement déplacée rapidement."
 	}) {}
 
-	virtual bool isConditionValid(const State &behaviourState) override {
-		return behaviourState.at("SUDDEN_MOVE").getBool();
+	virtual bool isConditionValid(State &behaviourState) override {
+		return std::get<bool>(behaviourState["SUDDEN_MOVE"]);
 	};
 };
 

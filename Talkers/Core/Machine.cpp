@@ -16,11 +16,11 @@
 #include "../Behaviours/Behaviour.hpp"
 #include "../Behaviours/Message.hpp"
 
-// MARK: - In
+// MARK: - Inputs
 
-void Machine::onMessage(Message * message) {
+Message * Machine::onMessage(Message * message) {
 	if(message == nullptr)
-		return;
+		return nullptr;
 
 	// Remember the message
 	_receptionHistory.push_back(message->caption);
@@ -32,8 +32,7 @@ void Machine::onMessage(Message * message) {
 
 	// Check behaviour value
 	if(message->behaviour == -1) {
-		delegate->machineSendsMessage(this, nullptr);
-		return;
+		return nullptr;
 	}
 
 	// Get the message behaviour
@@ -41,15 +40,15 @@ void Machine::onMessage(Message * message) {
 
 	// Do we have a valid behaviour ?
 	if(behaviour == nullptr) {
-		delegate->machineSendsMessage(this, nullptr);
-		return onError();
+		onError();
+		return nullptr;
 	}
 
 	if(behaviour->isTreeStart) {
 		if(_tree != nullptr && !behaviour->forceStart) {
-			delegate->machineSendsMessage(this, nullptr);
 			delete behaviour;
-			return onError();
+			onError();
+			return nullptr;
 		}
 
 		if(_tree != nullptr)
@@ -59,31 +58,29 @@ void Machine::onMessage(Message * message) {
 	}
 
 	if(!behaviour->importMessage(message)) {
-		delegate->machineSendsMessage(this, nullptr);
 		delete behaviour;
-		return onError();
+		onError();
+		return nullptr;
 	}
 
 	if(!behaviour->execute(this)) {
-		delegate->machineSendsMessage(this, nullptr);
 		delete behaviour;
-		return onError();
+		onError();
+		return nullptr;
 	}
 
-	// Get the behaviour results if needed
+	// Get the behaviour results
 	Output * output = behaviour->getOutput();
 
 	if(output == nullptr) {
-		// No output
-		delegate->machineSendsMessage(this, nullptr);
-		return;
+		// No output, end here
+		return nullptr;
 	}
 	
 	Message * outMessage = output->getMessage();
 
-	// Pause the thread if needed
-	std::chrono::duration<double, std::ratio<1>> delay(output->getDelay());
-	std::this_thread::sleep_for(delay);
+	// Print the message and pause the thread as needed
+	print(outMessage->caption, output->getDelay());
 
 	if(output->isTreeEnd) {
 		delete _tree;
@@ -92,24 +89,21 @@ void Machine::onMessage(Message * message) {
 
 	delete output;
 
-	// Print the message
-	print(outMessage->caption);
-
 	// Send the message
-	delegate->machineSendsMessage(this, outMessage);
+	return outMessage;
 }
 
 void Machine::onSay(const std::string &caption) {
 	_receptionHistory.push_back(caption);
 }
 
-void Machine::print(const std::string out) {
-	std::cout << "[" << label << "] " << out << std::endl;
-}
+void Machine::print(const std::string &caption, const double &aDelay) {
+	// Pause the thread if needed
+	std::chrono::duration<double, std::ratio<1>> delay(aDelay);
+	std::this_thread::sleep_for(delay);
 
-void Machine::say(const std::string out) {
-	print(out);
-	delegate->machineSaysSomething(this, out);
+	std::cout << "[" << label << "] " << caption << std::endl;
+	delegate->machineSaysSomething(this, caption);
 }
 
 // MARK: - Manual getters
@@ -179,8 +173,9 @@ bool Machine::executeWatchers() {
 		_bodyUIDHistory.insert(body->uid);
 	}
 
+	// Execute each watchers
 	for(Watcher * watcher: _watchers) {
-		watcher->watch(&_arena);
+		watcher->watch(_arena);
 
 		if(!watcher->hasFoundEvent())
 			continue;
@@ -188,11 +183,11 @@ bool Machine::executeWatchers() {
 		Event event = watcher->getEvent();
 		_events.push_back(event);
 
-		LOG_DEBUG("Registered event " + event.name);
-
 		// Keep only the last 100 events
 		if(_events.size() > 100)
 			_events.pop_front();
+
+		LOG_DEBUG("Registered event " + event.name);
 
 		if(_tree == nullptr) {
 			// Dispatch

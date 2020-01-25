@@ -25,7 +25,7 @@ public:
 		"Et quand nos données concordent, avons-nous la certitude qu’elles sont véridiques ?"
 	}) {}
 
-	virtual bool isConditionValid(const State &behaviourState) override {
+	virtual bool isConditionValid(State &behaviourState) override {
 		return true;
 	};
 };

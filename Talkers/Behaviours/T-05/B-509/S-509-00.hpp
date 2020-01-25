@@ -25,7 +25,7 @@ public:
 		"Je ne sais pas. Notre but semble être défini dans ce seul espace."
 					 }) {}
 
-	virtual bool isConditionValid(const State &behaviourState) override {
+	virtual bool isConditionValid(State &behaviourState) override {
 		return true;
 	};
 };

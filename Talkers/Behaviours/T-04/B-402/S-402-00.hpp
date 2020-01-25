@@ -26,7 +26,7 @@ public:
 		"Il est fort probable que nous soyons plus efficaces."
 					 }) {}
 
-	virtual bool isConditionValid(const State &behaviourState) override {
+	virtual bool isConditionValid(State &behaviourState) override {
 		return true;
 	};
 };

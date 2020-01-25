@@ -25,7 +25,7 @@ public:
 		"C'est déjà fait."
 					 }) {}
 
-	inline bool isConditionValid(const State &behaviourState) {
+	inline bool isConditionValid(State &behaviourState) {
 		return true;
 	};
 };

@@ -10,7 +10,6 @@
 #define Message_h
 
 #include "../main.hpp"
-#include "../Utils/StateValue.hpp"
 
 struct Message {
 	State values;

@@ -26,7 +26,7 @@ public:
 		"Comment savoir si nous faisons le bon choix en faisant confiance à nos resultats, si ceux-ci sont sensibles à une marge d'erreur ?"
 					 }) {}
 
-	virtual bool isConditionValid(const State &behaviourState) override {
+	virtual bool isConditionValid(State &behaviourState) override {
 		return true;
 	};
 };

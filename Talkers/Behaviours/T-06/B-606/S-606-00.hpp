@@ -25,7 +25,7 @@ public:
 			"Intéressant. Si je te donne un autre nombre, tu effectueras ce même processus ?"
 		}) {}
 
-	virtual bool isConditionValid(const State &behaviourState) override {
+	virtual bool isConditionValid(State &behaviourState) override {
 		return true;
 	};
 };

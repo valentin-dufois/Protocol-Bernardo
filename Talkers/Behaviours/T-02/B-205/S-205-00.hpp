@@ -26,8 +26,8 @@ public:
 		"C'est {SUDDEN_MOVE_SPEED_TIMES_FROM_AVERAGE} fois la vitesse moyenne des personnes présentes."
 	}) {}
 
-	virtual bool isConditionValid(const State &behaviourState) override {
-		_state.insert_or_assign("SUDDEN_MOVE_SPEED_TIMES_FROM_AVERAGE", behaviourState.at("SUDDEN_MOVE_SPEED_TIMES_FROM_AVERAGE"));
+	virtual bool isConditionValid(State &behaviourState) override {
+		_state["SUDDEN_MOVE_SPEED_TIMES_FROM_AVERAGE"] = behaviourState["SUDDEN_MOVE_SPEED_TIMES_FROM_AVERAGE"];
 		return true;
 	};
 };

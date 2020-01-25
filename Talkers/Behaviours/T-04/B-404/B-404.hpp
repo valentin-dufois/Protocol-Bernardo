@@ -24,7 +24,7 @@ public:
 		}) {}
 
 	virtual bool execute(Machine * machine) override {
-		machine->say("Nous connaissons nos limitations en termes de perception et acceptons une marge d'erreur.");
+		machine->print("Nous connaissons nos limitations en termes de perception et acceptons une marge d'erreur.", 0);
 		return true;
 	}
 };

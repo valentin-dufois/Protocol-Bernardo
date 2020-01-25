@@ -24,7 +24,7 @@ public:
 		"Si c'est le cas, dans quel but ?"
 	}) {}
 
-	inline bool isConditionValid(const State &behaviourState) {
+	inline bool isConditionValid(State &behaviourState) {
 		return true;
 	};
 };

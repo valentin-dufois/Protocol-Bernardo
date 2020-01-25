@@ -25,7 +25,7 @@ public:
 		"Elles ne se connaissent peut-être pas."
 	}) {}
 
-	virtual bool isConditionValid(const State &behaviourState) override {
+	virtual bool isConditionValid(State &behaviourState) override {
 		return true;
 	};
 };

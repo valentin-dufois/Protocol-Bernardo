@@ -25,7 +25,7 @@ public:
 			"Je me base sur un nombre que je considère comme un seuil. Lorsque tu m'indiques un nombre, je me base sur ce seuil pour exprimer un avis."
 		}) {}
 
-	virtual bool isConditionValid(const State &behaviourState) override {
+	virtual bool isConditionValid(State &behaviourState) override {
 		return true;
 	};
 };

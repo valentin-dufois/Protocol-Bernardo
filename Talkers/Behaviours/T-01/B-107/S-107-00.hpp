@@ -24,7 +24,7 @@ public:
 		"Beaucoup de questions auxquelles je n'ai pas de réponses."
 	}) {}
 
-	inline bool isConditionValid(const State &behaviourState) {
+	inline bool isConditionValid(State &behaviourState) {
 		return true;
 	};
 };

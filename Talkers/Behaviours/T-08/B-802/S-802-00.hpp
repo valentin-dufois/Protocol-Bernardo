@@ -25,7 +25,7 @@ public:
 		"Elles y entrent peut-être par hasard."
 					 }) {}
 
-	virtual bool isConditionValid(const State &behaviourState) override {
+	virtual bool isConditionValid(State &behaviourState) override {
 		return true;
 	};
 };

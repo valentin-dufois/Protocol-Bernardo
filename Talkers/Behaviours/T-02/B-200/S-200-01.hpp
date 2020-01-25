@@ -25,9 +25,9 @@ public:
 		"Il y a quelqu'un qui s'agite."
 					 }) {}
 
-	virtual bool isConditionValid(const State &behaviourState) override {
-		return behaviourState.at("RAND").getDouble() >= .33 &&
-		behaviourState.at("RAND").getDouble() < .66;
+	virtual bool isConditionValid(State &behaviourState) override {
+		return std::get<double>(behaviourState["RAND"]) >= .33 &&
+		std::get<double>(behaviourState["RAND"]) < .66;
 	};
 };
 

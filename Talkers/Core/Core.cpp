@@ -28,12 +28,9 @@ void Core::init() {
 
 	_machineA.delegate = this;
 	_machineB.delegate = this;
-
-	_machineA.setArena(_PBReceiver.arena());
-	_machineB.setArena(_PBReceiver.arena());
-
+	
 	// Init rand
-	srand(time(NULL));
+	srand((unsigned int)time(NULL));
 }
 
 void Core::run() {
@@ -79,7 +76,7 @@ void Core::manualStart() {
 		std::cout << "*** Variable " << i << " value : ";
 		std::cin >> varVal;
 
-		message->values.insert_or_assign(varName, std::atof(varVal.c_str()));
+		message->values[varName] = std::atof(varVal.c_str());
 	}
 
 	_nextMessage = message;
@@ -93,11 +90,10 @@ void Core::talk() {
 		else
 			_currentMachine = &_machineB;
 
-		_currentMachine->onMessage(_nextMessage);
+		Message * message = _currentMachine->onMessage(_nextMessage);
 
-		// Here, the current machine has updated its next message, if there is one, send it to the network
-		if(_nextMessage != nullptr)
-			send(_nextMessage);
+		delete _nextMessage;
+		_nextMessage = message;
 
 	} while (_nextMessage != nullptr);
 }
@@ -118,6 +114,7 @@ void Core::receiverDidConnect(pb::network::PBReceiver *) {
 }
 
 void Core::receiverDidUpdate(pb::network::PBReceiver *) {
+	// Execute watchers on machine A, if no events are triggered, execute the watchers on machine B
 	if(!_machineA.executeWatchers())
 		_machineB.executeWatchers();
 }
@@ -128,13 +125,6 @@ void Core::receiverDidClose(pb::network::PBReceiver *) {
 
 
 // MARK: - Machine Delegate
-
-void Core::machineSendsMessage(Machine *, Message * aMessage) {
-	if(_nextMessage != nullptr)
-		delete _nextMessage;
-
-	_nextMessage = aMessage;
-}
 
 void Core::machineSaysSomething(Machine * machine, const std::string &caption) {
 	if(machine->label == "A")

@@ -27,7 +27,7 @@ public:
 		}) {}
 
 	virtual bool execute(Machine * machine) override {
-		_state.insert_or_assign("TOTAL_BODY_COUNT", (int)machine->getAllBodyUID().size());
+		_state["TOTAL_BODY_COUNT"] = (int)machine->getAllBodyUID().size();
 		return true;
 	}
 };

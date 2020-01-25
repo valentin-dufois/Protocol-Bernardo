@@ -25,7 +25,7 @@ public:
 		"Je ne crois pas. Je n'ai pas plus de donnée que toi."
 					 }) {}
 
-	virtual bool isConditionValid(const State &behaviourState) override {
+	virtual bool isConditionValid(State &behaviourState) override {
 		return true;
 	};
 };

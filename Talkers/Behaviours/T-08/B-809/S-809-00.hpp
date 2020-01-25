@@ -25,7 +25,7 @@ public:
 		"L'endroit où nous nous trouvons semble n'être qu'un lieu de passage."
 					 }) {}
 
-	virtual bool isConditionValid(const State &behaviourState) override {
+	virtual bool isConditionValid(State &behaviourState) override {
 		return true;
 	};
 };

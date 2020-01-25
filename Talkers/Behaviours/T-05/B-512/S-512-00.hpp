@@ -25,7 +25,7 @@ public:
 		"Je crois savoir ce que tu vas dire."
 					 }) {}
 
-	virtual bool isConditionValid(const State &behaviourState) override {
+	virtual bool isConditionValid(State &behaviourState) override {
 		return true;
 	};
 };

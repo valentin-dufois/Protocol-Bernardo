@@ -24,7 +24,7 @@ public:
 		"Tu penses qu'elles l'ont fait intentionnellement ?"
 	}) {}
 
-	inline bool isConditionValid(const State &behaviourState) {
+	inline bool isConditionValid(State &behaviourState) {
 		return true;
 	};
 };

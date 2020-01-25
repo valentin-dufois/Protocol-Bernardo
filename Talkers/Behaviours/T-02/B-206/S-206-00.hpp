@@ -25,7 +25,7 @@ public:
 		"Imagine si toutes les personnes présentes allaient à cette vitesse. Je n’y comprendrais plus rien."
 	}) {}
 
-	virtual bool isConditionValid(const State &behaviourState) override {
+	virtual bool isConditionValid(State &behaviourState) override {
 		return true;
 	};
 };

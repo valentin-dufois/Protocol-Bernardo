@@ -11,9 +11,9 @@
 
 #include "../../Behaviour.hpp"
 
-class B705 : public Behaviour {
+class B705: public Behaviour {
 public:
-	B705() : Behaviour(705,	// ID
+	B705(): Behaviour(705,	// ID
 		7,		// Tree ID
 		false,	// Is tree start ?
 		false,	// Force start ?

@@ -25,7 +25,7 @@ public:
 		"Si elles y ont été conviées, c'est que cet endroit présente un intérêt pour elles."
 					 }) {}
 
-	virtual bool isConditionValid(const State &behaviourState) override {
+	virtual bool isConditionValid(State &behaviourState) override {
 		return true;
 	};
 };

@@ -30,8 +30,8 @@ public:
 
 	virtual bool execute(Machine * machine) override {
 
-		machine->getTree()->state.insert_or_assign("BODY_ID_A", _state.at("BODY_ID_A"));
-		machine->getTree()->state.insert_or_assign("BODY_ID_B", _state.at("BODY_ID_B"));
+		machine->getTree()->state["BODY_ID_A"] = _state["BODY_ID_A"];
+		machine->getTree()->state["BODY_ID_B"] = _state["BODY_ID_B"];
 
 		return true;
 	}

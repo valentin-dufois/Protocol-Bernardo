@@ -24,7 +24,7 @@ public:
 		"Tu poses beaucoup de questions."
 	}) {}
 
-	inline bool isConditionValid(const State &behaviourState) {
+	inline bool isConditionValid(State &behaviourState) {
 		return true;
 	};
 };

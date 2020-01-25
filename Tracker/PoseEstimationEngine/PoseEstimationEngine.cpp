@@ -67,6 +67,9 @@ void PoseEstimationEngine::onNewDevice(const Device * device) {
 	};
 
 	_trackers.push_back(tracker);
+
+	if(onDevice)
+		onDevice(device);
 }
 
 void PoseEstimationEngine::onRawBody(RawBody * rawBody) {

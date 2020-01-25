@@ -49,6 +49,8 @@ public:
 
 	std::vector<Device *> getDevices();
 
+	std::function<void(const Device *)> onDevice;
+
 	std::function<void(const std::set<pb::RawBody *, pb::RawBodyComparator>)> onRawBodies;
 
 	~PoseEstimationEngine();

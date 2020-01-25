@@ -26,8 +26,8 @@ public:
 		"Jusqu'ici, j'ai compté {TOTAL_BODY_COUNT} personnes présentes, au total."
 					 }) {}
 
-	virtual bool isConditionValid(const State &behaviourState) override {
-		_state.insert_or_assign("TOTAL_BODY_COUNT", behaviourState.at("TOTAL_BODY_COUNT"));
+	virtual bool isConditionValid(State &behaviourState) override {
+		_state["TOTAL_BODY_COUNT"] = behaviourState["TOTAL_BODY_COUNT"];
 		return true;
 	};
 };

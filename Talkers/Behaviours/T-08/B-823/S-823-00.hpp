@@ -25,7 +25,7 @@ public:
 		"J'ai remarqué certaines similitudes dans leurs comportements. C'est donc une possibilité."
 					 }) {}
 
-	virtual bool isConditionValid(const State &behaviourState) override {
+	virtual bool isConditionValid(State &behaviourState) override {
 		return true;
 	};
 };

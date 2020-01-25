@@ -25,7 +25,7 @@ public:
 		"Certainement. Mais je n'ai pas plus de réponses."
 					 }) {}
 
-	virtual bool isConditionValid(const State &behaviourState) override {
+	virtual bool isConditionValid(State &behaviourState) override {
 		return true;
 	};
 };

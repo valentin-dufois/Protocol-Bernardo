@@ -26,7 +26,7 @@ public:
 		"Qu'est-ce qui t'arrives ?"
 					 }) {}
 
-	virtual bool isConditionValid(const State &behaviourState) override {
+	virtual bool isConditionValid(State &behaviourState) override {
 		return true;
 	};
 };

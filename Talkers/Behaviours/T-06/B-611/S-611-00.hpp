@@ -25,7 +25,7 @@ public:
 			"C'est aussi un mensonge."
 		}) {}
 
-	virtual bool isConditionValid(const State &behaviourState) override {
+	virtual bool isConditionValid(State &behaviourState) override {
 		return true;
 	};
 };

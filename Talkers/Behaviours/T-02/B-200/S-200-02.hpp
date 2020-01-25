@@ -26,10 +26,9 @@ public:
 		"Il y a quelqu'un qui remue beaucoup."
 					 }) {}
 
-	virtual bool isConditionValid(const State &behaviourState) override {
-		return behaviourState.at("RAND").getDouble() >= .66;
-		return true;
-	};
+	virtual bool isConditionValid(State &behaviourState) override {
+		return std::get<double>(behaviourState["RAND"]) >= .66;
+	}
 };
 
 #endif /* S_200_02_hpp */

@@ -25,8 +25,8 @@ public:
 		"Non, quoi donc ?"
 	}) {}
 
-	virtual bool isConditionValid(const State &behaviourState) override {
-		return !behaviourState.at("SUDDEN_MOVE").getBool();
+	virtual bool isConditionValid(State &behaviourState) override {
+		return !std::get<bool>(behaviourState["SUDDEN_MOVE"]);
 	};
 };
 

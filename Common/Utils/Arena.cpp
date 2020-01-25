@@ -15,6 +15,33 @@ unsigned long Arena::count() const {
 	return getSubset().size();
 }
 
+std::vector<Body *> Arena::getSubset() const {
+	std::vector<Body *> bodies;
+
+	_mutex->lock();
+
+	for(std::pair<bodyUID, Body *> pair: *_bodies) {
+		if(_bounds.fit(pair.second->skeleton()->centerOfMass))
+			bodies.push_back(pair.second);
+	}
+
+	_mutex->unlock();
+
+	return bodies;
+}
+
+Body * Arena::getBody(const bodyUID &uid) const {
+	if(_bodies->find(uid) == _bodies->end())
+		return nullptr;
+
+	Body * body = _bodies->at(uid);
+
+	if(_bounds.fit(body->skeleton()->centerOfMass))
+		return body;
+
+	return nullptr;
+}
+
 double Arena::averageMoveSpeed() const {
 	double acc = 0;
 	double bodiesUsedCount = 0;
@@ -35,12 +62,19 @@ double Arena::averageMoveSpeed() const {
 		Skeleton * a = *it;
 		Skeleton * b = *(++it);
 
-		acc += abs(glm::distance(a->joints[Skeleton::leftFoot].position, b->joints[Skeleton::leftFoot].position));
-		acc += abs(glm::distance(a->joints[Skeleton::rightFoot].position, b->joints[Skeleton::rightFoot].position));
-		acc += abs(glm::distance(a->joints[Skeleton::leftHand].position, b->joints[Skeleton::leftHand].position));
-		acc += abs(glm::distance(a->joints[Skeleton::rightHand].position, b->joints[Skeleton::rightHand].position));
-		acc += abs(glm::distance(a->joints[Skeleton::head].position, b->joints[Skeleton::head].position));
-		acc += abs(glm::distance(a->joints[Skeleton::torso].position, b->joints[Skeleton::torso].position));
+		Skeleton::JointID jointIDs[6] = {
+			Skeleton::leftFoot,
+			Skeleton::rightFoot,
+			Skeleton::leftHand,
+			Skeleton::rightHand,
+			Skeleton::head,
+			Skeleton::torso
+		};
+
+		// Checking specified joints
+		for(Skeleton::JointID jointID: jointIDs) {
+			acc += abs(glm::distance(a->joints[jointID].position, b->joints[jointID].position));
+		}
 	}
 
 	constexpr double trackingEngineFreq = 1.0 / TRACKING_ENGINE_RUN_SPEED;
@@ -67,44 +101,22 @@ std::tuple<Body *, double> Arena::mostActiveBody() const {
 		Skeleton * a = *it;
 		Skeleton * b = *(++it);
 
-		// Checking left foot
-		dist = abs(glm::distance(a->joints[Skeleton::leftFoot].position, b->joints[Skeleton::leftFoot].position));
+		Skeleton::JointID jointIDs[5] = {
+			Skeleton::leftFoot,
+			Skeleton::rightFoot,
+			Skeleton::leftHand,
+			Skeleton::rightHand,
+			Skeleton::torso
+		};
 
-		if(dist > max) {
-			max = dist;
-			fastestBody = body;
-		}
+		// Checkint specified joints
+		for(Skeleton::JointID jointID: jointIDs) {
+			dist = abs(glm::distance(a->joints[jointID].position, b->joints[jointID].position));
 
-		// Checking right foot
-		dist = abs(glm::distance(a->joints[Skeleton::rightFoot].position, b->joints[Skeleton::rightFoot].position));
-
-		if(dist > max) {
-			max = dist;
-			fastestBody = body;
-		}
-
-		// Checking left hand
-		dist = abs(glm::distance(a->joints[Skeleton::leftHand].position, b->joints[Skeleton::leftHand].position));
-
-		if(dist > max) {
-			max = dist;
-			fastestBody = body;
-		}
-
-		// Checking right hand
-		dist = abs(glm::distance(a->joints[Skeleton::rightHand].position, b->joints[Skeleton::rightHand].position));
-
-		if(dist > max) {
-			max = dist;
-			fastestBody = body;
-		}
-
-		// Checking torso
-		dist = abs(glm::distance(a->joints[Skeleton::torso].position, b->joints[Skeleton::torso].position));
-
-		if(dist > max) {
-			max = dist;
-			fastestBody = body;
+			if(dist > max) {
+				max = dist;
+				fastestBody = body;
+			}
 		}
 	}
 
@@ -112,33 +124,4 @@ std::tuple<Body *, double> Arena::mostActiveBody() const {
 
 	return {fastestBody, max / trackingEngineFreq};
 }
-
-std::vector<Body *> Arena::getSubset() const {
-	std::vector<Body *> bodies;
-
-	_mutex->lock();
-
-	for(std::pair<bodyUID, Body *> pair: *_bodies) {
-		if(_bounds.fit(pair.second->skeleton()->centerOfMass))
-			bodies.push_back(pair.second);
-	}
-
-	_mutex->unlock();
-
-	return bodies;
-}
-
-Body * Arena::getBody(const bodyUID &uid) {
-	if(_bodies->find(uid) == _bodies->end())
-		return nullptr;
-
-	Body * body = _bodies->at(uid);
-
-	if(_bounds.fit(body->skeleton()->centerOfMass))
-		return body;
-
-	return nullptr;
-}
-
-
 } /* ::pb */

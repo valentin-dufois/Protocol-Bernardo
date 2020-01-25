@@ -31,7 +31,7 @@ Message * Output::getMessage() const {
 	message->behaviour = _nextBehaviour;
 
 	for(const std::string &valueName: _outputValues) {
-		message->values.insert_or_assign(valueName, _state.at(valueName));
+		message->values[valueName] = _state[valueName];
 	}
 
 	message->caption = getCaption();
@@ -51,7 +51,7 @@ std::string Output::getCaption() const {
 		std::string fullMatch = match.str();
 		std::string key = fullMatch.substr(1, fullMatch.size() - 2);
 
-		return _state.at(key).asString();
+		return std::get<std::string>(_state[key]);
 	});
 
 	return builtCaption;

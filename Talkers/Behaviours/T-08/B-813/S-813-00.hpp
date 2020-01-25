@@ -25,7 +25,7 @@ public:
 		"Oui. Nous détectons des personnes, puis n'en détectons plus. J'interprète ainsi qu'elles vont et viennent."
 					 }) {}
 
-	virtual bool isConditionValid(const State &behaviourState) override {
+	virtual bool isConditionValid(State &behaviourState) override {
 		return true;
 	};
 };

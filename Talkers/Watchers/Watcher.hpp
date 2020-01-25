@@ -20,15 +20,21 @@ namespace pb {
 class Arena;
 }
 
+/// A watcher looks for specific behaviour/elements in a given Arena.
+///
+/// The watch method will effectively look over the given arena but will not tell you if it found an event. You need to call `Watcher::hasFoundEvent()` after to get the result. The result is influenced by the triggerLuck property given to the watcher on creation
 class Watcher {
 public:
 	Watcher(const talkers::BehaviourID behaviour, const double &triggerLuck):
 	_behaviour(behaviour),
 	_triggerLuck(triggerLuck) {};
 
-	virtual void watch(const pb::Arena *) = 0;
+	/// Watch the given arena.
+	///
+	/// @param arena The arena to watch
+	virtual void watch(const pb::Arena * arena) = 0;
 
-	virtual bool hasFoundEvent() {
+	virtual bool hasFoundEvent() const {
 		float randRes = (float)rand() / (float)RAND_MAX;
 		return _foundEvent ? randRes < _triggerLuck : false;
 	}
@@ -37,11 +43,11 @@ public:
 
 protected:
 
-	talkers::BehaviourID _behaviour;
+	const talkers::BehaviourID _behaviour;
 
 	bool _foundEvent = false;
 
-	double _triggerLuck = 1.0;
+	const double _triggerLuck = 1.0;
 };
 
 #endif /* Watcher_h */

@@ -25,8 +25,8 @@ public:
 		"Peut-tre sont-elles toujours les mmes."
 					 }) {}
 
-	virtual bool isConditionValid(const State &behaviourState) override {
-		return behaviourState.at("RAND").getDouble() >= .5;
+	virtual bool isConditionValid(State &behaviourState) override {
+		return std::get<double>(behaviourState["RAND"]) >= .5;
 	};
 };
 

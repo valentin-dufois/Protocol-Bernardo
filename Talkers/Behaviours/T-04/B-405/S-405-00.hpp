@@ -25,7 +25,7 @@ public:
 			"C'est probablement pour ça que nous travaillons à deux."
 		}) {}
 
-	virtual bool isConditionValid(const State &behaviourState) override {
+	virtual bool isConditionValid(State &behaviourState) override {
 		return true;
 	};
 };

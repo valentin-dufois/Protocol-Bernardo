@@ -27,7 +27,7 @@ public:
 		"Quand ils remarquent les capteurs, ils font toujours ce genre de choses."
 					 }) {}
 
-	virtual bool isConditionValid(const State &behaviourState) override {
+	virtual bool isConditionValid(State &behaviourState) override {
 		return true;
 	};
 };

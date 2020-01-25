@@ -29,16 +29,16 @@ public:
 
 	virtual bool execute(Machine * machine) override {
 
-		pb::Body * bodyA = machine->arena()->getBody(machine->getTree()->state.at("BODY_ID_A").getString());
-		pb::Body * bodyB = machine->arena()->getBody(machine->getTree()->state.at("BODY_ID_B").getString());
+		pb::Body * bodyA = machine->arena()->getBody(std::get<std::string>(machine->getTree()->state["BODY_ID_A"]));
+		pb::Body * bodyB = machine->arena()->getBody(std::get<std::string>(machine->getTree()->state["BODY_ID_B"]));
 
 		if(bodyA == nullptr || bodyB == nullptr) {
-			_state.insert_or_assign("STILL_CLOSE", false);
+			_state["STILL_CLOSE"] = false;
 			return true;
 		}
 
 		if(glm::distance(bodyA->skeleton()->centerOfMass, bodyB->skeleton()->centerOfMass) < 500)
-			_state.insert_or_assign("STILL_CLOSE", true);
+			_state["STILL_CLOSE"] = true;
 
 		return true;
 	}

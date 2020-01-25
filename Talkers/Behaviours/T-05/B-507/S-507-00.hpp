@@ -25,7 +25,7 @@ public:
 		"Les données que nous analysons ne nous permettent pas d'émettre de certitude quant à ce qui se déroule à l'extérieur de cette salle."
 					 }) {}
 
-	virtual bool isConditionValid(const State &behaviourState) override {
+	virtual bool isConditionValid(State &behaviourState) override {
 		return true;
 	};
 };

@@ -26,8 +26,8 @@ public:
 		"À {SUDDEN_MOVE_SPEED} mm/s exactement. Enfin d’après mes calculs."
 	}) {}
 
-	virtual bool isConditionValid(const State &behaviourState) override {
-		_state.insert_or_assign("SUDDEN_MOVE_SPEED", behaviourState.at("SUDDEN_MOVE_SPEED"));
+	virtual bool isConditionValid(State &behaviourState) override {
+		_state["SUDDEN_MOVE_SPEED"] = behaviourState["SUDDEN_MOVE_SPEED"];
 		return true;
 	};
 };

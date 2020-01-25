@@ -25,8 +25,8 @@ public:
 		"Elles sont toujours proches. Je me demande ce qu'elles peuvent bien faire."
 	}) {}
 
-	virtual bool isConditionValid(const State &behaviourState) override {
-		return behaviourState.at("STILL_CLOSE").getBool();
+	virtual bool isConditionValid(State &behaviourState) override {
+		return std::get<bool>(behaviourState["STILL_CLOSE"]);
 	};
 };
 

@@ -25,18 +25,23 @@ public:
 
 	Core(): _receiversServer(pb::network::serverPortTalker, pb::network::discoveryPortTalker) {}
 
+	/// Initialize all required components
 	void init();
 
+	/// Execute the application
 	void run();
 
 private:
 
+	/// Used when testing, to manually trigger a behaviour at the start of the app.
 	void manualStart();
 
+	/// Makes the machines 'talks' until one of them has nothing else to say.
 	void talk();
 
 public:
 
+	/// Properly ends the app
 	void terminate();
 
 	~Core();
@@ -51,8 +56,6 @@ public:
 
 	// MARK: - Machine Delegate
 
-	virtual void machineSendsMessage(Machine *, Message * aMessage) override;
-
 	virtual void machineSaysSomething(Machine *, const std::string &caption) override;
 
 	virtual void machineExecuteEvent(Machine * aMachine, const Event &event) override;
@@ -62,15 +65,12 @@ private:
 
 	bool _isRunning = false;
 
-	// MARK: Network
-
-	pb::network::PBReceiver _PBReceiver;
-
 	Message * _nextMessage = nullptr;
 
-	void onMessage(Message * message);
+	// MARK: Network
 
-	void onSay(const std::string &message);
+	/// Used to receive information from PB
+	pb::network::PBReceiver _PBReceiver;
 
 	pb::network::Server _receiversServer;
 
@@ -78,8 +78,8 @@ private:
 
 	// MARK: Machines
 
-	Machine _machineA;
-	Machine _machineB;
+	Machine _machineA = Machine(_PBReceiver.arena());
+	Machine _machineB = Machine(_PBReceiver.arena());
 
 	Machine * _currentMachine = &_machineB;
 

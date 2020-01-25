@@ -25,13 +25,13 @@ public:
 	},
 					  {		// Expected outputs
 		20000, // S-200-00
-		20001  // S-200-01
-		20002  // S-200-01
+		20001, // S-200-01
+		20002, // S-200-02
 	}) {}
 
 	virtual bool execute(Machine * machine) override {
-		_state.insert_or_assign("RAND", (double)rand() / (double)RAND_MAX);
-		std::cout << _state.at("RAND").getDouble() << std::endl;
+		_state["RAND"] = (double)rand() / (double)RAND_MAX;
+		std::cout << std::get<double>(_state["RAND"]) << std::endl;
 		return true;
 	}
 };

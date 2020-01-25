@@ -26,10 +26,10 @@ public:
 		"Bien que je détecte une personne, je ne détecte pas de mouvement."
 	}) {}
 
-	virtual bool isConditionValid(const State &behaviourState) override {
-		_state.insert_or_assign("NBR_BODY", behaviourState.at("NBR_BODY"));
+	virtual bool isConditionValid(State &behaviourState) override {
+		_state["NBR_BODY"] = behaviourState["NBR_BODY"];
 
-		return _state.at("NBR_BODY").getInt() == 1;
+		return std::get<int>(_state["NBR_BODY"]) == 1;
 	};
 };
 

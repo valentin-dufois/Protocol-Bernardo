@@ -25,8 +25,8 @@ public:
 		"{NBR_QUESTIONS} précisément."
 	}) {}
 
-	inline bool isConditionValid(const State &behaviourState) {
-		_state.insert_or_assign("NBR_QUESTIONS", behaviourState.at("NBR_QUESTIONS"));
+	inline bool isConditionValid(State &behaviourState) {
+		_state["NBR_QUESTIONS"] = behaviourState["NBR_QUESTIONS"];
 		return true;
 	};
 };

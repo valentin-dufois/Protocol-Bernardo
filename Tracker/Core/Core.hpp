@@ -12,6 +12,7 @@
 #include "../../Common/Network.hpp"
 
 #include "../PoseEstimationEngine/PoseEstimationEngine.hpp"
+#include "TrackerInterface.hpp"
 
 namespace pb {
 namespace tracker {
@@ -44,6 +45,8 @@ public:
 
 	// MARK: - SocketDelegate
 
+	virtual void socketDidOpen(network::Socket *) override;
+
 	virtual void socketDidClose(network::Socket *) override;
 
 private:
@@ -59,7 +62,9 @@ private:
 	/// The master browser
 	network::Browser _browser;
 
-	network::Socket _socket;
+	/// The socket used to connect to the master
+	network::
+	Socket _socket;
 
 	// MARK: - Acquisition
 
@@ -69,6 +74,10 @@ private:
 	/// Called by the Pose Engine  everytime a new body has been received
 	/// @param rawBodies A set of rawBodies
 	void onRawBodies(const std::set<pb::RawBody *, pb::RawBodyComparator> &rawBodies);
+
+	// MARK: - Interface
+	TrackerInterface _interface;
+
 };
 
 } /* ::tracker */

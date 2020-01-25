@@ -28,7 +28,7 @@ public:
 	}) {}
 
 	virtual bool execute(Machine * machine) override {
-		_state.insert_or_assign("BODY_COUNT", (int)machine->arena()->count());
+		_state["BODY_COUNT"] = (int)machine->arena()->count();
 		return true;
 	}
 };

@@ -26,9 +26,9 @@ public:
 		"Oui."
 	}) {}
 
-	virtual bool isConditionValid(const State &behaviourState) override {
-		int bodyCount = behaviourState.at("BODY_COUNT").getInt();
-		_state.insert_or_assign("BODY_COUNT", bodyCount);
+	virtual bool isConditionValid(State &behaviourState) override {
+		int bodyCount = std::get<int>(behaviourState["BODY_COUNT"]);
+		_state["BODY_COUNT"] = bodyCount;
 
 		return bodyCount == 2;
 	};

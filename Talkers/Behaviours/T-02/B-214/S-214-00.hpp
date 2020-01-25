@@ -25,7 +25,7 @@ public:
 		"Donc l’erreur pourrait ne pas venir de moi."
 	}) {}
 
-	virtual bool isConditionValid(const State &behaviourState) override {
+	virtual bool isConditionValid(State &behaviourState) override {
 		return true;
 	};
 };

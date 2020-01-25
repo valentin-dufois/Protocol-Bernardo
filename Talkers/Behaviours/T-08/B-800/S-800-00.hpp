@@ -25,7 +25,7 @@ public:
 		"Penses-tu que les personnes présentes dans cette salle savent ce qui s'y déroule ?"
 					 }) {}
 
-	virtual bool isConditionValid(const State &behaviourState) override {
+	virtual bool isConditionValid(State &behaviourState) override {
 		return true;
 	};
 };
