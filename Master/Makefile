@@ -77,7 +77,8 @@ LDFLAGS += -std=c++17
 
 LDLIBS += `pkg-config protobuf --libs` \
 	  	  -lstdc++fs  \
-		  -fsanitize=address
+		  -fsanitize=address \
+		  -lncurses
 
 endif
 

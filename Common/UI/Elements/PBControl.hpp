@@ -9,6 +9,7 @@
 #ifndef PBControl_hpp
 #define PBControl_hpp
 
+#include <functional>
 #include "../View.hpp"
 
 namespace ui {

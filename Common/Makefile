@@ -85,7 +85,7 @@ else
 
 INCFLAGS +=
 LDFLAGS +=
-LDLIBS +=
+LDLIBS += -ncurses
 
 endif
 

@@ -46,7 +46,7 @@ void Core::init() {
 	_browser.startBrowsing(network::discoveryPortTracker);
 
 	// Init our display
-	_interface.display();
+//	_interface.display();
 }
 
 void Core::run() {

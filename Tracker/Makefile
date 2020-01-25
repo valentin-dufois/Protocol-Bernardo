@@ -86,7 +86,8 @@ LDFLAGS += -std=c++17
 
 LDLIBS += `pkg-config libopenni2 --libs` \
 	  `pkg-config protobuf --libs` \
-	  -lstdc++fs 
+	  -lstdc++fs \
+	  -lncurses 
 
 endif
 
