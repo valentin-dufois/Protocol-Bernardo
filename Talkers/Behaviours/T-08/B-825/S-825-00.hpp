@@ -22,7 +22,7 @@ public:
 		{		// Output values
 		},
 					 {		// Captions
-		"Je n'ai pas assez de données pour répondre à ta question."
+		"Je n'ai pas assez de donn√©es pour r√©pondre √† ta question."
 					 }) {}
 
 	virtual bool isConditionValid(State &behaviourState) override {

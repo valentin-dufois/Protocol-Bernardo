@@ -22,7 +22,7 @@ public:
 		{		// Output values
 		},
 					 {		// Captions
-		"À chaque nouvelle question, la suivante est plus précise."
+		"√Ä chaque nouvelle question, la suivante est plus pr√©cise."
 					 }) {}
 
 	virtual bool isConditionValid(State &behaviourState) override {

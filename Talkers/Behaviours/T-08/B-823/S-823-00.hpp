@@ -15,14 +15,14 @@ public:
 
 	S82300() : Output(82300,	// Output ID
 		true,	// Is tree end ?
-		823,	// Next Behaviour ID
+		824,	// Next Behaviour ID
 		DELAY_DEFAULT,	// Is delayed
 		DELAY_VALUE_DEFAULT,		// Delay value (seconds)
 		DELAY_VARIANCE_DEFAULT,		// Delay variance (seconds)
 		{		// Output values
 		},
 					 {		// Captions
-		"J'ai remarqué certaines similitudes dans leurs comportements. C'est donc une possibilité."
+		"J'ai remarqu√© certaines similitudes dans leurs comportements. C'est donc une possibilit√©."
 					 }) {}
 
 	virtual bool isConditionValid(State &behaviourState) override {

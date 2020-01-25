@@ -24,7 +24,7 @@
 #include "../Server.hpp"
 #include "../NetworkEngine.hpp"
 
-#define RECEPTION_BUFFER_SIZE 32768
+#define RECEPTION_BUFFER_SIZE 128000
 
 namespace asio = boost::asio;
 

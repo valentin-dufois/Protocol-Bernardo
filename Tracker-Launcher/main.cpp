@@ -15,14 +15,18 @@ boost::process::child tracker;
 void exiting() {
 	LOG_INFO("Quitting the Tracker laucher");
 
-	if(tracker.running())
+	if(tracker.running()) {
 		tracker.terminate();
+		tracker.wait();
+	}
+
+	exit(0);
 }
 
 int main(int argc, const char * argv[]) {
 
 	// Update usb parameters to support mulitple devices
-	std::system("sh -c 'echo 256 > /sys/module/usbcore/parameters/usbfs_memory_mb");
+	std::system("sh -c 'echo 256 > /sys/module/usbcore/parameters/usbfs_memory_mb'");
 
 	std::atexit(exiting);
 

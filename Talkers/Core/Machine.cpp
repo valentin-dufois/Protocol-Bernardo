@@ -25,7 +25,7 @@ Message * Machine::onMessage(Message * message) {
 	// Remember the message
 	_receptionHistory.push_back(message->caption);
 
-	if(message->isTreeEnd) {
+	if(message->isTreeEnd && _tree != nullptr) {
 		delete _tree;
 		_tree = nullptr;
 	}
@@ -191,6 +191,7 @@ bool Machine::executeWatchers() {
 
 		if(_tree == nullptr) {
 			// Dispatch
+			LOG_DEBUG("Event " + event.name);
 			delegate->machineExecuteEvent(this, event);
 			return true;
 		}

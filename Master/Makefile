@@ -71,12 +71,13 @@ else
 
 CXX := g++
 
-INCFLAGS +=
+INCFLAGS += -fsanitize=address
 
 LDFLAGS += -std=c++17
 
 LDLIBS += `pkg-config protobuf --libs` \
-	  	  -lstdc++fs 
+	  	  -lstdc++fs  \
+		  -fsanitize=address
 
 endif
 

@@ -22,7 +22,7 @@ public:
 		},
 					 {						// Captions
 		"Enregistre-le.",
-		"Conserve ces données."
+		"Conserve ces donn√©es."
 					 }) {}
 
 	inline bool isConditionValid(State &behaviourState) {

@@ -22,7 +22,7 @@ public:
 		{		// Output values
 		},
 					 {		// Captions
-		"Pas un point d'arrivée."
+		"Pas un point d'arriv√©e."
 					 }) {}
 
 	virtual bool isConditionValid(State &behaviourState) override {

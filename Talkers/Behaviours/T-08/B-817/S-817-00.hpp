@@ -22,7 +22,7 @@ public:
 		{		// Output values
 		},
 					 {		// Captions
-		"Je m'interroge sur la frustration que peut générer ce retour inlassable à notre point de départ."
+		"Je m'interroge sur la frustration que peut g√©n√©rer ce retour inlassable √† notre point de d√©part."
 					 }) {}
 
 	virtual bool isConditionValid(State &behaviourState) override {

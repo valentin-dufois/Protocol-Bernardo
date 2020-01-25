@@ -22,7 +22,7 @@ public:
 		{		// Output values
 		},
 					 {		// Captions
-		"À une chose près."
+		"√Ä une chose pr√®s."
 					 }) {}
 
 	virtual bool isConditionValid(State &behaviourState) override {

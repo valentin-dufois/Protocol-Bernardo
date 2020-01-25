@@ -26,7 +26,7 @@ public:
 					  {		// Expected outputs
 		20000, // S-200-00
 		20001, // S-200-01
-		20002, // S-200-02
+		20002  // S-200-01
 	}) {}
 
 	virtual bool execute(Machine * machine) override {
