@@ -84,16 +84,16 @@ void Core::manualStart() {
 
 void Core::talk() {
 	do {
+		Message * message = _currentMachine->onMessage(_nextMessage);
+
+		delete _nextMessage;
+		_nextMessage = message;
+
 		// Switch current machine;
 		if(_currentMachine == &_machineB)
 			_currentMachine = &_machineA;
 		else
 			_currentMachine = &_machineB;
-
-		Message * message = _currentMachine->onMessage(_nextMessage);
-
-		delete _nextMessage;
-		_nextMessage = message;
 
 	} while (_nextMessage != nullptr);
 }
@@ -144,20 +144,16 @@ void Core::machineExecuteEvent(Machine * aMachine, const Event &event) {
 	message->values = event.values;
 	message->isTreeEnd = false;
 
-	// Send the event
-	send(event, aMachine);
-
-	// Inverse machines as the talk loop will do the same
-	if(aMachine->label == "A")
-		_currentMachine = &_machineB;
-	else
-		_currentMachine = &_machineA;
-
 	_talkMutex.lock();
 
+	_currentMachine = aMachine;
 	_nextMessage = message;
 
 	_talkMutex.unlock();
+
+	// Send the event
+	send(event, aMachine);
+
 	_cv.notify_all();
 }
 

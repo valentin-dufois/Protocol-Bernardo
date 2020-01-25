@@ -77,6 +77,9 @@ double Arena::averageMoveSpeed() const {
 		}
 	}
 
+	if(bodiesUsedCount == 0)
+		return 0;
+
 	constexpr double trackingEngineFreq = 1.0 / TRACKING_ENGINE_RUN_SPEED;
 
 	return (acc / (bodiesUsedCount * 6.0)) / trackingEngineFreq;
@@ -120,7 +123,7 @@ std::tuple<Body *, double> Arena::mostActiveBody() const {
 		}
 	}
 
-	constexpr double trackingEngineFreq = 1 / TRACKING_ENGINE_RUN_SPEED;
+	constexpr double trackingEngineFreq = 1.0 / TRACKING_ENGINE_RUN_SPEED;
 
 	return {fastestBody, max / trackingEngineFreq};
 }

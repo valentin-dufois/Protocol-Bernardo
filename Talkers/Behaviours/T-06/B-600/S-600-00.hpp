@@ -23,11 +23,12 @@ public:
 			"TOTAL_BODY_COUNT"
 		},
 					 {		// Captions
-		"Jusqu'ici, j'ai compté {TOTAL_BODY_COUNT} personnes présentes, au total."
+		"Jusqu'ici, j'ai compté {TOTAL_BODY_COUNT_STR} personnes présentes, au total."
 					 }) {}
 
 	virtual bool isConditionValid(State &behaviourState) override {
 		_state["TOTAL_BODY_COUNT"] = behaviourState["TOTAL_BODY_COUNT"];
+		_state["TOTAL_BODY_COUNT_STR"] = std::to_string(std::get<int>(behaviourState["TOTAL_BODY_COUNT"]));
 		return true;
 	};
 };

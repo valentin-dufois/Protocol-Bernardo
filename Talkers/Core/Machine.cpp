@@ -198,8 +198,6 @@ bool Machine::executeWatchers() {
 		if(_events.size() > 100)
 			_events.pop_front();
 
-		LOG_DEBUG("Registered event " + event.name);
-
 		if(_tree == nullptr) {
 			// Dispatch
 			LOG_DEBUG("Event " + event.name);
