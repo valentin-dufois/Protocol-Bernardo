@@ -2,12 +2,22 @@ syntax = "proto3";
 
 package messages;
 
-message Machine {
-	string label = 1;
+message Talkers {
+	// Content details
+	string type = 1;
+
+	// Machine label
+	string label = 2;
+
+	// Caption said by machine (if any)
 	string caption = 5;
 
+	// Machine status
 	int32 bodyCount = 10;
 	float averageActivity = 11;
 	float maximumActivity = 12;
 	bool tree = 13;
+
+	// Event
+	string event = 20;
 }
