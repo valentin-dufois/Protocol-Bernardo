@@ -105,6 +105,8 @@ public:
 	/// @param target The rawbody to use
 	std::pair<Body *, SCALAR> getClosestBodyFrom(const Skeleton * target);
 
+	~TrackingEngine();
+
 private:
 
 	// MARK: - Properties

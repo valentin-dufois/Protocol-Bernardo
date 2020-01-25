@@ -322,6 +322,14 @@ std::pair<Body *, SCALAR> TrackingEngine::getClosestBodyFrom(const Skeleton * ta
 	return bodiesDistance.size() > 0 ? bodiesDistance[0] : std::pair<Body *, SCALAR>(nullptr, 0);
 }
 
+TrackingEngine::~TrackingEngine() {
+	clearBuffer();
+
+	for(auto it = _bodies.begin(); it != _bodies.end();) {
+		delete it->second;
+	}
+}
+
 
 void TrackingEngine::removeRawBodyReference(const RawBody * rawbody) {
 	Body * body = getBodyFor(rawbody);

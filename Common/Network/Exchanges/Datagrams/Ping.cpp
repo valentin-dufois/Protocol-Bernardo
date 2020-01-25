@@ -31,6 +31,8 @@ void Ping::ping(Socket * socket) {
 
 	LOG_DEBUG("Sending a ping to " + socket->getRemote().ip);
 	socket->send(datagram);
+	
+	datagram->clear_data();
 }
 
 void Ping::
@@ -44,6 +46,8 @@ onPing(protobuf::Any * data, Socket * socket) {
 	datagram->set_allocated_data(new protobuf::Any(*data));
 
 	socket->send(datagram);
+
+	datagram->clear_data();
 }
 
 void Ping::onPong(protobuf::Any * data, Socket * socket) {

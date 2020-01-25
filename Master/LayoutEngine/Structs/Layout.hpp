@@ -26,9 +26,6 @@ struct Layout {
 	/// The devices in the layout
 	std::vector<Device *> devices;
 
-	/// The screens in the layout
-	std::vector<Screen *> screens;
-
 	/// The decorations in the layout, such as walls
 //	std::vector<Decoration *> decorations;
 
@@ -39,10 +36,6 @@ struct Layout {
 
 		for(int i = 0; i < message->devices_size(); ++i) {
 			devices.push_back(new Device(message->devices(i)));
-		}
-
-		for(int i = 0; i < message->screens_size(); ++i) {
-			screens.push_back(new Screen(message->screens(i)));
 		}
 
 		message->Clear();
@@ -60,15 +53,15 @@ struct Layout {
 			devicesMessages.push_back(*device);
 		}
 
-		std::vector<network::messages::Screen> screensMessages;
-		for(Screen * screen: screens) {
-			screensMessages.push_back(*screen);
-		}
-
 		*message.mutable_devices() = { devicesMessages.begin(), devicesMessages.end() };
-		*message.mutable_screens() = { screensMessages.begin(), screensMessages.end() };
 
 		return message;
+	}
+
+	~Layout() {
+		for(auto it = devices.begin(); it < devices.end(); ++it) {
+			delete *it;
+		}
 	}
 };
 
