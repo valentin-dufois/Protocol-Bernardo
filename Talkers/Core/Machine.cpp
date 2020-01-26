@@ -23,7 +23,7 @@ Message * Machine::onMessage(Message * message) {
 		return nullptr;
 
 	// Remember the message
-	_receptionHistory.push_back(message->caption);
+	storeCaption(message->caption);
 
 	if(message->isTreeEnd && _tree != nullptr) {
 		delete _tree;
@@ -40,14 +40,14 @@ Message * Machine::onMessage(Message * message) {
 
 	// Do we have a valid behaviour ?
 	if(behaviour == nullptr) {
-		onError();
+		onError("Invalid behaviour ID : " + std::to_string(message->behaviour));
 		return nullptr;
 	}
 
 	if(behaviour->isTreeStart) {
 		if(_tree != nullptr && !behaviour->forceStart) {
 			delete behaviour;
-			onError();
+			onError("Behaviour " + std::to_string(behaviour->id) + " is not marked as tree start but a tree is already present.");
 			return nullptr;
 		}
 
@@ -59,13 +59,13 @@ Message * Machine::onMessage(Message * message) {
 
 	if(!behaviour->importMessage(message)) {
 		delete behaviour;
-		onError();
+		onError("Error while importing message on behaviour " + std::to_string(behaviour->id));
 		return nullptr;
 	}
 
 	if(!behaviour->execute(this)) {
 		delete behaviour;
-		onError();
+		onError("Error while executing behaviour " + std::to_string(behaviour->id));
 		return nullptr;
 	}
 
@@ -79,42 +79,47 @@ Message * Machine::onMessage(Message * message) {
 	
 	Message * outMessage = output->getMessage();
 
-	// Print the message and pause the thread as needed
-	print(outMessage->caption, output->getDelay());
-
 	if(output->isTreeEnd) {
 		delete _tree;
 		_tree = nullptr;
 	}
 
+	// Send the message and pause the thread as needed
+	saySomething(outMessage->caption, output->getDelay());
+
 	delete output;
 
-	// Send the message
+	// Return the message so it can be sent to the other machine
 	return outMessage;
 }
 
-void Machine::onSay(const std::string &caption) {
+void Machine::storeCaption(const std::string &caption) {
 	_receptionHistory.push_back(caption);
 }
 
-void Machine::print(const std::string &caption, const double &aDelay) {
+void Machine::saySomething(const std::string &caption, const double &aDelay) {
 	// Pause the thread if needed
 	std::chrono::duration<double, std::ratio<1>> delay(aDelay);
 	std::this_thread::sleep_for(delay);
 
 	std::cout << "[" << label << "] " << caption << std::endl;
+
 	delegate->machineSaysSomething(this, caption);
 }
 
-void Machine::fillInMessage(messages::Talkers * message) {
+messages::Talkers Machine::getOutputMessage() {
+	messages::Talkers message;
+
 	// Set label
-	message->set_label(this->label);
+	message.set_label(this->label);
 
 	// Add the machine state
-	message->set_bodycount((int)_arena->count());
-	message->set_averageactivity(_arena->averageMoveSpeed());
-	message->set_maximumactivity( std::get<1>(_arena->mostActiveBody()));
-	message->set_tree(_tree != nullptr);
+	message.set_bodycount((int)_arena->count());
+	message.set_averageactivity(_arena->averageMoveSpeed());
+	message.set_maximumactivity( std::get<1>(_arena->mostActiveBody()));
+	message.set_tree(_tree != nullptr);
+
+	return message;
 }
 
 // MARK: - Manual getters
@@ -211,6 +216,8 @@ bool Machine::executeWatchers() {
 
 // MARK: - Properties
 
-void Machine::onError() {
-	print("*** Error");
+void Machine::onError(const std::string &desc) {
+	std::cout << "[" << label << "] " << "*** Error";
+	std::cout << "[" << label << "] " << desc;
+	std::cout << "[" << label << "] " << "*********";
 }

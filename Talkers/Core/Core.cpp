@@ -10,19 +10,18 @@
 
 #include "Core.hpp"
 #include "../Behaviours/Message.hpp"
-
+#include "../../Common/Utils/thread.hpp"
 
 void Core::init() {
+	pb::thread::setName("prisme.talkers.main");
 
 	// MARK: Network
-	_PBReceiver.addObserver(this);
 	_PBReceiver.open();
 
 	_receiversServer.setEmissionFormat(pb::network::SocketFormat::json);
 	_receiversServer.open();
 
 	// MARK: Machines
-
 	_machineA.label = "A";
 	_machineB.label = "B";
 
@@ -39,9 +38,15 @@ void Core::run() {
 #ifdef DEBUG
 	//  manualStart();
 #endif
-	
+
+	// Start the watchers thread
+	_watchersThread = new std::thread(&Core::watchersThread, this);
+
+	// Start our main loop
 	do {
 		std::unique_lock<std::mutex> lk(_talkMutex);
+
+		// Wait here until there is a message to send
 		_cv.wait(lk, [&]{ return _nextMessage != nullptr; });
 
 		talk();
@@ -90,10 +95,9 @@ void Core::talk() {
 		_nextMessage = message;
 
 		// Switch current machine;
-		if(_currentMachine == &_machineB)
-			_currentMachine = &_machineA;
-		else
-			_currentMachine = &_machineB;
+		_currentMachine = _currentMachine == &_machineB
+			? &_machineA
+			: &_machineB;
 
 	} while (_nextMessage != nullptr);
 }
@@ -107,35 +111,22 @@ Core::~Core() {
 }
 
 
-// MARK: - Receiver Delegate
-
-void Core::receiverDidConnect(pb::network::PBReceiver *) {
-
-}
-
-void Core::receiverDidUpdate(pb::network::PBReceiver *) {
-	// Execute watchers on machine A, if no events are triggered, execute the watchers on machine B
-	if(!_machineA.executeWatchers())
-		_machineB.executeWatchers();
-}
-
-void Core::receiverDidClose(pb::network::PBReceiver *) {
-
-}
-
-
 // MARK: - Machine Delegate
 
-void Core::machineSaysSomething(Machine * machine, const std::string &caption) {
-	if(machine->label == "A")
-		_machineB.onSay(caption);
+void Core::machineSaysSomething(Machine * aMachine, const std::string &caption) {
+	if(aMachine->label == "A")
+		_machineB.storeCaption(caption);
 	else
-		_machineA.onSay(caption);
+		_machineA.storeCaption(caption);
 
-	Message message;
-	message.caption = caption;
-	message.behaviour = -1;
-	send(&message);
+	messages::Talkers machineMessage = aMachine->getOutputMessage();
+
+	// Fill in message content
+	machineMessage.set_type("caption");
+	machineMessage.set_caption(caption);
+
+	// Send
+	_receiversServer.sendToAll(&machineMessage);
 }
 
 void Core::machineExecuteEvent(Machine * aMachine, const Event &event) {
@@ -144,43 +135,39 @@ void Core::machineExecuteEvent(Machine * aMachine, const Event &event) {
 	message->values = event.values;
 	message->isTreeEnd = false;
 
-	_talkMutex.lock();
-
 	_currentMachine = aMachine;
 	_nextMessage = message;
 
-	_talkMutex.unlock();
-
 	// Send the event
-	send(event, aMachine);
-
-	_cv.notify_all();
-}
-
-void Core::send(Message * message) {
-	messages::Talkers machineMessage;
-
-	// Fill in message content
-	machineMessage.set_type("caption");
-	machineMessage.set_caption(message->caption);
-
-	// Add the machine state
-	_currentMachine->fillInMessage(&machineMessage);
-
-	// send
-	_receiversServer.sendToAll(&machineMessage);
-}
-
-void Core::send(const Event &event, Machine * aMachine) {
-	messages::Talkers machineMessage;
+	messages::Talkers machineMessage = aMachine->getOutputMessage();
 
 	// Fill in message content
 	machineMessage.set_type("event");
 	machineMessage.set_event(event.name);
 
-	// Add the machine state
-	aMachine->fillInMessage(&machineMessage);
-
-	// send
 	_receiversServer.sendToAll(&machineMessage);
+
+	_cv.notify_all();
+}
+
+void Core::watchersThread() {
+	pb::thread::setName("prisme.talkers.watchers");
+
+	while (_isRunning) {
+		std::chrono::system_clock::time_point startTime = std::chrono::system_clock::now();
+
+		// Execute the watchers on each machine alternatively
+		if(_lastChecked == "B") {
+			_machineA.executeWatchers();
+			_lastChecked = "A";
+			return;
+		} else {
+			_machineB.executeWatchers();
+			_lastChecked = "B";
+		}
+
+		std::chrono::system_clock::time_point endTime = std::chrono::system_clock::now();
+
+		pb::thread::cadence(endTime - startTime, 8);
+	}
 }

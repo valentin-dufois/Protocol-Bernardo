@@ -59,6 +59,7 @@ message Datagram {
 		CALIBRATION_VALUES  = 221;	// Calibration values for the current set
 
 		TRACKED_BODIES		= 250;	// List of all tracked bodies
+		PARTIAL_BODY		= 255; 	// A Partial body
 
 		// 3XX: Broadcaster types -
 	}

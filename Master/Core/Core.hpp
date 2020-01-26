@@ -11,6 +11,7 @@
 #include "Network/NetworkManager.hpp"
 #include "../LayoutEngine/LayoutEngine.hpp"
 #include "../TrackingEngine/TrackingEngine.hpp"
+#include "../TrackingEngine/TrackingEngineDelegate.hpp"
 
 #include "../../Common/Network.hpp"
 
@@ -19,7 +20,7 @@ struct RawBody;
 
 namespace master {
 
-class Core {
+class Core: public TrackingEngineDelegate {
 public:
 	void init();
 
@@ -34,8 +35,13 @@ private:
 
 	TrackingEngine _trackingEngine;
 
-	// Events
-	void onTrack(const std::map<pb::bodyUID, Body *> &bodies);
+	// MARK: TrackingEngineDelegate
+
+	void trackingEngineUpdatedBody(TrackingEngine *, Body *);
+
+	void trackingEngineFinishedCycle(TrackingEngine *);
+
+	std::vector<messages::PartialBody *> _partialBodies;
 };
 
 } /* ::master */

@@ -21,7 +21,7 @@ std::vector<Body *> Arena::getSubset() const {
 	_mutex->lock();
 
 	for(std::pair<bodyUID, Body *> pair: *_bodies) {
-		if(_bounds.fit(pair.second->skeleton()->centerOfMass))
+		if(fitBody(pair.second))
 			bodies.push_back(pair.second);
 	}
 
@@ -31,15 +31,37 @@ std::vector<Body *> Arena::getSubset() const {
 }
 
 Body * Arena::getBody(const bodyUID &uid) const {
-	if(_bodies->find(uid) == _bodies->end())
+	_mutex->lock();
+
+	if(_bodies->find(uid) == _bodies->end()) {
+		_mutex->unlock();
 		return nullptr;
+	}
 
 	Body * body = _bodies->at(uid);
 
-	if(_bounds.fit(body->skeleton()->centerOfMass))
+	if(fitBody(body)) {
+		_mutex->unlock();
 		return body;
+	}
 
+	_mutex->unlock();
 	return nullptr;
+}
+
+bool Arena::fitBody(const Body * body) const {
+	if(_devices.size() == 0)
+		return true; // An empty list of devices UID means all are accepted
+
+	// For all the devicesUID this body has
+	for(pb::deviceUID deviceUID: body->devicesUID) {
+		if(std::find(_devices.begin(), _devices.end(), deviceUID) != _devices.end())
+			// The deviceUID is part of this arena, the body fit
+			return true;
+	}
+
+	// The body doesnt fit
+	return false;
 }
 
 double Arena::averageMoveSpeed() const {

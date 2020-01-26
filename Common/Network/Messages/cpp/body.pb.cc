@@ -14,8 +14,6 @@
 #include <google/protobuf/wire_format.h>
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
-extern PROTOBUF_INTERNAL_EXPORT_body_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_Body_body_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_layout_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_CalibrationValues_layout_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_body_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<2> scc_info_Joint_body_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_body_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_RawBody_body_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_body_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<2> scc_info_Skeleton_body_2eproto;
@@ -40,32 +38,13 @@ class RawBodiesDefaultTypeInternal {
  public:
   ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<RawBodies> _instance;
 } _RawBodies_default_instance_;
-class BodyDefaultTypeInternal {
+class PartialBodyDefaultTypeInternal {
  public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Body> _instance;
-} _Body_default_instance_;
-class TrackedBodiesDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<TrackedBodies> _instance;
-} _TrackedBodies_default_instance_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<PartialBody> _instance;
+} _PartialBody_default_instance_;
 }  // namespace messages
 }  // namespace network
 }  // namespace pb
-static void InitDefaultsscc_info_Body_body_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::pb::network::messages::_Body_default_instance_;
-    new (ptr) ::pb::network::messages::Body();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::pb::network::messages::Body::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_Body_body_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_Body_body_2eproto}, {
-      &scc_info_Skeleton_body_2eproto.base,}};
-
 static void InitDefaultsscc_info_Joint_body_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
@@ -81,6 +60,21 @@ static void InitDefaultsscc_info_Joint_body_2eproto() {
     {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 2, 0, InitDefaultsscc_info_Joint_body_2eproto}, {
       &scc_info_vec3_maths_2eproto.base,
       &scc_info_vec2_maths_2eproto.base,}};
+
+static void InitDefaultsscc_info_PartialBody_body_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::pb::network::messages::_PartialBody_default_instance_;
+    new (ptr) ::pb::network::messages::PartialBody();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::pb::network::messages::PartialBody::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_PartialBody_body_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_PartialBody_body_2eproto}, {
+      &scc_info_Skeleton_body_2eproto.base,}};
 
 static void InitDefaultsscc_info_RawBodies_body_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
@@ -128,23 +122,7 @@ static void InitDefaultsscc_info_Skeleton_body_2eproto() {
       &scc_info_Joint_body_2eproto.base,
       &scc_info_vec3_maths_2eproto.base,}};
 
-static void InitDefaultsscc_info_TrackedBodies_body_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::pb::network::messages::_TrackedBodies_default_instance_;
-    new (ptr) ::pb::network::messages::TrackedBodies();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::pb::network::messages::TrackedBodies::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<2> scc_info_TrackedBodies_body_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 2, 0, InitDefaultsscc_info_TrackedBodies_body_2eproto}, {
-      &scc_info_Body_body_2eproto.base,
-      &scc_info_CalibrationValues_layout_2eproto.base,}};
-
-static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_body_2eproto[6];
+static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_body_2eproto[5];
 static const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* file_level_enum_descriptors_body_2eproto[1];
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_body_2eproto = nullptr;
 
@@ -182,29 +160,22 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_body_2eproto::offsets[] PROTOB
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::pb::network::messages::RawBodies, rawbodies_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::pb::network::messages::Body, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::pb::network::messages::PartialBody, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::pb::network::messages::Body, uid_),
-  PROTOBUF_FIELD_OFFSET(::pb::network::messages::Body, isvalid_),
-  PROTOBUF_FIELD_OFFSET(::pb::network::messages::Body, frame_),
-  PROTOBUF_FIELD_OFFSET(::pb::network::messages::Body, skeletons_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::pb::network::messages::TrackedBodies, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::pb::network::messages::TrackedBodies, bodies_),
-  PROTOBUF_FIELD_OFFSET(::pb::network::messages::TrackedBodies, calibrationvalues_),
+  PROTOBUF_FIELD_OFFSET(::pb::network::messages::PartialBody, uid_),
+  PROTOBUF_FIELD_OFFSET(::pb::network::messages::PartialBody, frame_),
+  PROTOBUF_FIELD_OFFSET(::pb::network::messages::PartialBody, isvalid_),
+  PROTOBUF_FIELD_OFFSET(::pb::network::messages::PartialBody, devicesuid_),
+  PROTOBUF_FIELD_OFFSET(::pb::network::messages::PartialBody, skeleton_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(::pb::network::messages::Joint)},
   { 10, -1, sizeof(::pb::network::messages::Skeleton)},
   { 17, -1, sizeof(::pb::network::messages::RawBody)},
   { 26, -1, sizeof(::pb::network::messages::RawBodies)},
-  { 32, -1, sizeof(::pb::network::messages::Body)},
-  { 41, -1, sizeof(::pb::network::messages::TrackedBodies)},
+  { 32, -1, sizeof(::pb::network::messages::PartialBody)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -212,8 +183,7 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::pb::network::messages::_Skeleton_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::pb::network::messages::_RawBody_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::pb::network::messages::_RawBodies_default_instance_),
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::pb::network::messages::_Body_default_instance_),
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::pb::network::messages::_TrackedBodies_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::pb::network::messages::_PartialBody_default_instance_),
 };
 
 const char descriptor_table_protodef_body_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -233,33 +203,30 @@ const char descriptor_table_protodef_body_2eproto[] PROTOBUF_SECTION_VARIABLE(pr
   "\n\005State\022\t\n\005error\020\000\022\016\n\nnoSkeleton\020\001\022\017\n\013ca"
   "librating\020\002\022\013\n\007tracked\020\003\022\013\n\007missing\020\004\022\010\n"
   "\004lost\020\005\"<\n\tRawBodies\022/\n\trawBodies\030\001 \003(\0132"
-  "\034.pb.network.messages.RawBody\"e\n\004Body\022\013\n"
-  "\003uid\030\001 \001(\t\022\017\n\007isValid\030\002 \001(\010\022\r\n\005frame\030\005 \001"
-  "(\r\0220\n\tskeletons\030\n \003(\0132\035.pb.network.messa"
-  "ges.Skeleton\"}\n\rTrackedBodies\022)\n\006bodies\030"
-  "\n \003(\0132\031.pb.network.messages.Body\022A\n\021cali"
-  "brationValues\030\024 \001(\0132&.pb.network.message"
-  "s.CalibrationValuesb\006proto3"
+  "\034.pb.network.messages.RawBody\"\177\n\013Partial"
+  "Body\022\013\n\003uid\030\001 \001(\t\022\r\n\005frame\030\002 \001(\r\022\017\n\007isVa"
+  "lid\030\003 \001(\010\022\022\n\ndevicesUID\030\005 \003(\t\022/\n\010skeleto"
+  "n\030\n \001(\0132\035.pb.network.messages.Skeletonb\006"
+  "proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_body_2eproto_deps[2] = {
   &::descriptor_table_layout_2eproto,
   &::descriptor_table_maths_2eproto,
 };
-static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_body_2eproto_sccs[6] = {
-  &scc_info_Body_body_2eproto.base,
+static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_body_2eproto_sccs[5] = {
   &scc_info_Joint_body_2eproto.base,
+  &scc_info_PartialBody_body_2eproto.base,
   &scc_info_RawBodies_body_2eproto.base,
   &scc_info_RawBody_body_2eproto.base,
   &scc_info_Skeleton_body_2eproto.base,
-  &scc_info_TrackedBodies_body_2eproto.base,
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_body_2eproto_once;
 static bool descriptor_table_body_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_body_2eproto = {
-  &descriptor_table_body_2eproto_initialized, descriptor_table_protodef_body_2eproto, "body.proto", 907,
-  &descriptor_table_body_2eproto_once, descriptor_table_body_2eproto_sccs, descriptor_table_body_2eproto_deps, 6, 2,
+  &descriptor_table_body_2eproto_initialized, descriptor_table_protodef_body_2eproto, "body.proto", 806,
+  &descriptor_table_body_2eproto_once, descriptor_table_body_2eproto_sccs, descriptor_table_body_2eproto_deps, 5, 2,
   schemas, file_default_instances, TableStruct_body_2eproto::offsets,
-  file_level_metadata_body_2eproto, 6, file_level_enum_descriptors_body_2eproto, file_level_service_descriptors_body_2eproto,
+  file_level_metadata_body_2eproto, 5, file_level_enum_descriptors_body_2eproto, file_level_service_descriptors_body_2eproto,
 };
 
 // Force running AddDescriptors() at dynamic initialization time.
@@ -1391,73 +1358,90 @@ void RawBodies::InternalSwap(RawBodies* other) {
 
 // ===================================================================
 
-void Body::InitAsDefaultInstance() {
+void PartialBody::InitAsDefaultInstance() {
+  ::pb::network::messages::_PartialBody_default_instance_._instance.get_mutable()->skeleton_ = const_cast< ::pb::network::messages::Skeleton*>(
+      ::pb::network::messages::Skeleton::internal_default_instance());
 }
-class Body::_Internal {
+class PartialBody::_Internal {
  public:
+  static const ::pb::network::messages::Skeleton& skeleton(const PartialBody* msg);
 };
 
-Body::Body()
+const ::pb::network::messages::Skeleton&
+PartialBody::_Internal::skeleton(const PartialBody* msg) {
+  return *msg->skeleton_;
+}
+PartialBody::PartialBody()
   : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:pb.network.messages.Body)
+  // @@protoc_insertion_point(constructor:pb.network.messages.PartialBody)
 }
-Body::Body(const Body& from)
+PartialBody::PartialBody(const PartialBody& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
       _internal_metadata_(nullptr),
-      skeletons_(from.skeletons_) {
+      devicesuid_(from.devicesuid_) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   uid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_uid().empty()) {
     uid_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.uid_);
   }
-  ::memcpy(&isvalid_, &from.isvalid_,
-    static_cast<size_t>(reinterpret_cast<char*>(&frame_) -
-    reinterpret_cast<char*>(&isvalid_)) + sizeof(frame_));
-  // @@protoc_insertion_point(copy_constructor:pb.network.messages.Body)
+  if (from._internal_has_skeleton()) {
+    skeleton_ = new ::pb::network::messages::Skeleton(*from.skeleton_);
+  } else {
+    skeleton_ = nullptr;
+  }
+  ::memcpy(&frame_, &from.frame_,
+    static_cast<size_t>(reinterpret_cast<char*>(&isvalid_) -
+    reinterpret_cast<char*>(&frame_)) + sizeof(isvalid_));
+  // @@protoc_insertion_point(copy_constructor:pb.network.messages.PartialBody)
 }
 
-void Body::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_Body_body_2eproto.base);
+void PartialBody::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_PartialBody_body_2eproto.base);
   uid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  ::memset(&isvalid_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&frame_) -
-      reinterpret_cast<char*>(&isvalid_)) + sizeof(frame_));
+  ::memset(&skeleton_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&isvalid_) -
+      reinterpret_cast<char*>(&skeleton_)) + sizeof(isvalid_));
 }
 
-Body::~Body() {
-  // @@protoc_insertion_point(destructor:pb.network.messages.Body)
+PartialBody::~PartialBody() {
+  // @@protoc_insertion_point(destructor:pb.network.messages.PartialBody)
   SharedDtor();
 }
 
-void Body::SharedDtor() {
+void PartialBody::SharedDtor() {
   uid_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (this != internal_default_instance()) delete skeleton_;
 }
 
-void Body::SetCachedSize(int size) const {
+void PartialBody::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const Body& Body::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_Body_body_2eproto.base);
+const PartialBody& PartialBody::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_PartialBody_body_2eproto.base);
   return *internal_default_instance();
 }
 
 
-void Body::Clear() {
-// @@protoc_insertion_point(message_clear_start:pb.network.messages.Body)
+void PartialBody::Clear() {
+// @@protoc_insertion_point(message_clear_start:pb.network.messages.PartialBody)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  skeletons_.Clear();
+  devicesuid_.Clear();
   uid_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  ::memset(&isvalid_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&frame_) -
-      reinterpret_cast<char*>(&isvalid_)) + sizeof(frame_));
+  if (GetArenaNoVirtual() == nullptr && skeleton_ != nullptr) {
+    delete skeleton_;
+  }
+  skeleton_ = nullptr;
+  ::memset(&frame_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&isvalid_) -
+      reinterpret_cast<char*>(&frame_)) + sizeof(isvalid_));
   _internal_metadata_.Clear();
 }
 
-const char* Body::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+const char* PartialBody::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
     ::PROTOBUF_NAMESPACE_ID::uint32 tag;
@@ -1469,34 +1453,43 @@ const char* Body::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::inter
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
           auto str = _internal_mutable_uid();
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "pb.network.messages.Body.uid"));
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "pb.network.messages.PartialBody.uid"));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // bool isValid = 2;
+      // uint32 frame = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
-          isvalid_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      // uint32 frame = 5;
-      case 5:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 40)) {
           frame_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // repeated .pb.network.messages.Skeleton skeletons = 10;
-      case 10:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 82)) {
+      // bool isValid = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
+          isvalid_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // repeated string devicesUID = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 42)) {
           ptr -= 1;
           do {
             ptr += 1;
-            ptr = ctx->ParseMessage(_internal_add_skeletons(), ptr);
+            auto str = _internal_add_devicesuid();
+            ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+            CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "pb.network.messages.PartialBody.devicesUID"));
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
-          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<82>(ptr));
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<42>(ptr));
+        } else goto handle_unusual;
+        continue;
+      // .pb.network.messages.Skeleton skeleton = 10;
+      case 10:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 82)) {
+          ptr = ctx->ParseMessage(_internal_mutable_skeleton(), ptr);
+          CHK_(ptr);
         } else goto handle_unusual;
         continue;
       default: {
@@ -1519,9 +1512,9 @@ failure:
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* Body::_InternalSerialize(
+::PROTOBUF_NAMESPACE_ID::uint8* PartialBody::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:pb.network.messages.Body)
+  // @@protoc_insertion_point(serialize_to_array_start:pb.network.messages.PartialBody)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -1530,52 +1523,63 @@ failure:
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_uid().data(), static_cast<int>(this->_internal_uid().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "pb.network.messages.Body.uid");
+      "pb.network.messages.PartialBody.uid");
     target = stream->WriteStringMaybeAliased(
         1, this->_internal_uid(), target);
   }
 
-  // bool isValid = 2;
-  if (this->isvalid() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(2, this->_internal_isvalid(), target);
-  }
-
-  // uint32 frame = 5;
+  // uint32 frame = 2;
   if (this->frame() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(5, this->_internal_frame(), target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(2, this->_internal_frame(), target);
   }
 
-  // repeated .pb.network.messages.Skeleton skeletons = 10;
-  for (unsigned int i = 0,
-      n = static_cast<unsigned int>(this->_internal_skeletons_size()); i < n; i++) {
+  // bool isValid = 3;
+  if (this->isvalid() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(3, this->_internal_isvalid(), target);
+  }
+
+  // repeated string devicesUID = 5;
+  for (int i = 0, n = this->_internal_devicesuid_size(); i < n; i++) {
+    const auto& s = this->_internal_devicesuid(i);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      s.data(), static_cast<int>(s.length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "pb.network.messages.PartialBody.devicesUID");
+    target = stream->WriteString(5, s, target);
+  }
+
+  // .pb.network.messages.Skeleton skeleton = 10;
+  if (this->has_skeleton()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(10, this->_internal_skeletons(i), target, stream);
+      InternalWriteMessage(
+        10, _Internal::skeleton(this), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:pb.network.messages.Body)
+  // @@protoc_insertion_point(serialize_to_array_end:pb.network.messages.PartialBody)
   return target;
 }
 
-size_t Body::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:pb.network.messages.Body)
+size_t PartialBody::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:pb.network.messages.PartialBody)
   size_t total_size = 0;
 
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // repeated .pb.network.messages.Skeleton skeletons = 10;
-  total_size += 1UL * this->_internal_skeletons_size();
-  for (const auto& msg : this->skeletons_) {
-    total_size +=
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  // repeated string devicesUID = 5;
+  total_size += 1 *
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(devicesuid_.size());
+  for (int i = 0, n = devicesuid_.size(); i < n; i++) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+      devicesuid_.Get(i));
   }
 
   // string uid = 1;
@@ -1585,18 +1589,25 @@ size_t Body::ByteSizeLong() const {
         this->_internal_uid());
   }
 
-  // bool isValid = 2;
-  if (this->isvalid() != 0) {
-    total_size += 1 + 1;
+  // .pb.network.messages.Skeleton skeleton = 10;
+  if (this->has_skeleton()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *skeleton_);
   }
 
-  // uint32 frame = 5;
+  // uint32 frame = 2;
   if (this->frame() != 0) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32Size(
         this->_internal_frame());
   }
 
+  // bool isValid = 3;
+  if (this->isvalid() != 0) {
+    total_size += 1 + 1;
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
         _internal_metadata_, total_size, &_cached_size_);
@@ -1606,311 +1617,74 @@ size_t Body::ByteSizeLong() const {
   return total_size;
 }
 
-void Body::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:pb.network.messages.Body)
+void PartialBody::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:pb.network.messages.PartialBody)
   GOOGLE_DCHECK_NE(&from, this);
-  const Body* source =
-      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<Body>(
+  const PartialBody* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<PartialBody>(
           &from);
   if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:pb.network.messages.Body)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:pb.network.messages.PartialBody)
     ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:pb.network.messages.Body)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:pb.network.messages.PartialBody)
     MergeFrom(*source);
   }
 }
 
-void Body::MergeFrom(const Body& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:pb.network.messages.Body)
+void PartialBody::MergeFrom(const PartialBody& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:pb.network.messages.PartialBody)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  skeletons_.MergeFrom(from.skeletons_);
+  devicesuid_.MergeFrom(from.devicesuid_);
   if (from.uid().size() > 0) {
 
     uid_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.uid_);
   }
-  if (from.isvalid() != 0) {
-    _internal_set_isvalid(from._internal_isvalid());
+  if (from.has_skeleton()) {
+    _internal_mutable_skeleton()->::pb::network::messages::Skeleton::MergeFrom(from._internal_skeleton());
   }
   if (from.frame() != 0) {
     _internal_set_frame(from._internal_frame());
   }
+  if (from.isvalid() != 0) {
+    _internal_set_isvalid(from._internal_isvalid());
+  }
 }
 
-void Body::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:pb.network.messages.Body)
+void PartialBody::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:pb.network.messages.PartialBody)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-void Body::CopyFrom(const Body& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:pb.network.messages.Body)
+void PartialBody::CopyFrom(const PartialBody& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:pb.network.messages.PartialBody)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool Body::IsInitialized() const {
+bool PartialBody::IsInitialized() const {
   return true;
 }
 
-void Body::InternalSwap(Body* other) {
+void PartialBody::InternalSwap(PartialBody* other) {
   using std::swap;
   _internal_metadata_.Swap(&other->_internal_metadata_);
-  skeletons_.InternalSwap(&other->skeletons_);
+  devicesuid_.InternalSwap(&other->devicesuid_);
   uid_.Swap(&other->uid_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
     GetArenaNoVirtual());
-  swap(isvalid_, other->isvalid_);
+  swap(skeleton_, other->skeleton_);
   swap(frame_, other->frame_);
+  swap(isvalid_, other->isvalid_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata Body::GetMetadata() const {
-  return GetMetadataStatic();
-}
-
-
-// ===================================================================
-
-void TrackedBodies::InitAsDefaultInstance() {
-  ::pb::network::messages::_TrackedBodies_default_instance_._instance.get_mutable()->calibrationvalues_ = const_cast< ::pb::network::messages::CalibrationValues*>(
-      ::pb::network::messages::CalibrationValues::internal_default_instance());
-}
-class TrackedBodies::_Internal {
- public:
-  static const ::pb::network::messages::CalibrationValues& calibrationvalues(const TrackedBodies* msg);
-};
-
-const ::pb::network::messages::CalibrationValues&
-TrackedBodies::_Internal::calibrationvalues(const TrackedBodies* msg) {
-  return *msg->calibrationvalues_;
-}
-void TrackedBodies::clear_calibrationvalues() {
-  if (GetArenaNoVirtual() == nullptr && calibrationvalues_ != nullptr) {
-    delete calibrationvalues_;
-  }
-  calibrationvalues_ = nullptr;
-}
-TrackedBodies::TrackedBodies()
-  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
-  SharedCtor();
-  // @@protoc_insertion_point(constructor:pb.network.messages.TrackedBodies)
-}
-TrackedBodies::TrackedBodies(const TrackedBodies& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr),
-      bodies_(from.bodies_) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  if (from._internal_has_calibrationvalues()) {
-    calibrationvalues_ = new ::pb::network::messages::CalibrationValues(*from.calibrationvalues_);
-  } else {
-    calibrationvalues_ = nullptr;
-  }
-  // @@protoc_insertion_point(copy_constructor:pb.network.messages.TrackedBodies)
-}
-
-void TrackedBodies::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_TrackedBodies_body_2eproto.base);
-  calibrationvalues_ = nullptr;
-}
-
-TrackedBodies::~TrackedBodies() {
-  // @@protoc_insertion_point(destructor:pb.network.messages.TrackedBodies)
-  SharedDtor();
-}
-
-void TrackedBodies::SharedDtor() {
-  if (this != internal_default_instance()) delete calibrationvalues_;
-}
-
-void TrackedBodies::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
-}
-const TrackedBodies& TrackedBodies::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_TrackedBodies_body_2eproto.base);
-  return *internal_default_instance();
-}
-
-
-void TrackedBodies::Clear() {
-// @@protoc_insertion_point(message_clear_start:pb.network.messages.TrackedBodies)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  bodies_.Clear();
-  if (GetArenaNoVirtual() == nullptr && calibrationvalues_ != nullptr) {
-    delete calibrationvalues_;
-  }
-  calibrationvalues_ = nullptr;
-  _internal_metadata_.Clear();
-}
-
-const char* TrackedBodies::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
-    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
-    CHK_(ptr);
-    switch (tag >> 3) {
-      // repeated .pb.network.messages.Body bodies = 10;
-      case 10:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 82)) {
-          ptr -= 1;
-          do {
-            ptr += 1;
-            ptr = ctx->ParseMessage(_internal_add_bodies(), ptr);
-            CHK_(ptr);
-            if (!ctx->DataAvailable(ptr)) break;
-          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<82>(ptr));
-        } else goto handle_unusual;
-        continue;
-      // .pb.network.messages.CalibrationValues calibrationValues = 20;
-      case 20:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 162)) {
-          ptr = ctx->ParseMessage(_internal_mutable_calibrationvalues(), ptr);
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      default: {
-      handle_unusual:
-        if ((tag & 7) == 4 || tag == 0) {
-          ctx->SetLastTag(tag);
-          goto success;
-        }
-        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
-        CHK_(ptr != nullptr);
-        continue;
-      }
-    }  // switch
-  }  // while
-success:
-  return ptr;
-failure:
-  ptr = nullptr;
-  goto success;
-#undef CHK_
-}
-
-::PROTOBUF_NAMESPACE_ID::uint8* TrackedBodies::_InternalSerialize(
-    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:pb.network.messages.TrackedBodies)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // repeated .pb.network.messages.Body bodies = 10;
-  for (unsigned int i = 0,
-      n = static_cast<unsigned int>(this->_internal_bodies_size()); i < n; i++) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(10, this->_internal_bodies(i), target, stream);
-  }
-
-  // .pb.network.messages.CalibrationValues calibrationValues = 20;
-  if (this->has_calibrationvalues()) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(
-        20, _Internal::calibrationvalues(this), target, stream);
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target, stream);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:pb.network.messages.TrackedBodies)
-  return target;
-}
-
-size_t TrackedBodies::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:pb.network.messages.TrackedBodies)
-  size_t total_size = 0;
-
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  // repeated .pb.network.messages.Body bodies = 10;
-  total_size += 1UL * this->_internal_bodies_size();
-  for (const auto& msg : this->bodies_) {
-    total_size +=
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
-  }
-
-  // .pb.network.messages.CalibrationValues calibrationValues = 20;
-  if (this->has_calibrationvalues()) {
-    total_size += 2 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *calibrationvalues_);
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
-        _internal_metadata_, total_size, &_cached_size_);
-  }
-  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
-  SetCachedSize(cached_size);
-  return total_size;
-}
-
-void TrackedBodies::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:pb.network.messages.TrackedBodies)
-  GOOGLE_DCHECK_NE(&from, this);
-  const TrackedBodies* source =
-      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<TrackedBodies>(
-          &from);
-  if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:pb.network.messages.TrackedBodies)
-    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:pb.network.messages.TrackedBodies)
-    MergeFrom(*source);
-  }
-}
-
-void TrackedBodies::MergeFrom(const TrackedBodies& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:pb.network.messages.TrackedBodies)
-  GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  bodies_.MergeFrom(from.bodies_);
-  if (from.has_calibrationvalues()) {
-    _internal_mutable_calibrationvalues()->::pb::network::messages::CalibrationValues::MergeFrom(from._internal_calibrationvalues());
-  }
-}
-
-void TrackedBodies::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:pb.network.messages.TrackedBodies)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-void TrackedBodies::CopyFrom(const TrackedBodies& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:pb.network.messages.TrackedBodies)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool TrackedBodies::IsInitialized() const {
-  return true;
-}
-
-void TrackedBodies::InternalSwap(TrackedBodies* other) {
-  using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
-  bodies_.InternalSwap(&other->bodies_);
-  swap(calibrationvalues_, other->calibrationvalues_);
-}
-
-::PROTOBUF_NAMESPACE_ID::Metadata TrackedBodies::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata PartialBody::GetMetadata() const {
   return GetMetadataStatic();
 }
 
@@ -1932,11 +1706,8 @@ template<> PROTOBUF_NOINLINE ::pb::network::messages::RawBody* Arena::CreateMayb
 template<> PROTOBUF_NOINLINE ::pb::network::messages::RawBodies* Arena::CreateMaybeMessage< ::pb::network::messages::RawBodies >(Arena* arena) {
   return Arena::CreateInternal< ::pb::network::messages::RawBodies >(arena);
 }
-template<> PROTOBUF_NOINLINE ::pb::network::messages::Body* Arena::CreateMaybeMessage< ::pb::network::messages::Body >(Arena* arena) {
-  return Arena::CreateInternal< ::pb::network::messages::Body >(arena);
-}
-template<> PROTOBUF_NOINLINE ::pb::network::messages::TrackedBodies* Arena::CreateMaybeMessage< ::pb::network::messages::TrackedBodies >(Arena* arena) {
-  return Arena::CreateInternal< ::pb::network::messages::TrackedBodies >(arena);
+template<> PROTOBUF_NOINLINE ::pb::network::messages::PartialBody* Arena::CreateMaybeMessage< ::pb::network::messages::PartialBody >(Arena* arena) {
+  return Arena::CreateInternal< ::pb::network::messages::PartialBody >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

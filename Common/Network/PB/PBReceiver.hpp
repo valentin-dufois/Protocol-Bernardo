@@ -88,54 +88,66 @@ public:
 	}
 
 	inline virtual void socketDidReceive(Socket *, messages::Datagram * datagram) override {
-		if(datagram->type() != messages::Datagram_Type_TRACKED_BODIES) {
+		if(datagram->type() != messages::Datagram_Type_PARTIAL_BODY) {
 			// Discard
 			delete datagram;
 			return;
 		}
 
 		// Unpack the datagram
-		messages::TrackedBodies trackedBodies = messages::TrackedBodies();
-		datagram->data().UnpackTo(&trackedBodies);
+		messages::PartialBody partialBody = messages::PartialBody();
+		datagram->data().UnpackTo(&partialBody);
 
-		int bodiesCount = trackedBodies.bodies_size();
+		const pb::bodyUID bodyUID = partialBody.uid();
 
 		_arenaMutex.lock();
 
-		// Check for outdated bodies
-		for(auto it = _bodies.begin(); it != _bodies.end();) {
-			it->second->inactivityCount += 1;
+		// Do we have already a body for the current UID ?
+		if(_bodies.find(bodyUID) != _bodies.end()) {
+			// We already have this body.
+			// Check if body is valid
+			if(!partialBody.isvalid()) {
+				// Erase body
+				_bodies.erase(bodyUID);
+				datagram->Clear();
+				delete datagram;
 
-			if(it->second->inactivityCount > 30)
-				it = _bodies.erase(it);
-			else
-				++it;
+				_arenaMutex.lock();
+				return;
+			}
+
+			// Body is valid, merge the partial body in the body
+			*(_bodies[bodyUID]) << partialBody;
+
+			datagram->Clear();
+			delete datagram;
+
+			_arenaMutex.lock();
+			return;
 		}
 
-		// For each received body
-		for(int i = 0; i < bodiesCount; ++i) {
-			Body * body;
-			try {
-				body = new Body(trackedBodies.bodies(i));
-			} catch (std::runtime_error &e) {
-				continue;
-			}
+		// This looks like a new body, is it valid ?
+		if(!partialBody.isvalid()) {
+			// No, ignore
+			datagram->Clear();
+			delete datagram;
 
-			// Is there already a body with the same uid in the buffer ?
-			if(_bodies.find(body->uid) != _bodies.end()) {
-				// A body is already stored, free it
-				delete _bodies[body->uid];
-			}
-
-			if(!body->isValid) {
-				_bodies.erase(body->uid);
-				delete body;
-				continue;
-			}
-
-			// Store the body
-			_bodies[body->uid] = body;
+			_arenaMutex.lock();
+			return;
 		}
+
+		// Body is good, insert it
+		_bodies[bodyUID] = new Body(partialBody);
+
+//		// Check for outdated bodies
+//		for(auto it = _bodies.begin(); it != _bodies.end();) {
+//			it->second->inactivityCount += 1;
+//
+//			if(it->second->inactivityCount > 30)
+//				it = _bodies.erase(it);
+//			else
+//				++it;
+//		}
 
 		_arenaMutex.unlock();
 

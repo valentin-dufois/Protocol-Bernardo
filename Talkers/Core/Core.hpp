@@ -8,7 +8,9 @@
 #ifndef Core_hpp
 #define Core_hpp
 
+#include <thread>
 #include <mutex>
+#include <atomic>
 #include <condition_variable>
 
 #include "Machine.hpp"
@@ -18,8 +20,7 @@
 #include "../../Common/Network.hpp"
 #include "../../Common/Network/PB/PBReceiver.hpp"
 
-class Core: public pb::network::PBReceiverObserver,
-			public MachineDelegate {
+class Core: public MachineDelegate {
 	// MARK: - Lifecycle
 public:
 
@@ -46,14 +47,6 @@ public:
 
 	~Core();
 
-	// MARK: - PB Receiver Observer
-
-	virtual void receiverDidConnect(pb::network::PBReceiver *) override;
-
-	virtual void receiverDidUpdate(pb::network::PBReceiver *) override;
-
-	virtual void receiverDidClose(pb::network::PBReceiver *) override;
-
 	// MARK: - Machine Delegate
 
 	virtual void machineSaysSomething(Machine *, const std::string &caption) override;
@@ -63,7 +56,7 @@ public:
 	// MARK: - Properties
 private:
 
-	bool _isRunning = false;
+	std::atomic<bool> _isRunning = false;
 
 	Message * _nextMessage = nullptr;
 
@@ -74,9 +67,6 @@ private:
 
 	pb::network::Server _receiversServer;
 
-	void send(Message * message);
-	void send(const Event &event, Machine * aMachine);
-
 	// MARK: Machines
 
 	Machine _machineA = Machine(_PBReceiver.arena());
@@ -86,6 +76,12 @@ private:
 
 	std::mutex _talkMutex;
 	std::condition_variable _cv;
+
+	std::thread * _watchersThread = nullptr;
+
+	void watchersThread();
+
+	std::string _lastChecked = "B";
 };
 
 #endif /* Core_hpp */

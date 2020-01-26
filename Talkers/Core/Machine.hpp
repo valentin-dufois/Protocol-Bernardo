@@ -39,7 +39,7 @@ public:
 	Message * onMessage(Message * message);
 
 	/// Called when the other machine says something. does nothing excepts adding the caption to the reception history
-	void onSay(const std::string &caption);
+	void storeCaption(const std::string &caption);
 
 	// MARK: - Out
 
@@ -49,7 +49,7 @@ public:
 	///
 	/// @param caption The message to print on the screen
 	/// @param delay Delay before printing (in seconds)
-	void print(const std::string &caption, const double &delay = 0);
+	void saySomething(const std::string &caption, const double &delay = 0);
 
 	// MARK: - Data access
 
@@ -73,7 +73,7 @@ public:
 		return _bodyUIDHistory;
 	}
 
-	void fillInMessage(messages::Talkers * message);
+	messages::Talkers getOutputMessage();
 
 	// MARK: - Manual getters
 
@@ -98,7 +98,7 @@ private:
 	Tree * _tree = nullptr;
 
 	/// Escape road in case of an error
-	void onError();
+	void onError(const std::string &desc);
 
 	/// The arena this machine is watching
 	const pb::Arena * _arena;

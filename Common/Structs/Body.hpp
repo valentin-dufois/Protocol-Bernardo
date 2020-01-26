@@ -10,6 +10,7 @@
 
 #include <string>
 #include <list>
+#include <unordered_set>
 
 #include <boost/uuid/random_generator.hpp>
 #include <boost/uuid/uuid_io.hpp>
@@ -35,6 +36,9 @@ struct Body {
 	/// The skeletons for this user in the global coordinates space. The first one being the oldest one, and the last one the actual one
 	std::list<Skeleton *> skeletons;
 
+	/// UIDs of all the devices currently tracking this body
+	std::unordered_set<pb::deviceUID> devicesUID;
+
 	/// List of RawBody uid paired with their device UID pair from which this body is taking data from
 	std::map<pb::deviceUID, pb::rawBodyUID> rawBodiesUID;
 
@@ -46,8 +50,6 @@ struct Body {
 	/// As of 2019-11-27, an invalid body will always be removed on the next frame.
 	bool isValid = true;
 
-	unsigned int inactivityCount = 0;
-
 	// MARK: - Constructors
 
 	// Default constructor
@@ -57,18 +59,15 @@ struct Body {
 		uid = boost::uuids::to_string(boost::uuids::random_generator()());
 		rawBodiesUID[rawBody->deviceUID] = rawBody->uid;
 		rawSkeletons.push_back(new Skeleton(rawBody->skeleton));
+		devicesUID.insert(rawBody->deviceUID);
 	}
 
-	Body(const network::messages::Body &body) {
+	Body(const network::messages::PartialBody &body) {
 		uid = body.uid();
 		isValid = body.isvalid();
 		frame = body.frame();
-
-		unsigned int skeletonCount = body.skeletons_size();
-
-		for(unsigned int i = 0; i < skeletonCount; ++i) {
-			skeletons.push_back(new Skeleton(body.skeletons(i)));
-		}
+		devicesUID = {body.devicesuid().begin(), body.devicesuid().end()};
+		skeletons.push_back(new Skeleton(body.skeleton()));
 	}
 
 	~Body() {
@@ -87,20 +86,27 @@ struct Body {
 
 	// MARK: - Manipulations
 
-	/// Calculate the weighted mean of all the raw skeletons matching the current body
-	void updatePosition() {
+#ifdef PB_MASTER
 
+	/// How many cycles since the last time we received information on this body >?
+	unsigned int inactivityCount = 0;
+
+	/// Calculate the weighted mean of all the raw skeletons matching the current body
+	/// @returns True if the body has changed or false otherwise
+	bool updatePosition() {
 		if(!isValid)
-			return;
+			return false;
 
 		// Is there any rawSkeleton to work with ?
 		if(rawSkeletons.size() == 0) {
 			++inactivityCount;
 
-			if(inactivityCount > 15)
+			if(inactivityCount > 15) {
 				isValid = false;
+				return true;
+			}
 
-			return;
+			return false;
 		}
 
 		// Reset
@@ -131,7 +137,11 @@ struct Body {
 
 		// Clear the raw skeletons
 		clearRawSkeletons();
+
+		return true;
 	}
+
+#endif
 
 	void clearRawSkeletons() {
 		// Clear the rawSkeletons
@@ -145,18 +155,16 @@ struct Body {
 
 	// MARK: - Operators
 
-	operator network::messages::Body () const {
-		network::messages::Body message;
-		message.set_uid(uid);
-		message.set_isvalid(isValid);
-		message.set_frame(frame);
+	Body & operator<<(const network::messages::PartialBody &partialBody)  {
+		frame = partialBody.frame();
 
-		// Convert the skeletons
-		for(Skeleton * s: skeletons) {
-			message.mutable_skeletons()->AddAllocated(*s);
+		skeletons.push_back(new Skeleton(partialBody.skeleton()));
+
+		if(skeletons.size() > 2) {
+			skeletons.pop_front();
 		}
 
-		return message;
+		return *this;
 	}
 };
 

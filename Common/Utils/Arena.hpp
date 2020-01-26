@@ -55,6 +55,10 @@ public:
 	/// @param uid UID of the body to retrieve
 	Body * getBody(const bodyUID &uid) const;
 
+	/// Tell if the given body fits in the current Arena
+	/// @returns True if the bodyu fit, false otherwise
+	bool fitBody(const Body * body) const;
+
 	// MARK: - Intels
 
 	/// The average move speed of all the bodies in the arena in mm/s

@@ -50,7 +50,7 @@ struct TableStruct_body_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxillaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[6]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[5]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -60,12 +60,12 @@ extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table
 namespace pb {
 namespace network {
 namespace messages {
-class Body;
-class BodyDefaultTypeInternal;
-extern BodyDefaultTypeInternal _Body_default_instance_;
 class Joint;
 class JointDefaultTypeInternal;
 extern JointDefaultTypeInternal _Joint_default_instance_;
+class PartialBody;
+class PartialBodyDefaultTypeInternal;
+extern PartialBodyDefaultTypeInternal _PartialBody_default_instance_;
 class RawBodies;
 class RawBodiesDefaultTypeInternal;
 extern RawBodiesDefaultTypeInternal _RawBodies_default_instance_;
@@ -75,19 +75,15 @@ extern RawBodyDefaultTypeInternal _RawBody_default_instance_;
 class Skeleton;
 class SkeletonDefaultTypeInternal;
 extern SkeletonDefaultTypeInternal _Skeleton_default_instance_;
-class TrackedBodies;
-class TrackedBodiesDefaultTypeInternal;
-extern TrackedBodiesDefaultTypeInternal _TrackedBodies_default_instance_;
 }  // namespace messages
 }  // namespace network
 }  // namespace pb
 PROTOBUF_NAMESPACE_OPEN
-template<> ::pb::network::messages::Body* Arena::CreateMaybeMessage<::pb::network::messages::Body>(Arena*);
 template<> ::pb::network::messages::Joint* Arena::CreateMaybeMessage<::pb::network::messages::Joint>(Arena*);
+template<> ::pb::network::messages::PartialBody* Arena::CreateMaybeMessage<::pb::network::messages::PartialBody>(Arena*);
 template<> ::pb::network::messages::RawBodies* Arena::CreateMaybeMessage<::pb::network::messages::RawBodies>(Arena*);
 template<> ::pb::network::messages::RawBody* Arena::CreateMaybeMessage<::pb::network::messages::RawBody>(Arena*);
 template<> ::pb::network::messages::Skeleton* Arena::CreateMaybeMessage<::pb::network::messages::Skeleton>(Arena*);
-template<> ::pb::network::messages::TrackedBodies* Arena::CreateMaybeMessage<::pb::network::messages::TrackedBodies>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace pb {
 namespace network {
@@ -817,23 +813,23 @@ class RawBodies :
 };
 // -------------------------------------------------------------------
 
-class Body :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:pb.network.messages.Body) */ {
+class PartialBody :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:pb.network.messages.PartialBody) */ {
  public:
-  Body();
-  virtual ~Body();
+  PartialBody();
+  virtual ~PartialBody();
 
-  Body(const Body& from);
-  Body(Body&& from) noexcept
-    : Body() {
+  PartialBody(const PartialBody& from);
+  PartialBody(PartialBody&& from) noexcept
+    : PartialBody() {
     *this = ::std::move(from);
   }
 
-  inline Body& operator=(const Body& from) {
+  inline PartialBody& operator=(const PartialBody& from) {
     CopyFrom(from);
     return *this;
   }
-  inline Body& operator=(Body&& from) noexcept {
+  inline PartialBody& operator=(PartialBody&& from) noexcept {
     if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
       if (this != &from) InternalSwap(&from);
     } else {
@@ -851,37 +847,37 @@ class Body :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return GetMetadataStatic().reflection;
   }
-  static const Body& default_instance();
+  static const PartialBody& default_instance();
 
   static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
-  static inline const Body* internal_default_instance() {
-    return reinterpret_cast<const Body*>(
-               &_Body_default_instance_);
+  static inline const PartialBody* internal_default_instance() {
+    return reinterpret_cast<const PartialBody*>(
+               &_PartialBody_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     4;
 
-  friend void swap(Body& a, Body& b) {
+  friend void swap(PartialBody& a, PartialBody& b) {
     a.Swap(&b);
   }
-  inline void Swap(Body* other) {
+  inline void Swap(PartialBody* other) {
     if (other == this) return;
     InternalSwap(other);
   }
 
   // implements Message ----------------------------------------------
 
-  inline Body* New() const final {
-    return CreateMaybeMessage<Body>(nullptr);
+  inline PartialBody* New() const final {
+    return CreateMaybeMessage<PartialBody>(nullptr);
   }
 
-  Body* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<Body>(arena);
+  PartialBody* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<PartialBody>(arena);
   }
   void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
   void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void CopyFrom(const Body& from);
-  void MergeFrom(const Body& from);
+  void CopyFrom(const PartialBody& from);
+  void MergeFrom(const PartialBody& from);
   PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
   bool IsInitialized() const final;
 
@@ -895,10 +891,10 @@ class Body :
   inline void SharedCtor();
   inline void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(Body* other);
+  void InternalSwap(PartialBody* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "pb.network.messages.Body";
+    return "pb.network.messages.PartialBody";
   }
   private:
   inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
@@ -923,28 +919,35 @@ class Body :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kSkeletonsFieldNumber = 10,
+    kDevicesUIDFieldNumber = 5,
     kUidFieldNumber = 1,
-    kIsValidFieldNumber = 2,
-    kFrameFieldNumber = 5,
+    kSkeletonFieldNumber = 10,
+    kFrameFieldNumber = 2,
+    kIsValidFieldNumber = 3,
   };
-  // repeated .pb.network.messages.Skeleton skeletons = 10;
-  int skeletons_size() const;
+  // repeated string devicesUID = 5;
+  int devicesuid_size() const;
   private:
-  int _internal_skeletons_size() const;
+  int _internal_devicesuid_size() const;
   public:
-  void clear_skeletons();
-  ::pb::network::messages::Skeleton* mutable_skeletons(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::pb::network::messages::Skeleton >*
-      mutable_skeletons();
+  void clear_devicesuid();
+  const std::string& devicesuid(int index) const;
+  std::string* mutable_devicesuid(int index);
+  void set_devicesuid(int index, const std::string& value);
+  void set_devicesuid(int index, std::string&& value);
+  void set_devicesuid(int index, const char* value);
+  void set_devicesuid(int index, const char* value, size_t size);
+  std::string* add_devicesuid();
+  void add_devicesuid(const std::string& value);
+  void add_devicesuid(std::string&& value);
+  void add_devicesuid(const char* value);
+  void add_devicesuid(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& devicesuid() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_devicesuid();
   private:
-  const ::pb::network::messages::Skeleton& _internal_skeletons(int index) const;
-  ::pb::network::messages::Skeleton* _internal_add_skeletons();
+  const std::string& _internal_devicesuid(int index) const;
+  std::string* _internal_add_devicesuid();
   public:
-  const ::pb::network::messages::Skeleton& skeletons(int index) const;
-  ::pb::network::messages::Skeleton* add_skeletons();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::pb::network::messages::Skeleton >&
-      skeletons() const;
 
   // string uid = 1;
   void clear_uid();
@@ -962,16 +965,22 @@ class Body :
   std::string* _internal_mutable_uid();
   public:
 
-  // bool isValid = 2;
-  void clear_isvalid();
-  bool isvalid() const;
-  void set_isvalid(bool value);
+  // .pb.network.messages.Skeleton skeleton = 10;
+  bool has_skeleton() const;
   private:
-  bool _internal_isvalid() const;
-  void _internal_set_isvalid(bool value);
+  bool _internal_has_skeleton() const;
+  public:
+  void clear_skeleton();
+  const ::pb::network::messages::Skeleton& skeleton() const;
+  ::pb::network::messages::Skeleton* release_skeleton();
+  ::pb::network::messages::Skeleton* mutable_skeleton();
+  void set_allocated_skeleton(::pb::network::messages::Skeleton* skeleton);
+  private:
+  const ::pb::network::messages::Skeleton& _internal_skeleton() const;
+  ::pb::network::messages::Skeleton* _internal_mutable_skeleton();
   public:
 
-  // uint32 frame = 5;
+  // uint32 frame = 2;
   void clear_frame();
   ::PROTOBUF_NAMESPACE_ID::uint32 frame() const;
   void set_frame(::PROTOBUF_NAMESPACE_ID::uint32 value);
@@ -980,169 +989,25 @@ class Body :
   void _internal_set_frame(::PROTOBUF_NAMESPACE_ID::uint32 value);
   public:
 
-  // @@protoc_insertion_point(class_scope:pb.network.messages.Body)
+  // bool isValid = 3;
+  void clear_isvalid();
+  bool isvalid() const;
+  void set_isvalid(bool value);
+  private:
+  bool _internal_isvalid() const;
+  void _internal_set_isvalid(bool value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:pb.network.messages.PartialBody)
  private:
   class _Internal;
 
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::pb::network::messages::Skeleton > skeletons_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> devicesuid_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr uid_;
-  bool isvalid_;
+  ::pb::network::messages::Skeleton* skeleton_;
   ::PROTOBUF_NAMESPACE_ID::uint32 frame_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_body_2eproto;
-};
-// -------------------------------------------------------------------
-
-class TrackedBodies :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:pb.network.messages.TrackedBodies) */ {
- public:
-  TrackedBodies();
-  virtual ~TrackedBodies();
-
-  TrackedBodies(const TrackedBodies& from);
-  TrackedBodies(TrackedBodies&& from) noexcept
-    : TrackedBodies() {
-    *this = ::std::move(from);
-  }
-
-  inline TrackedBodies& operator=(const TrackedBodies& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline TrackedBodies& operator=(TrackedBodies&& from) noexcept {
-    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
-      if (this != &from) InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return GetMetadataStatic().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return GetMetadataStatic().reflection;
-  }
-  static const TrackedBodies& default_instance();
-
-  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
-  static inline const TrackedBodies* internal_default_instance() {
-    return reinterpret_cast<const TrackedBodies*>(
-               &_TrackedBodies_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    5;
-
-  friend void swap(TrackedBodies& a, TrackedBodies& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(TrackedBodies* other) {
-    if (other == this) return;
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  inline TrackedBodies* New() const final {
-    return CreateMaybeMessage<TrackedBodies>(nullptr);
-  }
-
-  TrackedBodies* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<TrackedBodies>(arena);
-  }
-  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void CopyFrom(const TrackedBodies& from);
-  void MergeFrom(const TrackedBodies& from);
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
-      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
-
-  private:
-  inline void SharedCtor();
-  inline void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(TrackedBodies* other);
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "pb.network.messages.TrackedBodies";
-  }
-  private:
-  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
-    return nullptr;
-  }
-  inline void* MaybeArenaPtr() const {
-    return nullptr;
-  }
-  public:
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-  private:
-  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
-    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_body_2eproto);
-    return ::descriptor_table_body_2eproto.file_level_metadata[kIndexInFileMessages];
-  }
-
-  public:
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kBodiesFieldNumber = 10,
-    kCalibrationValuesFieldNumber = 20,
-  };
-  // repeated .pb.network.messages.Body bodies = 10;
-  int bodies_size() const;
-  private:
-  int _internal_bodies_size() const;
-  public:
-  void clear_bodies();
-  ::pb::network::messages::Body* mutable_bodies(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::pb::network::messages::Body >*
-      mutable_bodies();
-  private:
-  const ::pb::network::messages::Body& _internal_bodies(int index) const;
-  ::pb::network::messages::Body* _internal_add_bodies();
-  public:
-  const ::pb::network::messages::Body& bodies(int index) const;
-  ::pb::network::messages::Body* add_bodies();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::pb::network::messages::Body >&
-      bodies() const;
-
-  // .pb.network.messages.CalibrationValues calibrationValues = 20;
-  bool has_calibrationvalues() const;
-  private:
-  bool _internal_has_calibrationvalues() const;
-  public:
-  void clear_calibrationvalues();
-  const ::pb::network::messages::CalibrationValues& calibrationvalues() const;
-  ::pb::network::messages::CalibrationValues* release_calibrationvalues();
-  ::pb::network::messages::CalibrationValues* mutable_calibrationvalues();
-  void set_allocated_calibrationvalues(::pb::network::messages::CalibrationValues* calibrationvalues);
-  private:
-  const ::pb::network::messages::CalibrationValues& _internal_calibrationvalues() const;
-  ::pb::network::messages::CalibrationValues* _internal_mutable_calibrationvalues();
-  public:
-
-  // @@protoc_insertion_point(class_scope:pb.network.messages.TrackedBodies)
- private:
-  class _Internal;
-
-  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::pb::network::messages::Body > bodies_;
-  ::pb::network::messages::CalibrationValues* calibrationvalues_;
+  bool isvalid_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_body_2eproto;
 };
@@ -1665,249 +1530,245 @@ RawBodies::rawbodies() const {
 
 // -------------------------------------------------------------------
 
-// Body
+// PartialBody
 
 // string uid = 1;
-inline void Body::clear_uid() {
+inline void PartialBody::clear_uid() {
   uid_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
-inline const std::string& Body::uid() const {
-  // @@protoc_insertion_point(field_get:pb.network.messages.Body.uid)
+inline const std::string& PartialBody::uid() const {
+  // @@protoc_insertion_point(field_get:pb.network.messages.PartialBody.uid)
   return _internal_uid();
 }
-inline void Body::set_uid(const std::string& value) {
+inline void PartialBody::set_uid(const std::string& value) {
   _internal_set_uid(value);
-  // @@protoc_insertion_point(field_set:pb.network.messages.Body.uid)
+  // @@protoc_insertion_point(field_set:pb.network.messages.PartialBody.uid)
 }
-inline std::string* Body::mutable_uid() {
-  // @@protoc_insertion_point(field_mutable:pb.network.messages.Body.uid)
+inline std::string* PartialBody::mutable_uid() {
+  // @@protoc_insertion_point(field_mutable:pb.network.messages.PartialBody.uid)
   return _internal_mutable_uid();
 }
-inline const std::string& Body::_internal_uid() const {
+inline const std::string& PartialBody::_internal_uid() const {
   return uid_.GetNoArena();
 }
-inline void Body::_internal_set_uid(const std::string& value) {
+inline void PartialBody::_internal_set_uid(const std::string& value) {
   
   uid_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
 }
-inline void Body::set_uid(std::string&& value) {
+inline void PartialBody::set_uid(std::string&& value) {
   
   uid_.SetNoArena(
     &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:pb.network.messages.Body.uid)
+  // @@protoc_insertion_point(field_set_rvalue:pb.network.messages.PartialBody.uid)
 }
-inline void Body::set_uid(const char* value) {
+inline void PartialBody::set_uid(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   uid_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:pb.network.messages.Body.uid)
+  // @@protoc_insertion_point(field_set_char:pb.network.messages.PartialBody.uid)
 }
-inline void Body::set_uid(const char* value, size_t size) {
+inline void PartialBody::set_uid(const char* value, size_t size) {
   
   uid_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:pb.network.messages.Body.uid)
+  // @@protoc_insertion_point(field_set_pointer:pb.network.messages.PartialBody.uid)
 }
-inline std::string* Body::_internal_mutable_uid() {
+inline std::string* PartialBody::_internal_mutable_uid() {
   
   return uid_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
-inline std::string* Body::release_uid() {
-  // @@protoc_insertion_point(field_release:pb.network.messages.Body.uid)
+inline std::string* PartialBody::release_uid() {
+  // @@protoc_insertion_point(field_release:pb.network.messages.PartialBody.uid)
   
   return uid_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
-inline void Body::set_allocated_uid(std::string* uid) {
+inline void PartialBody::set_allocated_uid(std::string* uid) {
   if (uid != nullptr) {
     
   } else {
     
   }
   uid_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), uid);
-  // @@protoc_insertion_point(field_set_allocated:pb.network.messages.Body.uid)
+  // @@protoc_insertion_point(field_set_allocated:pb.network.messages.PartialBody.uid)
 }
 
-// bool isValid = 2;
-inline void Body::clear_isvalid() {
-  isvalid_ = false;
-}
-inline bool Body::_internal_isvalid() const {
-  return isvalid_;
-}
-inline bool Body::isvalid() const {
-  // @@protoc_insertion_point(field_get:pb.network.messages.Body.isValid)
-  return _internal_isvalid();
-}
-inline void Body::_internal_set_isvalid(bool value) {
-  
-  isvalid_ = value;
-}
-inline void Body::set_isvalid(bool value) {
-  _internal_set_isvalid(value);
-  // @@protoc_insertion_point(field_set:pb.network.messages.Body.isValid)
-}
-
-// uint32 frame = 5;
-inline void Body::clear_frame() {
+// uint32 frame = 2;
+inline void PartialBody::clear_frame() {
   frame_ = 0u;
 }
-inline ::PROTOBUF_NAMESPACE_ID::uint32 Body::_internal_frame() const {
+inline ::PROTOBUF_NAMESPACE_ID::uint32 PartialBody::_internal_frame() const {
   return frame_;
 }
-inline ::PROTOBUF_NAMESPACE_ID::uint32 Body::frame() const {
-  // @@protoc_insertion_point(field_get:pb.network.messages.Body.frame)
+inline ::PROTOBUF_NAMESPACE_ID::uint32 PartialBody::frame() const {
+  // @@protoc_insertion_point(field_get:pb.network.messages.PartialBody.frame)
   return _internal_frame();
 }
-inline void Body::_internal_set_frame(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+inline void PartialBody::_internal_set_frame(::PROTOBUF_NAMESPACE_ID::uint32 value) {
   
   frame_ = value;
 }
-inline void Body::set_frame(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+inline void PartialBody::set_frame(::PROTOBUF_NAMESPACE_ID::uint32 value) {
   _internal_set_frame(value);
-  // @@protoc_insertion_point(field_set:pb.network.messages.Body.frame)
+  // @@protoc_insertion_point(field_set:pb.network.messages.PartialBody.frame)
 }
 
-// repeated .pb.network.messages.Skeleton skeletons = 10;
-inline int Body::_internal_skeletons_size() const {
-  return skeletons_.size();
+// bool isValid = 3;
+inline void PartialBody::clear_isvalid() {
+  isvalid_ = false;
 }
-inline int Body::skeletons_size() const {
-  return _internal_skeletons_size();
+inline bool PartialBody::_internal_isvalid() const {
+  return isvalid_;
 }
-inline void Body::clear_skeletons() {
-  skeletons_.Clear();
+inline bool PartialBody::isvalid() const {
+  // @@protoc_insertion_point(field_get:pb.network.messages.PartialBody.isValid)
+  return _internal_isvalid();
 }
-inline ::pb::network::messages::Skeleton* Body::mutable_skeletons(int index) {
-  // @@protoc_insertion_point(field_mutable:pb.network.messages.Body.skeletons)
-  return skeletons_.Mutable(index);
-}
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::pb::network::messages::Skeleton >*
-Body::mutable_skeletons() {
-  // @@protoc_insertion_point(field_mutable_list:pb.network.messages.Body.skeletons)
-  return &skeletons_;
-}
-inline const ::pb::network::messages::Skeleton& Body::_internal_skeletons(int index) const {
-  return skeletons_.Get(index);
-}
-inline const ::pb::network::messages::Skeleton& Body::skeletons(int index) const {
-  // @@protoc_insertion_point(field_get:pb.network.messages.Body.skeletons)
-  return _internal_skeletons(index);
-}
-inline ::pb::network::messages::Skeleton* Body::_internal_add_skeletons() {
-  return skeletons_.Add();
-}
-inline ::pb::network::messages::Skeleton* Body::add_skeletons() {
-  // @@protoc_insertion_point(field_add:pb.network.messages.Body.skeletons)
-  return _internal_add_skeletons();
-}
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::pb::network::messages::Skeleton >&
-Body::skeletons() const {
-  // @@protoc_insertion_point(field_list:pb.network.messages.Body.skeletons)
-  return skeletons_;
-}
-
-// -------------------------------------------------------------------
-
-// TrackedBodies
-
-// repeated .pb.network.messages.Body bodies = 10;
-inline int TrackedBodies::_internal_bodies_size() const {
-  return bodies_.size();
-}
-inline int TrackedBodies::bodies_size() const {
-  return _internal_bodies_size();
-}
-inline void TrackedBodies::clear_bodies() {
-  bodies_.Clear();
-}
-inline ::pb::network::messages::Body* TrackedBodies::mutable_bodies(int index) {
-  // @@protoc_insertion_point(field_mutable:pb.network.messages.TrackedBodies.bodies)
-  return bodies_.Mutable(index);
-}
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::pb::network::messages::Body >*
-TrackedBodies::mutable_bodies() {
-  // @@protoc_insertion_point(field_mutable_list:pb.network.messages.TrackedBodies.bodies)
-  return &bodies_;
-}
-inline const ::pb::network::messages::Body& TrackedBodies::_internal_bodies(int index) const {
-  return bodies_.Get(index);
-}
-inline const ::pb::network::messages::Body& TrackedBodies::bodies(int index) const {
-  // @@protoc_insertion_point(field_get:pb.network.messages.TrackedBodies.bodies)
-  return _internal_bodies(index);
-}
-inline ::pb::network::messages::Body* TrackedBodies::_internal_add_bodies() {
-  return bodies_.Add();
-}
-inline ::pb::network::messages::Body* TrackedBodies::add_bodies() {
-  // @@protoc_insertion_point(field_add:pb.network.messages.TrackedBodies.bodies)
-  return _internal_add_bodies();
-}
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::pb::network::messages::Body >&
-TrackedBodies::bodies() const {
-  // @@protoc_insertion_point(field_list:pb.network.messages.TrackedBodies.bodies)
-  return bodies_;
-}
-
-// .pb.network.messages.CalibrationValues calibrationValues = 20;
-inline bool TrackedBodies::_internal_has_calibrationvalues() const {
-  return this != internal_default_instance() && calibrationvalues_ != nullptr;
-}
-inline bool TrackedBodies::has_calibrationvalues() const {
-  return _internal_has_calibrationvalues();
-}
-inline const ::pb::network::messages::CalibrationValues& TrackedBodies::_internal_calibrationvalues() const {
-  const ::pb::network::messages::CalibrationValues* p = calibrationvalues_;
-  return p != nullptr ? *p : *reinterpret_cast<const ::pb::network::messages::CalibrationValues*>(
-      &::pb::network::messages::_CalibrationValues_default_instance_);
-}
-inline const ::pb::network::messages::CalibrationValues& TrackedBodies::calibrationvalues() const {
-  // @@protoc_insertion_point(field_get:pb.network.messages.TrackedBodies.calibrationValues)
-  return _internal_calibrationvalues();
-}
-inline ::pb::network::messages::CalibrationValues* TrackedBodies::release_calibrationvalues() {
-  // @@protoc_insertion_point(field_release:pb.network.messages.TrackedBodies.calibrationValues)
+inline void PartialBody::_internal_set_isvalid(bool value) {
   
-  ::pb::network::messages::CalibrationValues* temp = calibrationvalues_;
-  calibrationvalues_ = nullptr;
+  isvalid_ = value;
+}
+inline void PartialBody::set_isvalid(bool value) {
+  _internal_set_isvalid(value);
+  // @@protoc_insertion_point(field_set:pb.network.messages.PartialBody.isValid)
+}
+
+// repeated string devicesUID = 5;
+inline int PartialBody::_internal_devicesuid_size() const {
+  return devicesuid_.size();
+}
+inline int PartialBody::devicesuid_size() const {
+  return _internal_devicesuid_size();
+}
+inline void PartialBody::clear_devicesuid() {
+  devicesuid_.Clear();
+}
+inline std::string* PartialBody::add_devicesuid() {
+  // @@protoc_insertion_point(field_add_mutable:pb.network.messages.PartialBody.devicesUID)
+  return _internal_add_devicesuid();
+}
+inline const std::string& PartialBody::_internal_devicesuid(int index) const {
+  return devicesuid_.Get(index);
+}
+inline const std::string& PartialBody::devicesuid(int index) const {
+  // @@protoc_insertion_point(field_get:pb.network.messages.PartialBody.devicesUID)
+  return _internal_devicesuid(index);
+}
+inline std::string* PartialBody::mutable_devicesuid(int index) {
+  // @@protoc_insertion_point(field_mutable:pb.network.messages.PartialBody.devicesUID)
+  return devicesuid_.Mutable(index);
+}
+inline void PartialBody::set_devicesuid(int index, const std::string& value) {
+  // @@protoc_insertion_point(field_set:pb.network.messages.PartialBody.devicesUID)
+  devicesuid_.Mutable(index)->assign(value);
+}
+inline void PartialBody::set_devicesuid(int index, std::string&& value) {
+  // @@protoc_insertion_point(field_set:pb.network.messages.PartialBody.devicesUID)
+  devicesuid_.Mutable(index)->assign(std::move(value));
+}
+inline void PartialBody::set_devicesuid(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  devicesuid_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:pb.network.messages.PartialBody.devicesUID)
+}
+inline void PartialBody::set_devicesuid(int index, const char* value, size_t size) {
+  devicesuid_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:pb.network.messages.PartialBody.devicesUID)
+}
+inline std::string* PartialBody::_internal_add_devicesuid() {
+  return devicesuid_.Add();
+}
+inline void PartialBody::add_devicesuid(const std::string& value) {
+  devicesuid_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:pb.network.messages.PartialBody.devicesUID)
+}
+inline void PartialBody::add_devicesuid(std::string&& value) {
+  devicesuid_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:pb.network.messages.PartialBody.devicesUID)
+}
+inline void PartialBody::add_devicesuid(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  devicesuid_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:pb.network.messages.PartialBody.devicesUID)
+}
+inline void PartialBody::add_devicesuid(const char* value, size_t size) {
+  devicesuid_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:pb.network.messages.PartialBody.devicesUID)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+PartialBody::devicesuid() const {
+  // @@protoc_insertion_point(field_list:pb.network.messages.PartialBody.devicesUID)
+  return devicesuid_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+PartialBody::mutable_devicesuid() {
+  // @@protoc_insertion_point(field_mutable_list:pb.network.messages.PartialBody.devicesUID)
+  return &devicesuid_;
+}
+
+// .pb.network.messages.Skeleton skeleton = 10;
+inline bool PartialBody::_internal_has_skeleton() const {
+  return this != internal_default_instance() && skeleton_ != nullptr;
+}
+inline bool PartialBody::has_skeleton() const {
+  return _internal_has_skeleton();
+}
+inline void PartialBody::clear_skeleton() {
+  if (GetArenaNoVirtual() == nullptr && skeleton_ != nullptr) {
+    delete skeleton_;
+  }
+  skeleton_ = nullptr;
+}
+inline const ::pb::network::messages::Skeleton& PartialBody::_internal_skeleton() const {
+  const ::pb::network::messages::Skeleton* p = skeleton_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::pb::network::messages::Skeleton*>(
+      &::pb::network::messages::_Skeleton_default_instance_);
+}
+inline const ::pb::network::messages::Skeleton& PartialBody::skeleton() const {
+  // @@protoc_insertion_point(field_get:pb.network.messages.PartialBody.skeleton)
+  return _internal_skeleton();
+}
+inline ::pb::network::messages::Skeleton* PartialBody::release_skeleton() {
+  // @@protoc_insertion_point(field_release:pb.network.messages.PartialBody.skeleton)
+  
+  ::pb::network::messages::Skeleton* temp = skeleton_;
+  skeleton_ = nullptr;
   return temp;
 }
-inline ::pb::network::messages::CalibrationValues* TrackedBodies::_internal_mutable_calibrationvalues() {
+inline ::pb::network::messages::Skeleton* PartialBody::_internal_mutable_skeleton() {
   
-  if (calibrationvalues_ == nullptr) {
-    auto* p = CreateMaybeMessage<::pb::network::messages::CalibrationValues>(GetArenaNoVirtual());
-    calibrationvalues_ = p;
+  if (skeleton_ == nullptr) {
+    auto* p = CreateMaybeMessage<::pb::network::messages::Skeleton>(GetArenaNoVirtual());
+    skeleton_ = p;
   }
-  return calibrationvalues_;
+  return skeleton_;
 }
-inline ::pb::network::messages::CalibrationValues* TrackedBodies::mutable_calibrationvalues() {
-  // @@protoc_insertion_point(field_mutable:pb.network.messages.TrackedBodies.calibrationValues)
-  return _internal_mutable_calibrationvalues();
+inline ::pb::network::messages::Skeleton* PartialBody::mutable_skeleton() {
+  // @@protoc_insertion_point(field_mutable:pb.network.messages.PartialBody.skeleton)
+  return _internal_mutable_skeleton();
 }
-inline void TrackedBodies::set_allocated_calibrationvalues(::pb::network::messages::CalibrationValues* calibrationvalues) {
+inline void PartialBody::set_allocated_skeleton(::pb::network::messages::Skeleton* skeleton) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
   if (message_arena == nullptr) {
-    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(calibrationvalues_);
+    delete skeleton_;
   }
-  if (calibrationvalues) {
+  if (skeleton) {
     ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
     if (message_arena != submessage_arena) {
-      calibrationvalues = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, calibrationvalues, submessage_arena);
+      skeleton = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, skeleton, submessage_arena);
     }
     
   } else {
     
   }
-  calibrationvalues_ = calibrationvalues;
-  // @@protoc_insertion_point(field_set_allocated:pb.network.messages.TrackedBodies.calibrationValues)
+  skeleton_ = skeleton;
+  // @@protoc_insertion_point(field_set_allocated:pb.network.messages.PartialBody.skeleton)
 }
 
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
-// -------------------------------------------------------------------
-
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

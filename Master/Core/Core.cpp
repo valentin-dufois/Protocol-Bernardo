@@ -26,12 +26,10 @@ void Core::init() {
 	_networkManager.setTrackingEngine(&_trackingEngine);
 
 	_networkManager.startActivities();
-
+	
 	// The tracking engine
 	_trackingEngine.setLayoutEngine(&_layoutEngine);
-	_trackingEngine.onCycleEnd = [&] (const std::map<pb::deviceUID, Body *> &bodies) {
-		onTrack(bodies);
-	};
+	_trackingEngine.delegate = this;
 
 	_trackingEngine.start();
 }
@@ -44,32 +42,44 @@ void Core::run() {
 	}
 }
 
-void Core::onTrack(const std::map<pb::bodyUID, Body *> &bodies) {
-	// Send the bodies to the terminal and the receiveers
-	// Build the message
-	messages::TrackedBodies * trackedBodies = new messages::TrackedBodies();
+void Core::trackingEngineUpdatedBody(TrackingEngine *, Body * body) {
+	// Prepare the message
+	messages::PartialBody * message = new messages::PartialBody();
+	message->set_uid(body->uid);
+	message->set_frame(body->frame);
+	message->set_isvalid(body->isValid);
 
-	// Put all the tracked bodies in the message
-	for(std::pair<pb::deviceUID, Body *> bodyPair: bodies) {
-		messages::Body * bodyMessage = trackedBodies->add_bodies();
-		bodyMessage->CopyFrom((messages::Body)*bodyPair.second);
+	for(const pb::deviceUID &deviceUID: body->devicesUID) {
+		message->add_devicesuid(deviceUID);
 	}
 
-	// Attach calibration values if needed
-	if(_trackingEngine.canCalibrate()) {
-		trackedBodies->set_allocated_calibrationvalues(_trackingEngine.getCalibrationValues());
+	if(body->isValid)
+		message->set_allocated_skeleton(*body->skeleton());
+
+	_partialBodies.push_back(message);
+}
+
+void Core::trackingEngineFinishedCycle(TrackingEngine *) {
+	messages::Datagram * datagram = makeDatagram(messages::Datagram_Type_PARTIAL_BODY);
+	protobuf::Any * anyMessage = new protobuf::Any();
+	datagram->set_allocated_data(anyMessage);
+
+	// Send each partial body one by one
+	for(messages::PartialBody * message: _partialBodies) {
+		anyMessage->PackFrom(*message);
+
+		_networkManager.sendToReceivers(datagram);
+		_networkManager.sendToTerminal(datagram);
+
+		anyMessage->Clear();
+		delete message;
 	}
-
-	// Build the datagram
-	messages::Datagram * datagram = makeDatagram(network::messages::Datagram_Type_TRACKED_BODIES, *trackedBodies);
-
-	// Send to the receivers and the the terminal
-	_networkManager.sendToReceivers(datagram);
-	_networkManager.sendToTerminal(datagram);
 
 	datagram->Clear();
+	_partialBodies.clear();
+
 	delete datagram;
-	delete trackedBodies;
+
 }
 
 } /* ::master */

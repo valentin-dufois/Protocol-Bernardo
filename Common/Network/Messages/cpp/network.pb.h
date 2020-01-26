@@ -130,12 +130,13 @@ enum Datagram_Type : int {
   Datagram_Type_CALIBRATION_SET = 220,
   Datagram_Type_CALIBRATION_VALUES = 221,
   Datagram_Type_TRACKED_BODIES = 250,
+  Datagram_Type_PARTIAL_BODY = 255,
   Datagram_Type_Datagram_Type_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::min(),
   Datagram_Type_Datagram_Type_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::max()
 };
 bool Datagram_Type_IsValid(int value);
 constexpr Datagram_Type Datagram_Type_Type_MIN = Datagram_Type_UNDEFINED;
-constexpr Datagram_Type Datagram_Type_Type_MAX = Datagram_Type_TRACKED_BODIES;
+constexpr Datagram_Type Datagram_Type_Type_MAX = Datagram_Type_PARTIAL_BODY;
 constexpr int Datagram_Type_Type_ARRAYSIZE = Datagram_Type_Type_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* Datagram_Type_descriptor();
@@ -763,6 +764,8 @@ class Datagram :
     Datagram_Type_CALIBRATION_VALUES;
   static constexpr Type TRACKED_BODIES =
     Datagram_Type_TRACKED_BODIES;
+  static constexpr Type PARTIAL_BODY =
+    Datagram_Type_PARTIAL_BODY;
   static inline bool Type_IsValid(int value) {
     return Datagram_Type_IsValid(value);
   }

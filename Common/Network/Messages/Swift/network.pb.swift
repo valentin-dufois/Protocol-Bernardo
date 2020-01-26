@@ -196,6 +196,9 @@ struct Pb_Network_Messages_Datagram {
 
     /// List of all tracked bodies
     case trackedBodies // = 250
+
+    /// A Partial body
+    case partialBody // = 255
     case UNRECOGNIZED(Int)
 
     init() {
@@ -221,6 +224,7 @@ struct Pb_Network_Messages_Datagram {
       case 220: self = .calibrationSet
       case 221: self = .calibrationValues
       case 250: self = .trackedBodies
+      case 255: self = .partialBody
       default: self = .UNRECOGNIZED(rawValue)
       }
     }
@@ -244,6 +248,7 @@ struct Pb_Network_Messages_Datagram {
       case .calibrationSet: return 220
       case .calibrationValues: return 221
       case .trackedBodies: return 250
+      case .partialBody: return 255
       case .UNRECOGNIZED(let i): return i
       }
     }
@@ -277,6 +282,7 @@ extension Pb_Network_Messages_Datagram.TypeEnum: CaseIterable {
     .calibrationSet,
     .calibrationValues,
     .trackedBodies,
+    .partialBody,
   ]
 }
 
@@ -483,5 +489,6 @@ extension Pb_Network_Messages_Datagram.TypeEnum: SwiftProtobuf._ProtoNameProvidi
     220: .same(proto: "CALIBRATION_SET"),
     221: .same(proto: "CALIBRATION_VALUES"),
     250: .same(proto: "TRACKED_BODIES"),
+    255: .same(proto: "PARTIAL_BODY"),
   ]
 }

@@ -10,6 +10,7 @@
 #include "../../Common/Structs/Body.hpp"
 
 #include "TrackingEngine.hpp"
+#include "TrackingEngineDelegate.hpp"
 
 #include "../LayoutEngine/LayoutEngine.hpp"
 
@@ -99,9 +100,9 @@ void TrackingEngine::trackBodies() {
 		parseBodies();
 	}
 
-	// Do we have a callback ?
-	if(onCycleEnd) {
-		onCycleEnd(_bodies);
+	// Tell the delegate
+	if(delegate != nullptr) {
+		delegate->trackingEngineFinishedCycle(this);
 	}
 
 	// Remove invalid bodies
@@ -196,7 +197,11 @@ void TrackingEngine::updateCalibrationValues() {
 
 void TrackingEngine::updateBodies() {
 	for(std::pair<pb::bodyUID, Body *> bodyPair: _bodies) {
-		bodyPair.second->updatePosition();
+		const bool updated = bodyPair.second->updatePosition();
+
+		// Tell the delegate if the body has changed
+		if(updated && delegate != nullptr)
+			delegate->trackingEngineUpdatedBody(this, bodyPair.second);
 	}
 }
 
@@ -234,8 +239,6 @@ void TrackingEngine::parseBodies() {
 
 		// The two bodies are really close, merge them.
 		// Merging occur with a one frame latency. We take the youngest body and put its references in the oldest one.
-//		LOG_DEBUG("MERGING");
-
 		Body * youngest = body->frame < closest.first->frame ? body : closest.first;
 		Body * oldest = body->frame >= closest.first->frame ? body : closest.first;
 

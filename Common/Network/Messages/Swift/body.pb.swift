@@ -198,42 +198,39 @@ struct Pb_Network_Messages_RawBodies {
   init() {}
 }
 
-struct Pb_Network_Messages_Body {
+struct Pb_Network_Messages_PartialBody {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  var uid: String = String()
-
-  var isValid: Bool = false
-
-  var frame: UInt32 = 0
-
-  var skeletons: [Pb_Network_Messages_Skeleton] = []
-
-  var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  init() {}
-}
-
-struct Pb_Network_Messages_TrackedBodies {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
-
-  var bodies: [Pb_Network_Messages_Body] {
-    get {return _storage._bodies}
-    set {_uniqueStorage()._bodies = newValue}
+  var uid: String {
+    get {return _storage._uid}
+    set {_uniqueStorage()._uid = newValue}
   }
 
-  var calibrationValues: Pb_Network_Messages_CalibrationValues {
-    get {return _storage._calibrationValues ?? Pb_Network_Messages_CalibrationValues()}
-    set {_uniqueStorage()._calibrationValues = newValue}
+  var frame: UInt32 {
+    get {return _storage._frame}
+    set {_uniqueStorage()._frame = newValue}
   }
-  /// Returns true if `calibrationValues` has been explicitly set.
-  var hasCalibrationValues: Bool {return _storage._calibrationValues != nil}
-  /// Clears the value of `calibrationValues`. Subsequent reads from it will return its default value.
-  mutating func clearCalibrationValues() {_uniqueStorage()._calibrationValues = nil}
+
+  var isValid: Bool {
+    get {return _storage._isValid}
+    set {_uniqueStorage()._isValid = newValue}
+  }
+
+  var devicesUid: [String] {
+    get {return _storage._devicesUid}
+    set {_uniqueStorage()._devicesUid = newValue}
+  }
+
+  var skeleton: Pb_Network_Messages_Skeleton {
+    get {return _storage._skeleton ?? Pb_Network_Messages_Skeleton()}
+    set {_uniqueStorage()._skeleton = newValue}
+  }
+  /// Returns true if `skeleton` has been explicitly set.
+  var hasSkeleton: Bool {return _storage._skeleton != nil}
+  /// Clears the value of `skeleton`. Subsequent reads from it will return its default value.
+  mutating func clearSkeleton() {_uniqueStorage()._skeleton = nil}
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -533,71 +530,33 @@ extension Pb_Network_Messages_RawBodies: SwiftProtobuf.Message, SwiftProtobuf._M
   }
 }
 
-extension Pb_Network_Messages_Body: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let protoMessageName: String = _protobuf_package + ".Body"
+extension Pb_Network_Messages_PartialBody: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".PartialBody"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "uid"),
-    2: .same(proto: "isValid"),
-    5: .same(proto: "frame"),
-    10: .same(proto: "skeletons"),
-  ]
-
-  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self.uid)
-      case 2: try decoder.decodeSingularBoolField(value: &self.isValid)
-      case 5: try decoder.decodeSingularUInt32Field(value: &self.frame)
-      case 10: try decoder.decodeRepeatedMessageField(value: &self.skeletons)
-      default: break
-      }
-    }
-  }
-
-  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.uid.isEmpty {
-      try visitor.visitSingularStringField(value: self.uid, fieldNumber: 1)
-    }
-    if self.isValid != false {
-      try visitor.visitSingularBoolField(value: self.isValid, fieldNumber: 2)
-    }
-    if self.frame != 0 {
-      try visitor.visitSingularUInt32Field(value: self.frame, fieldNumber: 5)
-    }
-    if !self.skeletons.isEmpty {
-      try visitor.visitRepeatedMessageField(value: self.skeletons, fieldNumber: 10)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  static func ==(lhs: Pb_Network_Messages_Body, rhs: Pb_Network_Messages_Body) -> Bool {
-    if lhs.uid != rhs.uid {return false}
-    if lhs.isValid != rhs.isValid {return false}
-    if lhs.frame != rhs.frame {return false}
-    if lhs.skeletons != rhs.skeletons {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
-    return true
-  }
-}
-
-extension Pb_Network_Messages_TrackedBodies: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let protoMessageName: String = _protobuf_package + ".TrackedBodies"
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    10: .same(proto: "bodies"),
-    20: .same(proto: "calibrationValues"),
+    2: .same(proto: "frame"),
+    3: .same(proto: "isValid"),
+    5: .same(proto: "devicesUID"),
+    10: .same(proto: "skeleton"),
   ]
 
   fileprivate class _StorageClass {
-    var _bodies: [Pb_Network_Messages_Body] = []
-    var _calibrationValues: Pb_Network_Messages_CalibrationValues? = nil
+    var _uid: String = String()
+    var _frame: UInt32 = 0
+    var _isValid: Bool = false
+    var _devicesUid: [String] = []
+    var _skeleton: Pb_Network_Messages_Skeleton? = nil
 
     static let defaultInstance = _StorageClass()
 
     private init() {}
 
     init(copying source: _StorageClass) {
-      _bodies = source._bodies
-      _calibrationValues = source._calibrationValues
+      _uid = source._uid
+      _frame = source._frame
+      _isValid = source._isValid
+      _devicesUid = source._devicesUid
+      _skeleton = source._skeleton
     }
   }
 
@@ -613,8 +572,11 @@ extension Pb_Network_Messages_TrackedBodies: SwiftProtobuf.Message, SwiftProtobu
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
       while let fieldNumber = try decoder.nextFieldNumber() {
         switch fieldNumber {
-        case 10: try decoder.decodeRepeatedMessageField(value: &_storage._bodies)
-        case 20: try decoder.decodeSingularMessageField(value: &_storage._calibrationValues)
+        case 1: try decoder.decodeSingularStringField(value: &_storage._uid)
+        case 2: try decoder.decodeSingularUInt32Field(value: &_storage._frame)
+        case 3: try decoder.decodeSingularBoolField(value: &_storage._isValid)
+        case 5: try decoder.decodeRepeatedStringField(value: &_storage._devicesUid)
+        case 10: try decoder.decodeSingularMessageField(value: &_storage._skeleton)
         default: break
         }
       }
@@ -623,23 +585,35 @@ extension Pb_Network_Messages_TrackedBodies: SwiftProtobuf.Message, SwiftProtobu
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if !_storage._bodies.isEmpty {
-        try visitor.visitRepeatedMessageField(value: _storage._bodies, fieldNumber: 10)
+      if !_storage._uid.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._uid, fieldNumber: 1)
       }
-      if let v = _storage._calibrationValues {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 20)
+      if _storage._frame != 0 {
+        try visitor.visitSingularUInt32Field(value: _storage._frame, fieldNumber: 2)
+      }
+      if _storage._isValid != false {
+        try visitor.visitSingularBoolField(value: _storage._isValid, fieldNumber: 3)
+      }
+      if !_storage._devicesUid.isEmpty {
+        try visitor.visitRepeatedStringField(value: _storage._devicesUid, fieldNumber: 5)
+      }
+      if let v = _storage._skeleton {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 10)
       }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  static func ==(lhs: Pb_Network_Messages_TrackedBodies, rhs: Pb_Network_Messages_TrackedBodies) -> Bool {
+  static func ==(lhs: Pb_Network_Messages_PartialBody, rhs: Pb_Network_Messages_PartialBody) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
         let rhs_storage = _args.1
-        if _storage._bodies != rhs_storage._bodies {return false}
-        if _storage._calibrationValues != rhs_storage._calibrationValues {return false}
+        if _storage._uid != rhs_storage._uid {return false}
+        if _storage._frame != rhs_storage._frame {return false}
+        if _storage._isValid != rhs_storage._isValid {return false}
+        if _storage._devicesUid != rhs_storage._devicesUid {return false}
+        if _storage._skeleton != rhs_storage._skeleton {return false}
         return true
       }
       if !storagesAreEqual {return false}

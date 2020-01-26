@@ -31,6 +31,7 @@ class Body;
 namespace master {
 
 class LayoutEngine;
+class TrackingEngineDelegate;
 
 // MARK: - Tracking Engine
 /// The tracking engine takes Raw Bodies from the tracking devices as input and
@@ -52,12 +53,11 @@ public:
 	/// Stops the tracking engine
 	inline void stop() { _isTracking = false; };
 
+	TrackingEngineDelegate * delegate = nullptr;
+
 	/// Call this method to give the TrackingEngine a new rawBody to work with
 	/// @param rawBody A rawBody
 	void onRawBody(RawBody * rawBody);
-
-	/// This method is called every time the Tracking Engine finishes a cycle.
-	std::function<void(std::map<bodyUID, Body *>)> onCycleEnd;
 
 	/// Gives a list of all the connected devices UID
 	inline std::unordered_set<deviceUID> getConnectedDevicesUID() {

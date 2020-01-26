@@ -39,14 +39,10 @@ message RawBodies {
 	repeated RawBody rawBodies = 1;
 }
 
-message Body {
+message PartialBody {
 	string uid = 1;
-	bool isValid = 2;
-	uint32 frame = 5;
-	repeated Skeleton skeletons = 10;
-}
-
-message TrackedBodies {
-	repeated Body bodies = 10;
-	CalibrationValues calibrationValues = 20;
+	uint32 frame = 2;
+	bool isValid = 3;
+	repeated string devicesUID = 5;
+	Skeleton skeleton = 10;
 }
