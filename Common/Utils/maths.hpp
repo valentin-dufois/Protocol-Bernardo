@@ -19,14 +19,14 @@
 #include <glm/glm.hpp>
 #include <glm/gtx/vector_angle.hpp>
 
-#ifdef MACHINE_TRACKER
+#ifdef PB_TRACKER
 #include <nite2/NiTE.h>
 #endif
 
 
 #include "../Network/Messages/messages.hpp"
 
-#ifdef MACHINE_TRACKER
+#ifdef PB_TRACKER
 #include <nite2/NiTE.h>
 #endif
 
@@ -54,7 +54,7 @@ inline T rad2deg(const T &rad) {
 }
 
 
-#ifdef MACHINE_TRACKER
+#ifdef PB_TRACKER
 
 /// Converts a nite float3 to a `vec3`
 /// @param p3f The float3 to convert
@@ -68,7 +68,7 @@ inline vec3 nQuatToVec3(const nite::Quaternion &nQuat) {
 	return glm::eulerAngles(glm::quat(nQuat.x, nQuat.y, nQuat.z, nQuat.w));
 }
 
-#endif /* MACHINE_TRACKER */
+#endif /* PB_TRACKER */
 
 // MARK: - Network
 

@@ -46,3 +46,8 @@ message PartialBody {
 	repeated string devicesUID = 5;
 	Skeleton skeleton = 10;
 }
+
+message TrackedBodies {
+	repeated PartialBody bodies = 10;
+	CalibrationValues calibrationValues = 20;
+}

@@ -50,7 +50,7 @@ struct TableStruct_body_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxillaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[5]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[6]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -75,6 +75,9 @@ extern RawBodyDefaultTypeInternal _RawBody_default_instance_;
 class Skeleton;
 class SkeletonDefaultTypeInternal;
 extern SkeletonDefaultTypeInternal _Skeleton_default_instance_;
+class TrackedBodies;
+class TrackedBodiesDefaultTypeInternal;
+extern TrackedBodiesDefaultTypeInternal _TrackedBodies_default_instance_;
 }  // namespace messages
 }  // namespace network
 }  // namespace pb
@@ -84,6 +87,7 @@ template<> ::pb::network::messages::PartialBody* Arena::CreateMaybeMessage<::pb:
 template<> ::pb::network::messages::RawBodies* Arena::CreateMaybeMessage<::pb::network::messages::RawBodies>(Arena*);
 template<> ::pb::network::messages::RawBody* Arena::CreateMaybeMessage<::pb::network::messages::RawBody>(Arena*);
 template<> ::pb::network::messages::Skeleton* Arena::CreateMaybeMessage<::pb::network::messages::Skeleton>(Arena*);
+template<> ::pb::network::messages::TrackedBodies* Arena::CreateMaybeMessage<::pb::network::messages::TrackedBodies>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace pb {
 namespace network {
@@ -1011,6 +1015,160 @@ class PartialBody :
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_body_2eproto;
 };
+// -------------------------------------------------------------------
+
+class TrackedBodies :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:pb.network.messages.TrackedBodies) */ {
+ public:
+  TrackedBodies();
+  virtual ~TrackedBodies();
+
+  TrackedBodies(const TrackedBodies& from);
+  TrackedBodies(TrackedBodies&& from) noexcept
+    : TrackedBodies() {
+    *this = ::std::move(from);
+  }
+
+  inline TrackedBodies& operator=(const TrackedBodies& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline TrackedBodies& operator=(TrackedBodies&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const TrackedBodies& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const TrackedBodies* internal_default_instance() {
+    return reinterpret_cast<const TrackedBodies*>(
+               &_TrackedBodies_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    5;
+
+  friend void swap(TrackedBodies& a, TrackedBodies& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(TrackedBodies* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline TrackedBodies* New() const final {
+    return CreateMaybeMessage<TrackedBodies>(nullptr);
+  }
+
+  TrackedBodies* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<TrackedBodies>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const TrackedBodies& from);
+  void MergeFrom(const TrackedBodies& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(TrackedBodies* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "pb.network.messages.TrackedBodies";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_body_2eproto);
+    return ::descriptor_table_body_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kBodiesFieldNumber = 10,
+    kCalibrationValuesFieldNumber = 20,
+  };
+  // repeated .pb.network.messages.PartialBody bodies = 10;
+  int bodies_size() const;
+  private:
+  int _internal_bodies_size() const;
+  public:
+  void clear_bodies();
+  ::pb::network::messages::PartialBody* mutable_bodies(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::pb::network::messages::PartialBody >*
+      mutable_bodies();
+  private:
+  const ::pb::network::messages::PartialBody& _internal_bodies(int index) const;
+  ::pb::network::messages::PartialBody* _internal_add_bodies();
+  public:
+  const ::pb::network::messages::PartialBody& bodies(int index) const;
+  ::pb::network::messages::PartialBody* add_bodies();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::pb::network::messages::PartialBody >&
+      bodies() const;
+
+  // .pb.network.messages.CalibrationValues calibrationValues = 20;
+  bool has_calibrationvalues() const;
+  private:
+  bool _internal_has_calibrationvalues() const;
+  public:
+  void clear_calibrationvalues();
+  const ::pb::network::messages::CalibrationValues& calibrationvalues() const;
+  ::pb::network::messages::CalibrationValues* release_calibrationvalues();
+  ::pb::network::messages::CalibrationValues* mutable_calibrationvalues();
+  void set_allocated_calibrationvalues(::pb::network::messages::CalibrationValues* calibrationvalues);
+  private:
+  const ::pb::network::messages::CalibrationValues& _internal_calibrationvalues() const;
+  ::pb::network::messages::CalibrationValues* _internal_mutable_calibrationvalues();
+  public:
+
+  // @@protoc_insertion_point(class_scope:pb.network.messages.TrackedBodies)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::pb::network::messages::PartialBody > bodies_;
+  ::pb::network::messages::CalibrationValues* calibrationvalues_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_body_2eproto;
+};
 // ===================================================================
 
 
@@ -1766,9 +1924,108 @@ inline void PartialBody::set_allocated_skeleton(::pb::network::messages::Skeleto
   // @@protoc_insertion_point(field_set_allocated:pb.network.messages.PartialBody.skeleton)
 }
 
+// -------------------------------------------------------------------
+
+// TrackedBodies
+
+// repeated .pb.network.messages.PartialBody bodies = 10;
+inline int TrackedBodies::_internal_bodies_size() const {
+  return bodies_.size();
+}
+inline int TrackedBodies::bodies_size() const {
+  return _internal_bodies_size();
+}
+inline void TrackedBodies::clear_bodies() {
+  bodies_.Clear();
+}
+inline ::pb::network::messages::PartialBody* TrackedBodies::mutable_bodies(int index) {
+  // @@protoc_insertion_point(field_mutable:pb.network.messages.TrackedBodies.bodies)
+  return bodies_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::pb::network::messages::PartialBody >*
+TrackedBodies::mutable_bodies() {
+  // @@protoc_insertion_point(field_mutable_list:pb.network.messages.TrackedBodies.bodies)
+  return &bodies_;
+}
+inline const ::pb::network::messages::PartialBody& TrackedBodies::_internal_bodies(int index) const {
+  return bodies_.Get(index);
+}
+inline const ::pb::network::messages::PartialBody& TrackedBodies::bodies(int index) const {
+  // @@protoc_insertion_point(field_get:pb.network.messages.TrackedBodies.bodies)
+  return _internal_bodies(index);
+}
+inline ::pb::network::messages::PartialBody* TrackedBodies::_internal_add_bodies() {
+  return bodies_.Add();
+}
+inline ::pb::network::messages::PartialBody* TrackedBodies::add_bodies() {
+  // @@protoc_insertion_point(field_add:pb.network.messages.TrackedBodies.bodies)
+  return _internal_add_bodies();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::pb::network::messages::PartialBody >&
+TrackedBodies::bodies() const {
+  // @@protoc_insertion_point(field_list:pb.network.messages.TrackedBodies.bodies)
+  return bodies_;
+}
+
+// .pb.network.messages.CalibrationValues calibrationValues = 20;
+inline bool TrackedBodies::_internal_has_calibrationvalues() const {
+  return this != internal_default_instance() && calibrationvalues_ != nullptr;
+}
+inline bool TrackedBodies::has_calibrationvalues() const {
+  return _internal_has_calibrationvalues();
+}
+inline const ::pb::network::messages::CalibrationValues& TrackedBodies::_internal_calibrationvalues() const {
+  const ::pb::network::messages::CalibrationValues* p = calibrationvalues_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::pb::network::messages::CalibrationValues*>(
+      &::pb::network::messages::_CalibrationValues_default_instance_);
+}
+inline const ::pb::network::messages::CalibrationValues& TrackedBodies::calibrationvalues() const {
+  // @@protoc_insertion_point(field_get:pb.network.messages.TrackedBodies.calibrationValues)
+  return _internal_calibrationvalues();
+}
+inline ::pb::network::messages::CalibrationValues* TrackedBodies::release_calibrationvalues() {
+  // @@protoc_insertion_point(field_release:pb.network.messages.TrackedBodies.calibrationValues)
+  
+  ::pb::network::messages::CalibrationValues* temp = calibrationvalues_;
+  calibrationvalues_ = nullptr;
+  return temp;
+}
+inline ::pb::network::messages::CalibrationValues* TrackedBodies::_internal_mutable_calibrationvalues() {
+  
+  if (calibrationvalues_ == nullptr) {
+    auto* p = CreateMaybeMessage<::pb::network::messages::CalibrationValues>(GetArenaNoVirtual());
+    calibrationvalues_ = p;
+  }
+  return calibrationvalues_;
+}
+inline ::pb::network::messages::CalibrationValues* TrackedBodies::mutable_calibrationvalues() {
+  // @@protoc_insertion_point(field_mutable:pb.network.messages.TrackedBodies.calibrationValues)
+  return _internal_mutable_calibrationvalues();
+}
+inline void TrackedBodies::set_allocated_calibrationvalues(::pb::network::messages::CalibrationValues* calibrationvalues) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(calibrationvalues_);
+  }
+  if (calibrationvalues) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      calibrationvalues = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, calibrationvalues, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  calibrationvalues_ = calibrationvalues;
+  // @@protoc_insertion_point(field_set_allocated:pb.network.messages.TrackedBodies.calibrationValues)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

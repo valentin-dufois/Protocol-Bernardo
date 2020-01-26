@@ -239,6 +239,32 @@ struct Pb_Network_Messages_PartialBody {
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
+struct Pb_Network_Messages_TrackedBodies {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var bodies: [Pb_Network_Messages_PartialBody] {
+    get {return _storage._bodies}
+    set {_uniqueStorage()._bodies = newValue}
+  }
+
+  var calibrationValues: Pb_Network_Messages_CalibrationValues {
+    get {return _storage._calibrationValues ?? Pb_Network_Messages_CalibrationValues()}
+    set {_uniqueStorage()._calibrationValues = newValue}
+  }
+  /// Returns true if `calibrationValues` has been explicitly set.
+  var hasCalibrationValues: Bool {return _storage._calibrationValues != nil}
+  /// Clears the value of `calibrationValues`. Subsequent reads from it will return its default value.
+  mutating func clearCalibrationValues() {_uniqueStorage()._calibrationValues = nil}
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 fileprivate let _protobuf_package = "pb.network.messages"
@@ -614,6 +640,75 @@ extension Pb_Network_Messages_PartialBody: SwiftProtobuf.Message, SwiftProtobuf.
         if _storage._isValid != rhs_storage._isValid {return false}
         if _storage._devicesUid != rhs_storage._devicesUid {return false}
         if _storage._skeleton != rhs_storage._skeleton {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Pb_Network_Messages_TrackedBodies: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".TrackedBodies"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    10: .same(proto: "bodies"),
+    20: .same(proto: "calibrationValues"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _bodies: [Pb_Network_Messages_PartialBody] = []
+    var _calibrationValues: Pb_Network_Messages_CalibrationValues? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _bodies = source._bodies
+      _calibrationValues = source._calibrationValues
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 10: try decoder.decodeRepeatedMessageField(value: &_storage._bodies)
+        case 20: try decoder.decodeSingularMessageField(value: &_storage._calibrationValues)
+        default: break
+        }
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._bodies.isEmpty {
+        try visitor.visitRepeatedMessageField(value: _storage._bodies, fieldNumber: 10)
+      }
+      if let v = _storage._calibrationValues {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 20)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Pb_Network_Messages_TrackedBodies, rhs: Pb_Network_Messages_TrackedBodies) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._bodies != rhs_storage._bodies {return false}
+        if _storage._calibrationValues != rhs_storage._calibrationValues {return false}
         return true
       }
       if !storagesAreEqual {return false}

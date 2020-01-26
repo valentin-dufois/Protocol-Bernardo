@@ -60,25 +60,42 @@ void Core::trackingEngineUpdatedBody(TrackingEngine *, Body * body) {
 }
 
 void Core::trackingEngineFinishedCycle(TrackingEngine *) {
-	messages::Datagram * datagram = makeDatagram(messages::Datagram_Type_PARTIAL_BODY);
+	// Prepare the receivers message
+	messages::Datagram * receiversDatagram = makeDatagram(messages::Datagram_Type_PARTIAL_BODY);
 	protobuf::Any * anyMessage = new protobuf::Any();
-	datagram->set_allocated_data(anyMessage);
+	receiversDatagram->set_allocated_data(anyMessage);
 
-	// Send each partial body one by one
+	// Prepare the terminal message
+	messages::TrackedBodies * trackedBodies = new messages::TrackedBodies();
+
+	// Send each partial body one by one, while preparing them for the terminal
 	for(messages::PartialBody * message: _partialBodies) {
 		anyMessage->PackFrom(*message);
-
-		_networkManager.sendToReceivers(datagram);
-		_networkManager.sendToTerminal(datagram);
-
+		_networkManager.sendToReceivers(receiversDatagram);
 		anyMessage->Clear();
+
+		messages::PartialBody * bodyMessage = trackedBodies->add_bodies();
+		bodyMessage->CopyFrom(*message);
+
 		delete message;
 	}
 
-	datagram->Clear();
-	_partialBodies.clear();
+	// Attach calibration values if needed
+	if(_trackingEngine.canCalibrate()) {
+		trackedBodies->set_allocated_calibrationvalues(_trackingEngine.getCalibrationValues());
+	}
 
-	delete datagram;
+	// Send to the terminal
+	messages::Datagram * terminalDatagram = makeDatagram(network::messages::Datagram_Type_TRACKED_BODIES, *trackedBodies);
+	_networkManager.sendToTerminal(terminalDatagram);
+
+	// Clear
+	_partialBodies.clear();
+	receiversDatagram->Clear();
+	terminalDatagram->Clear();
+	delete receiversDatagram;
+	delete terminalDatagram;
+	delete trackedBodies;
 
 }
 

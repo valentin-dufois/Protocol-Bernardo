@@ -141,7 +141,7 @@ struct Body {
 		return true;
 	}
 
-#endif
+#endif /* PB_MASTER */
 
 	void clearRawSkeletons() {
 		// Clear the rawSkeletons

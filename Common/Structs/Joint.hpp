@@ -40,7 +40,7 @@ struct Joint {
 	/// Default constructor
 	Joint() {}
 
-#ifdef MACHINE_TRACKER
+#ifdef PB_TRACKER
 
 	/// This sconstructor allow for creating a `Joint` from NiTE joint.
 	/// @param joint The NiTE joint to use
@@ -63,7 +63,7 @@ struct Joint {
 		position2D.y = y2D;
 	}
 
-#endif /* MACHINE_TRACKER */
+#endif /* PB_TRACKER */
 
 	/// Build a Joint using the given message
 	/// @param message The message holding the Joint's informations

@@ -1,4 +1,3 @@
-
 //
 //  common.hpp
 //  Protocol Bernardo

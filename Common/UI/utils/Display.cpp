@@ -25,7 +25,7 @@ void Display::display() {
 
 	// Create the render frame and run it
 	_renderThread = new std::thread([&] () {
-		pb::thread::setName("pb.ui.render");
+		pb::thread::setName("prisme.ui.render");
 
 		while(_isShown) {
 			std::chrono::system_clock::time_point start = std::chrono::system_clock::now();
@@ -33,6 +33,7 @@ void Display::display() {
 			_renderMutex.lock();
 
 			nC::clear();
+			nC::clearWindow();
 			render();
 			refresh();
 

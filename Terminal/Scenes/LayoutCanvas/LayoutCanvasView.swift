@@ -50,7 +50,7 @@ class LayoutCanvasView: SKView {
 		trackedBodiesNode?.removeAllChildren();
 
 		trackedBodies.bodies.forEach { body in
-			if body.skeletons.count != 0 {
+			if body.isValid {
 				trackedBodiesNode?.addChild(CanvasBody(forBody: body));
 			}
 		}
