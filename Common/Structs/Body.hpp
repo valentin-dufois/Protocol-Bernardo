@@ -35,7 +35,7 @@ struct Body {
 	/// The skeletons for this user in the global coordinates space. The first one being the oldest one, and the last one the actual one
 	std::list<Skeleton *> skeletons;
 
-	/// The list of device UID, RawBody uid pair from which this body is taking data from
+	/// List of RawBody uid paired with their device UID pair from which this body is taking data from
 	std::map<pb::deviceUID, pb::rawBodyUID> rawBodiesUID;
 
 	/// All the skeleton composing the current frame of the user

@@ -88,6 +88,7 @@ void TrackingEngine::trackBodies() {
 	// Unlock
 	_bodiesBufferMutex.unlock();
 
+	//
 	updateCalibrationValues();
 
 	// Calculate the average global position for each body
@@ -110,10 +111,10 @@ void TrackingEngine::trackBodies() {
 void TrackingEngine::parseBodiesBuffer() {
 
 	for(RawBody * rawBody: _bodiesBuffer) {
-		// Register device UID
 		if(rawBody == NULL)
 			continue;
-		
+
+		// Register device UID
 		_devicesUID.insert(rawBody->deviceUID);
 
 		// We only handle tracked users

@@ -112,7 +112,7 @@ std::tuple<Body *, double> Arena::mostActiveBody() const {
 			Skeleton::torso
 		};
 
-		// Checkint specified joints
+		// Check specified joints
 		for(Skeleton::JointID jointID: jointIDs) {
 			dist = abs(glm::distance(a->joints[jointID].position, b->joints[jointID].position));
 

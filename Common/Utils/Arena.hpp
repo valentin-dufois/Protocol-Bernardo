@@ -28,19 +28,19 @@ public:
 	Arena(const Arena &a):
 	_bodies(a._bodies),
 	_mutex(a._mutex),
-	_bounds(a._bounds) {}
+	_devices(a._devices) {}
 
-	Arena(std::map<bodyUID, Body *> * bodies, std::mutex * mutex): Arena(bodies, mutex, Bounds()) {}
+	Arena(std::map<bodyUID, Body *> * bodies, std::mutex * mutex): Arena(bodies, mutex, {}) {}
 
-	Arena(std::map<bodyUID, Body *> * bodies, std::mutex * mutex, const Bounds &bounds):
+	Arena(std::map<bodyUID, Body *> * bodies, std::mutex * mutex, const std::vector<pb::deviceUID> &devices):
 	_bodies(bodies),
 	_mutex(mutex),
-	_bounds(bounds) {}
+	_devices(devices) {}
 
 	/// Gives a "subset" of the current arena with the specified bounds
 	/// @param bounds Limits of the subset arena
-	inline Arena makeSubset(const Bounds bounds) const {
-		return Arena(_bodies, _mutex, _bounds);
+	inline Arena makeSubset(const std::vector<pb::deviceUID> devices) const {
+		return Arena(_bodies, _mutex, devices);
 	}
 
 	// MARK: - Access
@@ -71,8 +71,8 @@ private:
 	/// Reference to the bodies lock shared by all Arenas
 	mutable std::mutex * _mutex = nullptr;
 
-	/// The bounds of this arena
-	const Bounds _bounds;
+	/// Watched devices list
+	const std::vector<pb::deviceUID> _devices;
 };
 
 } /* ::pb */

@@ -23,11 +23,12 @@ public:
 		"NBR_BODY"
 	},
 					 {		// Captions
-		"Bien que je détecte {NBR_BODY} personnes, je ne détecte pas de mouvement."
+		"Bien que je détecte {NBR_BODY_STR} personnes, je ne détecte pas de mouvement."
 	}) {}
 
 	virtual bool isConditionValid(State &behaviourState) override {
 		_state["NBR_BODY"] = behaviourState["NBR_BODY"];
+		_state["NBR_BODY_STR"] = std::to_string(std::get<int>(behaviourState["NBR_BODY"]));
 
 		return std::get<int>(_state["NBR_BODY"]) > 1;
 	};

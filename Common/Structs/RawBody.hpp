@@ -35,8 +35,7 @@ struct RawBody {
 
 	/// Defines the different states a user can take
 	enum State: int {
-		/** An error occured with the user. Any tracking on it has stop and will not
-		 resume */
+		/** An error occured with the user. Any tracking on it has stop and will not resume */
 		error,
 
 		/** The user has no skeleton */
@@ -49,14 +48,11 @@ struct RawBody {
 		/** The user is being actively tracked and has a skeleton. */
 		tracked,
 
-		/** The user has gone missing. It will be completely removed and its ID may
-		 be reassigned to a new user. A missing body may be tracked again is the user
-		 is trackable again */
+		/** The user has gone missing. It will be completely removed and its ID may be reassigned to a new user. A missing body may be tracked again is the user is trackable again */
 		missing,
 
 		/**
-		 The tracker has completely lost the body, and will no longer be tracked on
-		 the next frame
+		 The tracker has completely lost the body, and will no longer be tracked on the next frame
 		 */
 		lost
 	};

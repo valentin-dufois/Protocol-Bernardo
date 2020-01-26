@@ -23,11 +23,11 @@ public:
 		"SUDDEN_MOVE_SPEED_TIMES_FROM_AVERAGE"
 	},
 					 {		// Captions
-		"C'est {SUDDEN_MOVE_SPEED_TIMES_FROM_AVERAGE} fois la vitesse moyenne des personnes présentes."
+		"C'est {SUDDEN_MOVE_SPEED_TIMES_FROM_AVERAGE_STR} fois la vitesse moyenne des personnes présentes."
 	}) {}
 
 	virtual bool isConditionValid(State &behaviourState) override {
-		_state["SUDDEN_MOVE_SPEED_TIMES_FROM_AVERAGE"] = behaviourState["SUDDEN_MOVE_SPEED_TIMES_FROM_AVERAGE"];
+		_state["SUDDEN_MOVE_SPEED_TIMES_FROM_AVERAGE_STR"] = std::to_string(std::get<double>(behaviourState["SUDDEN_MOVE_SPEED_TIMES_FROM_AVERAGE"]));
 		return true;
 	};
 };
