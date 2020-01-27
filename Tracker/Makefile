@@ -92,7 +92,7 @@ LDLIBS += `pkg-config libopenni2 --libs` \
 endif
 
 
-CXXFLAGS := $(GCCOPTIONS) -I$(LIBDIR) -I. $(INCFLAGS)  -DMACHINE_TRACKER -DDEBUG -DLOG_LEVEL=1
+CXXFLAGS := $(GCCOPTIONS) -I$(LIBDIR) -I. $(INCFLAGS)  -DPB_TRACKER -DDEBUG -DLOG_LEVEL=1
 
 # #######################
 # MARK: - Build Sequence
