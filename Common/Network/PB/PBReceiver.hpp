@@ -112,7 +112,7 @@ public:
 				datagram->Clear();
 				delete datagram;
 
-				_arenaMutex.lock();
+				_arenaMutex.unlock();
 				return;
 			}
 
@@ -122,7 +122,7 @@ public:
 			datagram->Clear();
 			delete datagram;
 
-			_arenaMutex.lock();
+			_arenaMutex.unlock();
 			return;
 		}
 
@@ -132,7 +132,7 @@ public:
 			datagram->Clear();
 			delete datagram;
 
-			_arenaMutex.lock();
+			_arenaMutex.unlock();
 			return;
 		}
 

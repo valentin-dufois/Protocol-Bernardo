@@ -124,65 +124,6 @@ messages::Talkers Machine::getOutputMessage() {
 	return message;
 }
 
-// MARK: - Manual getters
-
-int Machine::getIntValue(const std::string &value) {
-	int val;
-	std::string input;
-	char * end;
-
-	do {
-		std::cout << std::endl << "*** Manual input for " << value << " (int) :" << std::endl;
-		std::cout << "> ";
-
-		std::cin >> input;
-		std::cout << std::endl;
-
-		val = (int)std::strtol(input.c_str(), &end, 10);
-
-		if (errno != ERANGE)
-			return val;
-
-		std::cout << "*** Error, please retry!" << std::endl;
-
-	} while (true);
-}
-
-double Machine::getDoubleValue(const std::string &value) {
-	double val;
-	std::string input;
-	char * end;
-
-	do {
-		std::cout << std::endl << "*** Manual input for " << value << " (float) :" << std::endl;
-		std::cout << "> ";
-
-		std::cin >> input;
-		std::cout << std::endl;
-
-		val = std::strtod(input.c_str(), &end);
-
-		if (errno != ERANGE)
-			return val;
-
-		std::cout << "*** Error, please retry!" << std::endl;
-
-	} while (true);
-}
-
-bool Machine::getBoolValue(const std::string &value) {
-	std::string input;
-
-	std::cout << std::endl << "*** Manual input for " << value << " (boolean: 0 = false; 1 = true) :" << std::endl;
-	std::cout << "> ";
-
-	std::cin >> input;
-	std::cout << std::endl;
-
-	return input != "0";
-}
-
-
 // MARK: - Watchers
 
 bool Machine::executeWatchers() {
@@ -207,7 +148,6 @@ bool Machine::executeWatchers() {
 
 		if(_tree == nullptr) {
 			// Dispatch
-			LOG_DEBUG("[" + label + "]Event " + event.name);
 			delegate->machineExecuteEvent(this, event);
 			return true;
 		}

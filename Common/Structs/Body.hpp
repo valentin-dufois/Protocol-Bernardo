@@ -95,7 +95,7 @@ struct Body {
 	/// @returns True if the body has changed or false otherwise
 	bool updatePosition() {
 		if(!isValid)
-			return false;
+			return true;
 
 		// Is there any rawSkeleton to work with ?
 		if(rawSkeletons.size() == 0) {
@@ -123,7 +123,25 @@ struct Body {
 		}
 
 		// Divide them (weighted mean)
-		skeletons.push_back(new Skeleton(skeleton / rawSkeletons.size()));
+		Skeleton * newSkeleton = new Skeleton(skeleton / rawSkeletons.size());
+
+		// If we already have a skeleton from before, we can use it to fill missing joints, if any
+		if(hasSkeleton()) {
+
+			// Check for missing joints
+			for(int i = 0; i < newSkeleton->joints.size(); ++i) {
+				if(newSkeleton->joints[i].positionConfidence != 0)
+					continue; // Joint is ok
+
+				// Joint is missing, did we have it before ?
+				if(this->skeleton()->joints[i].positionConfidence == 0)
+					continue; // Previous skeleton didn't had it either
+
+				newSkeleton->joints[i] = this->skeleton()->joints[i];
+			}
+		}
+
+		skeletons.push_back(newSkeleton);
 
 		// Keep history size
 		if(skeletons.size() > TRACKING_ENGINE_BODY_HISTORY_SIZE) {

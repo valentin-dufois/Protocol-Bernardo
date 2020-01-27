@@ -7,6 +7,7 @@
 //
 
 #include "Output.hpp"
+#include "../../Common/Utils/Log.hpp"
 
 #include <iostream>
 
@@ -335,7 +336,7 @@ Output * Output::get(const talkers::OutputID id) {
 		case 120200: return new S120200();
 
 		default:
-			std::cout << "*** No output " << id << std::endl;
+			LOG_ERROR("*** No output #" + std::to_string(id));
 			return nullptr;
 	}
 }

@@ -35,10 +35,6 @@ void Core::init() {
 void Core::run() {
 	_isRunning = true;
 
-#ifdef DEBUG
-	//  manualStart();
-#endif
-
 	// Start the watchers thread
 	_watchersThread = new std::thread(&Core::watchersThread, this);
 
@@ -54,37 +50,6 @@ void Core::run() {
 		lk.unlock();
 
 	} while(_isRunning);
-}
-
-void Core::manualStart() {
-
-	std::string bID, inputCount;
-
-	Message * message = new Message();
-
-	std::cout << std::endl << "*** MANUAL MODE ***" << std::endl;
-
-	std::cout << "*** Behaviour ID to start : ";
-	std::cin >> bID;
-
-	message->behaviour = std::atoi(bID.c_str());
-
-	std::cout << "*** Add incoming variables ? (How Many ?): ";
-	std::cin >> inputCount;
-
-	for(int i = 0; i < std::atoi(inputCount.c_str()); ++i) {
-		std::string varName;
-		std::cout << "*** Variable " << i << " name : ";
-		std::cin >> varName;
-
-		std::string varVal;
-		std::cout << "*** Variable " << i << " value : ";
-		std::cin >> varVal;
-
-		message->values[varName] = std::atof(varVal.c_str());
-	}
-
-	_nextMessage = message;
 }
 
 void Core::talk() {
@@ -130,6 +95,11 @@ void Core::machineSaysSomething(Machine * aMachine, const std::string &caption) 
 }
 
 void Core::machineExecuteEvent(Machine * aMachine, const Event &event) {
+	if(_nextMessage != nullptr)
+		return; // Ignore is a message is already present. The other machine may have already triggered an event
+
+	LOG_DEBUG("[" + aMachine->label + "] Event " + event.name);
+
 	Message * message = new Message();
 	message->behaviour = event.behaviour;
 	message->values = event.values;
@@ -165,8 +135,8 @@ void Core::watchersThread() {
 			_lastChecked = "B";
 		}
 
-		std::chrono::system_clock::time_point endTime = std::chrono::system_clock::now();
-
-		pb::thread::cadence(endTime - startTime, 8);
+		pb::thread::cadence(std::chrono::system_clock::now() - startTime, 8.0);
 	}
+
+	LOG_INFO("Closing watchers thread");
 }

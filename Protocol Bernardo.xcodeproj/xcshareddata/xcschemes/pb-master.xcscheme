@@ -53,8 +53,8 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "--interface 10.110.10.138"
-            isEnabled = "NO">
+            argument = "--interface 10.10.1.131"
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--layout TestsUtilisateurs"

@@ -22,10 +22,11 @@ public:
 		"NBR_QUESTIONS"
 	},
 					 {						// Captions
-		"{NBR_QUESTIONS} précisément."
+		"{NBR_QUESTIONS_STR} précisément."
 	}) {}
 
 	inline bool isConditionValid(State &behaviourState) {
+		_state["NBR_QUESTIONS_STR"] = std::to_string(std::get<int>(behaviourState["NBR_QUESTIONS"]));
 		_state["NBR_QUESTIONS"] = behaviourState["NBR_QUESTIONS"];
 		return true;
 	};

@@ -31,7 +31,6 @@ public:
 
 	virtual bool execute(Machine * machine) override {
 		_state["RAND"] = (double)rand() / (double)RAND_MAX;
-		std::cout << std::get<double>(_state["RAND"]) << std::endl;
 		return true;
 	}
 };

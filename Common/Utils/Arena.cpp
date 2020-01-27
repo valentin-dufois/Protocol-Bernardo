@@ -66,7 +66,16 @@ bool Arena::fitBody(const Body * body) const {
 
 double Arena::averageMoveSpeed() const {
 	double acc = 0;
-	double bodiesUsedCount = 0;
+	unsigned int jointsUsed = 0;
+
+	Skeleton::JointID jointIDs[6] = {
+		Skeleton::leftFoot,
+		Skeleton::rightFoot,
+		Skeleton::leftHand,
+		Skeleton::rightHand,
+		Skeleton::head,
+		Skeleton::torso
+	};
 
 	std::vector<Body *> bodies = getSubset();
 
@@ -77,40 +86,42 @@ double Arena::averageMoveSpeed() const {
 		if(body->skeletons.size() < 2)
 			continue; // Ignore
 
-		++bodiesUsedCount;
-
 		std::list<Skeleton *>::iterator it = body->skeletons.begin();
 
 		Skeleton * a = *it;
 		Skeleton * b = *(++it);
 
-		Skeleton::JointID jointIDs[6] = {
-			Skeleton::leftFoot,
-			Skeleton::rightFoot,
-			Skeleton::leftHand,
-			Skeleton::rightHand,
-			Skeleton::head,
-			Skeleton::torso
-		};
-
 		// Checking specified joints
 		for(Skeleton::JointID jointID: jointIDs) {
+			if(a->joints[jointID].positionConfidence == 0 ||
+			   b->joints[jointID].positionConfidence == 0) {
+				continue;
+			}
+
+			++jointsUsed;
 			acc += abs(glm::distance(a->joints[jointID].position, b->joints[jointID].position));
 		}
 	}
 
-	if(bodiesUsedCount == 0)
+	if(jointsUsed == 0)
 		return 0;
 
 	constexpr double trackingEngineFreq = 1.0 / TRACKING_ENGINE_RUN_SPEED;
 
-	return (acc / (bodiesUsedCount * 6.0)) / trackingEngineFreq;
+	return (acc / double(jointsUsed)) / trackingEngineFreq;
 }
 
 std::tuple<Body *, double> Arena::mostActiveBody() const {
-	double max = 0;
-	Body * fastestBody = 0;
-	double dist;
+	double max = 0, dist = 0;
+	Body * fastestBody = nullptr;
+
+	Skeleton::JointID jointIDs[5] = {
+		Skeleton::leftFoot,
+		Skeleton::rightFoot,
+		Skeleton::leftHand,
+		Skeleton::rightHand,
+		Skeleton::torso
+	};
 
 	std::vector<Body *> bodies = getSubset();
 
@@ -126,16 +137,13 @@ std::tuple<Body *, double> Arena::mostActiveBody() const {
 		Skeleton * a = *it;
 		Skeleton * b = *(++it);
 
-		Skeleton::JointID jointIDs[5] = {
-			Skeleton::leftFoot,
-			Skeleton::rightFoot,
-			Skeleton::leftHand,
-			Skeleton::rightHand,
-			Skeleton::torso
-		};
-
 		// Check specified joints
 		for(Skeleton::JointID jointID: jointIDs) {
+			if(a->joints[jointID].positionConfidence == 0 ||
+			   b->joints[jointID].positionConfidence == 0) {
+				continue;
+			}
+
 			dist = abs(glm::distance(a->joints[jointID].position, b->joints[jointID].position));
 
 			if(dist > max) {
