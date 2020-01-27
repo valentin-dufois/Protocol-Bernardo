@@ -44,17 +44,19 @@ Message * Machine::onMessage(Message * message) {
 		return nullptr;
 	}
 
-	if(behaviour->isTreeStart) {
-		if(_tree != nullptr && !behaviour->forceStart) {
-			onError("Behaviour " + std::to_string(behaviour->id) + " is not marked as tree start but a tree is already present.");
-			delete behaviour;
-			return nullptr;
-		}
-
-		if(_tree != nullptr)
-			delete _tree;
-
+	if(_tree != nullptr && behaviour->forceStart) {
+		delete _tree;
 		_tree = new Tree(behaviour->treeID);
+	} else if(_tree == nullptr) {
+		_tree = new Tree(behaviour->treeID);
+	}
+
+	if(_tree->id != behaviour->treeID) {
+		onError("Routing error on tree #" + std::to_string(_tree->id) + " and behaviour #" + std::to_string(behaviour->id));
+		delete behaviour;
+		delete _tree;
+		_tree = nullptr;
+		return nullptr;
 	}
 
 	if(!behaviour->importMessage(message)) {
