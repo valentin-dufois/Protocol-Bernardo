@@ -46,8 +46,8 @@ Message * Machine::onMessage(Message * message) {
 
 	if(behaviour->isTreeStart) {
 		if(_tree != nullptr && !behaviour->forceStart) {
-			delete behaviour;
 			onError("Behaviour " + std::to_string(behaviour->id) + " is not marked as tree start but a tree is already present.");
+			delete behaviour;
 			return nullptr;
 		}
 
