@@ -160,7 +160,6 @@ void Core::watchersThread() {
 		if(_lastChecked == "B") {
 			_machineA.executeWatchers();
 			_lastChecked = "A";
-			return;
 		} else {
 			_machineB.executeWatchers();
 			_lastChecked = "B";
