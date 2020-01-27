@@ -75,14 +75,6 @@ public:
 
 	messages::Talkers getOutputMessage();
 
-	// MARK: - Manual getters
-
-	int getIntValue(const std::string &value);
-
-	double getDoubleValue(const std::string &value);
-
-	bool getBoolValue(const std::string &value);
-
 	// MARK: - Watchers
 
 	/// Execute all the watchers on the machine.

@@ -7,6 +7,7 @@
 
 #include "Behaviour.hpp"
 #include "../Core/Machine.hpp"
+#include "../../Common/Utils/Log.hpp"
 
 #include <iostream>
 
@@ -316,7 +317,7 @@ Behaviour * Behaviour::get(const talkers::BehaviourID behaviourID) {
 		case 1202: return new B1202();
 
 		default:
-			std::cout << "*** No behaviour " << behaviourID << std::endl;
+			LOG_ERROR("*** No behaviour #" + std::to_string(behaviourID));
 			return nullptr;
 	}
 }

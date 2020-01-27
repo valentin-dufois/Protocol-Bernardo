@@ -112,23 +112,23 @@ struct Joint {
 	Joint operator / (const SCALAR &div) {
 		Joint j;
 
-		j.orientationConfidence = orientationConfidence / div;
-		j.positionConfidence = positionConfidence / div;
+		j.orientationConfidence = round((orientationConfidence / div) * 10.0) / 10.0;
+		j.positionConfidence = round((positionConfidence / div) * 10.0) / 10.0;
 
-		if(ceil(orientationConfidence) == 0) {
+		if(j.orientationConfidence == 0) {
 			// prevent division by 0
-			orientation = maths::vec3(0, 0, 0);
+			j.orientation = maths::vec3(0, 0, 0);
 		} else {
-			j.orientation = orientation / orientationConfidence;
+			j.orientation = orientation / j.orientationConfidence;
 		}
 
-		if(ceil(positionConfidence) == 0) {
+		if(j.positionConfidence == 0) {
 			// prevent division by 0
 			j.position = maths::vec3(0, 0, 0);
 			j.position2D = maths::vec2(0, 0);
 		} else {
-			j.position = position / positionConfidence;
-			j.position2D = position2D / positionConfidence;
+			j.position = position / j.positionConfidence;
+			j.position2D = position2D / j.positionConfidence;
 		}
 
 		return j;

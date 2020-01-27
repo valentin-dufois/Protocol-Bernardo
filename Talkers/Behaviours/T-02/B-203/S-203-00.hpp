@@ -23,10 +23,11 @@ public:
 		"SUDDEN_MOVE_SPEED"
 	},
 					 {		// Captions
-		"À {SUDDEN_MOVE_SPEED} mm/s exactement. Enfin d’après mes calculs."
+		"À {SUDDEN_MOVE_SPEED_STR} mm/s exactement. Enfin d’après mes calculs."
 	}) {}
 
 	virtual bool isConditionValid(State &behaviourState) override {
+		_state["SUDDEN_MOVE_SPEED_STR"] = std::to_string(std::get<double>(behaviourState["SUDDEN_MOVE_SPEED"]));
 		_state["SUDDEN_MOVE_SPEED"] = behaviourState["SUDDEN_MOVE_SPEED"];
 		return true;
 	};

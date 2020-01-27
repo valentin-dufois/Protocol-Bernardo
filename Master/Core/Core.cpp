@@ -42,7 +42,8 @@ void Core::run() {
 	}
 }
 
-void Core::trackingEngineUpdatedBody(TrackingEngine *, Body * body) {
+void Core::
+trackingEngineUpdatedBody(TrackingEngine *, Body * body) {
 	// Prepare the message
 	messages::PartialBody * message = new messages::PartialBody();
 	message->set_uid(body->uid);

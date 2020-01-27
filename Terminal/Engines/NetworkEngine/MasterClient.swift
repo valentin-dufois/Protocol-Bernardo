@@ -64,7 +64,7 @@ class MasterClient {
 			// Decode the message
 			guard let datagram = try? Pb_Network_Messages_Datagram(serializedData: Data(data)) else {
 				Log.warning("Received object was not a datagram...")
-				return
+				continue
 			}
 
 			// Handle the datagram; perform internal actions
