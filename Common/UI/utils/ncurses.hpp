@@ -12,7 +12,10 @@
 #include <iostream>
 
 // NCURSES
+#ifndef _XOPEN_SOURCE_EXTENDED
 #define _XOPEN_SOURCE_EXTENDED // UTF-8
+#endif
+
 #include "ncurses.h"
 
 #include "../UI.hpp"

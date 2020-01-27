@@ -54,8 +54,8 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "--interface 10.10.1.94"
-            isEnabled = "NO">
+            argument = "--interface 10.10.1.131"
+            isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
    </LaunchAction>

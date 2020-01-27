@@ -121,7 +121,6 @@ void TrackingEngine::parseBodiesBuffer() {
 		// We only handle tracked users
 		if(rawBody->state != RawBody::State::tracked) {
 			// remove reference to this rawBody in Bodies if needed
-//			LOG_DEBUG("RawBody is not tracked");
 			removeRawBodyReference(rawBody);
 			continue;
 		}
@@ -166,6 +165,8 @@ void TrackingEngine::parseBodiesBuffer() {
 		LOG_DEBUG("Appending to existing body");
 		closestBody.first->rawBodiesUID[rawBody->deviceUID] = rawBody->uid;
 		closestBody.first->rawSkeletons.push_back(skeleton);
+
+		closestBody.first->devicesUID.insert(rawBody->deviceUID);
 	}
 
 	// Empty the buffer
@@ -244,6 +245,7 @@ void TrackingEngine::parseBodies() {
 
 		for(std::pair<pb::deviceUID, pb::rawBodyUID> refs: youngest->rawBodiesUID) {
 			oldest->rawBodiesUID[refs.first] = refs.second;
+			oldest->devicesUID.insert(refs.first);
 		}
 
 		// Finally, mark the youngest as invalid
@@ -343,9 +345,10 @@ void TrackingEngine::removeRawBodyReference(const RawBody * rawbody) {
 
 	// Remove the rawbody reference from the body
 	body->rawBodiesUID.erase(rawbody->deviceUID);
+	body->devicesUID.erase(rawbody->deviceUID);
 
 	// If the body has no more reference, we remove it completely
-	if(body->rawBodiesUID.size() == 0) {
+	if(body->devicesUID.size() == 0) {
 		body->isValid = false;
 	}
 }
