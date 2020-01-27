@@ -14,7 +14,7 @@ class S22000: public Output {
 public:
 
 	S22000(): Output(22000,	// Output ID
-					 false,	// Is tree end ?
+					 true,	// Is tree end ?
 					 221,	// Next Behaviour ID
 					 DELAY_DEFAULT,	// Is delayed
 					 DELAY_VALUE_DEFAULT,		// Delay value (seconds)
