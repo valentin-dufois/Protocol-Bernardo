@@ -14,7 +14,7 @@ class S70200 : public Output {
 public:
 
 	S70200() : Output(70200,	// Output ID
-		false,	// Is tree end ?
+		true,	// Is tree end ?
 		703,	// Next Behaviour ID
 		DELAY_DEFAULT,	// Is delayed
 		DELAY_VALUE_DEFAULT,		// Delay value (seconds)

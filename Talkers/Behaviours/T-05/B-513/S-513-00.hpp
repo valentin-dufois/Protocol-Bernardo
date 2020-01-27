@@ -14,7 +14,7 @@ class S51300 : public Output {
 public:
 
 	S51300() : Output(51300,	// Output ID
-		false,	// Is tree end ?
+		true,	// Is tree end ?
 		514, 	// Next Behaviour ID
 		DELAY_DEFAULT,	// Is delayed
 		DELAY_VALUE_DEFAULT,		// Delay value (seconds)

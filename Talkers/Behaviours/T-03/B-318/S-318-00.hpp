@@ -14,7 +14,7 @@ class S31800: public Output {
 public:
 
 	S31800(): Output(31800,	// Output ID
-					 false,	// Is tree end ?
+					 true,	// Is tree end ?
 					 319,	// Next Behaviour ID
 					 DELAY_DEFAULT,	// Is delayed
 					 DELAY_VALUE_DEFAULT,		// Delay value (seconds)

@@ -207,7 +207,7 @@ bool Machine::executeWatchers() {
 
 		if(_tree == nullptr) {
 			// Dispatch
-			LOG_DEBUG("Event " + event.name);
+			LOG_DEBUG("[" + label + "]Event " + event.name);
 			delegate->machineExecuteEvent(this, event);
 			return true;
 		}
