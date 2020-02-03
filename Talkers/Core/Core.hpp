@@ -49,6 +49,8 @@ public:
 
 	// MARK: - Machine Delegate
 
+	virtual void machineDidUpdate(Machine *) override;
+
 	virtual void machineSaysSomething(Machine *, const std::string &caption) override;
 
 	virtual void machineExecuteEvent(Machine * aMachine, const Event &event) override;

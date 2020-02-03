@@ -78,6 +78,16 @@ Core::~Core() {
 
 // MARK: - Machine Delegate
 
+void Core::machineDidUpdate(Machine * aMachine) {
+	messages::Talkers machineMessage = aMachine->getOutputMessage();
+
+	// Fill in message content
+	machineMessage.set_type("update");
+
+	// Send
+	_receiversServer.sendToAll(&machineMessage);
+}
+
 void Core::machineSaysSomething(Machine * aMachine, const std::string &caption) {
 	if(aMachine->label == "A")
 		_machineB.storeCaption(caption);

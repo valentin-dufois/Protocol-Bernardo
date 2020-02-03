@@ -32,6 +32,7 @@ Message * Machine::onMessage(Message * message) {
 
 	// Check behaviour value
 	if(message->behaviour == -1) {
+		delegate->machineDidUpdate(this);
 		return nullptr;
 	}
 
@@ -44,6 +45,7 @@ Message * Machine::onMessage(Message * message) {
 		return nullptr;
 	}
 
+	// Ar we changing tree ?
 	if(_tree != nullptr && behaviour->forceStart) {
 		delete _tree;
 		_tree = new Tree(behaviour->treeID);

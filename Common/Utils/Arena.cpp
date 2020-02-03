@@ -157,4 +157,51 @@ std::tuple<Body *, double> Arena::mostActiveBody() const {
 
 	return {fastestBody, max / trackingEngineFreq};
 }
+
+unsigned int Arena::movingBodiesCount() const {
+	constexpr double threshold = 15;
+	unsigned int movingBodies = 0;
+	double dist;
+
+	Skeleton::JointID jointIDs[5] = {
+		Skeleton::leftFoot,
+		Skeleton::rightFoot,
+		Skeleton::leftHand,
+		Skeleton::rightHand,
+		Skeleton::torso
+	};
+
+	std::vector<Body *> bodies = getSubset();
+
+	if(bodies.size() == 0)
+		return 0;
+
+	for(Body * body: bodies) {
+		if(body->skeletons.size() < 2)
+			continue; // Ignore
+
+		std::list<Skeleton *>::iterator it = body->skeletons.begin();
+
+		Skeleton * a = *it;
+		Skeleton * b = *(++it);
+
+		// Check specified joints
+		for(Skeleton::JointID jointID: jointIDs) {
+			if(a->joints[jointID].positionConfidence == 0 ||
+			   b->joints[jointID].positionConfidence == 0) {
+				continue;
+			}
+
+			dist = abs(glm::distance(a->joints[jointID].position, b->joints[jointID].position));
+
+			if(dist >= threshold) {
+				++movingBodies;
+				break;
+			}
+		}
+	}
+
+	return movingBodies;
+}
+
 } /* ::pb */

@@ -107,14 +107,18 @@ private:
 	// MARK: - Watchers
 
 	/// All the watchers
-	std::array<Watcher *, 7> _watchers = {
-		new NoMovementsWatcher(100, 50, 0.1),
-		new SuddenMoveWatcher(200, 5000, 0.1),
-		new ClosePeopleWatcher(300, 800, 0.1),
-		new RandomWatcher(400, 0.01),
-		new RandomWatcher(500, 0.01),
-		new RandomWatcher(600, 0.01),
-		new RandomWatcher(800, 0.01)
+	std::array<Watcher *, 8> _watchers = {
+		new NoMovementsWatcher(1, 50, 0.01),			// T-01
+		new ClosePeopleWatcher(11, 800, 0.1),		// T-02
+		new SuddenMoveWatcher(18, 5000, 0.1),		// T-03
+//		new NewBodyWatcher(22, 0.1),				// T-04
+		new RandomWatcher(50, 0.01),				// T-05
+		new RandomWatcher(99, 0.01),				// T-06
+//		new ProximityWatcher(128, 0.01),			// T-07
+		new RandomWatcher(139, 0.01),			// T-09
+		new RandomWatcher(158, 0.01),			// T-11
+		new ClosePeopleWatcher(177, 800, 0.01),	// T-13
+
 	};
 };
 

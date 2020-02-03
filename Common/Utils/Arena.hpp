@@ -67,6 +67,9 @@ public:
 	/// Gives the user who's the most active
 	std::tuple<Body *, double> mostActiveBody() const;
 
+	/// Number of people moving in the arena
+	unsigned int movingBodiesCount() const;
+
 	// MARK: - Properties
 private:
 	/// Reference to all the bodies this Arena can access
@@ -82,3 +85,4 @@ private:
 } /* ::pb */
 
 #endif /* Arena_h */
+
