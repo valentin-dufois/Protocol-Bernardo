@@ -83,7 +83,7 @@ LDLIBS += `pkg-config protobuf --libs` \
 endif
 
 
-CXXFLAGS := $(GCCOPTIONS) -I$(LIBDIR) -I. $(INCFLAGS) -DLOG_LEVEL=1 -DDEBUG=1 -DMACHINE_MASTER
+CXXFLAGS := $(GCCOPTIONS) -I$(LIBDIR) -I. $(INCFLAGS) -DLOG_LEVEL=1 -DDEBUG=1 -DPB_MASTER
 
 # #######################
 # MARK: - Build Sequence
