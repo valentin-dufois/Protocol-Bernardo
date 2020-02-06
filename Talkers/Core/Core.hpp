@@ -67,7 +67,7 @@ private:
 	/// Used to receive information from PB
 	pb::network::PBReceiver _PBReceiver;
 
-	pb::network::Server _receiversServer;
+	pb::network::Server<pb::network::messages::Datagram> _receiversServer;
 
 	// MARK: Machines
 

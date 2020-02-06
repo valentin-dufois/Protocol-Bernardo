@@ -78,7 +78,7 @@ public:
 
 	// MARK: - Socket Delegate
 
-	inline virtual void socketDidOpen(Socket *) override {
+	inline virtual void socketDidOpen(BaseSocket *) override {
 		_browser.stopBrowsing();
 
 		for (PBReceiverObserver * observer: _observers) {
@@ -87,7 +87,9 @@ public:
 		}
 	}
 
-	inline virtual void socketDidReceive(Socket *, messages::Datagram * datagram) override {
+	inline virtual void socketDidReceive(BaseSocket *, protobuf::Message * aMessage) override {
+		messages::Datagram * datagram = dynamic_cast<messages::Datagram *>(aMessage);
+
 		if(datagram->type() != messages::Datagram_Type_PARTIAL_BODY) {
 			// Discard
 			delete datagram;
@@ -113,16 +115,26 @@ public:
 				delete datagram;
 
 				_arenaMutex.unlock();
+
+				for (PBReceiverObserver * observer: _observers) {
+					if(observer != nullptr)
+						observer->receiverDidUpdate(this);
+				}
 				return;
 			}
 
 			// Body is valid, merge the partial body in the body
-			*(_bodies[bodyUID]) << partialBody;
+			_bodies[bodyUID]->insertPartial(partialBody);
 
 			datagram->Clear();
 			delete datagram;
 
 			_arenaMutex.unlock();
+
+			for (PBReceiverObserver * observer: _observers) {
+				if(observer != nullptr)
+					observer->receiverDidUpdate(this);
+			}
 			return;
 		}
 
@@ -133,6 +145,11 @@ public:
 			delete datagram;
 
 			_arenaMutex.unlock();
+
+			for (PBReceiverObserver * observer: _observers) {
+				if(observer != nullptr)
+					observer->receiverDidUpdate(this);
+			}
 			return;
 		}
 
@@ -157,7 +174,7 @@ public:
 		}
 	}
 
-	inline virtual void socketDidClose(Socket *) override {
+	inline virtual void socketDidClose(BaseSocket *) override {
 		_browser.startBrowsing(discoveryPortReceiver);
 
 		for (PBReceiverObserver * observer: _observers) {
@@ -177,7 +194,7 @@ private:
 
 	Browser _browser;
 
-	Socket _socket;
+	Socket<messages::Datagram> _socket;
 
 	// MARK: Storage
 

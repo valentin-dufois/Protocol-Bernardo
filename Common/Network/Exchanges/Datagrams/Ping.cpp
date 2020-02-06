@@ -7,7 +7,7 @@
 
 #include "Ping.hpp"
 
-#include "../Socket.hpp"
+#include "../BaseSocket.hpp"
 
 #include <chrono>
 
@@ -16,7 +16,7 @@ using timeScale = std::chrono::milliseconds;
 namespace pb {
 namespace network {
 
-void Ping::ping(Socket * socket) {
+void Ping::ping(BaseSocket * socket) {
 	long long now = std::chrono::duration_cast<timeScale>(std::chrono::system_clock::now().time_since_epoch()).count();
 
 	messages::Ping ping;
@@ -35,8 +35,7 @@ void Ping::ping(Socket * socket) {
 	datagram->clear_data();
 }
 
-void Ping::
-onPing(protobuf::Any * data, Socket * socket) {
+void Ping::onPing(protobuf::Any * data, BaseSocket * socket) {
 	// Say we received a ping
 	LOG_DEBUG("Relaying a ping");
 
@@ -50,7 +49,7 @@ onPing(protobuf::Any * data, Socket * socket) {
 	datagram->clear_data();
 }
 
-void Ping::onPong(protobuf::Any * data, Socket * socket) {
+void Ping::onPong(protobuf::Any * data, BaseSocket * socket) {
 	long long now = std::chrono::duration_cast<timeScale>(std::chrono::system_clock::now().time_since_epoch()).count();
 
 	messages::Ping pong;

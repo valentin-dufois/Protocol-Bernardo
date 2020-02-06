@@ -32,7 +32,7 @@ public:
         */
 
         _state["SUDDEN_MOVE_SPEED"] = behaviourState["SUDDEN_MOVE_SPEED_DOUBLE"];
-		return std::get<double>(behaviourState["RAND"]) < 33;
+		return std::get<int>(behaviourState["RAND"]) < 33;
     }
 };
 

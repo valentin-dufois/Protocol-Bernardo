@@ -120,11 +120,12 @@ void TrackingEngine::parseBodiesBuffer() {
 
 		// We only handle tracked users
 		if(rawBody->state != RawBody::State::tracked) {
+			LOG_ERROR("BODY NOT TRACKED " + std::to_string(rand()));
 			// remove reference to this rawBody in Bodies if needed
 			removeRawBodyReference(rawBody);
 			continue;
 		}
-
+ 
 		// Get the skeleton
 		Skeleton * skeleton = new Skeleton(rawBody->skeleton);
 
@@ -275,8 +276,8 @@ void TrackingEngine::cleanBodies() {
 }
 
 Body * TrackingEngine::getBodyFor(const RawBody * rawbody) {
-	std::map<pb::deviceUID, Body *>::iterator it = std::find_if(_bodies.begin(), _bodies.end(), [&] (std::pair<pb::deviceUID, Body *> bodyPair) {
-		if(bodyPair.second->rawBodiesUID.count(rawbody->deviceUID) == 0)
+	std::map<pb::bodyUID, Body *>::iterator it = std::find_if(_bodies.begin(), _bodies.end(), [&] (std::pair<pb::bodyUID, Body *> bodyPair) {
+		if(bodyPair.second->devicesUID.count(rawbody->deviceUID) == 0)
 			return false;
 
 		return bodyPair.second->rawBodiesUID[rawbody->deviceUID] == rawbody->uid;

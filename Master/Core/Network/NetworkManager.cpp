@@ -12,6 +12,7 @@ namespace master {
 
 NetworkManager::NetworkManager():
 _trackersServer(),
+_trackersServerJSON(),
 _receiversServer(serverPortReceiver, discoveryPortReceiver, Endpoint::receiver),
 _terminalServer()
 {}
@@ -19,6 +20,8 @@ _terminalServer()
 void NetworkManager::startActivities() {
 	_trackersServer.advertise();
 	_trackersServer.open();
+
+	_trackersServerJSON.open();
 
 	_receiversServer.advertise();
 	_receiversServer.open();

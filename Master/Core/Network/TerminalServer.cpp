@@ -16,7 +16,7 @@
 namespace pb {
 namespace master {
 
-void TerminalServer::socketDidOpen(Socket * newSocket) {
+void TerminalServer::socketDidOpen(BaseSocket * newSocket) {
 
 	newSocket->setEmissionType(EmissionType::async);
 
@@ -25,7 +25,7 @@ void TerminalServer::socketDidOpen(Socket * newSocket) {
 	endAdvertising();
 }
 
-void TerminalServer::socketDidClose(Socket * closedSocket) {
+void TerminalServer::socketDidClose(BaseSocket * closedSocket) {
 	Server::socketDidClose(closedSocket);
 
 	if(trackingEngine != nullptr)
@@ -37,9 +37,10 @@ void TerminalServer::socketDidClose(Socket * closedSocket) {
 	}
 }
 
-void TerminalServer::socketDidReceive(Socket * socket, messages::Datagram * datagram) {
+void TerminalServer::socketDidReceive(BaseSocket * socket, protobuf::Message * aMessage) {
 	// LOG_DEBUG("Received a datagram");
 
+	messages::Datagram * datagram = dynamic_cast<messages::Datagram *>(aMessage);
 	messages::Datagram_Type datagramType = datagram->type();
 
 	// Dispatch the datagram
@@ -82,7 +83,7 @@ void TerminalServer::socketDidReceive(Socket * socket, messages::Datagram * data
 	delete datagram;
 }
 
-void TerminalServer::onStatusRequest(Socket * socket) {
+void TerminalServer::onStatusRequest(BaseSocket * socket) {
 	// Build the status
 	messages::MasterStatus status;
 
@@ -103,7 +104,7 @@ void TerminalServer::onStatusRequest(Socket * socket) {
 
 // MARK: - Layout methods
 
-void TerminalServer::onLayoutList(Socket * socket) {
+void TerminalServer::onLayoutList(BaseSocket * socket) {
 	if(layoutEngine == nullptr) {
 		LOG_ERROR("Cannot perform layout operations if not layout engine is defined.");
 		return;
@@ -121,7 +122,7 @@ void TerminalServer::onLayoutList(Socket * socket) {
 	socket->send(datagram);
 }
 
-void TerminalServer::onLayoutCreate(google::protobuf::Any *data, Socket *socket) {
+void TerminalServer::onLayoutCreate(google::protobuf::Any *data, BaseSocket *socket) {
 	if(layoutEngine == nullptr) {
 		LOG_ERROR("Cannot perform layout operations if not layout engine is defined.");
 		return;
@@ -138,7 +139,7 @@ void TerminalServer::onLayoutCreate(google::protobuf::Any *data, Socket *socket)
 	socket->send(datagram);
 }
 
-void TerminalServer::onLayoutOpen(google::protobuf::Any *data, Socket *socket) {
+void TerminalServer::onLayoutOpen(google::protobuf::Any *data, BaseSocket *socket) {
 	if(layoutEngine == nullptr) {
 		LOG_ERROR("Cannot perform layout operations if not layout engine is defined.");
 		return;
@@ -155,7 +156,7 @@ void TerminalServer::onLayoutOpen(google::protobuf::Any *data, Socket *socket) {
 	socket->send(datagram);
 }
 
-void TerminalServer::onLayoutClose(Socket *) {
+void TerminalServer::onLayoutClose(BaseSocket *) {
 	if(layoutEngine == nullptr) {
 		LOG_ERROR("Cannot perform layout operations if not layout engine is defined.");
 		return;
@@ -164,7 +165,7 @@ void TerminalServer::onLayoutClose(Socket *) {
 	// No response here
 }
 
-void TerminalServer::onLayoutRename(protobuf::Any *data, Socket *) {
+void TerminalServer::onLayoutRename(protobuf::Any *data, BaseSocket *) {
 	if(layoutEngine == nullptr) {
 		LOG_ERROR("Cannot perform layout operations if not layout engine is defined.");
 		return;
@@ -178,7 +179,7 @@ void TerminalServer::onLayoutRename(protobuf::Any *data, Socket *) {
 	// No response here
 }
 
-void TerminalServer::onLayoutUpdate(protobuf::Any *data, Socket *) {
+void TerminalServer::onLayoutUpdate(protobuf::Any *data, BaseSocket *) {
 	if(layoutEngine == nullptr) {
 		LOG_ERROR("Cannot perform layout operations if not layout engine is defined.");
 		return;
@@ -194,7 +195,7 @@ void TerminalServer::onLayoutUpdate(protobuf::Any *data, Socket *) {
 	// No response here
 }
 
-void TerminalServer::onLayoutDelete(google::protobuf::Any *data, Socket *socket) {
+void TerminalServer::onLayoutDelete(google::protobuf::Any *data, BaseSocket *socket) {
 	if(layoutEngine == nullptr) {
 		LOG_ERROR("Cannot perform layout operations if not layout engine is defined.");
 		return;

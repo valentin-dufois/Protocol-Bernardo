@@ -16,6 +16,7 @@
 
 #include "TerminalServer.hpp"
 #include "TrackersServer.hpp"
+#include "TrackersJSONServer.hpp"
 
 using namespace pb::network;
 
@@ -44,6 +45,7 @@ public:
 
 	inline void setTrackingEngine(TrackingEngine * trackingEngine) {
 		_trackersServer.trackingEngine = trackingEngine;
+		_trackersServerJSON.trackingEngine = trackingEngine;
 		_terminalServer.trackingEngine = trackingEngine;
 	}
 
@@ -58,8 +60,11 @@ private:
 	/// The trackers server
 	TrackersServer _trackersServer;
 
+	/// The trackers server
+	TrackersJSONServer _trackersServerJSON;
+
 	/// The receivers server
-	Server _receiversServer;
+	Server<> _receiversServer;
 
 	/// The terminal server
 	TerminalServer _terminalServer;

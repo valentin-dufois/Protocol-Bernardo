@@ -53,7 +53,7 @@ void Advertiser::startAdvertising() {
 
 	// Set up the timer
 	setTimer();
-
+    
 	// Run the context
 	Engine::instance()->runContext();
 

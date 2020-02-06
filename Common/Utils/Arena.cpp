@@ -83,13 +83,13 @@ double Arena::averageMoveSpeed() const {
 		return 0;
 
 	for(Body * body: bodies) {
-		if(body->skeletons.size() < 2)
+		if(body->skeletons.size() < 5)
 			continue; // Ignore
 
-		std::list<Skeleton *>::iterator it = body->skeletons.begin();
+//		std::list<Skeleton *>::iterator it = body->skeletons.begin();
 
-		Skeleton * a = *it;
-		Skeleton * b = *(++it);
+		Skeleton * a = body->skeletons.front();
+		Skeleton * b = body->skeletons.back();
 
 		// Checking specified joints
 		for(Skeleton::JointID jointID: jointIDs) {
@@ -106,7 +106,7 @@ double Arena::averageMoveSpeed() const {
 	if(jointsUsed == 0)
 		return 0;
 
-	constexpr double trackingEngineFreq = 1.0 / TRACKING_ENGINE_RUN_SPEED;
+	constexpr double trackingEngineFreq = 5.0 / TRACKING_ENGINE_RUN_SPEED;
 
 	return (acc / double(jointsUsed)) / trackingEngineFreq;
 }
@@ -129,13 +129,13 @@ std::tuple<Body *, double> Arena::mostActiveBody() const {
 		return {nullptr, 0};
 
 	for(Body * body: bodies) {
-		if(body->skeletons.size() < 2)
+		if(body->skeletons.size() < 5)
 			continue; // Ignore
 
-		std::list<Skeleton *>::iterator it = body->skeletons.begin();
+		//		std::list<Skeleton *>::iterator it = body->skeletons.begin();
 
-		Skeleton * a = *it;
-		Skeleton * b = *(++it);
+		Skeleton * a = body->skeletons.front();
+		Skeleton * b = body->skeletons.back();
 
 		// Check specified joints
 		for(Skeleton::JointID jointID: jointIDs) {
@@ -153,7 +153,7 @@ std::tuple<Body *, double> Arena::mostActiveBody() const {
 		}
 	}
 
-	constexpr double trackingEngineFreq = 1.0 / TRACKING_ENGINE_RUN_SPEED;
+	constexpr double trackingEngineFreq = 5.0 / TRACKING_ENGINE_RUN_SPEED;
 
 	return {fastestBody, max / trackingEngineFreq};
 }
@@ -177,13 +177,13 @@ unsigned int Arena::movingBodiesCount() const {
 		return 0;
 
 	for(Body * body: bodies) {
-		if(body->skeletons.size() < 2)
+		if(body->skeletons.size() < 5)
 			continue; // Ignore
 
-		std::list<Skeleton *>::iterator it = body->skeletons.begin();
+		//		std::list<Skeleton *>::iterator it = body->skeletons.begin();
 
-		Skeleton * a = *it;
-		Skeleton * b = *(++it);
+		Skeleton * a = body->skeletons.front();
+		Skeleton * b = body->skeletons.back();
 
 		// Check specified joints
 		for(Skeleton::JointID jointID: jointIDs) {

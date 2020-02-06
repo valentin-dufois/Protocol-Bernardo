@@ -73,6 +73,8 @@ struct Joint {
 		position = maths::fromMessage(message.position());
 		position2D = maths::fromMessage(message.position2d());
 		positionConfidence = message.positionconfidence();
+
+//		LOG_DEBUG("{x: " + std::to_string(position.x) + ", y: " + std::to_string(position.y) + ", z: " + std::to_string(position.z) + "}");
 	}
 
 	// MARK: - Operators

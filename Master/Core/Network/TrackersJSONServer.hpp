@@ -1,12 +1,12 @@
 //
-//  TrackersServer.hpp
+//  TrackersJSONServer.hpp
 //  pb-common (shared)
 //
-//  Created by Valentin Dufois on 2019-11-30.
+//  Created by Valentin Dufois on 2020-02-05.
 //
 
-#ifndef TrackersServer_hpp
-#define TrackersServer_hpp
+#ifndef TrackersJSONServer_hpp
+#define TrackersJSONServer_hpp
 
 #include "../../../Common/Network.hpp"
 
@@ -20,9 +20,11 @@ namespace master {
 
 class TrackingEngine;
 
-class TrackersServer: public Server<> {
+class TrackersJSONServer: public Server<pb::network::messages::RawBody> {
 public:
-	TrackersServer(): Server(serverPortTracker, discoveryPortTracker, Endpoint::tracker) {}
+	TrackersJSONServer(): Server(serverPortTrackerJSON, discoveryPortTrackerJSON, Endpoint::tracker) {
+		Server::setEmissionFormat(json);
+	}
 
 	TrackingEngine * trackingEngine;
 
@@ -34,11 +36,9 @@ protected:
 private:
 
 	void socketDidReceive(BaseSocket * socket, protobuf::Message * datagram) override;
-
-	void onBodyStream(const protobuf::Any * data);
 };
 
 } /* ::master */
 } /* ::pb */
 
-#endif /* TrackersServer_hpp */
+#endif /* TrackersJSONServer_hpp */

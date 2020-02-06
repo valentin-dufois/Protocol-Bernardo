@@ -13,15 +13,15 @@
 namespace pb {
 namespace network {
 
-class Socket;
+class BaseSocket;
 
 class Ping {
 protected:
-	void ping(Socket * socket);
+	void ping(BaseSocket * socket);
 
-	void onPing(protobuf::Any * data, Socket * socket);
+	void onPing(protobuf::Any * data, BaseSocket * socket);
 
-	void onPong(protobuf::Any * data, Socket * socket);
+	void onPong(protobuf::Any * data, BaseSocket * socket);
 };
 
 } /* ::network */

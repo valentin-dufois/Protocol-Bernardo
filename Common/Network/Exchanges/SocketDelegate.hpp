@@ -9,21 +9,20 @@
 #define SocketDelegate_h
 
 #include "../Messages/messages.hpp"
+#include "BaseSocket.hpp"
 
 namespace pb {
 namespace network {
 
-class Socket;
-
 class SocketDelegate {
 public:
 	/// Called when the socket did connect to its remote
-	virtual void socketDidOpen(Socket *) {}
+	virtual void socketDidOpen(BaseSocket *) {}
 
 	/// Called everytime the socket received a datagram from the
 	/// network. Some datagram with Socket-specific types, such as
 	/// 'close' might not be propagated to this method.
-	virtual void socketDidReceive(Socket *, messages::Datagram *) {}
+	virtual void socketDidReceive(BaseSocket *, protobuf::Message *) {}
 
 	/// Called when the socket disconnects/closes
 	///
@@ -32,7 +31,7 @@ public:
 	///
 	/// Calling the destructor on the socket will not trigger this
 	/// callback
-	virtual void socketDidClose(Socket *) {}
+	virtual void socketDidClose(BaseSocket *) {}
 };
 
 } /* ::network */

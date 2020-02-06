@@ -134,6 +134,8 @@ bool Machine::executeWatchers() {
 		_bodyUIDHistory.insert(body->uid);
 	}
 
+	delegate->machineDidUpdate(this);
+
 	// Execute each watchers
 	for(Watcher * watcher: _watchers) {
 		watcher->watch(_arena);

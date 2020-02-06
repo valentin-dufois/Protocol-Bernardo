@@ -1,13 +1,13 @@
 //
-//  Server.cpp
-//  pb-common
+//  BaseServer.cpp
+//  Protocol Bernardo
 //
-//  Created by Valentin Dufois on 2019-09-25.
+//  Created by Valentin Dufois on 2020-02-05.
 //
 
 #include <boost/bind.hpp>
 
-#include "Server.hpp"
+#include "BaseServer.hpp"
 
 #include "NetworkEngine.hpp"
 #include "../Utils/Log.hpp"
@@ -18,7 +18,7 @@
 namespace pb {
 namespace network {
 
-Server::Server(const NetworkPort &port, const NetworkPort &discoveryPort, const Endpoint::Type &aType):
+BaseServer::BaseServer(const NetworkPort &port, const NetworkPort &discoveryPort, const Endpoint::Type &aType):
 _type(aType),
 _port(port),
 _advertiser(discoveryPort) {
@@ -26,7 +26,7 @@ _advertiser(discoveryPort) {
 	_acceptor = new asio::ip::tcp::acceptor(Engine::instance()->getContext(), asio::ip::tcp::endpoint(asio::ip::tcp::v4(), _port));
 }
 
-void Server::open() {
+void BaseServer::open() {
 	if(_isRunning)
 		return;
 
@@ -41,33 +41,32 @@ void Server::open() {
 	LOG_INFO(Endpoint(_type).typeLabel() + " Server opened on port " + std::to_string(_port));
 }
 
-void Server::sendToAll(protobuf::Message * aMessage) {
-	for(Socket * s: _connections) {
+void BaseServer::sendToAll(protobuf::Message * aMessage) {
+	for(BaseSocket * s: _connections) {
 		s->send(aMessage);
 	}
 }
 
-void Server::socketDidOpen(Socket * socket) { }
+void BaseServer::socketDidOpen(BaseSocket * socket) { }
 
-void Server::socketDidClose(Socket * socket) {
+void BaseServer::socketDidClose(BaseSocket * socket) {
 	if(!_isRunning)
 		return;
-	
+
 	// The socket is closed, remove it from the array of connections
 	_connections.erase(std::find(_connections.begin(), _connections.end(), socket));
 
 	delete socket;
 }
 
-void Server::prepareAccept() {
-	Socket * newConnection = new Socket();
+void BaseServer::prepareAccept() {
+	BaseSocket * newConnection = makeSocket();
 	newConnection->delegate = this;
-	newConnection->setFormat(_emissionFormat);
 
-	_acceptor->async_accept(newConnection->getSocket(), boost::bind(&Server::handleAccept, this, newConnection, boost::asio::placeholders::error));
+	_acceptor->async_accept(newConnection->getSocket(), boost::bind(&BaseServer::handleAccept, this, newConnection, boost::asio::placeholders::error));
 }
 
-void Server::handleAccept(Socket * newConnection, const boost::system::error_code &error) {
+void BaseServer::handleAccept(BaseSocket * newConnection, const boost::system::error_code &error) {
 	// Was there an error during connection ?
 	if(error) {
 		if(error != asio::error::operation_aborted) {
@@ -85,8 +84,7 @@ void Server::handleAccept(Socket * newConnection, const boost::system::error_cod
 	prepareAccept();
 }
 
-
-Server::~Server() {
+BaseServer::~BaseServer() {
 	// Perform stopping actions...
 	_isRunning = false;
 
@@ -94,7 +92,7 @@ Server::~Server() {
 	_acceptor->close();
 	delete _acceptor;
 
-	for(Socket * socket: _connections) {
+	for(BaseSocket * socket: _connections) {
 		if(socket != nullptr)
 			delete socket;
 	}

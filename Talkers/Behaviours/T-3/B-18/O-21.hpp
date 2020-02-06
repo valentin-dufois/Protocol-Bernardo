@@ -30,7 +30,7 @@ public:
         Condition: 1/3 chance
         */
 
-        return std::get<double>(behaviourState["RAND"]) < 99;
+        return std::get<int>(behaviourState["RAND"]) < 99;
     }
 };
 

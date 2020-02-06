@@ -18,10 +18,10 @@ using namespace pb::network;
 class TrackingEngine;
 class LayoutEngine;
 
-class TerminalServer: public network::Server {
+class TerminalServer: public network::Server<> {
 public:
 
-	TerminalServer(): Server(serverPortTerminal, discoveryPortTerminal, Endpoint::terminal) {}
+	TerminalServer(): Server<messages::Datagram>(serverPortTerminal, discoveryPortTerminal, Endpoint::terminal) {}
 
 	/// Handle to the layout engine
 	LayoutEngine * layoutEngine = nullptr;
@@ -29,31 +29,31 @@ public:
 	TrackingEngine * trackingEngine = nullptr;
 
 protected:
-	void socketDidOpen(Socket * newSocket) override;
+	void socketDidOpen(BaseSocket * newSocket) override;
 
-	void socketDidClose(Socket * closedSocket) override;
+	void socketDidClose(BaseSocket * closedSocket) override;
 
 private:
 
-	void socketDidReceive(Socket * socket, messages::Datagram * datagram) override;
+	void socketDidReceive(BaseSocket * socket, protobuf::Message * datagram) override;
 
-	void onStatusRequest(Socket * socket);
+	void onStatusRequest(BaseSocket * socket);
 
 	// MARK: - Layout methods
 
-	void onLayoutList(Socket * socket);
+	void onLayoutList(BaseSocket * socket);
 
-	void onLayoutCreate(protobuf::Any * data, Socket * socket);
+	void onLayoutCreate(protobuf::Any * data, BaseSocket * socket);
 
-	void onLayoutOpen(protobuf::Any * data, Socket * socket);
+	void onLayoutOpen(protobuf::Any * data, BaseSocket * socket);
 
-	void onLayoutClose(Socket * socket);
+	void onLayoutClose(BaseSocket * socket);
 
-	void onLayoutRename(protobuf::Any * data, Socket * socket);
+	void onLayoutRename(protobuf::Any * data, BaseSocket * socket);
 
-	void onLayoutUpdate(protobuf::Any * data, Socket * socket);
+	void onLayoutUpdate(protobuf::Any * data, BaseSocket * socket);
 
-	void onLayoutDelete(protobuf::Any * data, Socket * socket);
+	void onLayoutDelete(protobuf::Any * data, BaseSocket * socket);
 
 
 	void onCalibrationSet(protobuf::Any * data);

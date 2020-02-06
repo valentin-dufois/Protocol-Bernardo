@@ -79,7 +79,7 @@ struct Skeleton  {
 		}
 
 		for(int i = 0; i < 15; ++i) {
-				joints[i] = message.joints(i);
+			joints[i] = message.joints(i);
 		}
 	}
 

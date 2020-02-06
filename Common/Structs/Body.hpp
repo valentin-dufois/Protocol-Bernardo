@@ -173,12 +173,12 @@ struct Body {
 
 	// MARK: - Operators
 
-	Body & operator<<(const network::messages::PartialBody &partialBody)  {
+	Body & insertPartial(const network::messages::PartialBody &partialBody)  {
 		frame = partialBody.frame();
 
 		skeletons.push_back(new Skeleton(partialBody.skeleton()));
 
-		if(skeletons.size() > 2) {
+		if(skeletons.size() > 5) {
 			skeletons.pop_front();
 		}
 

@@ -20,11 +20,13 @@ using NetworkPort = unsigned short int;
 constexpr NetworkPort discoveryPortTracker = 42001;
 constexpr NetworkPort discoveryPortReceiver = 42002;
 constexpr NetworkPort discoveryPortTerminal = 42003;
+constexpr NetworkPort discoveryPortTrackerJSON = 42004;
 
 // MARK: Server ports
 constexpr NetworkPort serverPortTracker = 42010;
 constexpr NetworkPort serverPortReceiver = 42020;
 constexpr NetworkPort serverPortTerminal = 42030;
+constexpr NetworkPort serverPortTrackerJSON = 42040;
 
 // MARK: Advertiser
 constexpr unsigned short int advertiserRate = 1; // Advertise every X seconds

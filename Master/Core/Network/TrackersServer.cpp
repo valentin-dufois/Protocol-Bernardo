@@ -13,13 +13,14 @@
 namespace pb {
 namespace master {
 
-void TrackersServer::socketDidOpen(Socket * socket) {
+void TrackersServer::socketDidOpen(BaseSocket * socket) {
 	Server::socketDidOpen(socket);
 }
 
-void TrackersServer::socketDidReceive(Socket * socket, messages::Datagram * datagram) {
-	Server::socketDidReceive(socket, datagram);
+void TrackersServer::socketDidReceive(BaseSocket * socket, protobuf::Message * aMessage) {
+	Server::socketDidReceive(socket, aMessage);
 
+	messages::Datagram * datagram = dynamic_cast<messages::Datagram *>(aMessage);
 	messages::Datagram_Type datagramType = datagram->type();
 
 	// Dispatch based on the datagram type
@@ -34,7 +35,7 @@ void TrackersServer::socketDidReceive(Socket * socket, messages::Datagram * data
 	delete datagram;
 }
 
-void TrackersServer::socketDidClose(Socket * socket) {
+void TrackersServer::socketDidClose(BaseSocket * socket) {
 	Server::socketDidClose(socket);
 }
 

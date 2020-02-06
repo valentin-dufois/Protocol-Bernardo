@@ -85,6 +85,8 @@ void NiteTracker::processFrame(nite::UserTrackerFrameRef * frame) {
 			body->state = pb::RawBody::State::lost;
 			_tracker.stopSkeletonTracking(body->uid);
 
+			LOG_DEBUG("Lost Body");
+
 			// Pass along the body and continue
 			if(bodyHandler)
 				bodyHandler(body);

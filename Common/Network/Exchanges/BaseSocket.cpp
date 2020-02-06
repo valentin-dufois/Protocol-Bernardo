@@ -12,13 +12,13 @@
 namespace pb {
 namespace network {
 
-// MARK: - Socket
+// MARK: - BaseSocket
 
-void Socket::connectTo(const std::string &ip, const NetworkPort &port) {
+void BaseSocket::connectTo(const std::string &ip, const NetworkPort &port) {
 	connectTo(Endpoint(ip, port));
 }
 
-void Socket::connectTo(const Endpoint &remote) {
+void BaseSocket::connectTo(const Endpoint &remote) {
 	if(_status != idle && _status != closed) {
 		LOG_ERROR("This socket could not be opened");
 	}
@@ -64,7 +64,7 @@ void Socket::connectTo(const Endpoint &remote) {
 		delegate->socketDidOpen(this);
 }
 
-void Socket::close(bool) {
+void BaseSocket::close(bool) {
 	if(_status != ready)
 		return;
 
@@ -80,7 +80,7 @@ void Socket::close(bool) {
 		delegate->socketDidClose(this);
 }
 
-Socket::~Socket() {
+BaseSocket::~BaseSocket() {
 	if(_status == closed)
 		return;
 
@@ -97,7 +97,7 @@ Socket::~Socket() {
 
 // MARK: - Exchanges
 
-void Socket::send(const google::protobuf::Message * message) {
+void BaseSocket::send(const google::protobuf::Message * message) {
 	// Make sure the socket is ready to send data
 	if(getStatus() != SocketStatus::ready) {
 		LOG_WARN("Could not send data on a not-ready socket. The socket may not be opened yet or is already closed.");
@@ -117,7 +117,7 @@ void Socket::send(const google::protobuf::Message * message) {
 
 // MARK: - Internal
 
-void Socket::onOpenedFromRemote(const Endpoint::Type &remoteType) {
+void BaseSocket::onOpenedFromRemote(const Endpoint::Type &remoteType) {
 	_remote = Endpoint(_socket.remote_endpoint());
 	_remote.type = remoteType;
 
@@ -127,19 +127,20 @@ void Socket::onOpenedFromRemote(const Endpoint::Type &remoteType) {
 
 	prepareReceive();
 
-	ping(this);
+	if(canPing())
+		ping(this);
 
 	if(delegate)
 		delegate->socketDidOpen(this);
 }
 
-void Socket::onError() {
+void BaseSocket::onError() {
 	close(true);
 }
 
 // MARK: - Emission
 
-void Socket::sendSync(const google::protobuf::Message * message) {
+void BaseSocket::sendSync(const google::protobuf::Message * message) {
 	_sendMutex.lock();
 
 	// Send the message to the output buffer (through the outputStream)
@@ -157,9 +158,9 @@ void Socket::sendSync(const google::protobuf::Message * message) {
 		LOG_ERROR("An error occured while sending data synchronously");
 		LOG_ERROR(error.message());
 
-		_receiveMutex.lock();
+		_sendMutex.unlock();
 		close(true);
-		_receiveMutex.unlock();
+		return;
 	}
 
 	// Clear the buffer
@@ -168,7 +169,7 @@ void Socket::sendSync(const google::protobuf::Message * message) {
 	_sendMutex.unlock();
 }
 
-void Socket::sendAsync(const google::protobuf::Message * message) {
+void BaseSocket::sendAsync(const google::protobuf::Message * message) {
 	// Default output buffer is not used as output buffer must be preserved valid on async calls
 	asio::streambuf outputBuffer;
 	std::ostream outputStream(&outputBuffer);
@@ -193,32 +194,37 @@ void Socket::sendAsync(const google::protobuf::Message * message) {
 	});
 }
 
-void Socket::formatMessageToStream(const protobuf::Message *message, std::ostream &stream) {
-	switch(getFormat()) {
+void BaseSocket::formatMessageToStream(const protobuf::Message * message, std::ostream & _outputStream) {
+	switch(_format) {
 		case SocketFormat::protobuf:
-			message->SerializeToOstream(&stream);
+			message->SerializeToOstream(&_outputStream);
 			break;
 
 		case SocketFormat::json:
 			std::string messageString;
 			protobuf::util::MessageToJsonString(*message, &messageString);
-			stream << messageString;
-			stream << "\n";
+			_outputStream << messageString;
+			_outputStream << "\n";
 			break;
 	}
 }
-
-
-
 // MARK: - Reception
 
-void Socket::prepareReceive() {
-	_socket.async_receive(asio::buffer(_receptionBuffer), boost::bind(&Socket::handleReceive, this, boost::asio::placeholders::error, boost::asio::placeholders::bytes_transferred));
+void BaseSocket::prepareReceive() {
+	switch(_format) {
+		case SocketFormat::protobuf:
+			_socket.async_receive(asio::buffer(_receptionBuffer), boost::bind(&BaseSocket::handleReceive, this, boost::asio::placeholders::error, boost::asio::placeholders::bytes_transferred));
+			break;
+
+		case SocketFormat::json:
+			boost::asio::async_read_until(_socket, _receptionStreamBuffer, "\r\n\r\n", boost::bind(&BaseSocket::handleReceive, this, boost::asio::placeholders::error, boost::asio::placeholders::bytes_transferred));
+			break;
+	}
 
 	Engine::instance()->runContext();
 }
 
-void Socket::handleReceive(const boost::system::error_code &error, std::size_t bytes_transferred) {
+void BaseSocket::handleReceive(const boost::system::error_code &error, std::size_t bytes_transferred) {
 
 	// Check for any error during reception
 	if(error) {
@@ -245,58 +251,23 @@ void Socket::handleReceive(const boost::system::error_code &error, std::size_t b
 	}
 
 	// Decode the message using the proper format
-	messages::Datagram * datagram = new messages::Datagram;
+	protobuf::Message * message;
 
-	switch(getFormat()) {
-		case SocketFormat::protobuf:
-			datagram->ParseFromArray(_receptionBuffer.data(), (int)bytes_transferred);
+	switch(_format) {
+		case protobuf:
+			message = decodeMessageFromBuffer(_receptionBuffer, bytes_transferred);
 			break;
-		case SocketFormat::json:
-			protobuf::util::JsonStringToMessage(std::string(_receptionBuffer.begin(), _receptionBuffer.end()), datagram);
-			break;
+		case json:
+			message = decodeMessageFromBuffer(&_receptionStreamBuffer, bytes_transferred);
 	}
 
 	// Pass along the received datagram
-	onReceive(datagram);
+	onReceive(message);
 	
 	_receiveMutex.unlock();
 
 	return prepareReceive();
 }
-
-void Socket::onReceive(protobuf::Message * message) {
-	messages::Datagram * datagram = (messages::Datagram *)message;
-
-	messages::Datagram_Type datagramType = datagram->type();
-
-	// Make sure the parcel is really for us. Tracker datagrams numbers are comprised between 0-100 (Common) and 100-200 (Tracker)
-	if(datagramType < 10 || datagramType >= 20) {
-		// This datagram isn't for us
-		if(delegate)
-			return delegate->socketDidReceive(this, datagram);
-
-		delete datagram;
-		return;
-	}
-
-	switch(datagramType) {
-		case messages::Datagram_Type_CLOSE:
-			close(true);
-			break;
-		case messages::Datagram_Type_PING:
-			onPing(datagram->mutable_data(), this);
-			break;
-		case messages::Datagram_Type_PONG:
-			onPong(datagram->mutable_data(), this);
-			break;
-		default:
-			LOG_WARN("Received unrecognized Socket command " + std::to_string(datagramType));
-	}
-
-	delete datagram;
-}
-
-
 
 } /* ::network */
 } /* ::pb */

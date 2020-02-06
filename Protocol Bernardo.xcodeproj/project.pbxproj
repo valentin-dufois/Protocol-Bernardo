@@ -11,7 +11,6 @@
 		39012F08239C4BCF00FE652B /* Arena.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39012F06239C4B9600FE652B /* Arena.cpp */; };
 		39012F0A239C4E7E00FE652B /* Arena.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3933A6C1239C44020095B3AF /* Arena.hpp */; };
 		39012F0B239C4E7E00FE652B /* Arena.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3933A6C1239C44020095B3AF /* Arena.hpp */; };
-		3903C2762392FBC80061CFA8 /* TrackersServer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3903C2742392FBC80061CFA8 /* TrackersServer.hpp */; };
 		3903C2772392FC960061CFA8 /* TrackersServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3903C2732392FBC80061CFA8 /* TrackersServer.cpp */; };
 		391159092369E9BE00ED75C5 /* NewLayoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391159082369E9BE00ED75C5 /* NewLayoutViewController.swift */; };
 		3911590D2369E9F100ED75C5 /* LayoutEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3911590C2369E9F100ED75C5 /* LayoutEngine.swift */; };
@@ -19,7 +18,6 @@
 		391A20082342B6D300F00517 /* Ping.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 391A20062342B6D300F00517 /* Ping.cpp */; };
 		391A20092342B6D300F00517 /* Ping.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 391A20072342B6D300F00517 /* Ping.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		3922C27423943FBD0088537C /* Ping.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 391A20062342B6D300F00517 /* Ping.cpp */; };
-		3922C27523943FBD0088537C /* Socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 395017092341689000E7F6BD /* Socket.cpp */; };
 		3922C27623943FBD0088537C /* Browser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39CA4AC42331486D00E528CD /* Browser.cpp */; };
 		3922C27723943FBD0088537C /* layout.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = 3966E4182338018800710DD4 /* layout.pb.cc */; };
 		3922C27823943FBD0088537C /* body.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = 395A79B42335BB2000499894 /* body.pb.cc */; };
@@ -128,7 +126,6 @@
 		394AE3C0239B1602001AB4E4 /* libboost_program_options.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 394AE3B0239B0BF4001AB4E4 /* libboost_program_options.dylib */; };
 		394AE3C2239B161C001AB4E4 /* libprotobuf.22.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 394AE3AC239B0B39001AB4E4 /* libprotobuf.22.dylib */; };
 		394AE3C4239B161E001AB4E4 /* libboost_system.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 39CA4ABF2331470200E528CD /* libboost_system.dylib */; };
-		3950170B2341689000E7F6BD /* Socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 395017092341689000E7F6BD /* Socket.cpp */; };
 		3950170C2341689000E7F6BD /* Socket.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3950170A2341689000E7F6BD /* Socket.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		3950170E23416C9C00E7F6BD /* SocketStatus.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3950170D23416C9C00E7F6BD /* SocketStatus.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		39512F8A235537DF00A88539 /* SwiftProtobuf in Frameworks */ = {isa = PBXBuildFile; productRef = 39512F89235537DF00A88539 /* SwiftProtobuf */; };
@@ -171,7 +168,6 @@
 		3962032C238DE5E800CB1E76 /* libboost_system.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 39CA4ABF2331470200E528CD /* libboost_system.dylib */; };
 		3966E41C2338018800710DD4 /* layout.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = 3966E4182338018800710DD4 /* layout.pb.cc */; };
 		3966E41F2338018800710DD4 /* layout.pb.h in Headers */ = {isa = PBXBuildFile; fileRef = 3966E41B2338018800710DD4 /* layout.pb.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		396C6A50233C5643008FD842 /* Server.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 396C6A4E233C5643008FD842 /* Server.cpp */; };
 		396C6A51233C5643008FD842 /* Server.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 396C6A4F233C5643008FD842 /* Server.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		3978A7EE2336BF7D00AF409D /* libpb-common.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 39CA4A772331407A00E528CD /* libpb-common.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		3978A8072336D96B00AF409D /* libOpenNI2.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 395A79672332C04D00499894 /* libOpenNI2.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -185,6 +181,16 @@
 		39A6AA1823D63B7D0068E2F6 /* libncurses.5.4.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 392FCA2723D115C400A3723D /* libncurses.5.4.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		39A6AA1B23D657A60068E2F6 /* TrackerInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39A6AA1023D3A56D0068E2F6 /* TrackerInterface.cpp */; };
 		39ABB55B2337087900C5D147 /* NetworkManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39ABB5572336FE1200C5D147 /* NetworkManager.cpp */; };
+		39B09D9323EB13B900359FA2 /* Server.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 396C6A4F233C5643008FD842 /* Server.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
+		39B09D9423EB13C000359FA2 /* TrackersJSONServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B09D9123EB0D3900359FA2 /* TrackersJSONServer.cpp */; };
+		39B09DA323EB3E9600359FA2 /* BaseServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B09DA123EB3E9600359FA2 /* BaseServer.cpp */; };
+		39B09DA423EB3E9600359FA2 /* BaseServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B09DA123EB3E9600359FA2 /* BaseServer.cpp */; };
+		39B09DA523EB3E9600359FA2 /* BaseServer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 39B09DA223EB3E9600359FA2 /* BaseServer.hpp */; };
+		39B09DA623EB3E9600359FA2 /* BaseServer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 39B09DA223EB3E9600359FA2 /* BaseServer.hpp */; };
+		39B09DA723EB62BD00359FA2 /* BaseSocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B09D9F23EB350200359FA2 /* BaseSocket.cpp */; };
+		39B09DA823EB62BE00359FA2 /* BaseSocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B09D9F23EB350200359FA2 /* BaseSocket.cpp */; };
+		39B09DA923EB636F00359FA2 /* BaseSocket.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 39B09DA023EB350200359FA2 /* BaseSocket.hpp */; };
+		39B09DAA23EB636F00359FA2 /* BaseSocket.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 39B09DA023EB350200359FA2 /* BaseSocket.hpp */; };
 		39BF56F72396FFC1009F82BE /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39BF56F62396FFC1009F82BE /* main.cpp */; };
 		39BF5700239702C8009F82BE /* PBReceiver.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 39BF56F923970298009F82BE /* PBReceiver.hpp */; };
 		39BF5701239702C8009F82BE /* PBReceiver.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 39BF56F923970298009F82BE /* PBReceiver.hpp */; };
@@ -205,7 +211,6 @@
 		39C23812238309B300791E1E /* Socket.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3950170A2341689000E7F6BD /* Socket.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		39C23813238309B300791E1E /* Body.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 395E05132370CCD700C58971 /* Body.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		39C23814238309B300791E1E /* flags.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 399D167923521E7600CEC2F0 /* flags.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
-		39C23815238309B300791E1E /* Server.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 396C6A4F233C5643008FD842 /* Server.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		39C23816238309B300791E1E /* Skeleton.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 395A797C2333321600499894 /* Skeleton.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		39C23817238309B300791E1E /* Advertiser.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 39CA4AC52331486D00E528CD /* Advertiser.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		39C23819238309B300791E1E /* messages.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 395A79CD2335BB3400499894 /* messages.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -221,8 +226,6 @@
 		39C23824238309B300791E1E /* Endpoint.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 39CA4ACA2331486D00E528CD /* Endpoint.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		39C23825238309B300791E1E /* layout.pb.h in Headers */ = {isa = PBXBuildFile; fileRef = 3966E41B2338018800710DD4 /* layout.pb.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		39C23827238309B300791E1E /* body.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = 395A79B42335BB2000499894 /* body.pb.cc */; };
-		39C23828238309B300791E1E /* Socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 395017092341689000E7F6BD /* Socket.cpp */; };
-		39C23829238309B300791E1E /* Server.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 396C6A4E233C5643008FD842 /* Server.cpp */; };
 		39C2382A238309B300791E1E /* NetworkEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39CA4AC62331486D00E528CD /* NetworkEngine.cpp */; };
 		39C2382C238309B300791E1E /* layout.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = 3966E4182338018800710DD4 /* layout.pb.cc */; };
 		39C2382E238309B300791E1E /* maths.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = 395A79AE2335BB2000499894 /* maths.pb.cc */; };
@@ -275,7 +278,6 @@
 		39E37C0E236E4DED007C78EA /* NSColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E37C0D236E4DED007C78EA /* NSColor.swift */; };
 		39E37C10236E611B007C78EA /* Keycode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E37C0F236E611B007C78EA /* Keycode.swift */; };
 		39EBB7C32350E1630057D474 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39EBB79A2350E0EC0057D474 /* main.cpp */; };
-		39F860D22390657600A32146 /* Core.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 39F860D02390657600A32146 /* Core.hpp */; };
 		39F860D72390667E00A32146 /* Machine.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 39F860D52390667E00A32146 /* Machine.hpp */; };
 		39F860E8239076D900A32146 /* Core.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39F860CF2390657600A32146 /* Core.cpp */; };
 		39F860E9239076D900A32146 /* Machine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39F860D42390667E00A32146 /* Machine.cpp */; };
@@ -471,7 +473,6 @@
 		39469E892379E3A700E25030 /* CanvasBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasBody.swift; sourceTree = "<group>"; };
 		394AE3AC239B0B39001AB4E4 /* libprotobuf.22.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libprotobuf.22.dylib; path = ../../../../../usr/local/Cellar/protobuf/3.11.1/lib/libprotobuf.22.dylib; sourceTree = "<group>"; };
 		394AE3B0239B0BF4001AB4E4 /* libboost_program_options.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_program_options.dylib; path = ../../../../../usr/local/Cellar/boost/1.71.0/lib/libboost_program_options.dylib; sourceTree = "<group>"; };
-		395017092341689000E7F6BD /* Socket.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Socket.cpp; sourceTree = "<group>"; };
 		3950170A2341689000E7F6BD /* Socket.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Socket.hpp; sourceTree = "<group>"; };
 		3950170D23416C9C00E7F6BD /* SocketStatus.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SocketStatus.hpp; sourceTree = "<group>"; };
 		3957A737236F6DAF00AB54D0 /* CanvasProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasProperty.swift; sourceTree = "<group>"; };
@@ -526,7 +527,6 @@
 		3960B8512337EC870094A2E9 /* layout.proto */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.protobuf; path = layout.proto; sourceTree = "<group>"; };
 		3966E4182338018800710DD4 /* layout.pb.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = layout.pb.cc; sourceTree = "<group>"; };
 		3966E41B2338018800710DD4 /* layout.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = layout.pb.h; sourceTree = "<group>"; };
-		396C6A4E233C5643008FD842 /* Server.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Server.cpp; sourceTree = "<group>"; };
 		396C6A4F233C5643008FD842 /* Server.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Server.hpp; sourceTree = "<group>"; };
 		3978A7F42336BFCD00AF409D /* Core.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Core.cpp; sourceTree = "<group>"; };
 		3978A7F52336BFCD00AF409D /* Core.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Core.hpp; sourceTree = "<group>"; };
@@ -871,12 +871,19 @@
 		39995B3223E8A4890031EB54 /* O-115.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "O-115.hpp"; sourceTree = "<group>"; };
 		39995B3423E8A4890031EB54 /* B-131.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "B-131.hpp"; sourceTree = "<group>"; };
 		39995B3523E8A4890031EB54 /* O-116.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "O-116.hpp"; sourceTree = "<group>"; };
+		39995B3723E8E6840031EB54 /* NewBodyWatcher.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NewBodyWatcher.hpp; sourceTree = "<group>"; };
 		399D167823521E7600CEC2F0 /* flags.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = flags.cpp; sourceTree = "<group>"; };
 		399D167923521E7600CEC2F0 /* flags.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = flags.hpp; sourceTree = "<group>"; };
 		39A6AA1023D3A56D0068E2F6 /* TrackerInterface.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TrackerInterface.cpp; sourceTree = "<group>"; };
 		39A6AA1123D3A56D0068E2F6 /* TrackerInterface.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TrackerInterface.hpp; sourceTree = "<group>"; };
 		39ABB5572336FE1200C5D147 /* NetworkManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NetworkManager.cpp; sourceTree = "<group>"; };
 		39ABB5582336FE1200C5D147 /* NetworkManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NetworkManager.hpp; sourceTree = "<group>"; };
+		39B09D9123EB0D3900359FA2 /* TrackersJSONServer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TrackersJSONServer.cpp; sourceTree = "<group>"; };
+		39B09D9223EB0D3900359FA2 /* TrackersJSONServer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TrackersJSONServer.hpp; sourceTree = "<group>"; };
+		39B09D9F23EB350200359FA2 /* BaseSocket.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BaseSocket.cpp; sourceTree = "<group>"; };
+		39B09DA023EB350200359FA2 /* BaseSocket.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BaseSocket.hpp; sourceTree = "<group>"; };
+		39B09DA123EB3E9600359FA2 /* BaseServer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = BaseServer.cpp; path = Common/Network/BaseServer.cpp; sourceTree = SOURCE_ROOT; };
+		39B09DA223EB3E9600359FA2 /* BaseServer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = BaseServer.hpp; path = Common/Network/BaseServer.hpp; sourceTree = SOURCE_ROOT; };
 		39BF56F62396FFC1009F82BE /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		39BF56F923970298009F82BE /* PBReceiver.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PBReceiver.hpp; sourceTree = "<group>"; };
 		39BF573023982F97009F82BE /* libicui18n.64.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicui18n.64.2.dylib; path = ../../../../../usr/local/Cellar/icu4c/64.2/lib/libicui18n.64.2.dylib; sourceTree = "<group>"; };
@@ -1055,6 +1062,7 @@
 				39012F14239D718600FE652B /* Event.hpp */,
 				39012F34239DAEE000FE652B /* ClosePeopleWatcher.hpp */,
 				39012F16239D9A9600FE652B /* NoMovementsWatcher.hpp */,
+				39995B3723E8E6840031EB54 /* NewBodyWatcher.hpp */,
 				39012F2F239DACBD00FE652B /* RandomWatcher.hpp */,
 				39012F10239C7CB000FE652B /* SuddenMoveWatcher.hpp */,
 			);
@@ -1250,9 +1258,10 @@
 			isa = PBXGroup;
 			children = (
 				391A20052342B6B700F00517 /* Datagrams */,
-				395A0C84237F912200FB1D1D /* SocketDelegate.hpp */,
-				395017092341689000E7F6BD /* Socket.cpp */,
 				3950170A2341689000E7F6BD /* Socket.hpp */,
+				39B09D9F23EB350200359FA2 /* BaseSocket.cpp */,
+				39B09DA023EB350200359FA2 /* BaseSocket.hpp */,
+				395A0C84237F912200FB1D1D /* SocketDelegate.hpp */,
 				3950170D23416C9C00E7F6BD /* SocketStatus.hpp */,
 			);
 			path = Exchanges;
@@ -1393,6 +1402,8 @@
 				39ABB5582336FE1200C5D147 /* NetworkManager.hpp */,
 				392DCCB023453B7700885C84 /* TerminalServer.cpp */,
 				392DCCB123453B7700885C84 /* TerminalServer.hpp */,
+				39B09D9123EB0D3900359FA2 /* TrackersJSONServer.cpp */,
+				39B09D9223EB0D3900359FA2 /* TrackersJSONServer.hpp */,
 				3903C2732392FBC80061CFA8 /* TrackersServer.cpp */,
 				3903C2742392FBC80061CFA8 /* TrackersServer.hpp */,
 			);
@@ -3298,10 +3309,11 @@
 				392DCCB62345475C00885C84 /* Messages */,
 				39CA4AC62331486D00E528CD /* NetworkEngine.cpp */,
 				39CA4AC32331486D00E528CD /* NetworkEngine.hpp */,
+				39B09DA123EB3E9600359FA2 /* BaseServer.cpp */,
+				39B09DA223EB3E9600359FA2 /* BaseServer.hpp */,
 				39CA4AC72331486D00E528CD /* NetworkParameters.h */,
 				395A0C80237F5E2A00FB1D1D /* Endpoint.cpp */,
 				39CA4ACA2331486D00E528CD /* Endpoint.hpp */,
-				396C6A4E233C5643008FD842 /* Server.cpp */,
 				396C6A4F233C5643008FD842 /* Server.hpp */,
 			);
 			path = Network;
@@ -3431,6 +3443,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39B09DA623EB3E9600359FA2 /* BaseServer.hpp in Headers */,
 				392FCA6B23D120B500A3723D /* Scene.hpp in Headers */,
 				392FCAA923D120B500A3723D /* Elements.hpp in Headers */,
 				39C23809238309B300791E1E /* maths.hpp in Headers */,
@@ -3440,6 +3453,7 @@
 				392FCA7123D120B500A3723D /* PBVerticalLine.hpp in Headers */,
 				392FCA7F23D120B500A3723D /* PBVerticalMenu.hpp in Headers */,
 				39C23810238309B300791E1E /* Network.hpp in Headers */,
+				39B09D9323EB13B900359FA2 /* Server.hpp in Headers */,
 				392FCA6123D120B500A3723D /* ncurses.hpp in Headers */,
 				392FCA5B23D120B500A3723D /* UI.hpp in Headers */,
 				39C2380B238309B300791E1E /* thread.hpp in Headers */,
@@ -3453,10 +3467,10 @@
 				392FCA6523D120B500A3723D /* PBFrame.hpp in Headers */,
 				39C23814238309B300791E1E /* flags.hpp in Headers */,
 				392FCA6923D120B500A3723D /* View.hpp in Headers */,
+				39B09DA923EB636F00359FA2 /* BaseSocket.hpp in Headers */,
 				39DA973A2387169700D611C8 /* CalibrationValues.hpp in Headers */,
 				39012F0B239C4E7E00FE652B /* Arena.hpp in Headers */,
 				392FCA9123D120B500A3723D /* PBHorizontalLine.hpp in Headers */,
-				39C23815238309B300791E1E /* Server.hpp in Headers */,
 				392FCA9923D120B500A3723D /* PBMenuItem.hpp in Headers */,
 				39C23817238309B300791E1E /* Advertiser.hpp in Headers */,
 				392FCA5F23D120B500A3723D /* PBPoint.hpp in Headers */,
@@ -3486,13 +3500,12 @@
 			files = (
 				39593A83238F299200B8CF17 /* Behaviour.hpp in Headers */,
 				392FCAA823D120B500A3723D /* Elements.hpp in Headers */,
-				39F860D22390657600A32146 /* Core.hpp in Headers */,
 				395A7983233332CB00499894 /* maths.hpp in Headers */,
 				395A79802333321600499894 /* RawBody.hpp in Headers */,
 				392FCA5A23D120B500A3723D /* UI.hpp in Headers */,
 				3958C24423988BA9008F908E /* talkers.pb.h in Headers */,
 				39CA4AFD2332BDAB00E528CD /* Log.hpp in Headers */,
-				3903C2762392FBC80061CFA8 /* TrackersServer.hpp in Headers */,
+				39B09DAA23EB636F00359FA2 /* BaseSocket.hpp in Headers */,
 				395A0C87237FAFB600FB1D1D /* Network.hpp in Headers */,
 				39387FA3237AE8CF009E3FF2 /* thread.hpp in Headers */,
 				392FCA9823D120B500A3723D /* PBMenuItem.hpp in Headers */,
@@ -3502,6 +3515,7 @@
 				39BF5701239702C8009F82BE /* PBReceiver.hpp in Headers */,
 				392FCA8823D120B500A3723D /* PBControl.hpp in Headers */,
 				392FCA6823D120B500A3723D /* View.hpp in Headers */,
+				39B09DA523EB3E9600359FA2 /* BaseServer.hpp in Headers */,
 				395A79C12335BB2000499894 /* maths.pb.h in Headers */,
 				392FCA7823D120B500A3723D /* PBLabel.hpp in Headers */,
 				392FCA7023D120B500A3723D /* PBVerticalLine.hpp in Headers */,
@@ -3896,13 +3910,11 @@
 			files = (
 				392FCAA723D120B500A3723D /* View.cpp in Sources */,
 				39C23827238309B300791E1E /* body.pb.cc in Sources */,
-				39C23828238309B300791E1E /* Socket.cpp in Sources */,
 				392FCA6F23D120B500A3723D /* PBMenuItem.cpp in Sources */,
 				392FCA8723D120B500A3723D /* PBHorizontalLine.cpp in Sources */,
 				392FCA7723D120B500A3723D /* PBButton.cpp in Sources */,
 				392FCA8B23D120B500A3723D /* PBBox.cpp in Sources */,
 				392FCA9723D120B500A3723D /* PBVerticalLine.cpp in Sources */,
-				39C23829238309B300791E1E /* Server.cpp in Sources */,
 				39C2382A238309B300791E1E /* NetworkEngine.cpp in Sources */,
 				39C2382C238309B300791E1E /* layout.pb.cc in Sources */,
 				392FCA5D23D120B500A3723D /* Scene.cpp in Sources */,
@@ -3915,8 +3927,10 @@
 				39C23831238309B300791E1E /* Advertiser.cpp in Sources */,
 				39C23832238309B300791E1E /* network.pb.cc in Sources */,
 				392FCA9B23D120B500A3723D /* PBPopupMenu.cpp in Sources */,
+				39B09DA423EB3E9600359FA2 /* BaseServer.cpp in Sources */,
 				39C23834238309B300791E1E /* Endpoint.cpp in Sources */,
 				3958C24723988BBB008F908E /* talkers.pb.cc in Sources */,
+				39B09DA723EB62BD00359FA2 /* BaseSocket.cpp in Sources */,
 				392FCAA123D120B500A3723D /* PBLabel.cpp in Sources */,
 				39C23835238309B300791E1E /* Ping.cpp in Sources */,
 				392FCA6723D120B500A3723D /* ncurses.cpp in Sources */,
@@ -3931,7 +3945,6 @@
 				39C2389B2384983600791E1E /* main.cpp in Sources */,
 				39C238982384976F00791E1E /* Core.cpp in Sources */,
 				3922C27423943FBD0088537C /* Ping.cpp in Sources */,
-				3922C27523943FBD0088537C /* Socket.cpp in Sources */,
 				3922C27623943FBD0088537C /* Browser.cpp in Sources */,
 				3922C27723943FBD0088537C /* layout.pb.cc in Sources */,
 				3922C27823943FBD0088537C /* body.pb.cc in Sources */,
@@ -3948,13 +3961,11 @@
 			files = (
 				392FCAA623D120B500A3723D /* View.cpp in Sources */,
 				395A79C42335BB2000499894 /* body.pb.cc in Sources */,
-				3950170B2341689000E7F6BD /* Socket.cpp in Sources */,
 				392FCA6E23D120B500A3723D /* PBMenuItem.cpp in Sources */,
 				392FCA8623D120B500A3723D /* PBHorizontalLine.cpp in Sources */,
 				392FCA7623D120B500A3723D /* PBButton.cpp in Sources */,
 				392FCA8A23D120B500A3723D /* PBBox.cpp in Sources */,
 				392FCA9623D120B500A3723D /* PBVerticalLine.cpp in Sources */,
-				396C6A50233C5643008FD842 /* Server.cpp in Sources */,
 				39CA4AD82331486D00E528CD /* NetworkEngine.cpp in Sources */,
 				3966E41C2338018800710DD4 /* layout.pb.cc in Sources */,
 				392FCA5C23D120B500A3723D /* Scene.cpp in Sources */,
@@ -3967,8 +3978,10 @@
 				3958C24623988BB9008F908E /* talkers.pb.cc in Sources */,
 				39CA4ADA2331486D00E528CD /* Advertiser.cpp in Sources */,
 				392FCA9A23D120B500A3723D /* PBPopupMenu.cpp in Sources */,
+				39B09DA323EB3E9600359FA2 /* BaseServer.cpp in Sources */,
 				395A79C92335BB2000499894 /* network.pb.cc in Sources */,
 				395A0C81237F5E2A00FB1D1D /* Endpoint.cpp in Sources */,
+				39B09DA823EB62BE00359FA2 /* BaseSocket.cpp in Sources */,
 				392FCAA023D120B500A3723D /* PBLabel.cpp in Sources */,
 				391A20082342B6D300F00517 /* Ping.cpp in Sources */,
 				392FCA6623D120B500A3723D /* ncurses.cpp in Sources */,
@@ -4001,6 +4014,7 @@
 				39CA4A8F233140E100E528CD /* main.cpp in Sources */,
 				395E05122370C91900C58971 /* TrackingEngine.cpp in Sources */,
 				3978A80A2336F7BC00AF409D /* LayoutEngine.cpp in Sources */,
+				39B09D9423EB13C000359FA2 /* TrackersJSONServer.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
