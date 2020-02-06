@@ -13,6 +13,7 @@
 #include <mutex>
 
 #include "../../common.hpp"
+#include "../../Utils/thread.hpp"
 
 #include "../Exchanges/Socket.hpp"
 #include "../Exchanges/SocketDelegate.hpp"
@@ -45,6 +46,10 @@ public:
 		};
 	}
 
+	~PBReceiver() {
+		delete _internalThread;
+	}
+
 	// MARK: - Observers
 
 	inline void addObserver(PBReceiverObserver * observer) {
@@ -59,6 +64,8 @@ public:
 
 	inline void open() {
 		_browser.startBrowsing(discoveryPortReceiver);
+
+		_internalThread = new std::thread(&PBReceiver::parseBodies, this);
 	}
 
 	void close() {
@@ -156,16 +163,6 @@ public:
 		// Body is good, insert it
 		_bodies[bodyUID] = new Body(partialBody);
 
-//		// Check for outdated bodies
-//		for(auto it = _bodies.begin(); it != _bodies.end();) {
-//			it->second->inactivityCount += 1;
-//
-//			if(it->second->inactivityCount > 30)
-//				it = _bodies.erase(it);
-//			else
-//				++it;
-//		}
-
 		_arenaMutex.unlock();
 
 		for (PBReceiverObserver * observer: _observers) {
@@ -203,6 +200,32 @@ private:
 	std::map<bodyUID, Body *> _bodies;
 
 	Arena _arena = Arena(&_bodies, &_arenaMutex);
+
+	std::thread * _internalThread = nullptr;
+
+	void parseBodies() {
+		pb::thread::setName("pb.receiver.internal");
+
+		while(true) {
+			std::chrono::system_clock::time_point start = std::chrono::system_clock::now();
+
+			_arenaMutex.lock();
+
+			// Check for outdated bodies
+			for(auto it = _bodies.begin(); it != _bodies.end();) {
+				it->second->inactivityCount += 1;
+
+				if(it->second->inactivityCount > 30)
+					it = _bodies.erase(it);
+				else
+					++it;
+			}
+
+			_arenaMutex.unlock();
+
+			pb::thread::cadence(std::chrono::system_clock::now() - start, 15.0);
+		}
+	}
 };
 
 } /* ::network */

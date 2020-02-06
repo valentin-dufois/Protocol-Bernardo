@@ -72,9 +72,14 @@ struct Joint {
 		orientationConfidence = message.orientationconfidence();
 		position = maths::fromMessage(message.position());
 		position2D = maths::fromMessage(message.position2d());
-		positionConfidence = message.positionconfidence();
 
-//		LOG_DEBUG("{x: " + std::to_string(position.x) + ", y: " + std::to_string(position.y) + ", z: " + std::to_string(position.z) + "}");
+		if(abs(position.x) > 100000 ||
+		   abs(position.y) > 100000 ||
+		   abs(position.z) > 100000 ) {
+			positionConfidence = 0;
+		} else {
+			positionConfidence = message.positionconfidence();
+		}
 	}
 
 	// MARK: - Operators

@@ -86,10 +86,10 @@ struct Body {
 
 	// MARK: - Manipulations
 
-#ifdef PB_MASTER
-
 	/// How many cycles since the last time we received information on this body >?
 	unsigned int inactivityCount = 0;
+
+#ifdef PB_MASTER
 
 	/// Calculate the weighted mean of all the raw skeletons matching the current body
 	/// @returns True if the body has changed or false otherwise
@@ -181,6 +181,8 @@ struct Body {
 		if(skeletons.size() > 5) {
 			skeletons.pop_front();
 		}
+
+		inactivityCount = 0;
 
 		return *this;
 	}

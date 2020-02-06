@@ -119,8 +119,6 @@
 		394AE3B3239B0BFF001AB4E4 /* libboost_program_options.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 394AE3B0239B0BF4001AB4E4 /* libboost_program_options.dylib */; };
 		394AE3B9239B1483001AB4E4 /* libboost_program_options.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 394AE3B0239B0BF4001AB4E4 /* libboost_program_options.dylib */; };
 		394AE3BA239B1483001AB4E4 /* libboost_program_options.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 394AE3B0239B0BF4001AB4E4 /* libboost_program_options.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		394AE3BC239B1485001AB4E4 /* libprotobuf.22.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 394AE3AC239B0B39001AB4E4 /* libprotobuf.22.dylib */; };
-		394AE3BD239B1485001AB4E4 /* libprotobuf.22.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 394AE3AC239B0B39001AB4E4 /* libprotobuf.22.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		394AE3BE239B148D001AB4E4 /* libboost_system.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 39CA4ABF2331470200E528CD /* libboost_system.dylib */; };
 		394AE3BF239B148D001AB4E4 /* libboost_system.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 39CA4ABF2331470200E528CD /* libboost_system.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		394AE3C0239B1602001AB4E4 /* libboost_program_options.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 394AE3B0239B0BF4001AB4E4 /* libboost_program_options.dylib */; };
@@ -169,6 +167,8 @@
 		3966E41C2338018800710DD4 /* layout.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = 3966E4182338018800710DD4 /* layout.pb.cc */; };
 		3966E41F2338018800710DD4 /* layout.pb.h in Headers */ = {isa = PBXBuildFile; fileRef = 3966E41B2338018800710DD4 /* layout.pb.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		396C6A51233C5643008FD842 /* Server.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 396C6A4F233C5643008FD842 /* Server.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
+		396F682323EC889E0087986C /* libprotobuf.22.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 396F682223EC889E0087986C /* libprotobuf.22.dylib */; };
+		396F682423EC889E0087986C /* libprotobuf.22.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 396F682223EC889E0087986C /* libprotobuf.22.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		3978A7EE2336BF7D00AF409D /* libpb-common.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 39CA4A772331407A00E528CD /* libpb-common.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		3978A8072336D96B00AF409D /* libOpenNI2.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 395A79672332C04D00499894 /* libOpenNI2.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		3978A80A2336F7BC00AF409D /* LayoutEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3978A8032336D62A00AF409D /* LayoutEngine.cpp */; };
@@ -318,8 +318,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				394AE3BD239B1485001AB4E4 /* libprotobuf.22.dylib in Embed Libraries */,
 				394AE3BA239B1483001AB4E4 /* libboost_program_options.dylib in Embed Libraries */,
+				396F682423EC889E0087986C /* libprotobuf.22.dylib in Embed Libraries */,
 				394AE3BF239B148D001AB4E4 /* libboost_system.dylib in Embed Libraries */,
 			);
 			name = "Embed Libraries";
@@ -528,6 +528,7 @@
 		3966E4182338018800710DD4 /* layout.pb.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = layout.pb.cc; sourceTree = "<group>"; };
 		3966E41B2338018800710DD4 /* layout.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = layout.pb.h; sourceTree = "<group>"; };
 		396C6A4F233C5643008FD842 /* Server.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Server.hpp; sourceTree = "<group>"; };
+		396F682223EC889E0087986C /* libprotobuf.22.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libprotobuf.22.dylib; path = ../../../../../usr/local/Cellar/protobuf/3.11.3/lib/libprotobuf.22.dylib; sourceTree = "<group>"; };
 		3978A7F42336BFCD00AF409D /* Core.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Core.cpp; sourceTree = "<group>"; };
 		3978A7F52336BFCD00AF409D /* Core.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Core.hpp; sourceTree = "<group>"; };
 		3978A7FA2336C5D200AF409D /* Layout.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Layout.hpp; sourceTree = "<group>"; };
@@ -999,8 +1000,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				396F682323EC889E0087986C /* libprotobuf.22.dylib in Frameworks */,
 				392FCA2823D115C400A3723D /* libncurses.5.4.dylib in Frameworks */,
-				394AE3BC239B1485001AB4E4 /* libprotobuf.22.dylib in Frameworks */,
 				394AE3B9239B1483001AB4E4 /* libboost_program_options.dylib in Frameworks */,
 				394AE3BE239B148D001AB4E4 /* libboost_system.dylib in Frameworks */,
 			);
@@ -3281,6 +3282,7 @@
 		39CA4ABA233145A200E528CD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				396F682223EC889E0087986C /* libprotobuf.22.dylib */,
 				392FCA2723D115C400A3723D /* libncurses.5.4.dylib */,
 				394AE3B0239B0BF4001AB4E4 /* libboost_program_options.dylib */,
 				394AE3AC239B0B39001AB4E4 /* libprotobuf.22.dylib */,
@@ -4413,7 +4415,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					/usr/local/lib/,
 					/usr/local/lib/ni2/,
-					/usr/local/Cellar/protobuf/3.11.1/lib,
+					/usr/local/Cellar/protobuf/3.11.3/lib,
 					/usr/local/Cellar/boost/1.71.0/lib,
 				);
 				MACHINE = "";
@@ -4459,7 +4461,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					/usr/local/lib/,
 					/usr/local/lib/ni2/,
-					/usr/local/Cellar/protobuf/3.11.1/lib,
+					/usr/local/Cellar/protobuf/3.11.3/lib,
 					/usr/local/Cellar/boost/1.71.0/lib,
 				);
 				MACHINE = "";

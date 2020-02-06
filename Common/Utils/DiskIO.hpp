@@ -69,7 +69,7 @@ inline std::vector<std::string> ls(const std::string directoryPath) {
 
 	// For each entry in the folder
 	for(fs::directory_entry entry: fs::directory_iterator(directoryPath)) {
-		entries.push_back(std::string(entry.path().filename()));
+		entries.push_back(entry.path().filename().string());
 	}
 
 	return entries;

@@ -5,13 +5,17 @@
 //  Created by Valentin Dufois on 2019-12-07.
 //
 
+#include <limits>
+
 #include "Arena.hpp"
 #include "../Structs/Body.hpp"
 #include "../Structs/Skeleton.hpp"
 
+#include "glm/gtx/string_cast.hpp"
+
 namespace pb {
 
-unsigned long Arena::count() const {
+size_t Arena::count() const {
 	return getSubset().size();
 }
 

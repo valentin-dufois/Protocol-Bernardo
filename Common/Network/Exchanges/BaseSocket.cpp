@@ -251,7 +251,7 @@ void BaseSocket::handleReceive(const boost::system::error_code &error, std::size
 	}
 
 	// Decode the message using the proper format
-	protobuf::Message * message;
+	protobuf::Message * message = nullptr;
 
 	switch(_format) {
 		case protobuf:

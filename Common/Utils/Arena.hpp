@@ -46,7 +46,7 @@ public:
 	// MARK: - Access
 
 	/// Tell how many bodies are present in this arena.
-	unsigned long count() const;
+	size_t count() const;
 
 	/// Gives the bodies in the current subset
 	std::vector<Body *> getSubset() const;
