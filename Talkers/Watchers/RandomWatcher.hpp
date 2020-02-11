@@ -17,7 +17,7 @@ public:
 		_foundEvent = true;
 	}
 
-	virtual void watch(const pb::Arena *) override {
+	virtual void watch(pb::Arena *) override {
 		return;
 	}
 

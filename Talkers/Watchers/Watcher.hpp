@@ -32,7 +32,7 @@ public:
 	/// Watch the given arena.
 	///
 	/// @param arena The arena to watch
-	virtual void watch(const pb::Arena * arena) = 0;
+	virtual void watch(pb::Arena * arena) = 0;
 
 	virtual bool hasFoundEvent() const {
 		float randRes = (float)rand() / (float)RAND_MAX;

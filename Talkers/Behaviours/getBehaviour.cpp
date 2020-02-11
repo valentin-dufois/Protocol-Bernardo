@@ -76,7 +76,6 @@
 #include "T-5/B-58/B-58.hpp"
 #include "T-5/B-60/B-60.hpp"
 #include "T-5/B-70/B-70.hpp"
-#include "T-5/B-79/B-79.hpp"
 #include "T-5/B-81/B-81.hpp"
 #include "T-5/B-83/B-83.hpp"
 #include "T-5/B-84/B-84.hpp"
@@ -262,7 +261,6 @@ Behaviour * Behaviour::get(const talkers::BehaviourID behaviourID) {
         case 58: return new B58();
         case 60: return new B60();
         case 70: return new B70();
-        case 79: return new B79();
         case 81: return new B81();
         case 83: return new B83();
         case 84: return new B84();

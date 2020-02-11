@@ -12,6 +12,7 @@
 
 // TREE 1
 #include "T-1/B-1/O-1.hpp"
+#include "T-1/B-1/O-9999.hpp"
 #include "T-1/B-3/O-2.hpp"
 #include "T-1/B-4/O-3.hpp"
 #include "T-1/B-5/O-4.hpp"
@@ -80,13 +81,13 @@
 #include "T-5/B-60/O-40.hpp"
 #include "T-5/B-60/O-45.hpp"
 #include "T-5/B-70/O-50.hpp"
-#include "T-5/B-79/O-59.hpp"
 #include "T-5/B-81/O-61.hpp"
 #include "T-5/B-83/O-63.hpp"
 #include "T-5/B-84/O-64.hpp"
 #include "T-5/B-87/O-67.hpp"
 #include "T-5/B-90/O-70.hpp"
 #include "T-5/B-91/O-71.hpp"
+#include "T-5/B-91/O-9998.hpp"
 #include "T-5/B-91/O-72.hpp"
 #include "T-5/B-92/O-73.hpp"
 #include "T-5/B-93/O-74.hpp"
@@ -140,6 +141,7 @@
 
 // TREE 9
 #include "T-9/B-139/O-127.hpp"
+#include "T-9/B-139/O-9997.hpp"
 #include "T-9/B-141/O-128.hpp"
 #include "T-9/B-141/O-129.hpp"
 #include "T-9/B-142/O-130.hpp"
@@ -208,6 +210,7 @@ Output * Output::get(const talkers::OutputID id) {
 
         // TREE 1
         case 1: return new O1();
+		case 9999: return new O9999();
         case 2: return new O2();
         case 3: return new O3();
         case 4: return new O4();
@@ -276,13 +279,13 @@ Output * Output::get(const talkers::OutputID id) {
         case 40: return new O40();
         case 45: return new O45();
         case 50: return new O50();
-        case 59: return new O59();
         case 61: return new O61();
         case 63: return new O63();
         case 64: return new O64();
         case 67: return new O67();
         case 70: return new O70();
-        case 71: return new O71();
+		case 71: return new O71();
+		case 9998: return new O9998();
         case 72: return new O72();
         case 73: return new O73();
         case 74: return new O74();
@@ -336,6 +339,7 @@ Output * Output::get(const talkers::OutputID id) {
 
         // TREE 9
         case 127: return new O127();
+		case 9997: return new O9997();
         case 128: return new O128();
         case 129: return new O129();
         case 130: return new O130();

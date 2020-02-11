@@ -16,7 +16,7 @@ public:
 	NoMovementsWatcher(const talkers::BehaviourID &behaviour, const double &threshold, const double &triggerLuck):
 	Watcher(behaviour, triggerLuck), _threshold(threshold) {}
 
-	virtual void watch(const pb::Arena * arena) override {
+	virtual void watch(pb::Arena * arena) override {
 		if(arena->count() == 0) {
 			_foundEvent = false;
 			return;

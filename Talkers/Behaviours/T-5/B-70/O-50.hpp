@@ -15,7 +15,7 @@ public:
 
     O50(): Output(50,	            // Output ID
         false,	                    // Is tree end ?
-        79,	                        // Next Behaviour ID
+        81,	                        // Next Behaviour ID
         DELAY_DEFAULT,	            // Is delayed
         DELAY_VALUE_DEFAULT,		// Delay value (seconds)
         DELAY_VARIANCE_DEFAULT,		// Delay variance (seconds)

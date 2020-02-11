@@ -22,7 +22,7 @@ public:
         {		                    // Output values
         },
         {		                    // Captions
-            "Although I detect {BODY_COUNT} person.people, I do not detect motion.",
+            "Although I detect {BODY_COUNT} person, I do not detect motion.",
         }) {}
 
     virtual bool isConditionValid(State &behaviourState) override {
@@ -31,7 +31,7 @@ public:
         */
 
         _state["BODY_COUNT"] = std::to_string(std::get<int>(behaviourState["BODY_COUNT_INT"]));
-		return true;
+		return std::get<int>(behaviourState["BODY_COUNT_INT"]) <= 1;
     }
 };
 

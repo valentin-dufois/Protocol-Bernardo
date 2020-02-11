@@ -18,7 +18,7 @@ public:
 	ClosePeopleWatcher(const talkers::BehaviourID &behaviour, const double &threshold, const double &triggerLuck):
 	Watcher(behaviour, triggerLuck), _threshold(threshold) {}
 
-	virtual void watch(const pb::Arena * arena) override {
+	virtual void watch(pb::Arena * arena) override {
 		std::vector<pb::Body *> bodies = arena->getSubset();
 
 		/// If there is less than two people, this watcher cannot find anything

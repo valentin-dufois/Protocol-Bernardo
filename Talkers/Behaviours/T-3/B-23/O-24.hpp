@@ -23,7 +23,7 @@ public:
             "BODY_COUNT",
         },
         {		                    // Captions
-            "Yes. It was sudden. For sure, someebody must have been moving fast.",
+            "Yes. It was sudden. For sure, somebody must have been moving fast.",
         }) {}
 
     virtual bool isConditionValid(State &behaviourState) override {

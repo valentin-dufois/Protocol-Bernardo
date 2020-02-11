@@ -1,28 +1,28 @@
 //
-//  O-59.hpp
+//  O-9999.hpp
 //  Talkers
 //
 //  Created by Valentin Dufois on 2020-02-03.
 //
 
-#ifndef O_59_hpp
-#define O_59_hpp
+#ifndef O_9999_hpp
+#define O_9999_hpp
 
 #include "../../Output.hpp"
 
-class O59: public Output {
+class O9999: public Output {
 public:
 
-    O59(): Output(59,	            // Output ID
+    O9999(): Output(9999,	            // Output ID
         false,	                    // Is tree end ?
-        81,	                        // Next Behaviour ID
+        3,	                        // Next Behaviour ID
         DELAY_DEFAULT,	            // Is delayed
         DELAY_VALUE_DEFAULT,		// Delay value (seconds)
         DELAY_VARIANCE_DEFAULT,		// Delay variance (seconds)
         {		                    // Output values
         },
         {		                    // Captions
-            "It leads us to believe that they are observing us.",
+            "Although I detect {BODY_COUNT} people, I do not detect motion.",
         }) {}
 
     virtual bool isConditionValid(State &behaviourState) override {
@@ -30,8 +30,9 @@ public:
         Condition: 
         */
 
-        return true;
+        _state["BODY_COUNT"] = std::to_string(std::get<int>(behaviourState["BODY_COUNT_INT"]));
+		return std::get<int>(behaviourState["BODY_COUNT_INT"]) > 1;
     }
 };
 
-#endif /* O_59_hpp */
+#endif /* O_9999_hpp */

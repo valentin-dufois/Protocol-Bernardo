@@ -28,7 +28,7 @@ class MachineDelegate;
 class Machine {
 public:
 
-	Machine(const pb::Arena * arena):
+	Machine(pb::Arena arena):
 	_arena(arena) {}
 
 	std::string label;
@@ -57,8 +57,8 @@ public:
 		return _tree;
 	}
 
-	inline const pb::Arena * arena() {
-		return _arena;
+	inline pb::Arena * arena() {
+		return &_arena;
 	}
 
 	inline const std::vector<std::string> & receptionHistory() const {
@@ -93,7 +93,7 @@ private:
 	void onError(const std::string &desc);
 
 	/// The arena this machine is watching
-	const pb::Arena * _arena;
+	pb::Arena _arena;
 
 	/// All the captions received from the other machine
 	std::vector<std::string> _receptionHistory;
@@ -108,8 +108,8 @@ private:
 
 	/// All the watchers
 	std::array<Watcher *, 8> _watchers = {
-		new NoMovementsWatcher(1, 50, 0.01),			// T-01
-		new ClosePeopleWatcher(11, 800, 0.1),		// T-02
+		new NoMovementsWatcher(1, 100, 0.01),		// T-01
+		new ClosePeopleWatcher(11, 8000, 0.1),		// T-02
 		new SuddenMoveWatcher(18, 5000, 0.1),		// T-03
 //		new NewBodyWatcher(22, 0.1),				// T-04
 		new RandomWatcher(50, 0.01),				// T-05
@@ -117,7 +117,7 @@ private:
 //		new ProximityWatcher(128, 0.01),			// T-07
 		new RandomWatcher(139, 0.01),			// T-09
 		new RandomWatcher(158, 0.01),			// T-11
-		new ClosePeopleWatcher(177, 800, 0.01),	// T-13
+		new ClosePeopleWatcher(177, 8000, 0.01),	// T-13
 
 	};
 };

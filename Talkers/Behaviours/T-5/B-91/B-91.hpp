@@ -24,6 +24,7 @@ public:
         },
         {		            // Expected outputs
             71,
+			9998,
             72,
     }) {}
 

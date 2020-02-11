@@ -30,8 +30,7 @@ public:
         Condition: 
         */
 
-        LOG_ERROR("Output #73 has not been evaluated");
-        return false;
+        return true;
     }
 };
 

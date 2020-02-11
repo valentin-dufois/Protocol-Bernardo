@@ -24,6 +24,7 @@ public:
         },
         {		            // Expected outputs
             127,
+			9997,
     }) {}
 
     virtual bool execute(Machine * machine) override {

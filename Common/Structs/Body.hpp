@@ -182,6 +182,11 @@ struct Body {
 			skeletons.pop_front();
 		}
 
+
+		// Update devices UID list
+		devicesUID.clear();
+		devicesUID.insert(partialBody.devicesuid().begin(), partialBody.devicesuid().end());
+
 		inactivityCount = 0;
 
 		return *this;

@@ -22,7 +22,7 @@ public:
         {		                    // Output values
         },
         {		                    // Captions
-            "Do you mean that they are all the same or they just appen to have identical behaviour?",
+            "Do you mean that they are all the same or they just happen to have identical behaviours?",
         }) {}
 
     virtual bool isConditionValid(State &behaviourState) override {

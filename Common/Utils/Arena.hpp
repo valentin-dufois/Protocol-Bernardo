@@ -62,10 +62,10 @@ public:
 	// MARK: - Intels
 
 	/// The average move speed of all the bodies in the arena in mm/s
-	double averageMoveSpeed() const;
+	double averageMoveSpeed();
 
 	/// Gives the user who's the most active
-	std::tuple<Body *, double> mostActiveBody() const;
+	std::tuple<Body *, double> mostActiveBody();
 
 	/// Number of people moving in the arena
 	unsigned int movingBodiesCount() const;
@@ -80,6 +80,9 @@ private:
 
 	/// Watched devices list
 	const std::vector<pb::deviceUID> _devices;
+
+	double _lastAvgMoveSpeed = -1;
+	double _lastMaxMoveSpeed = -1;
 };
 
 } /* ::pb */

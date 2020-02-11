@@ -1,19 +1,19 @@
 //
-//  O-127.hpp
+//  O-9997.hpp
 //  Talkers
 //
 //  Created by Valentin Dufois on 2020-02-03.
 //
 
-#ifndef O_127_hpp
-#define O_127_hpp
+#ifndef O_9997_hpp
+#define O_9997_hpp
 
 #include "../../Output.hpp"
 
-class O127: public Output {
+class O9997: public Output {
 public:
 
-    O127(): Output(127,	            // Output ID
+    O9997(): Output(9997,	            // Output ID
         false,	                    // Is tree end ?
         141,	                        // Next Behaviour ID
         DELAY_DEFAULT,	            // Is delayed
@@ -23,7 +23,7 @@ public:
             "TOTAL_BODIES_COUNT",
         },
         {		                    // Captions
-            "Until now, I have counted {TOTAL_BODIES_COUNT_STR} person in the entire room.",
+            "Until now, I have counted {TOTAL_BODIES_COUNT_STR} people in the entire room.",
         }) {}
 
     virtual bool isConditionValid(State &behaviourState) override {
@@ -32,9 +32,9 @@ public:
         */
 
         _state["TOTAL_BODIES_COUNT"] = behaviourState["TOTAL_BODIES_COUNT_INT"];
-		_state["TOTAL_BODIES_COUNT_STR"] = std::to_string(std::get<int>(behaviourState["TOTAL_BODIES_COUNT_INT"]));
-		return std::get<int>(behaviourState["TOTAL_BODIES_COUNT_INT"]) <= 1;
+		_state["TOTAL_BODIES_COUNT_STR"] = std::to_string(std::get<int>(behaviourState["TOTAL_BODIES_COUNT"]));
+		return std::get<int>(behaviourState["TOTAL_BODIES_COUNT_INT"]) > 1;
     }
 };
 
-#endif /* O_127_hpp */
+#endif /* O_9997_hpp */

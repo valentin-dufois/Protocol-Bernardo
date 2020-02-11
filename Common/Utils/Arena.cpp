@@ -13,6 +13,9 @@
 
 #include "glm/gtx/string_cast.hpp"
 
+#define ERROR_THRESHOLD 10000
+#define SPIKE_THRESHOLD 6000
+
 namespace pb {
 
 size_t Arena::count() const {
@@ -68,7 +71,7 @@ bool Arena::fitBody(const Body * body) const {
 	return false;
 }
 
-double Arena::averageMoveSpeed() const {
+double Arena::averageMoveSpeed() {
 	double acc = 0;
 	unsigned int jointsUsed = 0;
 
@@ -102,8 +105,12 @@ double Arena::averageMoveSpeed() const {
 				continue;
 			}
 
-			++jointsUsed;
-			acc += abs(glm::distance(a->joints[jointID].position, b->joints[jointID].position));
+			double dist = abs(glm::distance(a->joints[jointID].position, b->joints[jointID].position));
+
+			if(dist < ERROR_THRESHOLD) {
+				++jointsUsed;
+				acc += dist;
+			}
 		}
 	}
 
@@ -112,10 +119,17 @@ double Arena::averageMoveSpeed() const {
 
 	constexpr double trackingEngineFreq = 5.0 / TRACKING_ENGINE_RUN_SPEED;
 
-	return (acc / double(jointsUsed)) / trackingEngineFreq;
+	const double avgMoveSpeed = (acc / double(jointsUsed)) / trackingEngineFreq;
+
+	if(abs(avgMoveSpeed - _lastAvgMoveSpeed) < SPIKE_THRESHOLD) {
+		_lastAvgMoveSpeed = avgMoveSpeed;
+		return avgMoveSpeed;
+	}
+
+	return _lastAvgMoveSpeed;
 }
 
-std::tuple<Body *, double> Arena::mostActiveBody() const {
+std::tuple<Body *, double> Arena::mostActiveBody() {
 	double max = 0, dist = 0;
 	Body * fastestBody = nullptr;
 
@@ -136,7 +150,7 @@ std::tuple<Body *, double> Arena::mostActiveBody() const {
 		if(body->skeletons.size() < 5)
 			continue; // Ignore
 
-		//		std::list<Skeleton *>::iterator it = body->skeletons.begin();
+		//	std::list<Skeleton *>::iterator it = body->skeletons.begin();
 
 		Skeleton * a = body->skeletons.front();
 		Skeleton * b = body->skeletons.back();
@@ -150,7 +164,7 @@ std::tuple<Body *, double> Arena::mostActiveBody() const {
 
 			dist = abs(glm::distance(a->joints[jointID].position, b->joints[jointID].position));
 
-			if(dist > max) {
+			if(dist > max && dist < ERROR_THRESHOLD) {
 				max = dist;
 				fastestBody = body;
 			}
@@ -159,7 +173,14 @@ std::tuple<Body *, double> Arena::mostActiveBody() const {
 
 	constexpr double trackingEngineFreq = 5.0 / TRACKING_ENGINE_RUN_SPEED;
 
-	return {fastestBody, max / trackingEngineFreq};
+	const double maxMoveSpeed = max / trackingEngineFreq;
+
+	if(abs(maxMoveSpeed - _lastMaxMoveSpeed) < SPIKE_THRESHOLD) {
+		_lastMaxMoveSpeed = maxMoveSpeed;
+		return {fastestBody, maxMoveSpeed};
+	}
+
+	return {fastestBody, _lastMaxMoveSpeed};
 }
 
 unsigned int Arena::movingBodiesCount() const {

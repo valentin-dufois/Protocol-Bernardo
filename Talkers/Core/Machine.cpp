@@ -118,9 +118,9 @@ messages::Talkers Machine::getOutputMessage() {
 	message.set_label(this->label);
 
 	// Add the machine state
-	message.set_bodycount((int)_arena->count());
-	message.set_averageactivity(_arena->averageMoveSpeed());
-	message.set_maximumactivity( std::get<1>(_arena->mostActiveBody()));
+	message.set_bodycount((int)_arena.count());
+	message.set_averageactivity(_arena.averageMoveSpeed());
+	message.set_maximumactivity(std::get<1>(_arena.mostActiveBody()));
 	message.set_tree(_tree != nullptr);
 
 	return message;
@@ -138,7 +138,7 @@ bool Machine::executeWatchers() {
 
 	// Execute each watchers
 	for(Watcher * watcher: _watchers) {
-		watcher->watch(_arena);
+		watcher->watch(&_arena);
 
 		if(!watcher->hasFoundEvent())
 			continue;

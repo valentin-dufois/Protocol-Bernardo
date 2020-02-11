@@ -71,8 +71,8 @@ private:
 
 	// MARK: Machines
 
-	Machine _machineA = Machine(_PBReceiver.arena());
-	Machine _machineB = Machine(_PBReceiver.arena());
+	Machine _machineA = Machine(_PBReceiver.arena()->makeSubset({"touch00A1", "touch00A2"}));
+	Machine _machineB = Machine(_PBReceiver.arena()->makeSubset({"touch00B1", "touch00B2"}));
 
 	Machine * _currentMachine = &_machineB;
 
