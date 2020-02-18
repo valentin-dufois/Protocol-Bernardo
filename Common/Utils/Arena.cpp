@@ -25,34 +25,29 @@ size_t Arena::count() const {
 std::vector<Body *> Arena::getSubset() const {
 	std::vector<Body *> bodies;
 
-	_mutex->lock();
+	const std::lock_guard<std::mutex> lock(*_mutex);
 
 	for(std::pair<bodyUID, Body *> pair: *_bodies) {
 		if(fitBody(pair.second))
 			bodies.push_back(pair.second);
 	}
 
-	_mutex->unlock();
-
 	return bodies;
 }
 
 Body * Arena::getBody(const bodyUID &uid) const {
-	_mutex->lock();
+	std::lock_guard<std::mutex> lock(*_mutex);
 
 	if(_bodies->find(uid) == _bodies->end()) {
-		_mutex->unlock();
 		return nullptr;
 	}
 
 	Body * body = _bodies->at(uid);
 
 	if(fitBody(body)) {
-		_mutex->unlock();
 		return body;
 	}
 
-	_mutex->unlock();
 	return nullptr;
 }
 
@@ -71,7 +66,7 @@ bool Arena::fitBody(const Body * body) const {
 	return false;
 }
 
-double Arena::averageMoveSpeed() {
+double Arena::averageMoveSpeed() const {
 	double acc = 0;
 	unsigned int jointsUsed = 0;
 

@@ -64,7 +64,7 @@ void BaseSocket::connectTo(const Endpoint &remote) {
 		delegate->socketDidOpen(this);
 }
 
-void BaseSocket::close(bool) {
+void BaseSocket::close() {
 	if(_status != ready)
 		return;
 
@@ -89,9 +89,6 @@ BaseSocket::~BaseSocket() {
 	_sendMutex.lock();
 
 	close();
-
-	_sendMutex.unlock();
-	_receiveMutex.unlock();
 }
 
 
@@ -135,7 +132,7 @@ void BaseSocket::onOpenedFromRemote(const Endpoint::Type &remoteType) {
 }
 
 void BaseSocket::onError() {
-	close(true);
+	close();
 }
 
 // MARK: - Emission
@@ -159,7 +156,7 @@ void BaseSocket::sendSync(const google::protobuf::Message * message) {
 		LOG_ERROR(error.message());
 
 		_sendMutex.unlock();
-		close(true);
+		close();
 		return;
 	}
 
@@ -185,9 +182,7 @@ void BaseSocket::sendAsync(const google::protobuf::Message * message) {
 			LOG_ERROR("An error occured while sending data asynchronously");
 			LOG_ERROR(error.message());
 
-			_receiveMutex.lock();
-			close(true);
-			_receiveMutex.unlock();
+			close();
 		}
 
 		_sendMutex.unlock();
@@ -234,9 +229,7 @@ void BaseSocket::handleReceive(const boost::system::error_code &error, std::size
 		LOG_ERROR("Error while receiving data. Closing socket");
 		LOG_ERROR(error.message());
 
-		_sendMutex.lock();
-		close(true);
-		_sendMutex.unlock();
+		close();
 		return;
 	}
 

@@ -15,7 +15,6 @@
 #include <vector>
 
 #include "../common.hpp"
-#include "Bounds.hpp"
 
 namespace pb {
 
@@ -62,7 +61,7 @@ public:
 	// MARK: - Intels
 
 	/// The average move speed of all the bodies in the arena in mm/s
-	double averageMoveSpeed();
+	double averageMoveSpeed() const;
 
 	/// Gives the user who's the most active
 	std::tuple<Body *, double> mostActiveBody();
@@ -81,8 +80,8 @@ private:
 	/// Watched devices list
 	const std::vector<pb::deviceUID> _devices;
 
-	double _lastAvgMoveSpeed = -1;
-	double _lastMaxMoveSpeed = -1;
+	mutable double _lastAvgMoveSpeed = -1;
+	mutable double _lastMaxMoveSpeed = -1;
 };
 
 } /* ::pb */

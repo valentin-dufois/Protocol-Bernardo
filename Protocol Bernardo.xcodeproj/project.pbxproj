@@ -454,7 +454,6 @@
 		392FCAB023D1266600A3723D /* NiTE2 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = NiTE2; sourceTree = "<group>"; };
 		392FCAB123D1266600A3723D /* OpenNI2 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = OpenNI2; sourceTree = "<group>"; };
 		3933A6C1239C44020095B3AF /* Arena.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Arena.hpp; sourceTree = "<group>"; };
-		3933A6C2239C440E0095B3AF /* Bounds.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Bounds.hpp; sourceTree = "<group>"; };
 		3937ADF823565C6C009E6021 /* MainWindowContoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowContoller.swift; sourceTree = "<group>"; };
 		3937ADFB23565E2F009E6021 /* NetworkEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkEngine.swift; sourceTree = "<group>"; };
 		3937ADFD23565E70009E6021 /* Browser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Browser.swift; sourceTree = "<group>"; };
@@ -3358,7 +3357,6 @@
 				39387FA2237AE82C009E3FF2 /* thread.hpp */,
 				39012F06239C4B9600FE652B /* Arena.cpp */,
 				3933A6C1239C44020095B3AF /* Arena.hpp */,
-				3933A6C2239C440E0095B3AF /* Bounds.hpp */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -4778,7 +4776,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = KJ993GM677;
-				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -4847,7 +4845,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = KJ993GM677;
-				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;

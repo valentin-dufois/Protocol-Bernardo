@@ -123,11 +123,7 @@ public:
 
 				_arenaMutex.unlock();
 
-				for (PBReceiverObserver * observer: _observers) {
-					if(observer != nullptr)
-						observer->receiverDidUpdate(this);
-				}
-				return;
+				return updateObservers();
 			}
 
 			// Body is valid, merge the partial body in the body
@@ -138,11 +134,7 @@ public:
 
 			_arenaMutex.unlock();
 
-			for (PBReceiverObserver * observer: _observers) {
-				if(observer != nullptr)
-					observer->receiverDidUpdate(this);
-			}
-			return;
+			return updateObservers();
 		}
 
 		// This looks like a new body, is it valid ?
@@ -153,11 +145,7 @@ public:
 
 			_arenaMutex.unlock();
 
-			for (PBReceiverObserver * observer: _observers) {
-				if(observer != nullptr)
-					observer->receiverDidUpdate(this);
-			}
-			return;
+			return updateObservers();
 		}
 
 		// Body is good, insert it
@@ -165,10 +153,7 @@ public:
 
 		_arenaMutex.unlock();
 
-		for (PBReceiverObserver * observer: _observers) {
-			if(observer != nullptr)
-				observer->receiverDidUpdate(this);
-		}
+		updateObservers();
 	}
 
 	inline virtual void socketDidClose(BaseSocket *) override {
@@ -224,6 +209,13 @@ private:
 			_arenaMutex.unlock();
 
 			pb::thread::cadence(std::chrono::system_clock::now() - start, 15.0);
+		}
+	}
+
+	void updateObservers() {
+		for (PBReceiverObserver * observer: _observers) {
+			if(observer != nullptr)
+				observer->receiverDidUpdate(this);
 		}
 	}
 };

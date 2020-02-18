@@ -43,12 +43,6 @@ public:
 
 	// MARK: - Lifecycle
 
-	BaseSocket():
-		_socket(Engine::instance()->getContext()),
-		_timer(Engine::instance()->getContext()),
-		_outputStream(&_outputBuffer) {
-		}
-
 	/// Connects the socket to the given ip and port
 	void connectTo(const std::string &ip, const NetworkPort &port);
 
@@ -60,10 +54,7 @@ public:
 	/// This method may be called by the socket on itself if certain conditions are
 	/// met, such as when the remote closes the socket on its side.
 	/// Calls to this method triggers the callback `onClose`.
-	///
-	/// @param silent False if the other side of the socket should be told about the
-	/// closing
-	void close(bool silent = false);
+	void close();
 
 	virtual ~BaseSocket();
 
@@ -130,7 +121,7 @@ protected:
 private:
 
 	/// The underlying Asio socket
-	asio::ip::tcp::socket _socket;
+	asio::ip::tcp::socket _socket = asio::ip::tcp::socket(Engine::instance()->getContext());
 
 	/// The status of the socket
 	SocketStatus _status = SocketStatus::idle;
@@ -145,7 +136,7 @@ private:
 
 	// MARK: - Emission
 
-	asio::deadline_timer _timer;
+	asio::deadline_timer _timer = asio::deadline_timer(Engine::instance()->getContext());
 
 	/// Mutex protecting from send errors
 	std::mutex _sendMutex;
@@ -153,11 +144,11 @@ private:
 	/// Mutex protecting from receive errors
 	std::mutex _receiveMutex;
 
-	/// Synchronous send output stream
-	std::ostream _outputStream;
-
 	/// Synchronous send output buffer
 	asio::streambuf _outputBuffer;
+
+	/// Synchronous send output stream
+	std::ostream _outputStream = std::ostream(&_outputBuffer);
 
 	/// Send a message to the server synchronously.
 	/// @param message The message to send
@@ -190,7 +181,7 @@ private:
 			// Operation aborted is send if the timer is cancelled, meaning no timeout1
 			if(error != boost::asio::error::operation_aborted) {
 				LOG_ERROR("Socket send timeout");
-				close(true);
+				close();
 			}
 		});
 	}

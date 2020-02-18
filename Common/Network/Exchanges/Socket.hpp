@@ -118,7 +118,7 @@ protected:
 
 		switch(datagramType) {
 			case messages::Datagram_Type_CLOSE:
-				close(true);
+				close();
 				break;
 			case messages::Datagram_Type_PING:
 				onPing(datagram->mutable_data(), this);

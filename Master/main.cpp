@@ -5,7 +5,7 @@
 //  Created by Valentin Dufois on 2019-09-17.
 //
 
-#include "../Common/Utils.hpp"
+#include <common/thread.hpp>
 #include "../Common/Network.hpp"
 
 #include "Core/Core.hpp"
